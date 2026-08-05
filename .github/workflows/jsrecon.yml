@@ -1,0 +1,64 @@
+name: JS Recon via opencode
+
+# Collects fyers.in JavaScript inventory, then analyzes complete files
+# (deterministic backstop + opencode full-file deep pass). One batch per run,
+# state tracked in js-inventory.json so it walks through EVERYTHING over time.
+
+on:
+  schedule:
+    - cron: "*/25 * * * *"
+  workflow_dispatch:
+    inputs:
+      per_run:
+        description: "Files to analyze this run (default 15)"
+        required: false
+        default: "15"
+
+permissions:
+  contents: write
+
+env:
+  JS_MODEL: opencode/deepseek-v4-flash-free
+
+jobs:
+  jsrecon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    concurrency:
+      group: jsrecon
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install OpenCode
+        run: |
+          curl -fsSL https://opencode.ai/install | bash
+          export PATH="$HOME/.opencode/bin:$PATH"
+          opencode --version | head -1
+
+      - name: Collect JS inventory
+        run: |
+          export PATH="$HOME/.opencode/bin:$PATH"
+          if [ ! -f js-inventory.json ]; then echo "[]" > js-inventory.json; fi
+          python3 jsrecon/collect.py
+
+      - name: Analyze batch
+        run: |
+          export PATH="$HOME/.opencode/bin:$PATH"
+          JS_PER_RUN="${{ github.event.inputs.per_run || '15' }}" python3 jsrecon/analyze.py
+
+      - name: Commit
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add js-inventory.json findings.md reports/ jsrecon/work/ || true
+          git add jsrecon/work/.gitignore 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "jsrecon run $(date -u +'%Y-%m-%d-%H-%M')"
+          git pull --rebase || true
+          git push || true

@@ -1,0 +1,20 @@
+{
+  "scope": ["fyers.in", "*.fyers.in"],
+  "min_size_bytes": 1024,
+  "max_size_bytes": 2500000,
+  "per_run_files": 15,
+  "model": "opencode/deepseek-v4-flash-free",
+  "seed_hosts": [
+    "https://fyers.in/",
+    "https://api.fyers.in/",
+    "https://api-t1.fyers.in/",
+    "https://community.fyers.in/",
+    "https://assets.fyers.in/"
+  ],
+  "seed_paths": [
+    "/_next/static/",
+    "/assets/",
+    "/js/",
+    "/~backend/build/"
+  ]
+}
