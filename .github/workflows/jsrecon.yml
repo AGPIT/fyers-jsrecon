@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 110
     concurrency:
       group: jsrecon
-      cancel-in-progress: true
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@v4
