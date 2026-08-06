@@ -4,16 +4,23 @@
 PRIMARY (only) source: https://raw.githubusercontent.com/riteshekbote/url-fyers/main/urls.txt
 Every js URL in that file is inventoried; nothing is crawled or appended.
 
+Strategy (network-friendly):
+  - threaded but throttled download of NEW urls each run, capped per run
+  - bodies stored in blobs/<sha>.js so the analyzer NEVER re-fetches
+  - blob cache survives across runs via GitHub Actions cache (not git)
+
 State: js-inventory.json [{url, host, size, sha256, analyzed, error}]
-Raw bodies are NOT stored in git (too large); the analyzer re-fetches.
+Migration: analyzed records missing the current pass marker (or carrying an
+error) were processed by a broken pass -> reset for the deep pass to redo.
 """
 
 import concurrent.futures
 import hashlib
 import json
-import re
+import os
 import ssl
 import sys
+import time
 import urllib.parse
 import urllib.request
 
@@ -21,6 +28,9 @@ CFG = json.load(open("config.json"))
 MIN_SIZE = CFG["min_size_bytes"]
 MAX_SIZE = CFG["max_size_bytes"]
 URLS_TXT = CFG.get("urls_txt", "https://raw.githubusercontent.com/riteshekbote/url-fyers/main/urls.txt")
+WORKERS = int(CFG.get("download_workers", 6))
+MAX_DL = int(CFG.get("max_downloads_per_run", 3000))
+PASS_MARKER = CFG.get("pass_marker", "deep1")
 
 CTX = ssl.create_default_context()
 CTX.check_hostname = False
@@ -28,7 +38,7 @@ CTX.verify_mode = ssl.CERT_NONE
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) fyers-jsrecon/2.0"}
 
 
-def fetch(url, timeout=25, retries=1):
+def fetch(url, timeout=25, retries=2):
     last = None
     for _ in range(retries + 1):
         try:
@@ -37,6 +47,7 @@ def fetch(url, timeout=25, retries=1):
                 return r.read(), r.status
         except Exception as e:  # noqa: BLE001
             last = e
+            time.sleep(0.4)
     return None, 0
 
 
@@ -63,14 +74,13 @@ def corpus_js_urls():
 
 def looks_like_js(body):
     head = body[:512].lstrip().lower()
-    if head.startswith(b"<!") or b"<html" in head or b"<head" in head or head.startswith(b"<script"):
+    if head.startswith(b"<!") or b"<html" in head or b"<head" in head:
         return False
-    if body.startswith(b"{"):
-        return True
     return True
 
 
 def main():
+    os.makedirs("blobs", exist_ok=True)
     urls = corpus_js_urls()
     if not urls:
         print("no urls; aborting")
@@ -82,21 +92,20 @@ def main():
     except Exception:
         pass
 
-    # migration: records analyzed without the deep-pass marker, or with a
-    # recorded error, were processed by a broken pass — reset them so the
-    # current deep pass re-analyses or retries them.
-    pass_marker = CFG.get("pass_marker", "deep1")
+    # migration: reset records analysed by a broken pass (no marker / had error)
     for rec in prev.values():
-        if rec.get("analyzed") and (rec.get("pass") != pass_marker or rec.get("error")):
+        if rec.get("analyzed") and (rec.get("pass") != PASS_MARKER or rec.get("error")):
             rec["analyzed"] = False
             rec.pop("error", None)
             rec.pop("pass", None)
 
-    new_urls = sorted(u for u in urls if u not in prev)
-    max_downloads = int(CFG.get("max_downloads_per_run", 2500))
-    new_urls = new_urls[:max_downloads]
-
+    # fetch-only-if-missing; blobs dir reused from cache where possible
     def grab(u):
+        blob_path = None
+        sha = None
+        body = None
+        if count_hits.get(u):
+            return None
         body, status = fetch(u, timeout=20)
         if not body:
             return {"url": u, "host": urllib.parse.urlparse(u).netloc,
@@ -107,31 +116,43 @@ def main():
             return None
         if not looks_like_js(body):
             return {"url": u, "host": urllib.parse.urlparse(u).netloc,
-                    "size": len(body), "analyzed": False, "error": "html"}  # retried later
+                    "size": len(body), "analyzed": False, "error": "html"}
+        sha = hashlib.sha256(body).hexdigest()[:16]
+        blob_path = os.path.join("blobs", sha + ".js")
+        if not os.path.exists(blob_path):
+            with open(blob_path, "wb") as f:
+                f.write(body)
+        count_hits[u] = 1
         return {
             "url": u,
             "host": urllib.parse.urlparse(u).netloc,
             "size": len(body),
-            "sha256": hashlib.sha256(body).hexdigest()[:16],
+            "sha256": sha,
             "analyzed": False,
             "map": None,
         }
 
+    count_hits = {}
+    new_urls = sorted(u for u in urls if u not in prev)
+    new_urls = new_urls[:MAX_DL]
+
     fetched = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         for item in ex.map(grab, new_urls):
             if item:
                 fetched.append(item)
 
     inv = [prev[u] for u in sorted(prev)]
     inv.extend(sorted(fetched, key=lambda x: x["url"]))
+    # prune stale-inv if cache missing? never; analyzer only inspects its set.
 
     with open("js-inventory.json", "w") as f:
         json.dump(inv, f, indent=1)
     analyzed = sum(1 for x in inv if x.get("analyzed"))
-    remaining = sum(1 for x in inv if not x.get("analyzed"))
-    print(f"[inventory] total={len(inv)} analyzed={analyzed} pending={remaining} "
-          f"downloaded_this_run={len(fetched)} (cap {max_downloads})")
+    pending = sum(1 for x in inv if not x.get("analyzed"))
+    blobs = sum(len(f) for _, _, f in os.walk("blobs")) if os.path.isdir("blobs") else 0
+    print(f"[inventory] total={len(inv)} analyzed={analyzed} pending={pending} "
+          f"downloaded_this_run={len(fetched)} (cap {MAX_DL}) blobs={blobs}")
 
 
 if __name__ == "__main__":

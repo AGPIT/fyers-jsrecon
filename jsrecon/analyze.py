@@ -58,13 +58,32 @@ SINK_RE = [
 EP_RE = re.compile(r'["\'](/[a-zA-Z0-9_.~!$&\'()*+,;=:@/-]{2,})["\']')
 
 
-def fetch(url, timeout=20):
-    try:
-        req = urllib.request.Request(url, headers=UA)
-        with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
-            return r.read(), r.status
-    except Exception:  # noqa: BLE001
-        return None, 0
+def fetch(url, timeout=20, retries=2):
+    last = None
+    for _ in range(retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
+                return r.read(), r.status
+        except Exception as e:  # noqa: BLE001
+            last = e
+    return None, 0
+
+
+def read_body(item):
+    """Prefer the cached blob (no network), fall back to a live fetch."""
+    sha = item.get("sha256")
+    if sha:
+        p = os.path.join("blobs", sha + ".js")
+        try:
+            if os.path.exists(p):
+                return open(p, "rb").read(), "cached"
+        except Exception:
+            pass
+    body, status = fetch(item["url"])
+    if body:
+        return body, f"fresh({status})"
+    return None, "failed"
 
 
 def scan_deterministic(content):
@@ -185,20 +204,26 @@ def main():
     os.makedirs("jsrecon/work", exist_ok=True)
     os.makedirs("reports", exist_ok=True)
     inv = json.load(open("js-inventory.json"))
-    todo = sorted([x for x in inv if not x.get("analyzed")], key=lambda x: -x["size"])[:PER_RUN]
+    todo = sorted([x for x in inv if not x.get("analyzed") and not x.get("skipped")],
+                  key=lambda x: -x.get("size", 0))[:PER_RUN]
     print(f"[todo] {len(todo)} files this run")
 
     cluster = {}
     pass_marker = CFG.get("pass_marker", "deep1")
+    MAX_RETRIES = int(CFG.get("max_fetch_retries", 3))
     for i, item in enumerate(todo, 1):
         url = item["url"]
-        body, status = fetch(url)
-        if not body or status != 200:
-            item["error"] = f"fetch {status}"
+        body, how = read_body(item)
+        if not body:
+            item["error"] = "fetch failed"
             item["analyzed"] = False
+            item["retries"] = int(item.get("retries", 0)) + 1
             with open("js-inventory.json", "w") as f:
                 json.dump(inv, f, indent=1)
-            print(f"  [{i}/{len(todo)}] FETCH-FAIL {url}: {status} (will retry next run)")
+            print(f"  [{i}/{len(todo)}] FETCH-FAIL {url} (retries={item['retries']})")
+            if item["retries"] >= MAX_RETRIES:
+                item["error"] = "unreachable"
+                item["skipped"] = True
             continue
         item["size"] = len(body)
         item["sha256"] = hashlib.sha256(body).hexdigest()[:16]

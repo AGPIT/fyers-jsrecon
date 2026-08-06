@@ -38,6 +38,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Restore JS blob cache
+        uses: actions/cache@v4
+        with:
+          path: blobs
+          key: fjs-blobs-${{ github.run_id }}
+          restore-keys: fjs-blobs-
+
       - name: Install OpenCode
         run: |
           curl -fsSL https://opencode.ai/install | bash
@@ -64,3 +71,10 @@ jobs:
           git diff --cached --quiet || git commit -m "jsrecon run $(date -u +'%Y-%m-%d-%H-%M')"
           git pull --rebase || true
           git push || true
+
+      - name: Save JS blob cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: blobs
+          key: fjs-blobs-${{ github.run_id }}
