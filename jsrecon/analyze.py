@@ -125,7 +125,7 @@ def run_opencode(js_path, url):
         "github_token, jwt, api_key, db_credential, internal_endpoint, dev_url, "
         "other. If nothing sensitive or notable, output exactly:\nNONE_ANALYSABLE"
     )
-    cmd = ["opencode", "run", "--model", MODEL, "--file", js_path, prompt]
+    cmd = ["opencode", "run", prompt, "--model", MODEL, "--file", js_path]
     env = dict(os.environ)
     env["PATH"] = os.path.expanduser("~/.opencode/bin") + os.pathsep + env.get("PATH", "")
     for _ in range(2):
@@ -195,6 +195,9 @@ def main():
         if not body or status != 200:
             item["analyzed"] = True
             item["error"] = f"fetch {status}"
+            with open("js-inventory.json", "w") as f:
+                json.dump(inv, f, indent=1)
+            print(f"  [{i}/{len(todo)}] FETCH-FAIL {url}: {status}")
             continue
         item["size"] = len(body)
         item["sha256"] = hashlib.sha256(body).hexdigest()[:16]

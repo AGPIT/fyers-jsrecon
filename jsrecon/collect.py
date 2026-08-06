@@ -61,6 +61,15 @@ def corpus_js_urls():
     return out
 
 
+def looks_like_js(body):
+    head = body[:512].lstrip().lower()
+    if head.startswith(b"<!") or b"<html" in head or b"<head" in head or head.startswith(b"<script"):
+        return False
+    if body.startswith(b"{"):
+        return True
+    return True
+
+
 def main():
     urls = corpus_js_urls()
     if not urls:
@@ -82,6 +91,8 @@ def main():
         if not body or status != 200:
             return None
         if len(body) < MIN_SIZE or len(body) > MAX_SIZE:
+            return None
+        if not looks_like_js(body):
             return None
         return {
             "url": u,
