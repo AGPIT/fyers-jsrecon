@@ -189,15 +189,16 @@ def main():
     print(f"[todo] {len(todo)} files this run")
 
     cluster = {}
+    pass_marker = CFG.get("pass_marker", "deep1")
     for i, item in enumerate(todo, 1):
         url = item["url"]
         body, status = fetch(url)
         if not body or status != 200:
-            item["analyzed"] = True
             item["error"] = f"fetch {status}"
+            item["analyzed"] = False
             with open("js-inventory.json", "w") as f:
                 json.dump(inv, f, indent=1)
-            print(f"  [{i}/{len(todo)}] FETCH-FAIL {url}: {status}")
+            print(f"  [{i}/{len(todo)}] FETCH-FAIL {url}: {status} (will retry next run)")
             continue
         item["size"] = len(body)
         item["sha256"] = hashlib.sha256(body).hexdigest()[:16]
@@ -227,6 +228,8 @@ def main():
             if not parts:
                 f.write("NONE_ANALYSABLE\n")
         item["analyzed"] = True
+        item["pass"] = pass_marker
+        item.pop("error", None)
         item["report"] = rp
 
         for ln in parts:

@@ -82,18 +82,32 @@ def main():
     except Exception:
         pass
 
+    # migration: records analyzed without the deep-pass marker, or with a
+    # recorded error, were processed by a broken pass — reset them so the
+    # current deep pass re-analyses or retries them.
+    pass_marker = CFG.get("pass_marker", "deep1")
+    for rec in prev.values():
+        if rec.get("analyzed") and (rec.get("pass") != pass_marker or rec.get("error")):
+            rec["analyzed"] = False
+            rec.pop("error", None)
+            rec.pop("pass", None)
+
     new_urls = sorted(u for u in urls if u not in prev)
     max_downloads = int(CFG.get("max_downloads_per_run", 2500))
     new_urls = new_urls[:max_downloads]
 
     def grab(u):
         body, status = fetch(u, timeout=20)
-        if not body or status != 200:
+        if not body:
+            return {"url": u, "host": urllib.parse.urlparse(u).netloc,
+                    "size": 0, "analyzed": False, "error": f"fetch {status}"}
+        if status != 200:
             return None
         if len(body) < MIN_SIZE or len(body) > MAX_SIZE:
             return None
         if not looks_like_js(body):
-            return None
+            return {"url": u, "host": urllib.parse.urlparse(u).netloc,
+                    "size": len(body), "analyzed": False, "error": "html"}  # retried later
         return {
             "url": u,
             "host": urllib.parse.urlparse(u).netloc,
