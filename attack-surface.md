@@ -2,3 +2,17 @@
 200 | https://alerts.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web/web_support.js | text/html
 200 | https://alerts.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_dark.gif | text/html
 200 | https://alerts.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html
+200 | https://app.fyers.in/a?t=96 | text/html
+200 | https://app.fyers.in/campaigns/campaign/ | text/html
+200 | https://app.fyers.in/clevertap_sw.js | text/html
+200 | https://app.fyers.in/defineVars | text/html
+200 | https://app.fyers.in/e?r=1 | text/html
+200 | https://app.fyers.in/r?r=1 | text/html
+200 | https://app.fyers.in/report/stats | text/html
+200 | https://community.fyers.in/_ws/inbox | text/html
+200 | https://community.fyers.in/_ws/sio | text/html
+200 | https://community.fyers.in/auth/signup | text/html
+200 | https://community.fyers.in/community/ | text/html
+200 | https://community.fyers.in/community/manifest.json | text/html
+200 | https://community.fyers.in/community/sw.js | text/html
+200 | https://ipo.fyers.in/details | text/html
