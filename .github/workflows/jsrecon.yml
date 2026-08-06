@@ -1,12 +1,14 @@
 name: JS Recon via opencode
 
-# Collects fyers.in JavaScript inventory, then analyzes complete files
-# (deterministic backstop + opencode full-file deep pass). One batch per run,
-# state tracked in js-inventory.json so it walks through EVERYTHING over time.
+# Collects fyers.in JavaScript inventory from the authoritative url-fyers/urls.txt
+# corpus ONLY (no crawling), then analyzes complete files
+# (deterministic backstop + sourcemap hunt + opencode full-file deep pass
+# + read-only endpoint probing). One batch per run, state tracked in
+# js-inventory.json so it walks through EVERYTHING over time.
 
 on:
   schedule:
-    - cron: "*/25 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
       per_run:
@@ -57,7 +59,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add js-inventory.json findings.md reports/ jsrecon/work/ || true
+          git add js-inventory.json findings.md reports/ attack-surface.md || true
           git add jsrecon/work/.gitignore 2>/dev/null || true
           git diff --cached --quiet || git commit -m "jsrecon run $(date -u +'%Y-%m-%d-%H-%M')"
           git pull --rebase || true
