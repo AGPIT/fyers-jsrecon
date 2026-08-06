@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-06 19:48 UTC — 2 secret hits_
+_src 2026-08-06 14:19 UTC — 2 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`

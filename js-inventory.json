@@ -7,5 +7,1092 @@
   "analyzed": true,
   "map": null,
   "report": "reports/9e2383c6fb.md"
+ },
+ {
+  "url": "https://api-connect-docs.fyers.in/fyers-lib.js",
+  "host": "api-connect-docs.fyers.in",
+  "size": 282475,
+  "sha256": "30c38c3f785a11d9",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://api-connect-docs.fyers.in/js/code-block-buttons.js",
+  "host": "api-connect-docs.fyers.in",
+  "size": 2011,
+  "sha256": "6bffeaec098c8fa1",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://api-connect-docs.fyers.in/js/codetabs.js",
+  "host": "api-connect-docs.fyers.in",
+  "size": 1058,
+  "sha256": "18ac5cb9efab8752",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://api-connect-docs.fyers.in/js/scrollSpy.js",
+  "host": "api-connect-docs.fyers.in",
+  "size": 2664,
+  "sha256": "2fa132140a8b5bec",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js",
+  "host": "app.fyers.in",
+  "size": 682463,
+  "sha256": "fff04bdf33aaa3a8",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://app.fyers.in/assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js",
+  "host": "app.fyers.in",
+  "size": 5019,
+  "sha256": "63bc7c101b97357f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://app.fyers.in/assets/packages/flutter_inappwebview_web/assets/web/web_support.js",
+  "host": "app.fyers.in",
+  "size": 28409,
+  "sha256": "2f9ccef9db4da6b7",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://app.fyers.in/assets/packages/fluttertoast/assets/toastify.js",
+  "host": "app.fyers.in",
+  "size": 5285,
+  "sha256": "091c9a70994a2004",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://app.fyers.in/main.dart.js_29.part.js",
+  "host": "app.fyers.in",
+  "size": 1725,
+  "sha256": "850f38be550dd882",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/IntelInput/util.js",
+  "host": "assets.fyers.in",
+  "size": 246620,
+  "sha256": "58c3f6737bda00f5",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/analytics/user-engagement.min.js",
+  "host": "assets.fyers.in",
+  "size": 18831,
+  "sha256": "1de6917cbfab5402",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/1.0/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 26901,
+  "sha256": "15899bd3c21748c4",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.0/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 26920,
+  "sha256": "aa5397541ee8b656",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.10/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 37602,
+  "sha256": "24752d45dc4ec5c5",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.11/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 37602,
+  "sha256": "966d3845ff234d81",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.12/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 37607,
+  "sha256": "c839905ea7497c5a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.14/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 36799,
+  "sha256": "77b402ecad3aa092",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.15/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 36800,
+  "sha256": "a3d598a905a39690",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.16/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 39841,
+  "sha256": "c37516629b794b43",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.3/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 30187,
+  "sha256": "ee58f08ffa786b1c",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.4/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 30193,
+  "sha256": "b5a68f5001654272",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.6/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 38143,
+  "sha256": "c66f9229127f387a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.8/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 36929,
+  "sha256": "d661ec58468977f7",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js",
+  "host": "assets.fyers.in",
+  "size": 37155,
+  "sha256": "40a3caf271152eb5",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/crypto/crypto-js.min.js",
+  "host": "assets.fyers.in",
+  "size": 48316,
+  "sha256": "8e3b0117f4df4be4",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/hawkeye/hawkeye.js",
+  "host": "assets.fyers.in",
+  "size": 6281,
+  "sha256": "063b7f75977a3077",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/intlTelInput.min.js",
+  "host": "assets.fyers.in",
+  "size": 29401,
+  "sha256": "64cb11eb2a5237cb",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/logAnalyticEvents/log-analytic-events.js",
+  "host": "assets.fyers.in",
+  "size": 3916,
+  "sha256": "98fd8fc4a7f2b91f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/migration/migration.js",
+  "host": "assets.fyers.in",
+  "size": 1752,
+  "sha256": "70abbc0af75f3e1a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/moengage/2.0/moengage.js",
+  "host": "assets.fyers.in",
+  "size": 2422,
+  "sha256": "e8f28e531fbf1bc0",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/moengage/moe_webSdk.min.latest.js",
+  "host": "assets.fyers.in",
+  "size": 207258,
+  "sha256": "f07af8594010035e",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/moengage/moengage.min.js",
+  "host": "assets.fyers.in",
+  "size": 1870,
+  "sha256": "88aecc069f2a9393",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/pako/pako.min.js",
+  "host": "assets.fyers.in",
+  "size": 44044,
+  "sha256": "a618e9cade14842f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/redux/redux.min.js",
+  "host": "assets.fyers.in",
+  "size": 4300,
+  "sha256": "d27a5cb004b1b4cc",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/user-engagement/user-engagement-new.min.js",
+  "host": "assets.fyers.in",
+  "size": 5253,
+  "sha256": "bc18f172b51f678a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js",
+  "host": "assets.fyers.in",
+  "size": 10401,
+  "sha256": "b397bb85deda8007",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Lib/widget/fyers-widget.js",
+  "host": "assets.fyers.in",
+  "size": 20215,
+  "sha256": "00508ae7ae6d9af7",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/Marcom_Avatar/old_mw/cal_js_min.js",
+  "host": "assets.fyers.in",
+  "size": 18561,
+  "sha256": "d19b6478e8d94f23",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/8eb6d5cd556e/main.js",
+  "host": "assets.fyers.in",
+  "size": 20051,
+  "sha256": "67007d0d393f42de",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+  "host": "assets.fyers.in",
+  "size": 20423,
+  "sha256": "8c1a9c163770bceb",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/fy_notifications/js/2.0/fyers-widget.min.js",
+  "host": "assets.fyers.in",
+  "size": 28617,
+  "sha256": "e86c1b9dc1614351",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/fy_notifications/js/3.0/fyers-widget.js",
+  "host": "assets.fyers.in",
+  "size": 25115,
+  "sha256": "24a644c0c05a52f3",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/fy_notifications/js/notify.js",
+  "host": "assets.fyers.in",
+  "size": 10359,
+  "sha256": "7d706c1be9664c4a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/global-components/global-footer/footer.js",
+  "host": "assets.fyers.in",
+  "size": 14132,
+  "sha256": "343087531124cd5b",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/images/download-app/app-download.js",
+  "host": "assets.fyers.in",
+  "size": 5751,
+  "sha256": "76f8bb8f21c9c060",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/loader/js/loader.min.js",
+  "host": "assets.fyers.in",
+  "size": 14615,
+  "sha256": "a82b608f81a13b40",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/sales-pitch/1.0/sales-pitch.js",
+  "host": "assets.fyers.in",
+  "size": 3742,
+  "sha256": "ade300e4ebb014c6",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/sales-pitch/2.0/sales-pitch.js",
+  "host": "assets.fyers.in",
+  "size": 4095,
+  "sha256": "e9fb9c96c7315f2a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/sales-pitch/3.0/sales-pitch.js",
+  "host": "assets.fyers.in",
+  "size": 4029,
+  "sha256": "cc36553cf1685b34",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/scripts/common.js",
+  "host": "assets.fyers.in",
+  "size": 1146,
+  "sha256": "bdc2688fa4eed459",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/scripts/fyers.js",
+  "host": "assets.fyers.in",
+  "size": 12906,
+  "sha256": "1b9d0c12092f0a3f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/scripts/haircut.js",
+  "host": "assets.fyers.in",
+  "size": 12807,
+  "sha256": "b7407d3adc6390bd",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/toasters/toaster.js",
+  "host": "assets.fyers.in",
+  "size": 2625,
+  "sha256": "31e834a6f8e67950",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v25/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 21011,
+  "sha256": "52eb7c559c920cb3",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v26.001/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 21804,
+  "sha256": "e496d5098e6b1b2f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v26.004/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 21925,
+  "sha256": "5c437eba01726076",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 54869,
+  "sha256": "daa05386301d87d1",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v29.5.0_unmodified/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 54926,
+  "sha256": "e99f64fbb306c73a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://assets.fyers.in/tv_lib/v29_temp/charting_library.standalone.js",
+  "host": "assets.fyers.in",
+  "size": 54614,
+  "sha256": "aa0dbfa760d6e55f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://bo-login.fyers.in/validate.js",
+  "host": "bo-login.fyers.in",
+  "size": 2696,
+  "sha256": "8da46cb6ed45971a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://cdn.fyers.in/js/sdk/1.1.0/fyers-web-sdk-v3/index.min.js",
+  "host": "cdn.fyers.in",
+  "size": 93431,
+  "sha256": "76afe08d7a87e11d",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://cdn.fyers.in/js/sdk/1.2.0/fyers-web-sdk-v3/index.min.js",
+  "host": "cdn.fyers.in",
+  "size": 93431,
+  "sha256": "76afe08d7a87e11d",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://community.fyers.in/sw.js",
+  "host": "community.fyers.in",
+  "size": 87571,
+  "sha256": "4c8b275afee92535",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://debt.fyers.in/flutter.js",
+  "host": "debt.fyers.in",
+  "size": 3891,
+  "sha256": "abb5c407db14908c",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://debt.fyers.in/fyers_widget/fyers-widget.min.js",
+  "host": "debt.fyers.in",
+  "size": 44394,
+  "sha256": "1a6a73f941a1ea00",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://forms.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+  "host": "forms.fyers.in",
+  "size": 20170,
+  "sha256": "09ceee00b591e84f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://forms.fyers.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+  "host": "forms.fyers.in",
+  "size": 1239,
+  "sha256": "2595496fe48df6fc",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/Popper.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 19191,
+  "sha256": "d1550d30e03f777f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/bootstrap.min.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 50676,
+  "sha256": "0bca10549df770ab",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/index.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 16061,
+  "sha256": "c722efdcb95e3aac",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/jquery.meanmenu.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 11728,
+  "sha256": "548080b6a99d4c64",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/jquery.min.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 97163,
+  "sha256": "668b046d12db350c",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/jquery.sticky.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 10085,
+  "sha256": "bcf6b9b28cec8958",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/main.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 3297,
+  "sha256": "7a1c12fcfa7cf781",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 44342,
+  "sha256": "a53c43f834b32309",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fundtransfer.fyers.in/v2/assets/js/progress.js",
+  "host": "fundtransfer.fyers.in",
+  "size": 2680,
+  "sha256": "5070af8e5572d83b",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/1255-8befde0980f5cba9.js",
+  "host": "fyers.in",
+  "size": 172819,
+  "sha256": "c6db8a503fd12312",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/131-d24839065f1193bd.js",
+  "host": "fyers.in",
+  "size": 12322,
+  "sha256": "54e749c672b37077",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/1356-5d2cdedc98039c8c.js",
+  "host": "fyers.in",
+  "size": 14303,
+  "sha256": "efdc1123efd0a406",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/2222-390cecb9dfb7e7eb.js",
+  "host": "fyers.in",
+  "size": 20502,
+  "sha256": "cbde615e06dd9703",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/2619-b8db57ac19da49ac.js",
+  "host": "fyers.in",
+  "size": 7813,
+  "sha256": "3f680105cea082e6",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/2870-0bb931ab7d13f88f.js",
+  "host": "fyers.in",
+  "size": 41004,
+  "sha256": "2b8ef62ea7507b27",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/3339-d68bf7a67016313f.js",
+  "host": "fyers.in",
+  "size": 49995,
+  "sha256": "9a17fbc6d4dda48a",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/375-7524336be56b0456.js",
+  "host": "fyers.in",
+  "size": 41496,
+  "sha256": "be6a16377a8e1bd5",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/3752-8ead5f9ba29b2030.js",
+  "host": "fyers.in",
+  "size": 7498,
+  "sha256": "086ff4d6ac033f8d",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/3927-1b635ad23d9cdd69.js",
+  "host": "fyers.in",
+  "size": 135064,
+  "sha256": "ee24d4b1a923f18f",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/3949-eb5bfb0dacbd5ad5.js",
+  "host": "fyers.in",
+  "size": 51543,
+  "sha256": "b17edaca770788cd",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/4143-fa0025304815ef07.js",
+  "host": "fyers.in",
+  "size": 12504,
+  "sha256": "2c832663e0e51653",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/4597-7d10a2eab042d6a7.js",
+  "host": "fyers.in",
+  "size": 94176,
+  "sha256": "82d185beb97ee00a",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/4bd1b696-100b9d70ed4e49c1.js",
+  "host": "fyers.in",
+  "size": 173025,
+  "sha256": "5421e13a91a93895",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/5042-db1bf59bb0a95df2.js",
+  "host": "fyers.in",
+  "size": 12422,
+  "sha256": "76e3cca0de557ba6",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/5376-04a3d57f5f04927f.js",
+  "host": "fyers.in",
+  "size": 22622,
+  "sha256": "f9033e064f294b41",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/5736-ed4c533a3068c27c.js",
+  "host": "fyers.in",
+  "size": 36369,
+  "sha256": "2cd132bccff8269c",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/5890-9006c8e6e0432e1d.js",
+  "host": "fyers.in",
+  "size": 15947,
+  "sha256": "006fdc7b3d45f66d",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/6390-014f069881fbca9a.js",
+  "host": "fyers.in",
+  "size": 24036,
+  "sha256": "1d49275fb7de66d7",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/6850-fe869d63b3401962.js",
+  "host": "fyers.in",
+  "size": 24353,
+  "sha256": "321c219dd629e7d3",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/700-2ffb38af1da56e21.js",
+  "host": "fyers.in",
+  "size": 7988,
+  "sha256": "ff491b4c32c1eac0",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/7366-4cd25e5b6b4c41a9.js",
+  "host": "fyers.in",
+  "size": 8836,
+  "sha256": "cb83952e1ff20112",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/7815-f8a34b619ce724ee.js",
+  "host": "fyers.in",
+  "size": 56893,
+  "sha256": "41c88c2aca266e97",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/7990-29ca88c8e9de82f0.js",
+  "host": "fyers.in",
+  "size": 12513,
+  "sha256": "70c333c6634ee7ad",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/8299-20309c2cd4daaf2e.js",
+  "host": "fyers.in",
+  "size": 34540,
+  "sha256": "f39da844a1b16d0f",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/9930-34fa7db5deef9bcc.js",
+  "host": "fyers.in",
+  "size": 31266,
+  "sha256": "f25bdf2c37ed3757",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/(learn)/youtube/page-fe9068905fe5d233.js",
+  "host": "fyers.in",
+  "size": 14226,
+  "sha256": "04ff4f07e7c09e63",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/(policyPages)/terms-and-conditions/page-4111a0290f714bb1.js",
+  "host": "fyers.in",
+  "size": 7639,
+  "sha256": "59f9e9c29fa4cbe9",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/(services)/downloads/page-724632a3b7eaab0e.js",
+  "host": "fyers.in",
+  "size": 12271,
+  "sha256": "0adda14014716a39",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/(services)/fund-transfer/page-456750a31ee011fa.js",
+  "host": "fyers.in",
+  "size": 17580,
+  "sha256": "601e4d030f54b67d",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/about/layout-e8057e9533427993.js",
+  "host": "fyers.in",
+  "size": 1093,
+  "sha256": "4640b75be48987e2",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/about/page-2edfd0ffb16a91b0.js",
+  "host": "fyers.in",
+  "size": 36685,
+  "sha256": "9bcf1890b0f39a87",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/awardsandrecognitions/page-1b5d9f9cef08a166.js",
+  "host": "fyers.in",
+  "size": 5793,
+  "sha256": "bd949ab9e206cddd",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/calculator/page-5abe5400056b3981.js",
+  "host": "fyers.in",
+  "size": 12400,
+  "sha256": "7ba47225a4157311",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/contact-us/page-b613a3e0b94d84c4.js",
+  "host": "fyers.in",
+  "size": 15991,
+  "sha256": "e01e94458a877bc1",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/demat-account/layout-70cb50356dc856db.js",
+  "host": "fyers.in",
+  "size": 1214,
+  "sha256": "0ea74e09729ad514",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/layout-0e213fa8ced99c57.js",
+  "host": "fyers.in",
+  "size": 14695,
+  "sha256": "e18cffefa4085509",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/nri-account/page-c0e55948784ab007.js",
+  "host": "fyers.in",
+  "size": 19766,
+  "sha256": "63f383bd54fe2263",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/pricing/page-3755b6bcfce6d6ce.js",
+  "host": "fyers.in",
+  "size": 6916,
+  "sha256": "e5cf32a858e2c08e",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/prime/layout-e8057e9533427993.js",
+  "host": "fyers.in",
+  "size": 1093,
+  "sha256": "4640b75be48987e2",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/products/tradingview/page-dd99d7f0c6ead139.js",
+  "host": "fyers.in",
+  "size": 13888,
+  "sha256": "b37b4977d866f77c",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/app/trust-and-security/page-d0cb6069b1e377fb.js",
+  "host": "fyers.in",
+  "size": 9638,
+  "sha256": "dbfac29ce1c93efd",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/c473e9eb-49b8edbea02d476d.js",
+  "host": "fyers.in",
+  "size": 580428,
+  "sha256": "62ce27a097399046",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/dc112a36-7ce38783546e7e33.js",
+  "host": "fyers.in",
+  "size": 305837,
+  "sha256": "8b03e2d689e22898",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/e6b68d76-e65999ed5c38366d.js",
+  "host": "fyers.in",
+  "size": 339507,
+  "sha256": "c9e8e3ab73a4c6f6",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/_next/static/chunks/polyfills-42372ed130431b0a.js",
+  "host": "fyers.in",
+  "size": 112594,
+  "sha256": "0973c1d64c88adc8",
+  "analyzed": true,
+  "map": null,
+  "error": "fetch 0"
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/1eec422858ff/main.js",
+  "host": "fyers.in",
+  "size": 20466,
+  "sha256": "a04fb8bf0896b4b3",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/3104729c556c/main.js",
+  "host": "fyers.in",
+  "size": 21109,
+  "sha256": "61c8414a59807aa7",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/625261456364/main.js",
+  "host": "fyers.in",
+  "size": 21123,
+  "sha256": "f0a6337ffa10d03e",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/80a697ecdece/main.js",
+  "host": "fyers.in",
+  "size": 21795,
+  "sha256": "c30e1ce869391452",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/833f25fde7cb/main.js",
+  "host": "fyers.in",
+  "size": 21023,
+  "sha256": "8599e2b20b4c3c44",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/88d68f5d5ea3/main.js",
+  "host": "fyers.in",
+  "size": 21509,
+  "sha256": "ae491f6ea559d52d",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/8eb6d5cd556e/main.js",
+  "host": "fyers.in",
+  "size": 20873,
+  "sha256": "5c569f28dcaf8bf1",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/5eaf848a0845/main.js",
+  "host": "fyers.in",
+  "size": 20936,
+  "sha256": "ef600f7a66e9cc10",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/e9c9e9d67513/main.js",
+  "host": "fyers.in",
+  "size": 21533,
+  "sha256": "a3119c794e931745",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/ea2d291c0fdc/main.js",
+  "host": "fyers.in",
+  "size": 21186,
+  "sha256": "09f45b213dce2812",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+  "host": "fyers.in",
+  "size": 21023,
+  "sha256": "8599e2b20b4c3c44",
+  "analyzed": false,
+  "map": null
+ },
+ {
+  "url": "https://fyers.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+  "host": "fyers.in",
+  "size": 1239,
+  "sha256": "2595496fe48df6fc",
+  "analyzed": false,
+  "map": null
  }
 ]
