@@ -8,12 +8,12 @@ State: js-inventory.json [{url, host, size, sha256, analyzed, error}]
 Raw bodies are NOT stored in git (too large); the analyzer re-fetches.
 """
 
+import concurrent.futures
 import hashlib
 import json
 import re
 import ssl
 import sys
-import time
 import urllib.parse
 import urllib.request
 
@@ -28,7 +28,7 @@ CTX.verify_mode = ssl.CERT_NONE
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) fyers-jsrecon/2.0"}
 
 
-def fetch(url, timeout=60, retries=2):
+def fetch(url, timeout=25, retries=1):
     last = None
     for _ in range(retries + 1):
         try:
@@ -37,7 +37,6 @@ def fetch(url, timeout=60, retries=2):
                 return r.read(), r.status
         except Exception as e:  # noqa: BLE001
             last = e
-            time.sleep(1.2)
     return None, 0
 
 
@@ -74,30 +73,40 @@ def main():
     except Exception:
         pass
 
-    inv = []
-    for u in sorted(urls):
-        if u in prev:
-            inv.append(prev[u])
-            continue
+    new_urls = sorted(u for u in urls if u not in prev)
+    max_downloads = int(CFG.get("max_downloads_per_run", 2500))
+    new_urls = new_urls[:max_downloads]
+
+    def grab(u):
         body, status = fetch(u, timeout=20)
         if not body or status != 200:
-            continue
+            return None
         if len(body) < MIN_SIZE or len(body) > MAX_SIZE:
-            continue
-        inv.append({
+            return None
+        return {
             "url": u,
             "host": urllib.parse.urlparse(u).netloc,
             "size": len(body),
             "sha256": hashlib.sha256(body).hexdigest()[:16],
             "analyzed": False,
             "map": None,
-        })
-        time.sleep(0.2)
+        }
+
+    fetched = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+        for item in ex.map(grab, new_urls):
+            if item:
+                fetched.append(item)
+
+    inv = [prev[u] for u in sorted(prev)]
+    inv.extend(sorted(fetched, key=lambda x: x["url"]))
 
     with open("js-inventory.json", "w") as f:
         json.dump(inv, f, indent=1)
     analyzed = sum(1 for x in inv if x.get("analyzed"))
-    print(f"[inventory] total={len(inv)} analyzed={analyzed} pending={len(inv) - analyzed}")
+    remaining = sum(1 for x in inv if not x.get("analyzed"))
+    print(f"[inventory] total={len(inv)} analyzed={analyzed} pending={remaining} "
+          f"downloaded_this_run={len(fetched)} (cap {max_downloads})")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@
   "min_size_bytes": 1024,
   "max_size_bytes": 2500000,
   "per_run_files": 15,
+  "max_downloads_per_run": 2500,
   "model": "opencode/deepseek-v4-flash-free",
   "probe_endpoints": true
 }
