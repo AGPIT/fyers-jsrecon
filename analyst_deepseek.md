@@ -209,3 +209,53 @@ testability: AUTH_HELPED
 [LEARN] REJECTED MISCONFIG @ datapub.fyers4: no in-run probe returns; class still alive reputationally, deferred (no new evidence).
 [LEARN] REJECTED AUTH @ ipo.fyers.in / sgb.fyers.in online env maps reaffirmed.
 [RISK] fyers-js: 66 — a concrete prod account-data endpoint (api-a1-prod.fyers.in, client-side JWT gating) surfaced for the first time; sgb OAuth code transported in URL + un-prefixed bearer; persistent per-env client-id/hash maps and demo Fernet/order tokens across 15+ bundles; dev-tier (fydev/vagator/anjuna/api-socket) refs from prod bundles; all in-scope hosts user-unauthenticated but mostly public-by-design. Accumulated loose-auth signals across trading/account surface justify HEADED AUTH_HELPED verification this turn.
+
+===== ANALYST 2026-08-07 21:20:26 UTC =====
+[NEW] subscriptions.fyers.in/assets/js/main-truedata.js ships a hardcoded api_key (sha256 7c924a…) — subscriptions host first appears in the JS findings surface.
+[NEW] ipo.fyers.in bundles add short OAuth-app-like ids 68USODQMOF, EFR7964223, LCFY9OOX3D, ZT6P4L9YQB (extend known env map).
+[NEW] trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js additionally references api.fyers.in/anjuna/v1/margin, api.fyers.in/fydev/v1/margin/v1?token_id=, data.fyers.in/dev-fyers/mobileapi/user-settings (dev-tier footprint expanded beyond prior fydev/v1/baskets + vagator).
+[NEW] trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js embeds plaintext-HTTP internal origin 13.235.24.249:8080/gtt/orders (deobfuscated string-array "API_POINT").
+[CHANGED] sgb.fyers.in app pages /sgb, /orders, /details, /updatesgb + trade.fyers.in/edis/authCdsl.html?token_id= confirmed HTTP 200 in live probes (previously implied only via bundles).
+[PRIO] api.fyers.in/fydev+anjuna margin/baskets (from ordwin/4.6 helper_min.js) | 5.00 | attack 5 business 5 tech 6 gate 4 cloud 3 fresh 7
+[PRIO] sgb.fyers.in live account pages + client-side auth_token/auth_code flow | 5.00 | attack 5 business 6 tech 5 gate 4 cloud 4 fresh 5
+[PRIO] subscriptions.fyers.in/assets/js/main-truedata.js api_key 7c924a… | 4.40 | attack 3 business 4 tech 5 gate 6 cloud 2 fresh 8
+[HYP] Unauthenticated dev-tier margin/basket APIs via URL token_id
+class: MISCONFIG
+asset: api.fyers.in/fydev/v1/baskets, api.fyers.in/fydev/v1/margin/v1, api.fyers.in/anjuna/v1/margin (referenced from trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js)
+confidence: 45
+reasoning: Prod-loaded ordwin helper_min.js hardcodes fydev/anjuna endpoints where token_id travels in the URL query. Delta adds anjuna/v1/margin and fydev/v1/margin/v1 plus mobileapi/user-settings; empty token_id behavior was never probed in-run.
+evidence_needed: any endpoint returns JSON (not 401/404/HTML shell) with empty token_id.
+verify_steps: PASSIVE: `curl -s -i "https://api.fyers.in/fydev/v1/baskets?token_id="` ; `curl -s -i "https://api.fyers.in/anjuna/v1/margin"` ; `curl -s -i "https://api.fyers.in/fydev/v1/margin/v1?token_id="`. Read-only.
+impact: account margin/basket data enumeration if unauthenticated; Medium.
+testability: PASSIVE
+[HYP] SGB account data server-side trusts client-derived token
+class: AUTH
+asset: sgb.fyers.in (/details, /orders, /updatesgb)
+confidence: 50
+reasoning: Live probes confirm these account pages return 200. Bundles (c930e9b2…) pass auth_code from URL query verbatim into the Authorization header and read localStorage auth_token without a scheme prefix — account data gating appears client-side.
+evidence_needed: a request carrying only a URL/localStorage-derived token to the underlying account-data API returns holdings/orders without server-side session validation.
+verify_steps: AUTH_HELPED: `curl -s -i https://sgb.fyers.in/details` (no header) and `curl -s -i https://sgb.fyers.in/orders`; identify the underlying data API in the bundles and test Authorization-only access.
+impact: holdings/order exposure if server trusts client-gated token; Medium-High.
+testability: AUTH_HELPED
+[HYP] Hardcoded api_key in subscriptions main-truedata gates a data API
+class: MISCONFIG
+asset: https://subscriptions.fyers.in/assets/js/main-truedata.js (api_key sha256 7c924a7a…)
+confidence: 45
+reasoning: subscriptions.fyers.in first surfaced this run; the bundle ships a static api_key literal with no noted runtime retrieval. TrueData-style key suggests a market/subscription datafeed; its server-side usage unverified.
+evidence_needed: a *.fyers.in API that accepts the key (query/header) and returns data without additional user auth.
+verify_steps: PASSIVE: `curl -s https://subscriptions.fyers.in/assets/js/main-truedata.js | grep -oE 'https?://[a-z0-9.-]+\.fyers\.in[^"'"'"' ]*'` ; grep key usage context; test discovered endpoint unauthenticated and with-key. Read-only.
+impact: unauthenticated subscription/market-data pull if key is the sole gate; Low-Medium.
+testability: PASSIVE
+[PARKED] ipo.fyers.in new short OAuth app IDs 68USODQMOF/EFR7964223/LCFY9OOX3D/ZT6P4L9YQB: public OAuth identifiers — class AUTH already REJECTED for hardcoded-APP_ID lead.
+[PARKED] ordwin/6 orderwindow.min.js 13.235.24.249:8080/gtt/orders: third-party AWS IP, out of scope (reaffirmed).
+[PARKED] trade.fyers.in datafeed Fernet token_id (sha 568d3b6a…): demo HISTORY_TEST token, no new evidence — stays parked.
+[PARKED] trade.fyers.in/Prod/1.2/widgets.min.js 1341655KwEfgY / 984896EWiONu: unknown purpose, no in-scope verify path (reaffirmed).
+[PARKED] marketsmith.fyers.in ApiKeydownHandler: scanner false-positive on Bootstrap vendor (reaffirmed).
+[PARKED] www.fyers.in / trade.fyers.in GA4 G-JXG5NQ1WQJ / GTM-MB6PRVDG / Zoho formperma: public marketing/analytics keys (reaffirmed).
+[FINAL] 1) api.fyers.in fydev/anjuna endpoints MISCONFIG (conf 45, PASSIVE, prio 5.00)  2) sgb.fyers.in client-gated account pages AUTH (conf 50, AUTH_HELPED, prio 5.00)  3) subscriptions.fyers.in main-truedata key MISCONFIG (conf 45, PASSIVE, prio 4.40)
+[NEXT] PROBE: `curl -s https://subscriptions.fyers.in/assets/js/main-truedata.js | grep -oE 'https?://[a-zA-Z0-9.-]+\.fyers\.in/[^"'"'"' ]*'` plus grep the usage context of key hash 7c924a7a…; then test the discovered endpoint unauthenticated and with-key (read-only). In parallel: `curl -s -i "https://api.fyers.in/fydev/v1/margin/v1?token_id="` to close the highest-prio PASSIVE lead.
+[LEARN] REJECTED AUTH @ ipo.fyers.in env maps: new short IDs 68USODQMOF/EFR7964223/LCFY9OOX3D/ZT6P4L9YQB are public OAuth identifiers — hardcoded-APP_ID lead class dead (reaffirmed).
+[LEARN] REJECTED OTHER @ trade.fyers.in datafeed bundles: repeated Fernet token_id (sha 568d3b6a…) is demo HISTORY_TEST data — no live credential (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed from KB).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers4: no new in-run evidence; class deferred not dead.
+[RISK] fyers-js: 65 — delta expands the dev-tier API footprint referenced from a prod-loaded ordwin helper (anjuna/fydev margin+v1, mobileapi), confirms sgb account pages live behind client-side token gating, and introduces a first subscriptions host carrying a hardcoded API key. Most literals remain public-by-design or demo data, but the persistent client-side-gating pattern on account surfaces and fresh dev-endpoint exposure keeps overall JS exposure moderately high pending the PASSIVE probes.
