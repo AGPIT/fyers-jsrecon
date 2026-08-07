@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 15:13 UTC — 178 secret hits_
+_src 2026-08-07 15:51 UTC — 205 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -90,6 +90,8 @@ _src 2026-08-07 15:13 UTC — 178 secret hits_
   `SECRET|api_key|H4NMJ8X2NR`
 - `https://ipo.fyers.in/_next/static/chunks/pages/home-d194728825ab6f10a77d.js`
   `SECRET|api_key|LCFY9OOX3D`
+- `https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
+  `SECRET|api_key|ApiKeydownHandler (matches Bootstrap dropdown keydown, not a secret)`
 - `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
@@ -126,24 +128,76 @@ _src 2026-08-07 15:13 UTC — 178 secret hits_
   `SECRET|api_key|APP_ID/client_id: QMABZB5R01-101 (prod), N43J3GIGOM-101 (dev), AF0MATWSX3-101 (staging), H4NMJ8X2NR-101 (localhost) - Fyers API client IDs`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-44ba022e9d10069c6970.js`
   `SECRET|other|appIdHash sha256: b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447 (prod), e4ec93cf189f1d455cb428a86c9fa64b12498c2168b85116928a1f6e15144876 (staging), f35212e4c46e40a1e0c2e1e2e4a40d13 (dev/commented), 39abc82e995e6c2e8ab69086650b1ed70a9730032e0a2e5e6c0e1e06ea910f0f801a1 (commented staging)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-0f59e652c9a6aefc2cf1.js`
+  `SECRET|api_key|656b1386e20297a2d596d98b840200c1aac90998cc2bcf00247c4479272a1e8`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-0f59e652c9a6aefc2cf1.js`
+  `SECRET|api_key|bar 21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-0f59e652c9a6aefc2cf1.js`
+  `SECRET|other|QMABZB5R01`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-95c008466d659064a2f9.js`
   `SECRET|other|appIdHash dev: f35212e4c44c8bb9aabd2bc08e37c73a1c80073eabfdadcf5dae590e4b28d91c`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-95c008466d659064a2f9.js`
   `SECRET|other|appIdHash prod active: b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-95c008466d659064a2f9.js`
   `SECRET|other|appIdHash staging: 39abc82e995e6c2e8ab69086650b1fa700300322a2fb0d846902e0804ca1bf0c`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|api_key|QMABZB5R01`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|api_key|b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|656b1386e20297a2d596d98b840200c1aac90998cc2bcfd00247c4479272a1e8`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|AEHNSK9PRW`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|H4NMJ8X2NR`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|N43J3GIGOM`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|e4ec93cf189f1d455cb428a86c9fa64b12498c2168b85116928a1f6e1514487b`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-ac56cb0ac001d9ac5ef2.js`
+  `SECRET|other|f35212e4c44c8bb9aabd2bc08e37c73a1c80073eabfdadcf5dae590e4b28d91c`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|api_key|AF0MATWSX3`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|api_key|H4NMJ8X2NR`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|api_key|N43J3GIGOM`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|api_key|QMABZB5R01`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|other|appIdHash=656b1386e20297a2d596e98b840200c12247c4b7`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|other|appIdHash=b21f86d5bba39251763e49e4b10e71e59f3f36e82447`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|other|appIdHash=e4ec93ef63a9fa64b12498c2168b85116928a1f6e1514487b`
+- `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
+  `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a5dae590e4b28d91c`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
   `SECRET|other|jquery 3.2.1 library (known standard minified jQuery; no embedded secrets detected)`
 - `https://trade.fyers.in/Prod/1.2/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/Prod/1.2/fyers_common_modules.js`
+  `SECRET|jwt|token (JWT user session token passed in Authorization header / `authorization` header of fetch calls)`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
   `SECRET|none`
 - `https://trade.fyers.in/Prod/1.2/trade-common.js`
   `SECRET|google_key|G-NTFX8XLKVH`
 - `https://trade.fyers.in/Prod/1.2/trade.js`
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (Fernet-format encrypted token hardcoded in HISTORY_TEST test data)`
+- `https://trade.fyers.in/Prod/1.2/widgets.min.js`
+  `SECRET|api_key|1341655KwEfgY`
+- `https://trade.fyers.in/Prod/1.2/widgets.min.js`
+  `SECRET|api_key|984896EWiONu`
+- `https://trade.fyers.in/Prod/1.2/widgets.min.js`
+  `SECRET|other|Authentication derived from document cookie (getCookie) plus a request header named "Authorization" carrying the login token; requests use withCredentials=true`
 - `https://trade.fyers.in/Prod/exception/bundle.min.js`
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet-format token_id in HISTORY_TEST/WS config)`
+- `https://trade.fyers.in/Prod/popout/trade-common.js`
+  `SECRET|other|No hardcoded secrets; auth uses runtime `_FYERS` cookie/JWT (JWT is base64url-decoded; token passed in URL query params)`
+- `https://trade.fyers.in/api-login/redirect-uri/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
+  `MAP SECRET|other|none`
+- `https://trade.fyers.in/lib/sentry/bundle.tracing.min.js`
+  `SECRET|other|https://github.com/getsentry/sentry-javascript (attribution URL, no secret)`
 - `https://trade.fyers.in/production/v1.1/datafeed.min.js`
   `SECRET|other|Fernet-format datafeed token (token_id) gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/1.5/bo.min.js`

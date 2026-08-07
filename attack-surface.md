@@ -272,3 +272,4 @@
 200 | https://ipo.fyers.in/404 | text/html
 200 | https://ipo.fyers.in/404 | text/html
 200 | https://sgb.fyers.in/404 | text/html
+200 | https://trade.fyers.in/popout/chart.html | text/html
