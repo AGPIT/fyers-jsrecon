@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 21:46 UTC — 269 secret hits_
+_src 2026-08-07 22:27 UTC — 283 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -30,6 +30,8 @@ _src 2026-08-07 21:46 UTC — 269 secret hits_
   `SECRET|NONE|no hardcoded credentials found (obfuscated app, strings like INTERVAL/NOTIFICATION only)`
 - `https://assets.fyers.in/fy_notifications/js/3.0/fyers-widget.js`
   `SECRET|dev_url|https://dev.fyers.in/messages/public.json`
+- `https://assets.fyers.in/tv_lib/v25/charting_library.standalone.js`
+  `SECRET|other|client_id=user_id="0" placeholder defaults`
 - `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`
   `SECRET|api_key|client_id:"0" (placeholder default, not a real credential)`
 - `https://community.fyers.in/locales/en.js`
@@ -50,8 +52,22 @@ _src 2026-08-07 21:46 UTC — 269 secret hits_
   `SECRET|other|none_found`
 - `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
   `SECRET|other|none`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/625261456364/main.js`
+  `SECRET|other|none found`
 - `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/80a697ecdece/main.js`
   `SECRET|other|0.07613267951643199:1786136420:dp8nLBfZWW8yF0rkdQ3Xk6vekxQS0-TiICsiJD-A5Gg`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/833f25fde7cb/main.js`
+  `SECRET|other|OfrBSmabmayIHn-e5j3Iza2_Tx9wgq1Xotrth5MAVhU`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/88d68f5d5ea3/main.js`
+  `SECRET|other|dp8nLBfZWW8yF0rkdQ3Xk6vexQZfQCYSVwd6-07EY8  (ephemeral Cloudflare challenge-platform session token embedded in _cf_chl_opt / oneshot path; rotates per request, not a durable app secret)`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/ea2d291c0fdc/main.js`
+  `SECRET|other|_cf_chl_opt (window._cf_chl_opt={fuqS6:'g'} challenge-config marker) - not a credential`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/ea2d291c0fdc/main.js`
+  `SECRET|other|eb-token: 0.999692900631:1786136725:u0AUL3je3-(per-instance CF clearance token; ts decodes to 2026-08-07, expiring; not an API key)`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/g/scripts/jsd/ea2d291c0fdc/main.js`
+  `SECRET|other|random strings pool (e.g. sHTRZ3, DiwfR8, BQzJ5, FzfP8) - obfuscator junk identifiers, no secrets`
+- `https://fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
+  `SECRET|other|embedded Cloudflare challenge beacon token: 8eb6d5cd556e:0.867923791610013:1786140022:OfrBSmabmayIHn-e5j3Iza2_Tx9wgq1Xotrth5MAVhU`
 - `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
   `SECRET|other|none_found`
 - `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
@@ -254,6 +270,10 @@ _src 2026-08-07 21:46 UTC — 269 secret hits_
   `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a5dae590e4b28d91c`
 - `https://signup.fyers.in/assets/packages/flutter_inappwebview_web/assets/web/web_support.js`
   `SECRET|other|none found`
+- `https://signup.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
+  `SECRET|other|0.1666667b98450k++:1786060839:aBCT- (page/challenge token, not a JWT/API key)`
+- `https://signup.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
+  `SECRET|other|8db3dcd556e (Cloudflare challenge site-id, not a credential)`
 - `https://subscriptions.fyers.in/assets/js/main-truedata.js`
   `SECRET|api_key|0KMS0EZVXI`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
@@ -388,6 +408,10 @@ _src 2026-08-07 21:46 UTC — 269 secret hits_
   `SECRET|other|auth_token and token_id are passed as request variables (Authorization header + query param), not hardcoded values`
 - `https://trade.fyers.in/static/js/hsweb/hslibo.js`
   `SECRET|other|No hardcoded credentials found; only runtime auth inputs (jwt, x-access-token, Sid, redis key) are passed in by caller`
+- `https://trade.fyers.in/static/js/init/11/fy_trade.min.js`
+  `SECRET|api_key|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
+- `https://trade.fyers.in/static/js/init/12/fy_trade.min.js`
+  `SECRET|api_key|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
 - `https://trade.fyers.in/static/js/init/2.2/fy_trade.min.js`
   `SECRET|other|None - client_id literal is "trading_platform", user_id references runtime var tokenId (no hardcoded secret)`
 - `https://trade.fyers.in/static/js/init/2.9/fy_trade.min.js`
@@ -398,6 +422,10 @@ _src 2026-08-07 21:46 UTC — 269 secret hits_
   `SECRET|api_key|cookie _FYERS value passed as Authorization header (runtime credential)`
 - `https://trade.fyers.in/static/js/init/4.7/fy_trade.min.js`
   `SECRET|jwt|tokenId (runtime auth token, appended to URLs, not a hardcoded literal)`
+- `https://trade.fyers.in/static/js/init/6.2/fy_trade.min.js`
+  `SECRET|other|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207 (Sentry DSN, public key exposed)`
+- `https://trade.fyers.in/static/js/init/9.6/fy_trade.min.js`
+  `SECRET|other|Sentry public DSN (release tech-web@1.0): https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/2.2/oc-main.min.js`
