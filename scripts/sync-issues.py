@@ -35,9 +35,27 @@ def parse_blocks(text, model):
         i = j
     return blocks
 
+def norm_asset(a):
+    a = (a or "").strip().lower().strip("`")
+    a = re.sub(r'^((get|post|put|patch|delete|head|options)s?)[/,\s]+', '', a, flags=re.I)
+    a = re.sub(r'\s*\(.*?\)', ' ', a)
+    a = re.sub(r'[{}[\],].*$', '', a)
+    a = re.sub(r'\s+', ' ', a).strip()
+    return a[:120]
+
 def fingerprint(b):
-    a = b.get("asset", "").strip().lower()[:120]
-    c = b.get("class", "OTHER").strip().lower()
+    a = norm_asset(b.get("asset", ""))
+    c = (b.get("class", "OTHER") or "OTHER").strip().lower()[:20]
+    return hashlib.md5(f"{a}|{c}".encode()).hexdigest()[:12]
+
+def issue_fingerprint(iss):
+    body = iss.body or ""
+    m = re.search(r'^## Target\n`(.*)`', body, re.M)
+    if not m:
+        return None
+    mc = re.search(r'^## Class\n(.*)$', body, re.M)
+    a = norm_asset(m.group(1))
+    c = (mc.group(1).strip().lower()[:20] if mc else "other")
     return hashlib.md5(f"{a}|{c}".encode()).hexdigest()[:12]
 
 def ensure_label(name):
@@ -79,8 +97,9 @@ def main():
     by_fp = {}
     for i in existing:
         m = re.search(r'<!-- fingerprint:([0-9a-f]{12}) -->', i.body or "")
-        if m:
-            by_fp.setdefault(m.group(1), []).append(i)
+        fp = m.group(1) if m else issue_fingerprint(i)
+        if fp:
+            by_fp.setdefault(fp, []).append(i)
     print("existing issues:", len(existing))
 
     created = updated = 0
@@ -130,6 +149,19 @@ def main():
             except Exception:
                 pass
 
-    print(f"SUMMARY created={created} updated={updated} closed_rejected={closed}")
+    dup_closed = 0
+    for fp, isslist in by_fp.items():
+        if len(isslist) > 1:
+            keep = min(isslist, key=lambda i: i.created_at)
+            for dup in isslist:
+                if dup != keep and dup.state == "open":
+                    try:
+                        dup.edit(state="closed", labels=list({l.name for l in dup.labels} | {"duplicate"}))
+                        dup.create_comment(f"Duplicate of #{keep.number} (same normalized asset+class). Closed by sync.")
+                        dup_closed += 1
+                    except Exception:
+                        pass
+
+    print(f"SUMMARY created={created} updated={updated} closed_rejected={closed} dup_closed={dup_closed}")
 
 main()
