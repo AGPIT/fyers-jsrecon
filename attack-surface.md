@@ -329,3 +329,4 @@
 200 | https://fyers.in/webinars/ | text/html; charset=utf-8
 200 | https://fyers.in/whats-new | text/html; charset=utf-8
 200 | https://fyers.in/youtube | text/html; charset=utf-8
+200 | https://trade.fyers.in/popout_chart/index.html?symbol={symbol}&resolution={resolution}&theme={theme} | text/html

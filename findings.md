@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 20:55 UTC — 261 secret hits_
+_src 2026-08-07 21:46 UTC — 269 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -28,6 +28,8 @@ _src 2026-08-07 20:55 UTC — 261 secret hits_
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
 - `https://assets.fyers.in/fy_notifications/js/2.0/fyers-widget.min.js`
   `SECRET|NONE|no hardcoded credentials found (obfuscated app, strings like INTERVAL/NOTIFICATION only)`
+- `https://assets.fyers.in/fy_notifications/js/3.0/fyers-widget.js`
+  `SECRET|dev_url|https://dev.fyers.in/messages/public.json`
 - `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`
   `SECRET|api_key|client_id:"0" (placeholder default, not a real credential)`
 - `https://community.fyers.in/locales/en.js`
@@ -48,6 +50,8 @@ _src 2026-08-07 20:55 UTC — 261 secret hits_
   `SECRET|other|none_found`
 - `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
   `SECRET|other|none`
+- `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/80a697ecdece/main.js`
+  `SECRET|other|0.07613267951643199:1786136420:dp8nLBfZWW8yF0rkdQ3Xk6vekxQS0-TiICsiJD-A5Gg`
 - `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
   `SECRET|other|none_found`
 - `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
@@ -376,12 +380,24 @@ _src 2026-08-07 20:55 UTC — 261 secret hits_
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet token used as token_id in FYERS_OBJ.HISTORY_TEST)`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.9/bundle.js`
   `SECRET|jwt|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/exit-widget/assets/js/2.2/eo.min.js`
+  `SECRET|none|no hardcoded credentials found in file`
 - `https://trade.fyers.in/static/js/exit-widget/assets/js/2.3/eo.min.js`
   `SECRET|other|auth_token and token_id are read from runtime variables (not hardcoded in file)`
 - `https://trade.fyers.in/static/js/exit-widget/assets/js/2.5/eo.min.js`
   `SECRET|other|auth_token and token_id are passed as request variables (Authorization header + query param), not hardcoded values`
 - `https://trade.fyers.in/static/js/hsweb/hslibo.js`
   `SECRET|other|No hardcoded credentials found; only runtime auth inputs (jwt, x-access-token, Sid, redis key) are passed in by caller`
+- `https://trade.fyers.in/static/js/init/2.2/fy_trade.min.js`
+  `SECRET|other|None - client_id literal is "trading_platform", user_id references runtime var tokenId (no hardcoded secret)`
+- `https://trade.fyers.in/static/js/init/2.9/fy_trade.min.js`
+  `SECRET|api_key|client_id=trading_platform (not a secret; runtime token passed separately)`
+- `https://trade.fyers.in/static/js/init/4.0/fy_trade.min.js`
+  `SECRET|api_key|tokenId (user session token referenced in URL query string, value not in this file)`
+- `https://trade.fyers.in/static/js/init/4.7/fy_trade.min.js`
+  `SECRET|api_key|cookie _FYERS value passed as Authorization header (runtime credential)`
+- `https://trade.fyers.in/static/js/init/4.7/fy_trade.min.js`
+  `SECRET|jwt|tokenId (runtime auth token, appended to URLs, not a hardcoded literal)`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/2.2/oc-main.min.js`
