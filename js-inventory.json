@@ -45224,8 +45224,10 @@
   "host": "trade.fyers.in",
   "size": 372174,
   "sha256": "d3fb0a85c57e122f",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/6eb77431ba.md"
  },
  {
   "url": "https://trade.fyers.in/Prod/1.2/fy_common.min.js",
@@ -45272,8 +45274,10 @@
   "host": "trade.fyers.in",
   "size": 290933,
   "sha256": "b6c65998a33f9c84",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/5d3c05baea.md"
  },
  {
   "url": "https://trade.fyers.in/Prod/1.2/orderWindow.min.js",
@@ -45308,8 +45312,10 @@
   "host": "trade.fyers.in",
   "size": 206853,
   "sha256": "731f6690f7fa1358",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/7a21081803.md"
  },
  {
   "url": "https://trade.fyers.in/Prod/1.2/widgets.min.js",
@@ -45516,16 +45522,20 @@
   "host": "trade.fyers.in",
   "size": 253668,
   "sha256": "55accff7b642c2d7",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/38330473b0.md"
  },
  {
   "url": "https://trade.fyers.in/lib/jquery-ui/1.13.2/jquery-ui.min.js",
   "host": "trade.fyers.in",
   "size": 255084,
   "sha256": "9528ca634fecad43",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/e5e11beb16.md"
  },
  {
   "url": "https://trade.fyers.in/lib/jquery/1.12.4/jquery.min.js",
@@ -45716,8 +45726,10 @@
   "host": "trade.fyers.in",
   "size": 215424,
   "sha256": "c152336d55f83272",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/5a88e59160.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/broker/9.39/bundle.min.js",
@@ -45932,8 +45944,10 @@
   "host": "trade.fyers.in",
   "size": 217611,
   "sha256": "3b20f0a8d105d463",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/de9dfef626.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.10/polyfills.js",
@@ -45948,8 +45962,10 @@
   "host": "trade.fyers.in",
   "size": 194692,
   "sha256": "19ebb8b707d6412d",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/32d60cfabf.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.11/polyfills.js",
@@ -45964,8 +45980,10 @@
   "host": "trade.fyers.in",
   "size": 220949,
   "sha256": "180aa7e83f68eb74",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/b4ec87c60f.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.14/polyfills.js",
@@ -45996,8 +46014,10 @@
   "host": "trade.fyers.in",
   "size": 222051,
   "sha256": "297e50b69133ea63",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/648fdd7c35.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.23/polyfills.js",
@@ -46028,8 +46048,10 @@
   "host": "trade.fyers.in",
   "size": 224981,
   "sha256": "db81beff3cb719fe",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/689aa599d5.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.33/polyfills.js",
@@ -46044,8 +46066,10 @@
   "host": "trade.fyers.in",
   "size": 226849,
   "sha256": "63a14309f702cbaa",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/c3989a4743.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/9.36/polyfills.js",
@@ -46316,16 +46340,20 @@
   "host": "trade.fyers.in",
   "size": 305794,
   "sha256": "c682a28f2551ca24",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/93493807a9.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/option-chain/assets/js/jquery-ui.min.js",
   "host": "trade.fyers.in",
   "size": 253668,
   "sha256": "55accff7b642c2d7",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/01e0176e01.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/option-chain/assets/js/jquery.cookie.js",
@@ -46388,8 +46416,10 @@
   "host": "trade.fyers.in",
   "size": 349880,
   "sha256": "42f3a00c38efc655",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/cc9a94105f.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/ordwin/js/5.7/orderwindow.min.js",

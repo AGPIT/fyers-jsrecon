@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 06:40 UTC — 115 secret hits_
+_src 2026-08-07 08:41 UTC — 131 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -116,10 +116,42 @@ _src 2026-08-07 06:40 UTC — 115 secret hits_
   `SECRET|api_key|APP_ID/client_id: QMABZB5R01-101 (prod), N43J3GIGOM-101 (dev), AF0MATWSX3-101 (staging), H4NMJ8X2NR-101 (localhost) - Fyers API client IDs`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-44ba022e9d10069c6970.js`
   `SECRET|other|appIdHash sha256: b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447 (prod), e4ec93cf189f1d455cb428a86c9fa64b12498c2168b85116928a1f6e15144876 (staging), f35212e4c46e40a1e0c2e1e2e4a40d13 (dev/commented), 39abc82e995e6c2e8ab69086650b1ed70a9730032e0a2e5e6c0e1e06ea910f0f801a1 (commented staging)`
+- `https://trade.fyers.in/Prod/1.2/bundle.min.js`
+  `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
   `SECRET|none`
 - `https://trade.fyers.in/Prod/1.2/trade-common.js`
   `SECRET|google_key|G-NTFX8XLKVH`
+- `https://trade.fyers.in/Prod/1.2/trade.js`
+  `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (Fernet-format encrypted token hardcoded in HISTORY_TEST test data)`
+- `https://trade.fyers.in/static/js/broker/13/bundle.min.js`
+  `SECRET|api_key|token_id (OAuth token identifier passed via query params to /edis/details, /edis/index, /edis/authCdsl.html)`
+- `https://trade.fyers.in/static/js/broker/13/bundle.min.js`
+  `SECRET|other|fy_token / access_token / refresh_token (OAuth token variable names referenced in code)`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.10/bundle.js`
+  `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.11/bundle.js`
+  `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.14/bundle.js`
+  `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (Fernet-encrypted token hardcoded as `token_id` in FYERS_OBJ.HISTORY_TEST)`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.23/bundle.js`
+  `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.33/bundle.js`
+  `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.36/bundle.js`
+  `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (Fernet-format token_id hardcoded in demo SUB_DATA frame)`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|dev_url|https://data.fyers.in/dev-fyers/mobileapi`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|dev_url|https://dev.fyers.in/orderwin-trade/static/js/ordwin/warning.svg`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|internal_endpoint|https://api.fyers.in/anjuna/v1/margin`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|internal_endpoint|https://api.fyers.in/fydev/v1/baskets?token_id=`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|internal_endpoint|https://api.fyers.in/fydev/v1/margin/v1?token_id=`
+- `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
+  `SECRET|internal_endpoint|https://data.fyers.in/dev-fyers/mobileapi/user-settings`
 - `https://trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js`
   `SECRET|other|hardcoded internal plaintext-HTTP backend endpoint 13.235.24.249:8080 serving /gtt/orders (deobfuscated from obfuscated string array "API_POINT")`
 - `https://verifiedpnl.fyers.in/static/js/main.1b27d8c5.js`
