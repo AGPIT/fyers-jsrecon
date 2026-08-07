@@ -1,9 +1,11 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 15:51 UTC — 205 secret hits_
+_src 2026-08-07 16:37 UTC — 208 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
+- `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`
+  `SECRET|api_key|client_id:"0" (placeholder default, not a real credential)`
 - `https://community.fyers.in/locales/en.js`
   `SECRET|google_key|AIzaSyAOg7DiR0iacQPO7jlix_6MgWe3JXhfGtg`
 - `https://community.fyers.in/locales/en.js`
@@ -196,6 +198,8 @@ _src 2026-08-07 15:51 UTC — 205 secret hits_
   `SECRET|other|No hardcoded secrets; auth uses runtime `_FYERS` cookie/JWT (JWT is base64url-decoded; token passed in URL query params)`
 - `https://trade.fyers.in/api-login/redirect-uri/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
   `MAP SECRET|other|none`
+- `https://trade.fyers.in/apiv2-login-ie-support/js/jquery.validate.js`
+  `SECRET|other|none found`
 - `https://trade.fyers.in/lib/sentry/bundle.tracing.min.js`
   `SECRET|other|https://github.com/getsentry/sentry-javascript (attribution URL, no secret)`
 - `https://trade.fyers.in/production/v1.1/datafeed.min.js`
@@ -286,6 +290,8 @@ _src 2026-08-07 15:51 UTC — 205 secret hits_
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet token used as token_id in FYERS_OBJ.HISTORY_TEST)`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.9/bundle.js`
   `SECRET|jwt|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
+  `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
   `SECRET|dev_url|https://data.fyers.in/dev-fyers/mobileapi`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
