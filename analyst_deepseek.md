@@ -259,3 +259,31 @@ testability: PASSIVE
 [LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed from KB).
 [LEARN] REJECTED MISCONFIG @ datapub.fyers4: no new in-run evidence; class deferred not dead.
 [RISK] fyers-js: 65 — delta expands the dev-tier API footprint referenced from a prod-loaded ordwin helper (anjuna/fydev margin+v1, mobileapi), confirms sgb account pages live behind client-side token gating, and introduces a first subscriptions host carrying a hardcoded API key. Most literals remain public-by-design or demo data, but the persistent client-side-gating pattern on account surfaces and fresh dev-endpoint exposure keeps overall JS exposure moderately high pending the PASSIVE probes.
+
+===== ANALYST 2026-08-07 22:11:59 UTC =====
+[HYP] Cross-account read/modify on third-party TrueData subscription API via client-side sessionId
+class: BUSLOGIC
+asset: api-t2.fyers.in (/api/subs/*, /api/beta/appThirdParty) from subscriptions-main-truedata.js
+confidence: 45
+reasoning: Bundle sends {appName:"true_data1", appId_third_party:<sha 7c924a7a…>, mobile:<input>} to /api/beta/appThirdParty and sets token/at_hash as session auth; same bundle enumerates /api/subs/*. Host live (503 Cloudflare); server-side ownership checks never observed.
+evidence_needed: with the user's own at_hash, a id/mobile value outside the account returns that other account's/third-party's subscription data or flips a state.
+verify_steps: AUTH_HELPED: `curl -s -i "https://api-t2.fyo.in/api/subs/get_subscriptions"` (with own `authorization` header/token_id); then repeat replacing the mobile/app tokenId with a second identifier to test separation. Read-only first.
+impact: enumerable/modifiable third-party subscription state; Medium-High if cross-tenant.
+testability: AUTH_HELPED
+[HYP] Prod gateway exposes dev-tier endpoints returning 500-not-401 (method-gate, not auth-gate) + CORS "*"; dev-order WS may accept bad credentials
+class: MISCONFIG
+asset: api.fyo.in {/fy/cdsl/dev, /fydev/v1/margin/v1, /vagator/v1} (± wss://api-socket.fyers.in/dev/order)
+confidence: 45
+reasoning: 12.1 prod broker bundle ships these dev URLs; live GETs return JSON 500 "Invalid Request...valid method" + ACC-allow-origin:* -- a reaches app logic in prod without a token being the gate (no 401 observed). Auth enforcement timing untested; dev websocket endpoint available in scope.
+evidence_needed: supplying `method` + empty token_id yields a data-bearing JSON or a differentiated 401/423 (proving token check exists / server returns account state without it).
+verify_steps: PASSIVE: `curl -s -i -X POST 'http://api.fyers.in/api/fydev/v1/margin/v1?token_id=?' ...` (HTTP 200/401 aside from the canned 500) ; `curl -s -i -H 'Upgrade: websocket' ... wss://api-socket.fyers.in/dev/order`. Read-only.
+impact: unauthenticated dev-tier oracle / dev-order socket misconfiguration exposes infra class, potential candle→LOW-MED severity now.
+testability: PASSIVE
+[HYP] Partner widget's leftover localhost notification source reachable in prod load (per-visitor local read)
+class: MISCONFIG
+asset: https://partners.fyo.in/f_ales_widget/fyers-widget.min.js
+confidence: 36
+evidence_needed: browser on a partner page issuing a request to the localhost URL proxy (Network tab) in prod.
+testability: HUMAN_ONLY
+[NEXT] PROBE: passive, closes #2 gateway first and sets up #1: `curl -s -i -X POST 'https://api.fyoers.in/fydev/v1/margin/v1?token_id=' -H 'Content-Type: application/json' -d '{}'`, plus `curl -s -i -X POST https://api.fyers.in/fy/cdsl/dev`, and `curl -s -i -X GET 'https://api.fyers.in/vagator/v1'`; a non-500 replies to "valid method" supplies the missing auth oracle. Parallel: `curl -s -I -X GET 'https://api-count.fyo...'` check for Authorization bypass signature: any 403/423 rule-out; and fetch `https://subscriptions.fyo.in/assets/js/main-t.truedata.js` full to map `/api/beta/appSecondParty` param schema (client-facing, read-only).
+[RISK] fyers-js: 67 — a brand-new live third-party/subscription API host (api-t2, Cloudflare-shielded but reachable), a dev-order websocket (wss api-socket/dev) and fy/cdsl/dev shipped in prod broker bundles, and the proceedings of error-phase JSON from a widestocked api gateway behind `access-control-allow-origin:*`. Previous-day's single-hyphen findings are consistent (demo Fernet token_id persists across 15+ datafeed bundles; ordwin/2.0 demo creds; client-only `_FYERS`-gated auth on trading/verified-PnL). Two PASSIVE-capable testable leads remain and the surface is growing each pass — overall JS exposure moderately-high and freshly widening.
