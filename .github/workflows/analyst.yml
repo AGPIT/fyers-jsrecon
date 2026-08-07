@@ -108,7 +108,7 @@ jobs:
           except Exception:
               out = ''
           with open(kpath, 'a') as k:
-              for m in re.finditer(r'^\[LEARN\]\s*(REJECTED|ACCEPTED)\s*<([^>]+)>\s*@\s*(\S+):\s*(.*)$', out, re.M):
+              for m in re.finditer(r'^\[LEARN\]\s*(REJECTED|ACCEPTED)\s+(\S+)\s+@\s+(\S+):\s*(.*)$', out, re.M):
                   line = f"- {stamp[:10]} {m.group(1)} {m.group(2)} @ {m.group(3)}: {m.group(4).strip()[:160]}"
                   if line not in ktext:
                       k.write(line + '\n')
