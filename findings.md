@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 16:37 UTC — 208 secret hits_
+_src 2026-08-07 17:42 UTC — 224 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -20,6 +20,24 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5O`
 - `https://community.fyers.in/member/gtm.js`
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5OWl3QnEiLCJuZXR3b3JrRG9tYWluIjoiZnllcnMuYmV0dGVybW9kZS5pbyIsInRva2VuVHlwZSI6IkdVRVNUIiwiZW50aXR5SWQiOm51bGwsInBlcm1pc3Npb25Db250ZXh0IjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWF0IjoxNzg2MDI4MTU0LCJleHAiOjE3ODYwNDI1NTR9.lhrak6dQmTgIoWoaIMMWmsLldtRv1RKL-8aWn1UqtZSDX4d2FkOq5uOsZing6AWhXbPzVkrAc55hRX3N6NnN5A`
+- `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
+  `SECRET|other|none_found`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|api_key|68USODQMOF`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|api_key|EFR7964223`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|api_key|H4NMJ8X2NR`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|api_key|LCFY9OOX3D`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|other|2a88a14a353274a2f35430038b6d81725e2d17d8064785d62965e4da78033e9f`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|other|45ac1f5f538de93ff8a4e2ad77214266b04db8dbf50fabdaecc7a3ffadf60ad0`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|other|656b1386e20297a2d596d98b840200c1aac90998cc2bcfd00247c4479272a1e8`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
+  `SECRET|other|eedae6cd5dbb41660999947e13a4c9331e5c011ecd093a9e50bbaf8fbd083475`
 - `https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js`
   `SECRET|other|APP_ID_68USODQMOF-101 (dev Fyers API client id)`
 - `https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js`
@@ -94,6 +112,8 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|api_key|LCFY9OOX3D`
 - `https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
   `SECRET|api_key|ApiKeydownHandler (matches Bootstrap dropdown keydown, not a secret)`
+- `https://partners.fyers.in/fyers_widget/fyers-widget.min.js`
+  `SECRET|dev_url|http://127.0.0.1:46475/fy_notifications/js/data.json`
 - `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
@@ -206,6 +226,8 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|other|Fernet-format datafeed token (token_id) gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/1.5/bo.min.js`
   `SECRET|other|no hardcoded secrets - secret_key read from localStorage, token_id passed in from caller`
+- `https://trade.fyers.in/static/js/basket-order/assets/js/2.0/bo.min.js`
+  `SECRET|other|secret_key read from localStorage and used to sign marketStat (MD5(keyword|timestamp|secret_key))`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/2.3/bo.min.js`
   `SECRET|other|fyToken runtime session token read from `_FYERS` cookie and sent as `Authorization` header (not a hardcoded key)`
 - `https://trade.fyers.in/static/js/broker/11.4/bundle.min.js`
@@ -282,6 +304,8 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.23/bundle.js`
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/9.3/bundle.js`
+  `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.33/bundle.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.36/bundle.js`
@@ -292,6 +316,12 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|jwt|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
+- `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
+  `SECRET|other|101000000014366`
+- `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
+  `SECRET|other|1100000005899114`
+- `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
+  `SECRET|other|51808097115-CO-1`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
   `SECRET|dev_url|https://data.fyers.in/dev-fyers/mobileapi`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
@@ -306,6 +336,8 @@ _src 2026-08-07 16:37 UTC — 208 secret hits_
   `SECRET|internal_endpoint|https://data.fyers.in/dev-fyers/mobileapi/user-settings`
 - `https://trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js`
   `SECRET|other|hardcoded internal plaintext-HTTP backend endpoint 13.235.24.249:8080 serving /gtt/orders (deobfuscated from obfuscated string array "API_POINT")`
+- `https://trade.fyers.in/static/js/widgets/js/2.2/widgets.min.js`
+  `SECRET|api_key|fyToken (auth token, variable `tokenId`) — no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/widgets/js/2.3/widgets.min.js`
   `SECRET|other|no hardcoded secret value present; "secret_key" read from localStorage, MD5-combined into marketStat`
 - `https://verifiedpnl.fyers.in/static/js/main.1b27d8c5.js`
