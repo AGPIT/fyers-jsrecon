@@ -1,0 +1,8 @@
+# https://sgb.fyers.in/_next/static/chunks/main-97aa591c3ba32f976418.js
+ENDPOINT|ANY|/jkW
+ENDPOINT|ANY|/_next/
+ENDPOINT|ANY|/_app
+ENDPOINT|ANY|/_error
+ENDPOINT|ANY|/_next/data/
+NOTE|sink:innerHTML in: .innerHTML = dangerouslySetInnerHTML.__html || ''
+NONE_ANALYSABLE

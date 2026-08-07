@@ -1,9 +1,23 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 18:10 UTC — 230 secret hits_
+_src 2026-08-07 19:13 UTC — 238 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
+- `https://assets.fyers.in/Lib/calculators/2.10/brokrage-calc.js`
+  `SECRET|other|api-t1.fyers.in (trade v3 API host, no auth) — noted in SpanCalculator ajax request; no actual secret material present`
+- `https://assets.fyers.in/Lib/calculators/2.11/brokrage-calc.js`
+  `SECRET|other|no secrets found - only brokerage rate constants`
+- `https://assets.fyers.in/Lib/calculators/2.15/brokrage-calc.js`
+  `SECRET|internal_endpoint|https://api-t1.fyers.in/trade/v3/spancalc`
+- `https://assets.fyers.in/Lib/calculators/2.16/brokrage-calc.js`
+  `SECRET|other|none found`
+- `https://assets.fyers.in/Lib/calculators/2.6/brokrage-calc.js`
+  `SECRET|other|COMMODITY_FUTURES,COMMODITY_OPTIONS,NSE_COMMODITY_FUTURES,NSE_COMMODITY_OPTIONS - brokerage rate configs (rates/stt/lot sizes), not credentials`
+- `https://assets.fyers.in/Lib/calculators/2.8/brokrage-calc.js`
+  `SECRET|none`
+- `https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js`
+  `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
 - `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`
   `SECRET|api_key|client_id:"0" (placeholder default, not a real credential)`
 - `https://community.fyers.in/locales/en.js`
@@ -132,6 +146,8 @@ _src 2026-08-07 18:10 UTC — 230 secret hits_
   `SECRET|other|auth_token from localStorage passed verbatim as Authorization header (JWT-style bearer token, no scheme prefix)`
 - `https://sgb.fyers.in/_next/static/chunks/c930e9b61683ff946dd89c25b851ab337278c84b.d3a64d4a13fa91f39e0b.js`
   `SECRET|other|no hardcoded secrets found (auth_token read at runtime from localStorage)`
+- `https://sgb.fyers.in/_next/static/chunks/main-1f1bdab0e2f336010c3f.js`
+  `SECRET|jwt|none`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
   `SECRET|other|appIdHash=39abc82e995e6c2e8ab69086650b1fa700300322a2fb0d846902e0804ca1bf0c`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
