@@ -1,0 +1,14 @@
+# https://trade.fyers.in/lib/jquery/1.12.4/jquery.min.js
+NOTE|sink:innerHTML in: .innerHTML="<a id='"+u+"'></a><select id='"+u+"-\r\\' msallowcapture=''><option selected=''
+NOTE|sink:innerHTML in: .innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ja("type|href|heig
+NOTE|sink:innerHTML in: .innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute(
+NOTE|sink:innerHTML in: .innerHTML=" <link/><table></table><a href='/a'>a</a><input type='checkbox'/>",l.leadingWh
+NOTE|sink:innerHTML in: .innerHTML="<textarea>x</textarea>",l.noCloneChecked=!!a.cloneNode(!0).lastChild.defaultVal
+NOTE|sink:innerHTML in: .innerHTML=m[1]+n.htmlPrefilter(g)+m[2],f=m[0]
+NOTE|sink:innerHTML in: .innerHTML=a.innerHTML)):"input"===c&&Z.test(a.type)?(b.defaultChecked=b.checked=a.checked,
+NOTE|sink:innerHTML in: .innerHTML=a.outerHTML,Ba.removeChild(f=Ba.firstChild)),!(l.noCloneEvent&&l.noCloneChecked|
+NOTE|sink:innerHTML in: .innerHTML=a)
+NOTE|sink:innerHTML in: .innerHTML="",i.appendChild(j),l.boxSizing=""===j.style.boxSizing||""===j.style.MozBoxSizin
+NOTE|sink:innerHTML in: .innerHTML="<table><tr><td></td><td>t</td></tr></table>",j.childNodes[0].style.borderCollap
+NOTE|sink:innerHTML in: .innerHTML=" <link/><table></table><a href='/a'>a</a><input type='checkbox'/>",a=c.getElem
+NONE_ANALYSABLE

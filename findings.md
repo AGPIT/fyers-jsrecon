@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 12:24 UTC — 169 secret hits_
+_src 2026-08-07 13:42 UTC — 173 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -138,6 +138,10 @@ _src 2026-08-07 12:24 UTC — 169 secret hits_
   `SECRET|google_key|G-NTFX8XLKVH`
 - `https://trade.fyers.in/Prod/1.2/trade.js`
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (Fernet-format encrypted token hardcoded in HISTORY_TEST test data)`
+- `https://trade.fyers.in/Prod/exception/bundle.min.js`
+  `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet-format token_id in HISTORY_TEST/WS config)`
+- `https://trade.fyers.in/production/v1.1/datafeed.min.js`
+  `SECRET|other|Fernet-format datafeed token (token_id) gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/1.5/bo.min.js`
   `SECRET|other|no hardcoded secrets - secret_key read from localStorage, token_id passed in from caller`
 - `https://trade.fyers.in/static/js/broker/11.4/bundle.min.js`
@@ -190,6 +194,8 @@ _src 2026-08-07 12:24 UTC — 169 secret hits_
   `SECRET|other|token_id Fernet token: gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (embedded in HISTORY_TEST sample)`
 - `https://trade.fyers.in/static/js/datafeed/udf/10/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/11.3/bundle.min.js`
+  `SECRET|other|no hardcoded secrets found (CryptoJS library routines only)`
 - `https://trade.fyers.in/static/js/datafeed/udf/11.6/bundle.min.js`
   `SECRET|other|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M (Fernet-encrypted token embedded in history request /token_id, hardcoded in bundle)`
 - `https://trade.fyers.in/static/js/datafeed/udf/12.1/bundle.min.js`
@@ -198,6 +204,8 @@ _src 2026-08-07 12:24 UTC — 169 secret hits_
   `SECRET|jwt|token_id (encrypted JWT-like token used for HSM session auth)`
 - `https://trade.fyers.in/static/js/datafeed/udf/12.2/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/datafeed/udf/12.6/bundle.min.js`
+  `SECRET|api_key|Client session secret stored at localStorage["secret_key"], used with a unix-timestamp signature to authorize datafeed requests (HSM/WebSocket auth)`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.10/bundle.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.11/bundle.js`
