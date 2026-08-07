@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 03:27 UTC — 83 secret hits_
+_src 2026-08-07 05:11 UTC — 93 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -168,3 +168,23 @@ _src 2026-08-07 03:27 UTC — 83 secret hits_
   `SECRET|other|GTM-MB6PRVDG (Google Tag Manager container ID)`
 - `https://www.fyers.in/General-assets/js/jquery.cookie.js`
   `SECRET|other|none`
+- `https://www.fyers.in/GoalTracker-assets/js/calculators.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ (Google Analytics GA4 ID; public)`
+- `https://www.fyers.in/GoalTracker-assets/js/calculators.js`
+  `SECRET|other|GTM-MB6PRVDG (Google Tag Manager container; public)`
+- `https://www.fyers.in/GoalTracker-assets/js/wcf_custom.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/GoalTracker-assets/js/wcf_custom.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/ReferalEarningCalcAssets/js/calculators.js`
+  `SECRET|none|no secrets in visible content`
+- `https://www.fyers.in/ShortTermReturnsAssets/js/calculators.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/ShortTermReturnsAssets/js/calculators.js`
+  `SECRET|google_key|GTM-MB6PRVDG`
+- `https://www.fyers.in/brokerageComparisonAssets/js/calculators.js`
+  `SECRET|other|analytics_tracking_id G-JXG5NQ1WQJ (Google Analytics)`
+- `https://www.fyers.in/brokerageComparisonAssets/js/calculators.js`
+  `SECRET|other|analytics_tracking_id GTM-MB6PRVDG (Google Tag Manager)`
+- `https://www.fyers.in/disciplineDiary/js/wcf_custom.js`
+  `SECRET|none|none`

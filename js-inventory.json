@@ -46713,106 +46713,136 @@
   "url": "https://www.fyers.in/GoalTracker-assets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "93dc04ff466b459e",
+  "pass": "deep1",
+  "report": "reports/d0803abeeb.md"
  },
  {
   "url": "https://www.fyers.in/GoalTracker-assets/js/charts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "1444ba908d32951c",
+  "pass": "deep1",
+  "report": "reports/ce99c7afed.md"
  },
  {
   "url": "https://www.fyers.in/GoalTracker-assets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "4044f8715869e298",
+  "pass": "deep1",
+  "report": "reports/4878feda06.md"
  },
  {
   "url": "https://www.fyers.in/ReferalEarningCalcAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "e833334bc20ae122",
+  "pass": "deep1",
+  "report": "reports/c948b67bca.md"
  },
  {
   "url": "https://www.fyers.in/ReferalEarningCalcAssets/js/charts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "e1011f5a46d5c1f0",
+  "pass": "deep1",
+  "report": "reports/bf4698ab21.md"
  },
  {
   "url": "https://www.fyers.in/ReferalEarningCalcAssets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "c4566e441f40e4ff",
+  "pass": "deep1",
+  "report": "reports/5e1890af12.md"
  },
  {
   "url": "https://www.fyers.in/ShortTermReturnsAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "887e4e0bbb62d067",
+  "pass": "deep1",
+  "report": "reports/9021528802.md"
  },
  {
   "url": "https://www.fyers.in/ShortTermReturnsAssets/js/charts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "4d25e36ba6518217",
+  "pass": "deep1",
+  "report": "reports/783e6fdeea.md"
  },
  {
   "url": "https://www.fyers.in/ShortTermReturnsAssets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "3177a050ef08cd21",
+  "pass": "deep1",
+  "report": "reports/7c84b2ae70.md"
  },
  {
   "url": "https://www.fyers.in/brokerageComparisonAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "5f02f9270a2d5f88",
+  "pass": "deep1",
+  "report": "reports/85ce16c066.md"
  },
  {
   "url": "https://www.fyers.in/disciplineDiary/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "cb523f93343844bb",
+  "pass": "deep1",
+  "report": "reports/ddd1a43073.md"
  },
  {
   "url": "https://www.fyers.in/disciplineDiary/js/charts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "9d04e0cb8a0dfeac",
+  "pass": "deep1",
+  "report": "reports/8e2b96250f.md"
  },
  {
   "url": "https://www.fyers.in/disciplineDiary/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "b8ccd20e415e17a8",
+  "pass": "deep1",
+  "report": "reports/776ce06d25.md"
  },
  {
   "url": "https://www.fyers.in/optionStategy/SelectionScreenAssets/js/SelectionScreenScripts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "39998058d8e6002a",
+  "pass": "deep1",
+  "report": "reports/d1760d96ce.md"
  },
  {
   "url": "https://www.fyers.in/optionStategy/bearish/PutBackSpreadAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "7872c10ca18840fe",
+  "pass": "deep1",
+  "report": "reports/ed416d1364.md"
  },
  {
   "url": "https://www.fyers.in/optionStategy/bullish/CoveredCombinationAssets/js/wcf_custom.js",
