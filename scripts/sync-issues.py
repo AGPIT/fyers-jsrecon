@@ -164,6 +164,30 @@ def main():
                     except Exception:
                         pass
 
-    print(f"SUMMARY created={created} updated={updated} closed_rejected={closed} dup_closed={dup_closed}")
+    def norm_title(t):
+        t = re.sub(r'^\[\d+%\]\s*', '', t or "")
+        t = re.sub(r'[^a-z0-9]+', ' ', t.lower()).strip()
+        return t
+
+    title_closed = 0
+    groups = {}
+    for i in existing:
+        if i.state != "open":
+            continue
+        key = (norm_title(i.title), (re.search(r'^## Class\n(.*)$', i.body or "", re.M) or [None, "other"])[1].strip().lower())
+        groups.setdefault(key, []).append(i)
+    for key, isslist in groups.items():
+        if len(isslist) > 1:
+            keep = min(isslist, key=lambda i: i.created_at)
+            for dup in isslist:
+                if dup != keep:
+                    try:
+                        dup.edit(state="closed", labels=list({l.name for l in dup.labels} | {"duplicate"}))
+                        dup.create_comment(f"Duplicate of #{keep.number} (same normalized title+class). Closed by sync.")
+                        title_closed += 1
+                    except Exception:
+                        pass
+
+    print(f"SUMMARY created={created} updated={updated} closed_rejected={closed} dup_closed={dup_closed} title_closed={title_closed}")
 
 main()
