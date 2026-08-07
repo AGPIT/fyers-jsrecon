@@ -268,3 +268,4 @@
 200 | https://www.fyers.in/terms-and-conditions-api | text/html; charset=utf-8
 200 | https://www.fyers.in/trust-and-security | text/html; charset=utf-8
 200 | https://www.fyers.in/whats-new | text/html; charset=utf-8
+200 | https://trade.fyers.in/edis/authCdsl.html?token_id= | text/html
