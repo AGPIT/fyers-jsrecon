@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 00:42 UTC — 67 secret hits_
+_src 2026-08-07 03:27 UTC — 83 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -136,3 +136,35 @@ _src 2026-08-07 00:42 UTC — 67 secret hits_
   `SECRET|api_key|pnl_url:https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data (frozen config export, prod back-end URL)`
 - `https://www.fyers.in/CompoundRateAssets/js/charts.js`
   `SECRET|other|no secrets found`
+- `https://www.fyers.in/FibonacciCalculatorAssets/js/wcf_custom.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/FibonacciCalculatorAssets/js/wcf_custom.js`
+  `SECRET|google_key|GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/app/controllers.js`
+  `SECRET|other|google_tag_id_G-JXG5NQ1WQJ`
+- `https://www.fyers.in/General-assets/js/app/controllers.js`
+  `SECRET|other|google_tag_manager_GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/calender.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/General-assets/js/calender.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/highcharts.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/General-assets/js/highcharts.js`
+  `SECRET|google_key|GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/ion.rangeSlider.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/General-assets/js/ion.rangeSlider.min.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/ion.rangeSlider.min.js`
+  `SECRET|other|formperma token ZiaB9_3-KvEZZdnyxaY6d6LNb5vlmzYL8Ta3KcsV4xI (Zoho Forms)`
+- `https://www.fyers.in/General-assets/js/jquery-1.7.2.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/General-assets/js/jquery-1.7.2.min.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/General-assets/js/jquery-ui-1.8.21.custom.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ (Google Analytics 4 property ID)`
+- `https://www.fyers.in/General-assets/js/jquery-ui-1.8.21.custom.min.js`
+  `SECRET|other|GTM-MB6PRVDG (Google Tag Manager container ID)`
+- `https://www.fyers.in/General-assets/js/jquery.cookie.js`
+  `SECRET|other|none`

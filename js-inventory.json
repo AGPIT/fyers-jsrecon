@@ -46578,106 +46578,136 @@
   "url": "https://www.fyers.in/CompoundRateAssets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "28fb4de5a97698b1",
+  "pass": "deep1",
+  "report": "reports/c2e9ad0c03.md"
  },
  {
   "url": "https://www.fyers.in/FibonacciCalculatorAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "288dcabf93ee28c5",
+  "pass": "deep1",
+  "report": "reports/a37b7549d7.md"
  },
  {
   "url": "https://www.fyers.in/FibonacciCalculatorAssets/js/charts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "2f03f78ce4257544",
+  "pass": "deep1",
+  "report": "reports/f88e38ae4f.md"
  },
  {
   "url": "https://www.fyers.in/FibonacciCalculatorAssets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "56b85fef658bb1ac",
+  "pass": "deep1",
+  "report": "reports/b55af7da0e.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/app/app.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "e548b97e96399651",
+  "pass": "deep1",
+  "report": "reports/93d1e0ace7.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/app/controllers.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "00e5f06a662cb04a",
+  "pass": "deep1",
+  "report": "reports/d94db36dc5.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/calender.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "1f2f1edf44cd06c5",
+  "pass": "deep1",
+  "report": "reports/ffde1ab4b2.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/cookiebuilder.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "3ee530ccb3b4a8c6",
+  "pass": "deep1",
+  "report": "reports/f56c4aec0d.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/highcharts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "3995648e72767e94",
+  "pass": "deep1",
+  "report": "reports/bc54b86798.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/ion.rangeSlider.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "178a49e5063bb051",
+  "pass": "deep1",
+  "report": "reports/bbdfe02d3b.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/jquery-1.7.2.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "8d5948c928cf59ac",
+  "pass": "deep1",
+  "report": "reports/edb8e02d97.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/jquery-ui-1.8.21.custom.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "b7ca0c6570166332",
+  "pass": "deep1",
+  "report": "reports/63494f6632.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/jquery.cookie.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "c77216788cf651b7",
+  "pass": "deep1",
+  "report": "reports/4994024d50.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/ng-table.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "06f90a330598a648",
+  "pass": "deep1",
+  "report": "reports/506d825a7b.md"
  },
  {
   "url": "https://www.fyers.in/General-assets/js/pnotify.custom.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "fdaacae04636730b",
+  "pass": "deep1",
+  "report": "reports/d35f3db6a9.md"
  },
  {
   "url": "https://www.fyers.in/GoalTracker-assets/js/calculators.js",
