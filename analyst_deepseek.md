@@ -117,3 +117,58 @@ testability: AUTH_HELPED
 [LEARN] REJECTED OTHER @ www.fyers.in / trade.fyers.in marketing JS: only public GA4/GTM/Zoho keys — class dead on marketing surface.
 [LEARN] REJECTED OTHER @ trade.fyers.in vendor JS (jquery, bootstrap, charts, revolution.extension): ApiKeydownHandler + "none" matches are scanner noise — no claim.
 [RISK] fyers-js: 63 — prod bundles embed per-env OAuth client-ID/hash maps, a repeated demo Fernet token_id across 15+ datafeed bundles, a growing dev-tier API footprint (fydev, vagator, anjuna, api-socket) referenced from prod bundles with token_id in URL query, client-side-only auth_token gating on SGB, client-side _FYERS JWT gating on a financial endpoint, and a brand-new unanalyzable Next.js webapp surface — most items are low-impact or public-by-design, but the accumulation signals loose secret/auth hygiene across the trading surface, warranting AUTH_HELPED verification of the 3 survivors.
+
+===== ANALYST 2026-08-07 18:28:01 UTC =====
+[NEW] partners.fyers.in/fyers_widget/fyers-widget.min.js embeds leftover localhost dev_url (127.0.0.1:46475/fy_notifications/js/data.json) — partner-facing widget host now in JS surface.
+[NEW] trade.fyers.in/static/js/broker/12.1/bundle.min.js hardcodes datapub.fyers.in:8862 (non-TLS data-publisher host), alongside previously-known fydev/v1 + vagator/v1.
+[NEW] trade.fyers.in/Prod/1.2/posConv.min.js fetches https://public.fyers.in/messages/messagesLinks.json (notification link config).
+[NEW] trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js hardcodes demo credentials in modifyBtn handler (demo fyToken, client id, CO product token).
+[NEW] marketsmith.fyers.in appears in JS surface (Bootstrap vendor only; scanner false-positive `ApiKeydownHandler`).
+[CHANGED] First-party message/config host public.fyers.in promoted from static-asset only (haircut-mf jQuery) to referenced data endpoint (messagesLinks.json).
+[PRIO] datapub.fyers.in:8862 | 5.35 | attack 5 business 5 tech 6 gate 7 cloud 2 fresh 7
+[PRIO] public.fyers.in/messages/messagesLinks.json | 4.70 | attack 3 business 4 tech 3 gate 10 cloud 3 fresh 7
+[PRIO] partners.fyers.in/fyers_widget/fyers-widget.min.js | 4.55 | attack 3 business 4 tech 3 gate 9 cloud 2 fresh 8
+[HYP] Unauthenticated data-publisher reachable on plaintext :8862
+class: MISCONFIG
+asset: datapub.fyers.in:8862 (referenced from trade.fyers.in/static/js/broker/12.1/bundle.min.js)
+confidence: 45
+reasoning: Prod broker bundle hardcodes this non-TLS data-publisher host; first-party *.fyers.in host in scope. datapub classically serves realtime/chart datafeeds; reachability and auth posture never probed in prior runs.
+evidence_needed: TCP/HTTP 200 or JSON/JS payload (not conn-refused/401) on :8862 without any token.
+verify_steps: PASSIVE: `curl -s -i --max-time 10 "http://datapub.fyers.in:8862/"` ; then the standard UDF datafeed paths seen in datafeed/udf bundles (`/history`, `/config`, `/symbols`) against `http://datapub.fyers.in:8862`. Read-only.
+impact: unauthenticated realtime market data / internal schema disclosure; Low-Medium (feeds are market data, not accounts).
+testability: PASSIVE
+[HYP] Mass-notification link config exposed unauthenticated on public host
+class: MISCONFIG
+asset: https://public.fyers.in/messages/messagesLinks.json (fetched by trade.fyers.in/Prod/1.2/posConv.min.js)
+confidence: 55
+reasoning: Prod posConv bundle fetches this static JSON; public.fyers.in is a first-party public content host. Static config on a public bucket/CDN is reachable without auth by design; content (internal links/messages) unverified.
+evidence_needed: 200 + JSON array/object listing message titles/URLs incl. any internal *.fyers.in or third-party URLs.
+verify_steps: PASSIVE: `curl -s -i https://public.fyers.in/messages/messagesLinks.json` ; parse keys; if a `baseUrl`/link prefix is configurable, check it is not attacker-influenced.
+impact: low — config disclosure, potential link-target spoofing inside trading UI if the JSON were tamperable; Low.
+testability: PASSIVE
+[HYP] Partner notification widget ships dev-mode notification origin
+class: MISCONFIG
+asset: partners.fyers.in/fyers_widget/fyers-widget.min.js
+confidence: 40
+reasoning: Prod widget bundle embeds http://127.0.0.1:46475/fy_notifications/js/data.json — a leftover localhost dev URL in a partner-embeddable widget; implies data.json origin may be host/config-derived rather than fixed.
+evidence_needed: widget source shows the data.json base is computed from document.location / query param / partner-supplied config (making the fetched origin attacker-influenced on embedder pages).
+verify_steps: PASSIVE: `curl -s https://partners.fyers.in/fyers_widget/fyers-widget.min.js | grep -oE 'http[^"'"'"' ]+|data\.json'` ; confirm whether 127.0.0.1 is fallback or default and whether a parameter overrides it.
+impact: if origin is embedder-derived, widget on attacker page loads attacker-controlled content into the Fyers widget frame; Low.
+testability: PASSIVE
+[PARKED] ordwin/2.0 helper.min.js hardcoded demo fyToken / client / CO token: demo data in legacy widget helper, no live in-scope verify path, low impact → parked.
+[PARKED] ipo.fyers.in / sgb.fyers.in per-env client_id + appIdHash maps: public OAuth identifiers and their hashes → dropped (reaffirmed).
+[PARKED] trade.fyers.in/Prod Fernet token gAAAAA… (sha256 568d3b6a…34): demo HISTORY_TEST token_id; already parked, only low-priority PASSIVE check pending.
+[PARKED] trade.fyers.in/widgets.min.js 1341655KwEfgY / 984896EWiONu: unknown purpose, no in-scope verify path → parked.
+[PARKED] marketsmith.fyers.in `ApiKeydownHandler`: scanner false-positive on Bootstrap vendor → dropped.
+[PARKED] www.fyers.in / trade.fyers.in GA4/GTM/Zoho keys: public marketing keys → dropped.
+[PARKED] 13.235.24.249:8080/gtt/orders: third-party IP, out of scope → dropped.
+[PARKED] webtrader.fyers.in / http://fyers.in / dev.fyers.in / alerts.fyers.in legacy JS: fetch 0 / HTML unretrievable → parked until live.
+[LEARN] REJECTED AUTH @ ipo.fyers.in/sgb.fyers.in env maps: client IDs + appIdHash are public OAuth identifiers, not secrets — class dead for hardcoded-APP_ID lead.
+[LEARN] REJECTED OTHER @ trade.fyers.in/ordwin/2.0 helper.min.js: hardcoded fyToken/client values are demo/test data in legacy widget, not live session credentials.
+[FINAL] 1) datapub.fyers.in:8862 MISCONFIG (conf 45, PASSIVE, prio 5.35)  2) public.fyers.in/messages/messagesLinks.json MISCONFIG (conf 55, PASSIVE, prio 4.70)  3) partners.fyers.in widget MISCONFIG (conf 40, PASSIVE, prio 4.55)
+[NEXT] PROBE: `curl -s -i --max-time 10 "http://datapub.fyers.in:8862/"` and `curl -s -i --max-time 10 "http://datapub.fyers.in:8862/history"` — passive, read-only, no auth; any 200/JSON is new surface. Run `curl -s https://public.fyers.in/messages/messagesLinks.json` in parallel to close the cheapest lead.
+[LEARN] REJECTED AUTH @ ipo.fyers.in / sgb.fyers.in env maps: client IDs + appIdHash are public OAuth identifiers — class dead for hardcoded-APP_ID lead.
+[LEARN] REJECTED OTHER @ trade.fyers.in/ordwin/2.0 helper.min.js: hardcoded fyToken/client/CO tokens are demo data in legacy widget — not live credentials.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js (reaffirmed from KB): GUEST JWT public-by-design — class dead here.
+[LEARN] REJECTED MISCONFIG @ www.fyers.in marketing assets (reaffirmed): only public GA4/GTM/Zoho keys — class dead on marketing JS surface.
+[RISK] fyers-js: 64 — prod bundles continue to leak dev-tier and infra references (datapub.fyers.in:8862 non-TLS, fydev/vagator/anjuna APIs, wss dev socket), a leftover localhost notification URL in a partner-facing widget, an unverified public config endpoint (messagesLinks.json), demo credentials hardcoded in ordwin/2.0, and the repeated demo Fernet token_id across 15+ datafeed bundles; plus client-side-only auth_token/_FYERS JWT gating on trading and PNL endpoints. Nearly every literal is low-impact or public-by-design, but the persistent secret-hygiene pattern across the trading/partner surface keeps exposure elevated pending PASSIVE verification of the top-3 leads.
