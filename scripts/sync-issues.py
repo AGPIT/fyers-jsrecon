@@ -73,9 +73,9 @@ def main():
         ensure_label(l)
 
     try:
-        existing = list(repo.get_issues(state="all", labels=["bug-bounty"], per_page=100))
+        existing = list(repo.get_issues(state="all", labels=["bug-bounty"]))
     except Exception:
-        existing = list(repo.get_issues(state="all", per_page=100))
+        existing = list(repo.get_issues(state="all"))
     by_fp = {}
     for i in existing:
         m = re.search(r'<!-- fingerprint:([0-9a-f]{12}) -->', i.body or "")
