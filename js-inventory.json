@@ -46848,105 +46848,135 @@
   "url": "https://www.fyers.in/optionStategy/bullish/CoveredCombinationAssets/js/wcf_custom.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "1c5eb0560cf0b911",
+  "pass": "deep1",
+  "report": "reports/20ed1a7e04.md"
  },
  {
   "url": "https://www.fyers.in/sipcalculatorAssets/js/calculators.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "bf68fe9167b810fc",
+  "pass": "deep1",
+  "report": "reports/d29619639b.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/bootstrap.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "87a9fc2833cc2a5d",
+  "pass": "deep1",
+  "report": "reports/90f058601c.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/flexslider.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "5c7025e3c4020b55",
+  "pass": "deep1",
+  "report": "reports/3f8bee6c7a.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/gen_validatorv31.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "addcd0cfa2fad86e",
+  "pass": "deep1",
+  "report": "reports/9d3f7a7bf5.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/parallax.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "fb2bc9061202dd8f",
+  "pass": "deep1",
+  "report": "reports/0e3562a790.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/pivottrading.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "02acd56b1e3679b4",
+  "pass": "deep1",
+  "report": "reports/2408a372dd.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/placeholders.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "5d55ed79ae954bb3",
+  "pass": "deep1",
+  "report": "reports/fecc1314cc.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/scripts.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "e98e9eb07d86691e",
+  "pass": "deep1",
+  "report": "reports/29b92f7df4.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/smooth-scroll.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "d8387fa5349815af",
+  "pass": "deep1",
+  "report": "reports/8def73b89a.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/spectragram.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "0c0c54e507d6d143",
+  "pass": "deep1",
+  "report": "reports/dc70b078b4.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/twitterfetcher.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "ea7010488d1de66c",
+  "pass": "deep1",
+  "report": "reports/d3f241d252.md"
  },
  {
   "url": "https://www.fyers.in/trading/js/validator.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "7d9a0bce290b97d4",
+  "pass": "deep1",
+  "report": "reports/6d11b21dcb.md"
  },
  {
   "url": "https://www.fyers.in/wp-content/plugins/tlp-team/assets/js/front-end.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "4c3767e0d008104b",
+  "pass": "deep1",
+  "report": "reports/1bcd3cb987.md"
  },
  {
   "url": "https://www.fyers.in/wp-content/plugins/tlp-team/assets/js/imagesloaded.pkgd.min.js",
   "host": "www.fyers.in",
   "size": 416118,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "40486943acc3752e",
+  "pass": "deep1",
+  "report": "reports/a12b861dd1.md"
  }
 ]

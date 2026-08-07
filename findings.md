@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 05:11 UTC — 93 secret hits_
+_src 2026-08-07 06:40 UTC — 115 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -188,3 +188,47 @@ _src 2026-08-07 05:11 UTC — 93 secret hits_
   `SECRET|other|analytics_tracking_id GTM-MB6PRVDG (Google Tag Manager)`
 - `https://www.fyers.in/disciplineDiary/js/wcf_custom.js`
   `SECRET|none|none`
+- `https://www.fyers.in/sipcalculatorAssets/js/calculators.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/sipcalculatorAssets/js/calculators.js`
+  `SECRET|google_key|GTM-MB6PRVDG`
+- `https://www.fyers.in/sipcalculatorAssets/js/calculators.js`
+  `SECRET|other|ZiaB9_3-KvEZZdnyxaY6d6LNb5vlmzYL8Ta3KcsV4xI`
+- `https://www.fyers.in/trading/js/bootstrap.min.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/trading/js/bootstrap.min.js`
+  `SECRET|google_key|GTM-MB6PRVDG`
+- `https://www.fyers.in/trading/js/flexslider.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/trading/js/flexslider.min.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/trading/js/gen_validatorv31.js`
+  `SECRET|other|none_found`
+- `https://www.fyers.in/trading/js/parallax.js`
+  `SECRET|other|G-JXG5NQ1WQJ (Google Analytics)`
+- `https://www.fyers.in/trading/js/parallax.js`
+  `SECRET|other|GTM-MB6PRVDG (GTM container)`
+- `https://www.fyers.in/trading/js/pivottrading.js`
+  `SECRET|other|G-JXG5NQ1WQJ (GA4 measurement ID, non-sensitive)`
+- `https://www.fyers.in/trading/js/pivottrading.js`
+  `SECRET|other|GTM-MB6PRVDG (GTM container ID, non-sensitive)`
+- `https://www.fyers.in/trading/js/scripts.js`
+  `SECRET|google_key|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/trading/js/scripts.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/trading/js/smooth-scroll.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/trading/js/smooth-scroll.min.js`
+  `SECRET|other|GTM-MB6PRVDG`
+- `https://www.fyers.in/trading/js/spectragram.min.js`
+  `SECRET|other|GA4 ID G-JXG5NQ1WQJ (public analytics, not a secret)`
+- `https://www.fyers.in/trading/js/spectragram.min.js`
+  `SECRET|other|GTM container GTM-MB6PRVDG (public tag manager, not a secret)`
+- `https://www.fyers.in/trading/js/twitterfetcher.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ (GA4 tag, public marketing id)`
+- `https://www.fyers.in/trading/js/twitterfetcher.min.js`
+  `SECRET|other|GTM-MB6PRVDG (GTM container, public marketing id)`
+- `https://www.fyers.in/wp-content/plugins/tlp-team/assets/js/imagesloaded.pkgd.min.js`
+  `SECRET|other|G-JXG5NQ1WQJ`
+- `https://www.fyers.in/wp-content/plugins/tlp-team/assets/js/imagesloaded.pkgd.min.js`
+  `SECRET|other|GTM-MB6PRVDG`
