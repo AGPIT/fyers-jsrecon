@@ -103,3 +103,72 @@ STEP 6 — LEARNING
 STEP 7 — RISK SCORE
 [RISK] fyers-js: 62 — prod bundles embed per-environment OAuth client-ID/hash maps, a repeated hardcoded demo Fernet token_id across 15+ datafeed bundles, dev API + cleartext-HTTP backend references, client-side-only _FYERS JWT gating on a financial endpoint, and guest-token + analytics keys; most items are low-impact or public-by-design, but the combination signals loose secret hygiene in the trading surface, warranting AUTH_HELPED verification of the top-3 leads.
 ```
+===== RAW ANALYST 2026-08-07 17:30:33 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+===== STEP 1 — DELTA =====
+[NEW] www.fyers.in /web/ Next.js app suite live (all 200): /web/options/option-chain, /web/options/strategy-builder/explore, /web/options/analytics, /web/option-scalper, /web/markets/screeners, /web/markets/news, /web/markets/markets-overview/all, /web/markets/analytics/heatmap, /web/symbol/NSE:ADANIPORTS-EQ, /web/mtf/about, /web/fia, /web/charts, /web/reports, /web/automate, /web/api-dashboard/user-apps; _next static chunks returned as 200 text/html (SPA catch-all → JS not analyzable).
+[NEW] sgb.fyers.in app pages live (all 200): /details, /orders, /sgb, /updatesgb.
+[NEW] sgb.fyers.in home-ac56cb0ac001d9ac5ef2.js: new OAuth client_id AEHNSK9PRW not in the prior per-env appId map.
+[NEW] trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js dev-tier endpoints: api.fyers.in/anjuna/v1/margin, api.fyers.in/fydev/v1/baskets?token_id=, api.fyers.in/fydev/v1/margin/v1?token_id=, data.fyers.in/dev-fyers/mobileapi/user-settings (token_id passed in URL query).
+[NEW] webtrader.fyers.in + http://fyers.in legacy JS in inventory (all fetch 0 / unresolved); bo-login.fyers.in/validate.js present (2.6 KB, unanalyzed).
+[CHANGED] trade.fyers.in/edis/authCdsl.html?token_id= now live-confirmed 200 (previously code-reference only, from broker/13 bundle).
+[CHANGED] dev-tier API footprint widened: broker/12.1 (fydev/v1, vagator/v1, api-socket/dev) now joined by ordwin/4.6 (anjuna/margin, fydev baskets, data.fyers.in dev mobileapi).
+
+===== STEP 2 — PRIORITIZE =====
+[PRIO] www.fyers.in /web/ webapp (option-chain, symbol, api-dashboard/user-apps) | 6.65 | attack 6 business 7 tech 6 gate 8 cloud 5 fresh 8
+[PRIO] trade.fyers.in ordwin/4.6 dev-tier API refs (anjuna/v1/margin, fydev/v1/baskets) | 5.95 | attack 6 business 6 tech 7 gate 4 cloud 6 fresh 7
+[PRIO] sgb.fyers.in live app pages (/details /orders /updatesgb) | 5.60 | attack 5 business 7 tech 6 gate 4 cloud 4 fresh 7
+
+===== STEP 3 — HYPOTHESES =====
+[HYP] www.fyers.in webapp exposes unauthenticated options/market-data JSON API
+class: BUSLOGIC
+asset: www.fyers.in (/web/options/option-chain, /web/symbol/NSE:ADANIPORTS-EQ)
+confidence: 45
+reasoning: Newly live Next.js App-Router routes (option-chain, strategy-builder/explore, screeners, symbol pages) render 200 for anonymous users; their _next static chunks are served as 200 text/html, so the backing JSON API is only reachable after source-grep. No endpoint/auth evidence in context yet.
+evidence_needed: a JSON API baseURL/fetch target extracted from page JS that answers symbol/options queries with no session and no 403.
+verify_steps: PASSIVE: `curl -s https://www.fyers.in/web/options/option-chain | grep -oE 'https?://[a-z0-9.-]+\.fyers\.in/[^"]+'` (repeat for /web/symbol/NSE:ADANIPORTS-EQ), then `curl -s -i <first discovered endpoint>` with no auth.
+impact: unauthenticated market/analytics aggregation surface; Low-Medium unless an endpoint touches account data.
+testability: AUTH_HELPED
+[HYP] Dev-tier margin/basket APIs referenced by prod ordwin bundle are reachable with blank token_id
+class: MISCONFIG
+asset: api.fyers.in/anjuna/v1/margin, api.fyers.in/fydev/v1/baskets, data.fyers.in/dev-fyers/mobileapi/user-settings
+confidence: 45
+reasoning: Prod helper_min.js (ordwin 4.6) embeds dev routes incl. fydev/v1/baskets?token_id= and anjuna/v1/margin with token passed as URL query param; all first-party *.fyers.in hosts in scope. Prior fydev/v1 + vagator/v1 refs (broker/12.1) remain unverified.
+evidence_needed: GET with blank/missing token_id returns JSON data or schema/error detail distinct from an auth wall (not 401/403 HTML).
+verify_steps: AUTH_HELPED: `curl -s -i https://api.fyers.in/anjuna/v1/margin` ; `curl -s -i "https://api.fyers.in/fydev/v1/baskets?token_id="` ; `curl -s -i https://data.fyers.in/dev-fyers/mobileapi/user-settings`
+impact: unauthenticated margin/basket/dev-settings visibility or internal schema/error disclosure; Medium if data returned.
+testability: AUTH_HELPED
+[HYP] SGB app trusts un-prefixed localStorage auth_token as bearer on live /orders, /details
+class: AUTH
+asset: sgb.fyers.in (/orders, /details, /updatesgb)
+confidence: 50
+reasoning: Bundle c930e9b6... reads auth_token from localStorage and sets it verbatim as the Authorization header (no Bearer scheme prefix); live SGB app pages return 200. If the SGB API is scheme-agnostic or does not strictly validate the token, the client-side gate is the only control.
+evidence_needed: /orders or /details returns account data with no/dummy Authorization, or tolerates a malformed scheme while a valid token still works.
+verify_steps: AUTH_HELPED: `curl -s -i https://sgb.fyers.in/orders` with no header, with `Authorization: <dummy>`, and `Authorization: Bearer <dummy>`; compare 200-data vs 401. Never persist a real token (hash-only logging).
+impact: unauthorized read of SGB holdings/orders if authz is client-gated only; High.
+testability: AUTH_HELPED
+
+===== STEP 4 — SELF-CRITIQUE =====
+[PARKED] community.fyers.in GUEST JWT: public-by-design guest token (tokenType=GUEST, entityId/permissions null, ~4h expiry) — dropped, not a finding.
+[PARKED] ipo.fyers.in / sgb.fyers.in APP_ID/client_id + appIdHash map (incl. new AEHNSK9PRW): public OAuth identifiers and their hashes — dropped.
+[PARKED] www.fyers.in / trade.fyers.in GA4 G-JXG5NQ1WQJ, GTM-MB6PRVDG, G-NTFX8XLKVH, Zoho formperma: public analytics/forms keys — dropped.
+[PARKED] verifiedpnl main.78f0294e.js `AIza[0-9A-Za-z_-]{` truncated google_key regex: no full value, unverifiable — scanner noise, parked.
+[PARKED] trade.fyers.in datafeed Fernet token_id (sha256 568d3b6a…34): demo/datafeed token in HISTORY_TEST; parked pending low-priority PASSIVE check.
+[PARKED] 13.235.24.249:8080 /gtt/orders plaintext backend: third-party IP, out of scope.
+[PARKED] webtrader.fyers.in / http://fyers.in / bo-login.fyers.in legacy JS: fetch 0 / unretrievable from this context.
+Survivors (all ≥40, in-scope, concrete verify): all 3 hypotheses above.
+[FINAL] 1) www.fyers.in webapp BUSLOGIC (conf 45, prio 6.65)  2) ordwin/4.6 dev-tier endpoints MISCONFIG (conf 45, prio 5.95)  3) sgb localStorage auth_token AUTH (conf 50, prio 5.60)
+
+===== STEP 5 — NEXT ACTION =====
+[NEXT] PROBE: `curl -s https://www.fyers.in/web/options/option-chain | grep -oE 'https?://[a-z0-9.-]+\.fyers\.in/[^"'"'"' ]+'` to enumerate the webapp JSON API; then `curl -s -i <first discovered endpoint>` unauthenticated. Run in parallel: `curl -s -i https://api.fyers.in/anjuna/v1/margin` and `curl -s -i "https://api.fyers.in/fydev/v1/baskets?token_id="` — all passive, read-only.
+
+===== STEP 6 — LEARNING =====
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT is public-by-design (guest claims, null perms) — class dead here.
+[LEARN] REJECTED AUTH @ ipo.fyers.in / sgb.fyers.in env maps (incl. AEHNSK9PRW): client IDs + appIdHash are public OAuth identifiers, not secrets — class dead for hardcoded-APP_ID lead.
+[LEARN] REJECTED OTHER @ www.fyers.in / trade.fyers.in marketing JS: only public GA4/GTM/Zoho keys — class dead on marketing surface.
+[LEARN] REJECTED OTHER @ trade.fyers.in vendor JS (jquery, bootstrap, charts, revolution.extension): ApiKeydownHandler + "none" matches are scanner noise — no claim.
+
+===== STEP 7 — RISK SCORE =====
+[RISK] fyers-js: 63 — prod bundles embed per-env OAuth client-ID/hash maps, a repeated demo Fernet token_id across 15+ datafeed bundles, a growing dev-tier API footprint (fydev, vagator, anjuna, api-socket) referenced from prod bundles with token_id in URL query, client-side-only auth_token gating on SGB, client-side _FYERS JWT gating on a financial endpoint, and a brand-new unanalyzable Next.js webapp surface — most items are low-impact or public-by-design, but the accumulation signals loose secret/auth hygiene across the trading surface, warranting AUTH_HELPED verification of the 3 survivors.
