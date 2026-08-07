@@ -1,0 +1,128 @@
+name: Senior Hunter - Analyst (jsrecon findings)
+
+on:
+  schedule:
+    - cron: "35 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  TARGET: fyers.in
+
+jobs:
+  analyst:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    concurrency:
+      group: analyst-jsrecon
+      cancel-in-progress: true
+    env:
+      MODEL_ID: opencode/deepseek-v4-flash-free
+      MODEL_NAME: deepseek
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install OpenCode
+        run: |
+          curl -fsSL https://opencode.ai/install | bash
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+          opencode --version
+
+      - name: Build RAG context from JS scan outputs (bounded)
+        run: |
+          mkdir -p knowledge reports
+          [ -f knowledge/index.md ] || echo "# Knowledge Base (seed)" > knowledge/index.md
+          {
+            echo "=== KNOWLEDGE BASE ==="
+            cat knowledge/index.md
+            echo "=== FINDINGS (tail, bounded) ==="
+            tail -c 30000 findings.md 2>/dev/null || echo none
+            echo "=== ATTACK SURFACE (tail) ==="
+            tail -c 10000 attack-surface.md 2>/dev/null || echo none
+            echo "=== JS INVENTORY (head) ==="
+            head -c 20000 js-inventory.json 2>/dev/null || echo none
+            echo "=== MY PREVIOUS ANALYST RUNS (tail) ==="
+            tail -n 100 analyst_deepseek.md 2>/dev/null || echo none
+          } > ctx.txt
+          wc -c ctx.txt
+
+      - name: Analyst run (8-step methodology over JS findings)
+        run: |
+          cat > analyst-prompt.txt << 'PROMPT_START'
+          You are a senior bug bounty ANALYST for target ${TARGET} (and *.${TARGET} only). Below are outputs of an automated JavaScript scan: findings.md (secret/endpoint hits from JS bundles), attack-surface.md (live URL probes), and js-inventory.json (file inventory). Your job: turn these into ranked, verified-first hypotheses. Run these 8 steps and output ONLY the structured blocks.
+
+          STEP 1 — DELTA: Compare the knowledge base + previous analyst runs + findings. List only NEW or CHANGED surface items as [NEW]/[CHANGED] (one line each). If nothing is new, state "NO_DELTA".
+
+          STEP 2 — PRIORITIZE: Score the top new assets (or top existing if no delta) on 6 axes 0-10: attack_surface, business_value, tech_exposure, gate_ease (10 = no auth needed), cloud_surface, freshness. priority = 0.25*attack + 0.25*business + 0.15*tech + 0.15*gate + 0.10*cloud + 0.10*fresh. Emit [PRIO] lines: asset, score, axis breakdown.
+
+          STEP 3 — HYPOTHESES: For the top 3 prioritized assets emit max 1 hypothesis each, strictly this schema:
+          [HYP] <title>
+          class: <IDOR|SSRF|AUTH|XSS|BUSLOGIC|MISCONFIG|OATH|OTHER>
+          asset: <host/endpoint>
+          confidence: <0-100>
+          reasoning: <facts only from the provided context, 2-3 lines>
+          evidence_needed: <what proves it>
+          verify_steps: <passive-first concrete HTTP requests, or AUTH_HELPED:...>
+          impact: <what attacker gets + severity>
+          testability: <PASSIVE|AUTH_HELPED|HUMAN_ONLY>
+
+          STEP 4 — SELF-CRITIQUE: Drop any hypothesis that: confidence < 40, or class on the knowledge REJECTED list, or no concrete verify_steps, or depends on a third-party host (scope is ${TARGET} only). Secrets that are public-by-design (guest JWTs, client-side analytics keys, DocSearch-style keys) are NOT findings - drop them and add a [LEARN] REJECTED line. For dropped ones emit [PARKED] <title>: <why dropped>. Emit [FINAL] with survivors re-ranked.
+
+          STEP 5 — NEXT ACTION: Choose exactly one and emit [NEXT] <PROBE|SCAN|RAG|HUMAN>: <one concrete action with exact endpoint/request if PROBE>.
+
+          STEP 6 — LEARNING: Emit [LEARN] lines for any class newly proven dead or alive (format: REJECTED/ACCEPTED <class> @ <asset>: <reason>).
+
+          STEP 7 — RISK SCORE: Emit [RISK] fyers-js: <0-100> reason (overall exposure of the JS surface, not exploit status).
+
+          RULES: facts vs hypotheses strictly separated; never print secrets in full (hash with sha256sum); all claims must trace to the context below or read-only probes of ${TARGET}; never report best-practice/absence-of-header/info-disclosure noise.
+          PROMPT_START
+          cat ctx.txt >> analyst-prompt.txt
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+          timeout 18m opencode run --model "$MODEL_ID" < analyst-prompt.txt > analyst-out.txt 2>&1 || true
+          grep -E '^\[(NEW|CHANGED|PRIO|HYP|PARKED|FINAL|NEXT|LEARN|RISK)\]|^class:|^confidence:|^asset:|^impact:|^testability:|^verify_steps:|^reasoning:|^evidence_needed:' analyst-out.txt > lead.txt || true
+          {
+            echo ""
+            echo "===== ANALYST $(date -u +'%Y-%m-%d %H:%M:%S UTC') ====="
+            cat lead.txt
+          } >> analyst_${MODEL_NAME}.md
+          {
+            echo "===== RAW ANALYST $(date -u +'%Y-%m-%d %H:%M:%S UTC') ====="
+            cat analyst-out.txt
+          } >> analyst-raw_${MODEL_NAME}.log
+          echo "=== lead preview ==="; head -40 lead.txt
+
+      - name: Append learnings to knowledge base
+        run: |
+          python3 << 'PY_EOF'
+          import re, os, datetime, json
+          stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+          kpath = 'knowledge/index.md'
+          ktext = open(kpath).read()
+          added = 0
+          try:
+              out = open('analyst-out.txt', errors='ignore').read()
+          except Exception:
+              out = ''
+          with open(kpath, 'a') as k:
+              for m in re.finditer(r'^\[LEARN\]\s*(REJECTED|ACCEPTED)\s*<([^>]+)>\s*@\s*(\S+):\s*(.*)$', out, re.M):
+                  line = f"- {stamp[:10]} {m.group(1)} {m.group(2)} @ {m.group(3)}: {m.group(4).strip()[:160]}"
+                  if line not in ktext:
+                      k.write(line + '\n')
+                      added += 1
+          print(f'knowledge: {added} learnings appended')
+          PY_EOF
+          mkdir -p reports
+          cp lead.txt reports/analyst-latest.txt
+
+      - name: Commit
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add analyst_${MODEL_NAME}.md analyst-raw_${MODEL_NAME}.log knowledge reports || true
+          git diff --cached --quiet || git commit -m "analyst ${TARGET} $(date -u +'%Y-%m-%d-%H-%M')"
+          git pull --rebase || true
+          git push || true
