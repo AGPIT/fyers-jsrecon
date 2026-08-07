@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-06 15:01 UTC — 44 secret hits_
+_src 2026-08-07 00:42 UTC — 67 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -90,3 +90,49 @@ _src 2026-08-06 15:01 UTC — 44 secret hits_
   `SECRET|api_key|H4NMJ8X2NR`
 - `https://ipo.fyers.in/_next/static/chunks/pages/home-d194728825ab6f10a77d.js`
   `SECRET|api_key|LCFY9OOX3D`
+- `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
+  `SECRET|other|APP_ID prod=QMABZB5R01 (Fyers API app identifier)`
+- `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
+  `SECRET|other|appIdHash prod=b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447 (client-side hash)`
+- `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
+  `SECRET|other|client_id=QMABZB5R01-101 (Fyers OAuth APP_ID/API client id, prod)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|appIdHash=39abc82e995e6c2e8ab69086650b1fa700300322a2fb0d846902e0804ca1bf0c`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|appIdHash=656b1386e20297a2d596d98b840200c1aac90998cc2bcfd00247c4479272a1e8`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|appIdHash=b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a1c80073eabfdadcf5dae590e4b28d91c`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|client_id=AF0MATWSX3 (staging appId)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|client_id=H4NMJ8X2NR (local appId)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|client_id=N43J3GIGOM (dev appId)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
+  `SECRET|other|client_id=QMABZB5R01 (prod Fyers SGB OAuth appId)`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-44ba022e9d10069c6970.js`
+  `SECRET|api_key|APP_ID/client_id: QMABZB5R01-101 (prod), N43J3GIGOM-101 (dev), AF0MATWSX3-101 (staging), H4NMJ8X2NR-101 (localhost) - Fyers API client IDs`
+- `https://sgb.fyers.in/_next/static/chunks/pages/details-44ba022e9d10069c6970.js`
+  `SECRET|other|appIdHash sha256: b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447 (prod), e4ec93cf189f1d455cb428a86c9fa64b12498c2168b85116928a1f6e15144876 (staging), f35212e4c46e40a1e0c2e1e2e4a40d13 (dev/commented), 39abc82e995e6c2e8ab69086650b1ed70a9730032e0a2e5e6c0e1e06ea910f0f801a1 (commented staging)`
+- `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
+  `SECRET|none`
+- `https://trade.fyers.in/Prod/1.2/trade-common.js`
+  `SECRET|google_key|G-NTFX8XLKVH`
+- `https://trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js`
+  `SECRET|other|hardcoded internal plaintext-HTTP backend endpoint 13.235.24.249:8080 serving /gtt/orders (deobfuscated from obfuscated string array "API_POINT")`
+- `https://verifiedpnl.fyers.in/static/js/main.1b27d8c5.js`
+  `SECRET|jwt|none found`
+- `https://verifiedpnl.fyers.in/static/js/main.606be587.js`
+  `MAP SECRET|api_key|_FYERS (JWT session cookie parsed client-side in getUserDetails.js:33739, auth validity not server-verified; used to gate UI and sent to get-data endpoint)`
+- `https://verifiedpnl.fyers.in/static/js/main.78f0294e.js`
+  `MAP SECRET|api_key|NO_KEY_FOUND`
+- `https://verifiedpnl.fyers.in/static/js/main.78f0294e.js`
+  `SECRET|google_key|AIza[0-9A-Za-z_-]{`
+- `https://verifiedpnl.fyers.in/static/js/main.cf21f7c5.js`
+  `MAP SECRET|other|none found`
+- `https://verifiedpnl.fyers.in/static/js/main.cf21f7c5.js`
+  `SECRET|api_key|pnl_url:https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data (frozen config export, prod back-end URL)`
+- `https://www.fyers.in/CompoundRateAssets/js/charts.js`
+  `SECRET|other|no secrets found`
