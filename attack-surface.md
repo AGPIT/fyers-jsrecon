@@ -279,3 +279,53 @@
 200 | https://sgb.fyers.in/sgb | text/html
 200 | https://sgb.fyers.in/static/images/profile.png | image/png
 200 | https://sgb.fyers.in/updatesgb | text/html
+200 | https://fyers.in/_next/static/media/whats-new-icon-inactive.e5b881e6.svg | image/svg+xml
+200 | https://fyers.in/_next/static/media/whats-new-icon.0a96cc7c.svg | image/svg+xml
+200 | https://fyers.in/about | text/html; charset=utf-8
+200 | https://fyers.in/advanced-charts | text/html; charset=utf-8
+200 | https://fyers.in/advanced-option-chains | text/html; charset=utf-8
+200 | https://fyers.in/advanced-screeners | text/html; charset=utf-8
+200 | https://fyers.in/automate | text/html; charset=utf-8
+200 | https://fyers.in/awardsandrecognitions | text/html; charset=utf-8
+200 | https://fyers.in/become-a-partner | text/html; charset=utf-8
+200 | https://fyers.in/calculator/average | text/html; charset=utf-8
+200 | https://fyers.in/calculator/brokerage | text/html; charset=utf-8
+200 | https://fyers.in/calculator/margin/equity-margin | text/html; charset=utf-8
+200 | https://fyers.in/calculator/mtf-calculator | text/html; charset=utf-8
+200 | https://fyers.in/connect/ | text/html; charset=utf-8
+200 | https://fyers.in/contact-us | text/html; charset=utf-8
+200 | https://fyers.in/corporate-account | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/commodity | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/equity-and-intraday | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/etf | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/futures | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/ipo | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/mutual-funds | text/html; charset=utf-8
+200 | https://fyers.in/demat-account/options | text/html; charset=utf-8
+200 | https://fyers.in/events | text/html; charset=utf-8
+200 | https://fyers.in/fia | text/html; charset=utf-8
+200 | https://fyers.in/fixed-deposit | text/html; charset=utf-8
+200 | https://fyers.in/holiday-calendar | text/html; charset=utf-8
+200 | https://fyers.in/institutional-broking | text/html; charset=utf-8
+200 | https://fyers.in/mcp | text/html; charset=utf-8
+200 | https://fyers.in/media | text/html; charset=utf-8
+200 | https://fyers.in/minor | text/html; charset=utf-8
+200 | https://fyers.in/mtf | text/html; charset=utf-8
+200 | https://fyers.in/notice-board | text/html; charset=utf-8
+200 | https://fyers.in/nri-account | text/html; charset=utf-8
+200 | https://fyers.in/option-analytics-and-strategy-builder | text/html; charset=utf-8
+200 | https://fyers.in/pricing/ | text/html; charset=utf-8
+200 | https://fyers.in/prime | text/html; charset=utf-8
+200 | https://fyers.in/products/api | text/html; charset=utf-8
+200 | https://fyers.in/products/next | text/html; charset=utf-8
+200 | https://fyers.in/products/one | text/html; charset=utf-8
+200 | https://fyers.in/products/trader | text/html; charset=utf-8
+200 | https://fyers.in/products/tradingview | text/html; charset=utf-8
+200 | https://fyers.in/products/web-and-app | text/html; charset=utf-8
+200 | https://fyers.in/scalper-terminal | text/html; charset=utf-8
+200 | https://fyers.in/school-of-stocks/ | text/html; charset=utf-8
+200 | https://fyers.in/skills | text/html; charset=utf-8
+200 | https://fyers.in/smart-orders | text/html; charset=utf-8
+200 | https://fyers.in/webinars/ | text/html; charset=utf-8
+200 | https://fyers.in/whats-new | text/html; charset=utf-8
+200 | https://fyers.in/youtube | text/html; charset=utf-8

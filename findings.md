@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 17:42 UTC — 224 secret hits_
+_src 2026-08-07 18:10 UTC — 230 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -22,6 +22,8 @@ _src 2026-08-07 17:42 UTC — 224 secret hits_
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5OWl3QnEiLCJuZXR3b3JrRG9tYWluIjoiZnllcnMuYmV0dGVybW9kZS5pbyIsInRva2VuVHlwZSI6IkdVRVNUIiwiZW50aXR5SWQiOm51bGwsInBlcm1pc3Npb25Db250ZXh0IjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWF0IjoxNzg2MDI4MTU0LCJleHAiOjE3ODYwNDI1NTR9.lhrak6dQmTgIoWoaIMMWmsLldtRv1RKL-8aWn1UqtZSDX4d2FkOq5uOsZing6AWhXbPzVkrAc55hRX3N6NnN5A`
 - `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
   `SECRET|other|none_found`
+- `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
+  `SECRET|other|none`
 - `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
   `SECRET|api_key|68USODQMOF`
 - `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
@@ -202,6 +204,8 @@ _src 2026-08-07 17:42 UTC — 224 secret hits_
   `SECRET|jwt|token (JWT user session token passed in Authorization header / `authorization` header of fetch calls)`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
   `SECRET|none`
+- `https://trade.fyers.in/Prod/1.2/posConv.min.js`
+  `SECRET|other|https://public.fyers.in/messages/messagesLinks.json`
 - `https://trade.fyers.in/Prod/1.2/trade-common.js`
   `SECRET|google_key|G-NTFX8XLKVH`
 - `https://trade.fyers.in/Prod/1.2/trade.js`
@@ -222,6 +226,8 @@ _src 2026-08-07 17:42 UTC — 224 secret hits_
   `SECRET|other|none found`
 - `https://trade.fyers.in/lib/sentry/bundle.tracing.min.js`
   `SECRET|other|https://github.com/getsentry/sentry-javascript (attribution URL, no secret)`
+- `https://trade.fyers.in/lib/signalR/2.4.0/jquery.signalR.min.js`
+  `SECRET|type|other|none found`
 - `https://trade.fyers.in/production/v1.1/datafeed.min.js`
   `SECRET|other|Fernet-format datafeed token (token_id) gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/1.5/bo.min.js`
@@ -314,6 +320,10 @@ _src 2026-08-07 17:42 UTC — 224 secret hits_
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet token used as token_id in FYERS_OBJ.HISTORY_TEST)`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.9/bundle.js`
   `SECRET|jwt|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/exit-widget/assets/js/2.3/eo.min.js`
+  `SECRET|other|auth_token and token_id are read from runtime variables (not hardcoded in file)`
+- `https://trade.fyers.in/static/js/exit-widget/assets/js/2.5/eo.min.js`
+  `SECRET|other|auth_token and token_id are passed as request variables (Authorization header + query param), not hardcoded values`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
@@ -322,6 +332,8 @@ _src 2026-08-07 17:42 UTC — 224 secret hits_
   `SECRET|other|1100000005899114`
 - `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
   `SECRET|other|51808097115-CO-1`
+- `https://trade.fyers.in/static/js/ordwin/js/2.4/helper.min.js`
+  `SECRET|other|fyToken:"101000000014366" (hardcoded demo token in modifyBtn handler)`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
   `SECRET|dev_url|https://data.fyers.in/dev-fyers/mobileapi`
 - `https://trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js`
