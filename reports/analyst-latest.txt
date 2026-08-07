@@ -1,26 +1,54 @@
-[HYP] Cross-account read/modify on third-party TrueData subscription API via client-side sessionId
-class: BUSLOGIC
-asset: api-t2.fyers.in (/api/subs/*, /api/beta/appThirdParty) from subscriptions-main-truedata.js
-confidence: 45
-reasoning: Bundle sends {appName:"true_data1", appId_third_party:<sha 7c924a7a…>, mobile:<input>} to /api/beta/appThirdParty and sets token/at_hash as session auth; same bundle enumerates /api/subs/*. Host live (503 Cloudflare); server-side ownership checks never observed.
-evidence_needed: with the user's own at_hash, a id/mobile value outside the account returns that other account's/third-party's subscription data or flips a state.
-verify_steps: AUTH_HELPED: `curl -s -i "https://api-t2.fyo.in/api/subs/get_subscriptions"` (with own `authorization` header/token_id); then repeat replacing the mobile/app tokenId with a second identifier to test separation. Read-only first.
-impact: enumerable/modifiable third-party subscription state; Medium-High if cross-tenant.
-testability: AUTH_HELPED
-[HYP] Prod gateway exposes dev-tier endpoints returning 500-not-401 (method-gate, not auth-gate) + CORS "*"; dev-order WS may accept bad credentials
+[NEW] datapub.fyers.in:8862 — prod broker bundle trade.fyers.in/static/js/broker/12.1/bundle.min.js hardcodes this non-standard-port datafeed endpoint; host previously only probed on default port and deferred for no returns.
+[NEW] www.fyers.in /web/* app paths confirmed live 200: /web/api-dashboard/user-apps, /web/options/option-chain, /web/symbol/NSE:ADANIPORTS-EQ, /web/charts, /web/markets/*, /web/mtf/about, /web/option-scalper, /web/reports.
+[NEW] subscriptions.fyers.in/assets/js/main-truedata.js ships literal 0KMS0EZVXI (10-char alnum) — prior run only noted appId_third_party hash 7c924a7a…
+[NEW] sgb.fyers.in home-ac56cb0… bundle adds appId AEHNSK9PRW to known env map (QMABZB5R01/N43J3GIGOM/AF0MATWSX3/H4NMJ8X2NR/68USODQMOF/EFR7964223/LCFY9OOX3D/ZT6P4L9YQB).
+[NEW] trade.fyers.in/Prod/1.2/trade-common.js uses GA4 property G-NTFX8XLKVH (distinct from www's G-JXG5NQ1WQJ).
+[NEW] trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js hardcodes demo ids 51808097115-CO-1 and 1100000005899114.
+[CHANGED] partners.fyers.in/fyers_widget/fyers-widget.min.js dev_url `http://127.0.0.1:46475/fy_notifications/js/data.json` now exact (prior run path corrupted); still parked (HUMAN_ONLY, out-of-band).
+[PRIO] datapub.fyers.in:8862 (datafeed port, prod broker 12.1 ref) | 5.65 | attack 6 business 6 tech 7 gate 4 cloud 2 fresh 8
+[PRIO] www.fyers.in /web/* Next.js live surface (incl. api-dashboard/user-apps, symbol, option-chain) | 5.35 | attack 5 business 4 tech 6 gate 8 cloud 3 fresh 7
+[PRIO] subscriptions.fyers.in main-truedata.js literal 0KMS0EZVXI | 4.55 | attack 4 business 4 tech 5 gate 6 cloud 2 fresh 7
+[PRIO] sgb.fyers.in env-map expansion (AEHNSK9PRW) | 4.30 | attack 3 business 3 tech 4 gate 8 cloud 3 fresh 7
+[HYP] datapub.fyers.in:8862 may expose a token-less or weakly-gated datafeed backend
 class: MISCONFIG
-asset: api.fyo.in {/fy/cdsl/dev, /fydev/v1/margin/v1, /vagator/v1} (± wss://api-socket.fyers.in/dev/order)
-confidence: 45
-reasoning: 12.1 prod broker bundle ships these dev URLs; live GETs return JSON 500 "Invalid Request...valid method" + ACC-allow-origin:* -- a reaches app logic in prod without a token being the gate (no 401 observed). Auth enforcement timing untested; dev websocket endpoint available in scope.
-evidence_needed: supplying `method` + empty token_id yields a data-bearing JSON or a differentiated 401/423 (proving token check exists / server returns account state without it).
-verify_steps: PASSIVE: `curl -s -i -X POST 'http://api.fyers.in/api/fydev/v1/margin/v1?token_id=?' ...` (HTTP 200/401 aside from the canned 500) ; `curl -s -i -H 'Upgrade: websocket' ... wss://api-socket.fyers.in/dev/order`. Read-only.
-impact: unauthenticated dev-tier oracle / dev-order socket misconfiguration exposes infra class, potential candle→LOW-MED severity now.
+asset: datapub.fyers.in:8862 (referenced from trade.fyers.in/static/js/broker/12.1/bundle.min.js)
+confidence: 42
+reasoning: KB shows datapub.fyers.in was probed on the default port with no returns and MISCONFIG deferred. A prod broker bundle now hardcodes a non-standard port :8862 on this host — a concrete, never-probed, in-scope target. Datafeed role + custom port is consistent with a service that does not gate on standard OAuth.
+evidence_needed: any HTTP/TLS response on :8862 (200/401/500), ideally JSON or data-bearing reply without a token.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 https://datapub.fyers.in:8862/` ; `curl -s -i --max-time 12 http://datapub.fyers.in:8862/` ; on any response, follow with `curl -s -i --max-time 12 https://datapub.fyers.in:8862/v1/history`-style datafeed paths. Read-only.
+impact: unauthenticated access to a market-data backend that default-port probing previously couldn't reach; Low-Medium.
 testability: PASSIVE
-[HYP] Partner widget's leftover localhost notification source reachable in prod load (per-visitor local read)
+[HYP] www.fyers.in Next.js /web/* pages may back onto unauthenticated JSON data endpoints
 class: MISCONFIG
-asset: https://partners.fyo.in/f_ales_widget/fyers-widget.min.js
-confidence: 36
-evidence_needed: browser on a partner page issuing a request to the localhost URL proxy (Network tab) in prod.
-testability: HUMAN_ONLY
-[NEXT] PROBE: passive, closes #2 gateway first and sets up #1: `curl -s -i -X POST 'https://api.fyoers.in/fydev/v1/margin/v1?token_id=' -H 'Content-Type: application/json' -d '{}'`, plus `curl -s -i -X POST https://api.fyers.in/fy/cdsl/dev`, and `curl -s -i -X GET 'https://api.fyers.in/vagator/v1'`; a non-500 replies to "valid method" supplies the missing auth oracle. Parallel: `curl -s -I -X GET 'https://api-count.fyo...'` check for Authorization bypass signature: any 403/423 rule-out; and fetch `https://subscriptions.fyo.in/assets/js/main-t.truedata.js` full to map `/api/beta/appSecondParty` param schema (client-facing, read-only).
-[RISK] fyers-js: 67 — a brand-new live third-party/subscription API host (api-t2, Cloudflare-shielded but reachable), a dev-order websocket (wss api-socket/dev) and fy/cdsl/dev shipped in prod broker bundles, and the proceedings of error-phase JSON from a widestocked api gateway behind `access-control-allow-origin:*`. Previous-day's single-hyphen findings are consistent (demo Fernet token_id persists across 15+ datafeed bundles; ordwin/2.0 demo creds; client-only `_FYERS`-gated auth on trading/verified-PnL). Two PASSIVE-capable testable leads remain and the surface is growing each pass — overall JS exposure moderately-high and freshly widening.
+asset: www.fyers.in (/web/options/option-chain, /web/symbol/NSE:ADANIPORTS-EQ, /web/api-dashboard/user-apps)
+confidence: 42
+reasoning: Live probes return 200 text/html for these newly confirmed /web/* app paths. The pages are data-driven (symbol view, option-chain), so their bundles must call backend JSON APIs; prior runs never covered this www Next.js app surface.
+evidence_needed: a www.fyers.in JSON endpoint reachable without auth returning market or account-app data.
+verify_steps: PASSIVE: `curl -s https://www.fyers.in/web/symbol/NSE:ADANIPORTS-EQ` and `curl -s https://www.fyers.in/web/api-dashboard/user-apps`, extract `<script src>`/_next refs; grep them for `https://...fyers.in/api` or `fetch(` calls; probe discovered endpoints read-only without auth.
+impact: unauthenticated market/quote data (likely Low); account-app metadata only if api-dashboard path calls an account API (Low-Medium).
+testability: PASSIVE
+[HYP] 0KMS0EZVXI literal in subscriptions main-truedata may gate the TrueData datafeed as a key
+class: MISCONFIG
+asset: subscriptions.fyers.in/assets/js/main-truedata.js → api-t2.fyers.in flow
+confidence: 40
+reasoning: The same bundle that posts {appName:"true_data1", appId_third_party:<hash 7c924a7a…>} to /api/beta/appThirdParty now also ships a fresh 10-char alnum literal 0KMS0EZVXI. If used as a credential literal (not an OAuth app id) it could be the sole gate for the subscriptions feed.
+evidence_needed: grep context shows 0KMS0EZVXI sent as header/query/body to an api-t2.fyers.in endpoint, and that endpoint returns data without user auth.
+verify_steps: PASSIVE: `curl -s https://subscriptions.fyers.in/assets/js/main-truedata.js | grep -oE '.{60}0KMS0EZVXI.{60}'` to classify usage; only if key-role confirmed, `curl -s -i -H 'Authorization: <0KMS0EZVXI>' https://api-t2.fyers.in/api/subs/get_subscriptions`. Read-only.
+impact: unauthenticated third-party subscription/market-data pull; Low-Medium.
+testability: PASSIVE
+[PARKED] 0KMS0EZVXI as api_key: format is identical to Fyers OAuth client ids seen across sgb/ipo maps (QMABZB5R01, AF0MATWSX3, N43J3GIGOM, H4NMJ8X2NR, AEHNSK9PRW…) → public-by-design identifier, not a credential; dropped per public-by-design rule.
+[PARKED] sgb.fyers.in AEHNSK9PRW: public OAuth app identifier (env-map expansion only).
+[PARKED] trade.fyers.in Cloudflare/Sentry/GA: Sentry DSN (init/6.2,9.6,11,12) and GA4 G-NTFX8XLKVH are public-by-design client keys; Cloudflare jsd challenge tokens (login/signup/support) are per-request proofs, not credentials.
+[PARKED] trade.fyers.in ordwin/2.0 helper.min.js 101000000014366 / 1100000005899114 / 51808097115-CO-1: demo order/client ids (reaffirmed).
+[PARKED] trade.fyers.in datafeed Fernet token (sha 568d3b6a…): demo HISTORY_TEST data across 15+ bundles (reaffirmed).
+[PARKED] 13.235.24.249:8080/gtt/orders (ordwin/6): third-party AWS IP, out of scope (reaffirmed).
+[PARKED] partners.fyers.in/fyers_widget localhost:46475 dev_url: HUMAN_ONLY, out-of-band (reaffirmed).
+[PARKED] ipo.fyers.in/_next static paths returning text/html 200: SPA-shell mis-probe (reaffirmed).
+[FINAL] 1) datapub.fyers.in:8862 MISCONFIG (conf 42, PASSIVE, prio 5.65)  2) www.fyers.in /web/* Next.js surface MISCONFIG (conf 42, PASSIVE, prio 5.35)   — plus retained existing sgb AUTH (50) and verifiedpnl AUTH (52) leads from prior runs.
+[NEXT] PROBE: `curl -s -i --max-time 12 https://datapub.fyers.in:8862/` ; on any response follow with datafeed-style paths (`/v1/history`, `/udf/history`) — read-only, closes the deferred datapub class with a concrete port target.
+[LEARN] ACCEPTED MISCONFIG @ datapub.fyers.in:8862: new prod-bundle port reference gives a concrete in-scope probe target for a class previously deferred for lack of evidence (probe pending).
+[LEARN] REJECTED OTHER @ trade.fyers.in Sentry DSN + GA4 G-NTFX8XLKVH: public-by-design client keys, not findings.
+[LEARN] REJECTED OTHER @ login/signup/support.fyers.in Cloudflare jsd challenge tokens: per-request CF proof, not a credential.
+[LEARN] REJECTED MISCONFIG @ subscriptions.fyers.in 0KMS0EZVXI: matches public 10-char OAuth client-id format → public-by-design identifier, dropped.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+[RISK] fyers-js: 67 — delta adds one fresh infra signal (prod broker 12.1 referencing datapub.fyers.in:8862, previously unprobeable), a new live www Next.js surface (low-value marketing data), and one new env app-id; everything else repeats known patterns (demo Fernet token_id across 15+ datafeed bundles, public OAuth app-id maps, client-side-gated account surfaces on sgb/verifiedpnl). No new hard credential, but the fresh datafeed-port lead and persistent client-side auth gating keep overall JS exposure moderately high.
