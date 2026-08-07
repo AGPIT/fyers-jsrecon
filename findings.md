@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 19:13 UTC — 238 secret hits_
+_src 2026-08-07 20:03 UTC — 253 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -8,6 +8,8 @@ _src 2026-08-07 19:13 UTC — 238 secret hits_
   `SECRET|other|api-t1.fyers.in (trade v3 API host, no auth) — noted in SpanCalculator ajax request; no actual secret material present`
 - `https://assets.fyers.in/Lib/calculators/2.11/brokrage-calc.js`
   `SECRET|other|no secrets found - only brokerage rate constants`
+- `https://assets.fyers.in/Lib/calculators/2.14/brokrage-calc.js`
+  `SECRET|NONE|no credentials found`
 - `https://assets.fyers.in/Lib/calculators/2.15/brokrage-calc.js`
   `SECRET|internal_endpoint|https://api-t1.fyers.in/trade/v3/spancalc`
 - `https://assets.fyers.in/Lib/calculators/2.16/brokrage-calc.js`
@@ -38,6 +40,14 @@ _src 2026-08-07 19:13 UTC — 238 secret hits_
   `SECRET|other|none_found`
 - `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
   `SECRET|other|none`
+- `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
+  `SECRET|other|none_found`
+- `https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a03459a9.js`
+  `SECRET|other|none_found`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.cc87701246c10b9e245e.js`
+  `SECRET|api_key|EFR7964223`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.cc87701246c10b9e245e.js`
+  `SECRET|other|2a88a14a353274a2f35430038b6d81725e2d17d8064785d62965e4da78033e9f`
 - `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
   `SECRET|api_key|68USODQMOF`
 - `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
@@ -54,6 +64,22 @@ _src 2026-08-07 19:13 UTC — 238 secret hits_
   `SECRET|other|656b1386e20297a2d596d98b840200c1aac90998cc2bcfd00247c4479272a1e8`
 - `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cbef7977a.js`
   `SECRET|other|eedae6cd5dbb41660999947e13a4c9331e5c011ecd093a9e50bbaf8fbd083475`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|api_key|68USODQMOF`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|api_key|EFR7964223`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|api_key|H4NMJ8X2NR`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|api_key|ZT6P4L9YQB`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|jwt|0c3f7d40e9eced42c0be1b91185b882b4e69526952a1f5ce484f00e2c1d8a375`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|jwt|2a88a14a353274a2f35430038b6d81725e2d17d8064785d62965e4da78033e9f`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|jwt|45ac1f5f538de93ff8a4e2ad77214266b04db8dbf50cdbe2cc7a3ffadf60ad0`
+- `https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569273c050.js`
+  `SECRET|jwt|8c81cd1e3826aef7d9367a8479e2f321a84e53dc723e9fbec2a3f9be2d9c2e1b7`
 - `https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js`
   `SECRET|other|APP_ID_68USODQMOF-101 (dev Fyers API client id)`
 - `https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js`
@@ -212,6 +238,8 @@ _src 2026-08-07 19:13 UTC — 238 secret hits_
   `SECRET|other|appIdHash=e4ec93ef63a9fa64b12498c2168b85116928a1f6e1514487b`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
   `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a5dae590e4b28d91c`
+- `https://subscriptions.fyers.in/assets/js/main-truedata.js`
+  `SECRET|api_key|0KMS0EZVXI`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
   `SECRET|other|jquery 3.2.1 library (known standard minified jQuery; no embedded secrets detected)`
 - `https://trade.fyers.in/Prod/1.2/bundle.min.js`
@@ -340,6 +368,8 @@ _src 2026-08-07 19:13 UTC — 238 secret hits_
   `SECRET|other|auth_token and token_id are read from runtime variables (not hardcoded in file)`
 - `https://trade.fyers.in/static/js/exit-widget/assets/js/2.5/eo.min.js`
   `SECRET|other|auth_token and token_id are passed as request variables (Authorization header + query param), not hardcoded values`
+- `https://trade.fyers.in/static/js/hsweb/hslibo.js`
+  `SECRET|other|No hardcoded credentials found; only runtime auth inputs (jwt, x-access-token, Sid, redis key) are passed in by caller`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
