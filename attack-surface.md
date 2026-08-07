@@ -330,3 +330,5 @@
 200 | https://fyers.in/whats-new | text/html; charset=utf-8
 200 | https://fyers.in/youtube | text/html; charset=utf-8
 200 | https://trade.fyers.in/popout_chart/index.html?symbol={symbol}&resolution={resolution}&theme={theme} | text/html
+200 | https://trade.fyers.in/logo/SF-pop-out-chart.svg | image/svg+xml
+200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml

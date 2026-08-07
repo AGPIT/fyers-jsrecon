@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 23:08 UTC — 292 secret hits_
+_src 2026-08-07 23:43 UTC — 299 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -26,6 +26,8 @@ _src 2026-08-07 23:08 UTC — 292 secret hits_
   `SECRET|none`
 - `https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js`
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
+- `https://assets.fyers.in/Lib/widget/fyers-widget.js`
+  `SECRET|dev_url|http://localhost/Git/GitHub/fy_notifications/public.json`
 - `https://assets.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|0.867923791610013:1786140022:OfrBSmabmayIHn-e5j3Iza2_Tx9wgq1Xotrth5MAVhU`
 - `https://assets.fyers.in/fy_notifications/js/2.0/fyers-widget.min.js`
@@ -50,6 +52,8 @@ _src 2026-08-07 23:08 UTC — 292 secret hits_
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5O`
 - `https://community.fyers.in/member/gtm.js`
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5OWl3QnEiLCJuZXR3b3JrRG9tYWluIjoiZnllcnMuYmV0dGVybW9kZS5pbyIsInRva2VuVHlwZSI6IkdVRVNUIiwiZW50aXR5SWQiOm51bGwsInBlcm1pc3Npb25Db250ZXh0IjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWF0IjoxNzg2MDI4MTU0LCJleHAiOjE3ODYwNDI1NTR9.lhrak6dQmTgIoWoaIMMWmsLldtRv1RKL-8aWn1UqtZSDX4d2FkOq5uOsZing6AWhXbPzVkrAc55hRX3N6NnN5A`
+- `https://forms.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
+  `SECRET|other|none_found`
 - `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
   `SECRET|other|none_found`
 - `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
@@ -286,6 +290,10 @@ _src 2026-08-07 23:08 UTC — 292 secret hits_
   `SECRET|other|8db3dcd556e (Cloudflare challenge site-id, not a credential)`
 - `https://subscriptions.fyers.in/assets/js/main-truedata.js`
   `SECRET|api_key|0KMS0EZVXI`
+- `https://subscriptions.fyers.in/assets/js/main_msi_1.4.js`
+  `SECRET|api_key|Authorization header set to raw `_FYERS` session cookie value on every subscriptions API request`
+- `https://subscriptions.fyers.in/assets/js/main_msi_1.4.js`
+  `SECRET|jwt|cookie `_FYERS` decoded client-side; `at_hash` claim extracted to global `tokenId` and logged via console.log (validate at lines 204-216)`
 - `https://support.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|oneshot upload token/state: `bCTsUNlmGmLGXsvtRnrHBZntlpZ0yxS05_ANr6rKfks` (site-specific CF challenge identifier, embedded in endpoint path)`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
@@ -442,6 +450,12 @@ _src 2026-08-07 23:08 UTC — 292 secret hits_
   `SECRET|jwt|tokenId (runtime auth token, appended to URLs, not a hardcoded literal)`
 - `https://trade.fyers.in/static/js/init/6.2/fy_trade.min.js`
   `SECRET|other|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207 (Sentry DSN, public key exposed)`
+- `https://trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js`
+  `SECRET|api_key|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
+- `https://trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js`
+  `SECRET|dev_url|https://data.fyers.in/dev-beta/mobileapi/get-user-settings`
+- `https://trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js`
+  `SECRET|other|release: "tech-web@1.0"`
 - `https://trade.fyers.in/static/js/init/9.6/fy_trade.min.js`
   `SECRET|other|Sentry public DSN (release tech-web@1.0): https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
