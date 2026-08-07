@@ -270,3 +270,5 @@
 200 | https://www.fyers.in/whats-new | text/html; charset=utf-8
 200 | https://trade.fyers.in/edis/authCdsl.html?token_id= | text/html
 200 | https://ipo.fyers.in/404 | text/html
+200 | https://ipo.fyers.in/404 | text/html
+200 | https://sgb.fyers.in/404 | text/html
