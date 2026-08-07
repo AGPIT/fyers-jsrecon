@@ -96,8 +96,10 @@ def main():
         existing = list(repo.get_issues(state="all"))
     by_fp = {}
     for i in existing:
-        m = re.search(r'<!-- fingerprint:([0-9a-f]{12}) -->', i.body or "")
-        fp = m.group(1) if m else issue_fingerprint(i)
+        fp = issue_fingerprint(i)
+        if not fp:
+            m = re.search(r'<!-- fingerprint:([0-9a-f]{12}) -->', i.body or "")
+            fp = m.group(1) if m else None
         if fp:
             by_fp.setdefault(fp, []).append(i)
     print("existing issues:", len(existing))
