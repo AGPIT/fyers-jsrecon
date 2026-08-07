@@ -1,9 +1,13 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 20:03 UTC — 253 secret hits_
+_src 2026-08-07 20:55 UTC — 261 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
+- `https://assets.fyers.in/Lib/calculators/1.0/brokrage-calc.js`
+  `SECRET|__cafinit__|b"zqthk presan".config .r {"tracechains":null,"convBasisIO":{"slot":360,"volatile":0.000026,"b":"BAY",STT:0.0001},"assumed":"noun"}`
+- `https://assets.fyers.in/Lib/calculators/2.0/brokrage-calc.js`
+  `SECRET|other|strike_price_is_uninitialized_undefined_reference`
 - `https://assets.fyers.in/Lib/calculators/2.10/brokrage-calc.js`
   `SECRET|other|api-t1.fyers.in (trade v3 API host, no auth) — noted in SpanCalculator ajax request; no actual secret material present`
 - `https://assets.fyers.in/Lib/calculators/2.11/brokrage-calc.js`
@@ -14,12 +18,16 @@ _src 2026-08-07 20:03 UTC — 253 secret hits_
   `SECRET|internal_endpoint|https://api-t1.fyers.in/trade/v3/spancalc`
 - `https://assets.fyers.in/Lib/calculators/2.16/brokrage-calc.js`
   `SECRET|other|none found`
+- `https://assets.fyers.in/Lib/calculators/2.4/brokrage-calc.js`
+  `SECRET|other|no secrets found in file`
 - `https://assets.fyers.in/Lib/calculators/2.6/brokrage-calc.js`
   `SECRET|other|COMMODITY_FUTURES,COMMODITY_OPTIONS,NSE_COMMODITY_FUTURES,NSE_COMMODITY_OPTIONS - brokerage rate configs (rates/stt/lot sizes), not credentials`
 - `https://assets.fyers.in/Lib/calculators/2.8/brokrage-calc.js`
   `SECRET|none`
 - `https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js`
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
+- `https://assets.fyers.in/fy_notifications/js/2.0/fyers-widget.min.js`
+  `SECRET|NONE|no hardcoded credentials found (obfuscated app, strings like INTERVAL/NOTIFICATION only)`
 - `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`
   `SECRET|api_key|client_id:"0" (placeholder default, not a real credential)`
 - `https://community.fyers.in/locales/en.js`
@@ -158,6 +166,8 @@ _src 2026-08-07 20:03 UTC — 253 secret hits_
   `SECRET|dev_url|http://127.0.0.1:46475/fy_notifications/js/data.json`
 - `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
   `SECRET|other|none`
+- `https://sgb.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.b3ba817385a4a55bb248.js`
+  `SECRET|other|https://support.fyers.in/ (public support link, not a credential)`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
   `SECRET|other|APP_ID prod=QMABZB5R01 (Fyers API app identifier)`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
@@ -238,6 +248,8 @@ _src 2026-08-07 20:03 UTC — 253 secret hits_
   `SECRET|other|appIdHash=e4ec93ef63a9fa64b12498c2168b85116928a1f6e1514487b`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
   `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a5dae590e4b28d91c`
+- `https://signup.fyers.in/assets/packages/flutter_inappwebview_web/assets/web/web_support.js`
+  `SECRET|other|none found`
 - `https://subscriptions.fyers.in/assets/js/main-truedata.js`
   `SECRET|api_key|0KMS0EZVXI`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
@@ -372,6 +384,10 @@ _src 2026-08-07 20:03 UTC — 253 secret hits_
   `SECRET|other|No hardcoded credentials found; only runtime auth inputs (jwt, x-access-token, Sid, redis key) are passed in by caller`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
+- `https://trade.fyers.in/static/js/option-chain/assets/js/2.2/oc-main.min.js`
+  `SECRET|potential_internal_secret|localStorage.getItem("secret_key") used in MD5 signing of API requests`
+- `https://trade.fyers.in/static/js/orddetail/js/1.2/script.min.js`
+  `SECRET|other|auth_token referenced via global variable (defined externally, not in file)`
 - `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
   `SECRET|other|101000000014366`
 - `https://trade.fyers.in/static/js/ordwin/js/2.0/helper.min.js`
