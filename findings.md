@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 13:42 UTC — 173 secret hits_
+_src 2026-08-07 15:13 UTC — 178 secret hits_
 
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
@@ -90,6 +90,8 @@ _src 2026-08-07 13:42 UTC — 173 secret hits_
   `SECRET|api_key|H4NMJ8X2NR`
 - `https://ipo.fyers.in/_next/static/chunks/pages/home-d194728825ab6f10a77d.js`
   `SECRET|api_key|LCFY9OOX3D`
+- `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
+  `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
   `SECRET|other|APP_ID prod=QMABZB5R01 (Fyers API app identifier)`
 - `https://sgb.fyers.in/_next/static/chunks/c8f7fe3b0e41be846d5687592cf2018ff6e22687.ab2fd25807e4ebb228cc.js`
@@ -130,6 +132,8 @@ _src 2026-08-07 13:42 UTC — 173 secret hits_
   `SECRET|other|appIdHash prod active: b21f86d5bba39251763e49e4b10e71ec5bc99c4ef68fa94c1652ef3f36e82447`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-95c008466d659064a2f9.js`
   `SECRET|other|appIdHash staging: 39abc82e995e6c2e8ab69086650b1fa700300322a2fb0d846902e0804ca1bf0c`
+- `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
+  `SECRET|other|jquery 3.2.1 library (known standard minified jQuery; no embedded secrets detected)`
 - `https://trade.fyers.in/Prod/1.2/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
@@ -144,6 +148,8 @@ _src 2026-08-07 13:42 UTC — 173 secret hits_
   `SECRET|other|Fernet-format datafeed token (token_id) gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/1.5/bo.min.js`
   `SECRET|other|no hardcoded secrets - secret_key read from localStorage, token_id passed in from caller`
+- `https://trade.fyers.in/static/js/basket-order/assets/js/2.3/bo.min.js`
+  `SECRET|other|fyToken runtime session token read from `_FYERS` cookie and sent as `Authorization` header (not a hardcoded key)`
 - `https://trade.fyers.in/static/js/broker/11.4/bundle.min.js`
   `SECRET|other|no hardcoded credentials found; auth tokens are populated at runtime (e.g. getCookie("_FYERS"), Authorization header set from token variable)`
 - `https://trade.fyers.in/static/js/broker/12.1/bundle.min.js`
@@ -192,6 +198,8 @@ _src 2026-08-07 13:42 UTC — 173 secret hits_
   `SECRET|other|runtime MD5 signing: symbol+timeStamp+secret_key(localStorage) hashed via CryptoJS.MD5, passed as marketStat param (no hardcoded key)`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.7/bundle.min.js`
   `SECRET|other|token_id Fernet token: gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (embedded in HISTORY_TEST sample)`
+- `https://trade.fyers.in/static/js/datafeed/udf/10.8/bundle.min.js`
+  `SECRET|other|none`
 - `https://trade.fyers.in/static/js/datafeed/udf/10/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
 - `https://trade.fyers.in/static/js/datafeed/udf/11.3/bundle.min.js`
@@ -238,6 +246,8 @@ _src 2026-08-07 13:42 UTC — 173 secret hits_
   `SECRET|internal_endpoint|https://data.fyers.in/dev-fyers/mobileapi/user-settings`
 - `https://trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js`
   `SECRET|other|hardcoded internal plaintext-HTTP backend endpoint 13.235.24.249:8080 serving /gtt/orders (deobfuscated from obfuscated string array "API_POINT")`
+- `https://trade.fyers.in/static/js/widgets/js/2.3/widgets.min.js`
+  `SECRET|other|no hardcoded secret value present; "secret_key" read from localStorage, MD5-combined into marketStat`
 - `https://verifiedpnl.fyers.in/static/js/main.1b27d8c5.js`
   `SECRET|jwt|none found`
 - `https://verifiedpnl.fyers.in/static/js/main.606be587.js`
