@@ -457,3 +457,4 @@
 200 | https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-navigator.edfb7100b6cd47d6cc794206db136366.js | text/html;charset=UTF-8
 200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
 200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
+200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
