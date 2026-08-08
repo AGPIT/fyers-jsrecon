@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 06:12 UTC — 421 secret hits_
+_src 2026-08-08 06:40 UTC — 422 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -58,6 +58,8 @@ _src 2026-08-08 06:12 UTC — 421 secret hits_
   `SECRET|dev_url|https://dev.fyers.in/messages/public.json`
 - `https://assets.fyers.in/loader/js/loader.min.js`
   `SECRET|none|— (no keys/tokens/credentials in file)`
+- `https://assets.fyers.in/scripts/fyers.js`
+  `SECRET|other|Facebook app_id 166842650780922 embedded in client-side share dialog URL`
 - `https://assets.fyers.in/tv_lib/v25/charting_library.standalone.js`
   `SECRET|other|client_id=user_id="0" placeholder defaults`
 - `https://assets.fyers.in/tv_lib/v29.4.0/charting_library.standalone.js`

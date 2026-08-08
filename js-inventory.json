@@ -564,8 +564,10 @@
   "host": "assets.fyers.in",
   "size": 14132,
   "sha256": "343087531124cd5b",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/6868ac9a09.md"
  },
  {
   "url": "https://assets.fyers.in/images/download-app/app-download.js",
@@ -622,16 +624,20 @@
   "host": "assets.fyers.in",
   "size": 12906,
   "sha256": "1b9d0c12092f0a3f",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/ae2e15c7ca.md"
  },
  {
   "url": "https://assets.fyers.in/scripts/haircut.js",
   "host": "assets.fyers.in",
   "size": 12807,
   "sha256": "b7407d3adc6390bd",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/dda6f96f26.md"
  },
  {
   "url": "https://assets.fyers.in/toasters/toaster.js",
@@ -1209,8 +1215,10 @@
   "host": "fyers.in",
   "size": 14303,
   "sha256": "efdc1123efd0a406",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/a8515f21c9.md"
  },
  {
   "url": "https://fyers.in/_next/static/chunks/1404-116ffc361d744f27.js",
@@ -1537,7 +1545,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/5964-2a1ddd40921d073b.js",
@@ -1755,7 +1763,9 @@
   "size": 14226,
   "sha256": "04ff4f07e7c09e63",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/(policyPages)/investor-charter-depositories/page-b381a383846390b3.js",
@@ -1946,7 +1956,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/demat-account/%5Bslug%5D/page-94cf0bd02f70c218.js",
@@ -2013,7 +2023,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/layout-4142bd5509f09ce4.js",
@@ -2139,7 +2149,9 @@
   "size": 13888,
   "sha256": "b37b4977d866f77c",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/stocks/page-b110332b593fd9f7.js",
@@ -20558,8 +20570,10 @@
   "host": "ipo.fyers.in",
   "size": 12563,
   "sha256": "23a3ae699b03cf43",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/3fd13376ef.md"
  },
  {
   "url": "https://ipo.fyers.in/_next/static/chunks/webpack-632de085b7dcb165b9c2.js",
@@ -45119,8 +45133,10 @@
   "host": "sgb.fyers.in",
   "size": 12764,
   "sha256": "d2bdbd5c400ab1d1",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/71b00662ad.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/webpack-12c8cfda686816634fda.js",
@@ -45134,24 +45150,30 @@
   "host": "sgb.fyers.in",
   "size": 12764,
   "sha256": "3e3c9835bd46d9bf",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/67a8b97447.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/webpack-65a7cca625aeb2bba6c6.js",
   "host": "sgb.fyers.in",
   "size": 12605,
   "sha256": "58ebe95272d2677c",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/b616e1ad94.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/webpack-9f5cf4e4a905c7d5d3fb.js",
   "host": "sgb.fyers.in",
   "size": 12764,
   "sha256": "14ad871e97047f6d",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/12cedb6cf8.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/f1m7gYDT9TXA2iahLjOm_/_buildManifest.js",
@@ -46129,8 +46151,10 @@
   "host": "trade.fyers.in",
   "size": 12748,
   "sha256": "f49304cbfa954616",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/430e18caaa.md"
  },
  {
   "url": "https://trade.fyers.in/lib/tvclib/1.20.0/charting_library.js",
