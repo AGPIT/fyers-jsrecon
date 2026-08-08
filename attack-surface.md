@@ -441,3 +441,4 @@
 200 | https://marketsmith.fyers.in/evaluation/Evaluation.html | text/html
 200 | https://trade.fyers.in/logo/SF-pop-out-chart.svg | image/svg+xml
 200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml
+200 | https://fyers.in/_next/static/media/arrow-right-s-line.d25ddafb.svg | image/svg+xml

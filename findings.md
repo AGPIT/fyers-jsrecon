@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 07:45 UTC — 440 secret hits_
+_src 2026-08-08 08:36 UTC — 446 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -278,6 +278,8 @@ _src 2026-08-08 07:45 UTC — 440 secret hits_
   `SECRET|api_key|LCFY9OOX3D`
 - `https://login.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|Cloudflare challenge session token embedded in both request paths (per‑request "A/b" proof, not an app credential): 0.38205379864735833:1786024823:YXT7e8nQfZnLcuSoU9H2fhJTbX0y34kj5QSnIx00eok`
+- `https://login.fyers.in/scripts/common.min.js`
+  `SECRET|google_key|6LcrW84cAAAAAMIwffo_zJaRcfmFNWEnRL198mmI`
 - `https://marketsmith.fyers.in/assets/js/marketSmith.js`
   `SECRET|api_key|authToken forwarded in query string to marketsmithindia.com by generateMSIToken`
 - `https://marketsmith.fyers.in/assets/js/marketSmith.js`
@@ -414,6 +416,8 @@ _src 2026-08-08 07:45 UTC — 440 secret hits_
   `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
 - `https://myaccount.fyers.in/static/js/main.f5bcac04.chunk.js`
   `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://open-account.fyers.in/dist/service.js`
+  `SECRET|other|AW-628758356/t7sNCLfMmPwBENSu6KsC`
 - `https://partners.fyers.in/fyers_widget/fyers-widget.min.js`
   `SECRET|dev_url|http://127.0.0.1:46475/fy_notifications/js/data.json`
 - `https://pledge.fyers.in/assets/js/2.0/jwt-decode.js`
@@ -558,6 +562,8 @@ _src 2026-08-08 07:45 UTC — 440 secret hits_
   `SECRET|other|jquery 3.2.1 library (known standard minified jQuery; no embedded secrets detected)`
 - `https://trade.fyers.in/Prod/1.2/bundle.min.js`
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/Prod/1.2/fy_common.min.js`
+  `SECRET|none|no hardcoded credentials/keys/tokens present`
 - `https://trade.fyers.in/Prod/1.2/fyers_common_modules.js`
   `SECRET|jwt|token (JWT user session token passed in Authorization header / `authorization` header of fetch calls)`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
@@ -596,6 +602,8 @@ _src 2026-08-08 07:45 UTC — 440 secret hits_
   `SECRET|other|secret_key read from localStorage and used to sign marketStat (MD5(keyword|timestamp|secret_key))`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/2.3/bo.min.js`
   `SECRET|other|fyToken runtime session token read from `_FYERS` cookie and sent as `Authorization` header (not a hardcoded key)`
+- `https://trade.fyers.in/static/js/basket-order/assets/js/2.4/margin_bo.min.js`
+  `SECRET|other|None hardcoded - Authorization header uses runtime var `fyToken``
 - `https://trade.fyers.in/static/js/broker/11.4/bundle.min.js`
   `SECRET|other|no hardcoded credentials found; auth tokens are populated at runtime (e.g. getCookie("_FYERS"), Authorization header set from token variable)`
 - `https://trade.fyers.in/static/js/broker/12.1/bundle.min.js`
@@ -736,8 +744,12 @@ _src 2026-08-08 07:45 UTC — 440 secret hits_
   `SECRET|api_key|trading_platform`
 - `https://trade.fyers.in/static/js/init/9.6/fy_trade.min.js`
   `SECRET|other|Sentry public DSN (release tech-web@1.0): https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
+- `https://trade.fyers.in/static/js/loader/1.0/loader.min.js`
+  `SECRET|none`
 - `https://trade.fyers.in/static/js/loader/2.1/loader.min.js`
   `SECRET|other|None found`
+- `https://trade.fyers.in/static/js/logoutModel/js/1.1/logout.min.js`
+  `SECRET|none|no secrets found`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/1.7/oc-main.min.js`
   `SECRET|other|localStorage key `secret_key` (I82) read via getItem and used to build authenticated API request params (symbol, dataReq, timestamp, marketStat, token_id) for the options-chain endpoint; no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/option-chain/assets/js/2.2/oc-main.min.js`
