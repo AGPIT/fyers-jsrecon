@@ -428,3 +428,11 @@
 200 | https://pledge.fyers.in/web/js_dart_service.js | text/html
 200 | https://pledge.fyers.in/web/main.dart.js | text/html
 200 | https://pledge.fyers.in/web/manifest.json | text/html
+200 | https://app.fyers.in/web/ | text/html
+200 | https://app.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web/web_support.js | text/html
+200 | https://app.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_dark.gif | text/html
+200 | https://app.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html
+200 | https://pledge.fyers.in/web/ | text/html
+200 | https://pledge.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web/web_support.js | text/html
+200 | https://pledge.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_dark.gif | text/html
+200 | https://pledge.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html
