@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 14:52 UTC — 482 secret hits_
+_src 2026-08-08 15:12 UTC — 483 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -510,6 +510,8 @@ _src 2026-08-08 14:52 UTC — 482 secret hits_
   `SECRET|other|ERROR_PAGE`
 - `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-svg.04ced2a4cf17451372a2c63b90342793.js`
   `SECRET|other|static404`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-ui-components.81c1dae5313a9790b8d25e8604991747.js`
+  `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/26.dbf16a6c160395f15a03.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.b3ba817385a4a55bb248.js`
