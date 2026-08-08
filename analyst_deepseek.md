@@ -622,3 +622,59 @@ evidence_needed: real JS from the page listing endpoints and auth construction (
 verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://marketsmith.fyers.in/evaluation/Evaluation.html'` to capture script srcs, then fetch JS and grep for `api.fyers.in`, `Authorization`, `_FYERS`, `token`.
 impact: endpoint enumeration; Medium only if any PATH answers unauthenticated — currently enumeration-level.
 testability: PASSIVE
+
+===== ANALYST 2026-08-08 08:21:27 UTC =====
+[NEW] trade.fyers.in/static/js/broker/13/bundle.min.js — EDIS account-tier flow: token_id passed via URL query to /edis/details, /edis/index, /edis/authCdsl.html (first EDIS/settlement surface, not in prior runs)
+[NEW] subscriptions.fyers.in/assets/js/main-truedata.js — api_key-format literal 0KMS0EZVXI in a bundle not analyzed before (matches 10-char Fyers appId format)
+[NEW] trade.fyers.in/apiv2-login-ie-support/js/login.js — app_id GSKZGJHIBV inside commented sample payload (legacy IE-support login page)
+[NEW] trade.fyers.in/static/js/ordwin/js/2.4/helper.min.js — hardcoded demo fyToken 101000000014366 in modifyBtn handler
+[NEW] trade.fyers.in/Prod/1.2/trade-common.js — GA4 key G-NTFX8XLKVH (public-by-design, dropped)
+[CHANGED] sgb.fyers.in home-*/details-* chunks — refined env-select appIdHash table adds AEHNSK9PRW alongside known QMABZB5R01/N43J3GIGOM/AF0MATWSX3/H4NMJ8X2NR (extends prior sgb MISCONFIG lead)
+[CHANGED] api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data — new corroborating evidence: main.606be587.js (getUserDetails.js:33739) parses _FYERS client-side, "auth validity not server-verified; used to gate UI and sent to get-data" (strengthens KB-accepted AUTH lead)
+[PRIO] trade.fyers.in broker/13 EDIS flow (token_id-in-query) | 6.65 | attack 6 business 9 tech 7 gate 5 cloud 3 fresh 8
+[PRIO] api-a1-prod verified-pnl get-data (cookie-as-auth corroboration) | 5.90 | attack 6 business 7 tech 5 gate 6 cloud 3 fresh 7
+[PRIO] sgb OAuth appIdHash table + AEHNSK9PRW | 5.40 | attack 5 business 6 tech 5 gate 6 cloud 3 fresh 7
+[PRIO] subscriptions main-truedata.js 0KMS0EZVXI | 4.65 | attack 4 business 4 tech 4 gate 5 cloud 4 fresh 9
+[HYP] EDIS endpoints trust token_id passed via URL query (token-in-URL family on financial surface)
+class: AUTH
+asset: trade.fyers.in broker/13 bundle → EDIS endpoints (/edis/details, /edis/index, /edis/authCdsl.html)
+confidence: 60
+reasoning: broker/13 ships the EDIS flow with token_id injected into query params of three endpoints; the token-in-URL pattern is already proven on margin/baskets (anjuna/fydev) and sgb auth_code; EDIS is account-tier delivery instructions, so a value-bound token here is settlement-impacting.
+evidence_needed: resolve the actual EDIS base host from the bundle, then confirm /edis/details returns business data (not 401) for a token bound to a different session/user.
+verify_steps: PASSIVE: `curl -s --max-time 20 'https://trade.fyers.in/static/js/broker/13/bundle.min.js'` and grep `edis` + `token_id` to recover base URL; then `curl -s -i --max-time 12 'https://<resolved-base>/edis/details'` with no token to record gate shape. AUTH_HELPED: repeat with own token_id, then compare a peer token — never read another user's body.
+impact: cross-account EDIS/delivery-instruction disclosure or manipulation if token is value-bound; Medium-High.
+testability: AUTH_HELPED
+[HYP] _FYERS cookie is the sole auth carrier to verified-pnl get-data with no observed server-side validity check
+class: AUTH
+asset: api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data
+confidence: 58
+reasoning: main.606be587.js parses the _FYERS JWT client-side and uses it both to gate UI and as request auth, with the finder noting auth validity is "not server-verified"; prior run already obtained 200/status 1005 with no HTTP gate. Cookie is confirmed as the auth carrier; server-side binding to session never observed.
+evidence_needed: whether the endpoint distinguishes a token minted for another account (status/code delta) — proving absence of value/session binding.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data'` (no auth) — expect 200/1005 per KB. AUTH_HELPED: with own token inspect response code; then field-level tests (client_id/folio) on same endpoint and diff with a peer token.
+impact: cross-account verified-PnL disclosure if neither token binding nor ownership is validated; Medium.
+testability: AUTH_HELPED
+[HYP] sgb AEHNSK9PRW is an additional OAuth appId binding to a separate/unaudited auth host
+class: MISCONFIG
+asset: sgb.fyers.in OAuth flow (home-*/details-* chunks)
+confidence: 45
+reasoning: home-ac56cb0ac001d9ac5ef2.js ships AEHNSK9PRW adjacent to the four known client_ids and the appIdHash env table; it matches the 10-char appId format and is unaccounted for in the prod/dev/staging/local mapping.
+evidence_needed: identify which env/host AEHNSK9PRW targets and whether that auth endpoint gates as weakly as prod or weaker.
+verify_steps: PASSIVE: re-grep sgb home-*/details-* bundles around AEHNSK9PRW to find adjacent base/auth URL; if a host resolves, status-only request with no credentials. No requests that transmit tokens.
+impact: dev/alternate OAuth appId endpoint enumeration; Medium only if a dev-tier host answers unauthenticated.
+testability: PASSIVE
+[PARKED] subscriptions main-truedata.js 0KMS0EZVXI: 10-char literal matches public Fyers client_id/appId format (same family as QMABZB5R01/N43J3GIGOM); no private-key role evidenced — likely public-by-design, not a secret finding (class open, parked not dead).
+[PARKED] apiv2-login-ie-support login.js GSKZGJHIBV: app_id inside a commented sample payload on a legacy IE-support login page — test/comment data.
+[PARKED] trade datafeed/Prod Fernet token (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534): KB-dead HISTORY_TEST demo data, reaffirmed.
+[PARKED] ordwin 2.4 fyToken 101000000014366: hardcoded demo identifier, not a live credential.
+[PARKED] myaccount.fyers.in/web/* suspicious .js (audit_payload_hasher, csrf_reference_validator, otp_token_invalidator, etc.): all 200 text/html — SPA-fallback artifacts, not fetchable code.
+[PARKED] trade ordwin/6 backend 13.235.24.249:8080: out-of-scope host, architecture intel only.
+[PARKED] GA4/GTM/Sentry DSNs/Cloudflare jsd/Zoho formperma keys: public-by-design.
+[FINAL] 1) EDIS token-in-query AUTH (60, AUTH_HELPED, 6.65) 2) verified-pnl get-data cookie-carrier AUTH (58, AUTH_HELPED, 5.90) 3) sgb AEHNSK9PRW MISCONFIG (45, PASSIVE, 5.40)
+[NEXT] PROBE: `curl -s --max-time 20 'https://trade.fyers.in/static/js/broker/13/bundle.min.js' | grep -oE 'https?://[^"'"'"' ]*|/edis/[a-zA-Z0-9._-]*|token_id[^&"'"'"' ]*'` to resolve the exact EDIS base host, then `curl -s -i --max-time 12 'https://<resolved-base>/edis/details'` (no token) to record gate shape; escalate to own-token AUTH_HELPED diff next run.
+[LEARN] ACCEPTED AUTH @ broker/13 EDIS endpoints: token_id-in-query extends the proven token-in-URL family to the EDIS settlement surface — newly enumerable.
+[LEARN] ACCEPTED AUTH @ api-a1-prod verified-pnl get-data: main.606be587 _FYERS client-side parse ("auth validity not server-verified") corroborates cookie-as-auth carrier — class alive, field-level test pending.
+[LEARN] REJECTED OTHER @ subscriptions main-truedata.js 0KMS0EZVXI: matches public 10-char Fyers appId/client_id format; no private role evidenced — parked, not dead.
+[LEARN] REJECTED OTHER @ trade apiv2-login-ie-support login.js GSKZGJHIBV: app_id in commented sample on legacy login — test data.
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web suspicious *.js names: all 200 text/html SPA fallback — noise.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+[RISK] fyers-js: 73 — EDIS financial settlement surface newly enumerated with the proven token-in-URL auth pattern (in-scope, high business value), verified-pnl get-data corroborated as cookie-carried with no server-side validity observed, and an additional unresolved sgb appId (AEHNSK9PRW) now surfaced. No new hard credential (0KMS0EZVXI/GSKZGJHIBV both appId-format public data), but the account-tier surface continues to grow around value-bound token auth; overall JS exposure moderately high pending the EDIS gate probe.

@@ -10,3 +10,4 @@
 - 2026-08-08 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
 - 2026-08-08 ACCEPTED AUTH @ sgb.fuers.in: in-bundle memory confirms auth_code + localStorage auth_token presented as Authorization without server-side/non-schematic binding observed.
 - 2026-08-08 ACCEPTED MISMOLE @ api-socket.fuers.in/api.fuers.in: dev-tier and WebSocket roots are now hard-embedded in prod broker bundles — newly enumerable (probe pending).
+- 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
