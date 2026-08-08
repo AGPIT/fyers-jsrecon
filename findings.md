@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 13:36 UTC — 474 secret hits_
+_src 2026-08-08 14:14 UTC — 478 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -494,6 +494,14 @@ _src 2026-08-08 13:36 UTC — 474 secret hits_
   `SECRET|none|none`
 - `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-dateselect.84ac4931550940c2aef7f79c2ff43035.js`
   `SECRET|none|none`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-menu.58ce0757804d9491a4ce3e1789b22990.js`
+  `SECRET|other|none_found`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-messagebox.24f5c56beab64f6b4c6a293d860cc217.js`
+  `SECRET|other|none found`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-modal.f7731a57109cb587f48cc1f5efa1ce1d.js`
+  `SECRET|other|Zoho_Puvi_* font files referenced from static.zohocdn.com`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-multislider.548503fc979b67327a61a9521ac47303.js`
+  `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/26.dbf16a6c160395f15a03.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.b3ba817385a4a55bb248.js`

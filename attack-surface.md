@@ -446,3 +446,11 @@
 200 | https://fundtransfer.fyers.in/v2/ | text/html
 200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
 200 | https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-dateselect.*.js | text/html;charset=UTF-8
+200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.eot | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.otf | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Light.woff2 | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Medium.eot | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.eot | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.woff2 | text/html;charset=utf-8
+200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.otf | text/html;charset=utf-8
