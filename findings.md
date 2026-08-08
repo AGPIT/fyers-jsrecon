@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 09:15 UTC — 451 secret hits_
+_src 2026-08-08 09:54 UTC — 458 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -22,6 +22,8 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|google_key|902868841845-3wj23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com|staging_commented`
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
+- `https://app.fyers.in/assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js`
+  `SECRET|other|NONE_ANALYSABLE`
 - `https://app.fyers.in/reports/pnl/flutter_bootstrap.js`
   `SECRET|google_key|286450098109-8e77ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com (prod OAuth client ID)`
 - `https://app.fyers.in/reports/pnl/flutter_bootstrap.js`
@@ -50,6 +52,8 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
 - `https://assets.fyers.in/Lib/hawkeye/hawkeye.js`
   `SECRET|jwt|localStorage.getItem('access_token') JWT with exp claim decoded via atob`
+- `https://assets.fyers.in/Lib/user-engagement/user-engagement-new.min.js`
+  `SECRET|api_key|RK8-4RR-9Z7Z`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
   `SECRET|google_key|G-NTFX8XLKVH`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
@@ -546,6 +550,8 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|other|appIdHash=e4ec93ef63a9fa64b12498c2168b85116928a1f6e1514487b`
 - `https://sgb.fyers.in/_next/static/chunks/pages/home-da82cc27d88581830b16.js`
   `SECRET|other|appIdHash=f35212e4c44c8bb9aabd2bc08e37c73a5dae590e4b28d91c`
+- `https://signup.fyers.in/assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js`
+  `SECRET|other|none`
 - `https://signup.fyers.in/assets/packages/flutter_inappwebview_web/assets/web/web_support.js`
   `SECRET|other|none found`
 - `https://signup.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
@@ -592,6 +598,8 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|other|No hardcoded secrets; auth uses runtime `_FYERS` cookie/JWT (JWT is base64url-decoded; token passed in URL query params)`
 - `https://trade.fyers.in/api-login/redirect-uri/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
   `MAP SECRET|other|none`
+- `https://trade.fyers.in/api-login/static/js/login.js`
+  `SECRET|other|api.fyers.in token endpoint is invoked with fyers_id/password/PAN/DOB over XHR (no secrets hardcoded in file)`
 - `https://trade.fyers.in/apiv2-login-ie-support/js/jquery.validate.js`
   `SECRET|other|none found`
 - `https://trade.fyers.in/apiv2-login-ie-support/js/login.js`
@@ -658,6 +666,10 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|other|token_id extracted from _FYERS cookie (at_hash field) and appended to chartSettings URL as query param ?token_id=`
 - `https://trade.fyers.in/static/js/common/2.2/fy_common.min.js`
   `SECRET|jwt|_FYERS cookie (JWT-style, base64-decoded via atob, exposes at_hash/poa_flag; used as Authorization header)`
+- `https://trade.fyers.in/static/js/common/4.1/fy_common.min.js`
+  `SECRET|jwt|_FYERS cookie (JWT) - payload parsed: at_hash (used as token_id), poa_flag`
+- `https://trade.fyers.in/static/js/common/4.4/fy_common.min.js`
+  `SECRET|other|token from _FYERS cookie (JWT) used as Authorization header; not a hardcoded static secret`
 - `https://trade.fyers.in/static/js/common/4/fy_common.min.js`
   `SECRET|jwt|_FYERS cookie access token (JWT payload at_hash/poa_flag decoded via atob, used in Authorization header)`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js`
@@ -708,6 +720,8 @@ _src 2026-08-08 09:15 UTC — 451 secret hits_
   `SECRET|api_key|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M= (hardcoded Fernet token used as token_id in FYERS_OBJ.HISTORY_TEST)`
 - `https://trade.fyers.in/static/js/datafeed/udf/9.9/bundle.js`
   `SECRET|jwt|gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M=`
+- `https://trade.fyers.in/static/js/edis/myaccount/tpin_unminified.js`
+  `SECRET|other|Authorization header uses _FYERS cookie: getCookie("_FYERS") at js013.js:33`
 - `https://trade.fyers.in/static/js/exit-widget/assets/js/2.2/eo.min.js`
   `SECRET|none|no hardcoded credentials found in file`
 - `https://trade.fyers.in/static/js/exit-widget/assets/js/2.3/eo.min.js`
