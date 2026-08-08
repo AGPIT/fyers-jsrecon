@@ -2,7 +2,7 @@ name: Senior Hunter - Analyst (jsrecon findings)
 
 on:
   schedule:
-    - cron: "35 * * * *"
+    - cron: "05,35 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -10,6 +10,9 @@ permissions:
 
 env:
   TARGET: fyers.in
+
+env:
+  PROBE_ALLOW: "fyers"
 
 jobs:
   analyst:
@@ -93,7 +96,7 @@ jobs:
           PROMPT_START
           cat ctx.txt >> analyst-prompt.txt
           export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
-          timeout 18m opencode run --model "$MODEL_ID" < analyst-prompt.txt > analyst-out.txt 2>&1 || true
+          timeout -k 15 18m opencode run --model "$MODEL_ID" < analyst-prompt.txt > analyst-out.txt 2>&1 || true
           grep -E '^\[(NEW|CHANGED|PRIO|HYP|PARKED|FINAL|NEXT|LEARN|RISK)\]|^class:|^confidence:|^asset:|^impact:|^testability:|^verify_steps:|^reasoning:|^evidence_needed:' analyst-out.txt > lead.txt || true
           {
             echo ""
@@ -133,7 +136,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add analyst_${MODEL_NAME}.md analyst-raw_${MODEL_NAME}.log knowledge reports || true
+          git add analyst_${MODEL_NAME}.md analyst-raw_${MODEL_NAME}.log knowledge reports probe-results.md || true
           git diff --cached --quiet || git commit -m "analyst ${TARGET} $(date -u +'%Y-%m-%d-%H-%M')"
           git pull --rebase || true
           git push || true

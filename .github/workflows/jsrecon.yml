@@ -8,7 +8,7 @@ name: JS Recon via opencode
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       per_run:
@@ -21,6 +21,9 @@ permissions:
 
 env:
   JS_MODEL: opencode/deepseek-v4-flash-free
+
+env:
+  PROBE_ALLOW: "fyers"
 
 jobs:
   jsrecon:
