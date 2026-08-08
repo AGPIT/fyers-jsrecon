@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 06:40 UTC — 422 secret hits_
+_src 2026-08-08 06:58 UTC — 427 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -132,8 +132,12 @@ _src 2026-08-08 06:40 UTC — 422 secret hits_
   `SECRET|other|Bank account numbers are base64-encoded via btoa into HTML "code" attrs and decoded client-side with atob(data-value of .bank_account) - trivially reversible, not a true secret`
 - `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
   `SECRET|other|none_found`
+- `https://fyers.in/_next/static/chunks/131-d24839065f1193bd.js`
+  `SECRET|other|none`
 - `https://fyers.in/_next/static/chunks/375-7524336be56b0456.js`
   `SECRET|other|none`
+- `https://fyers.in/_next/static/chunks/7990-29ca88c8e9de82f0.js`
+  `SECRET|none|no secrets found in this file`
 - `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/625261456364/main.js`
   `SECRET|other|none found`
 - `https://fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/80a697ecdece/main.js`
@@ -692,6 +696,8 @@ _src 2026-08-08 06:40 UTC — 422 secret hits_
   `SECRET|api_key|cookie _FYERS value passed as Authorization header (runtime credential)`
 - `https://trade.fyers.in/static/js/init/4.7/fy_trade.min.js`
   `SECRET|jwt|tokenId (runtime auth token, appended to URLs, not a hardcoded literal)`
+- `https://trade.fyers.in/static/js/init/5.9/fy_trade.min.js`
+  `SECRET|runtime_auth|access_token from cookie _FYERS passed in Authorization header / URL query (tokenId) to third-party fyers.quantsapp.com`
 - `https://trade.fyers.in/static/js/init/6.2/fy_trade.min.js`
   `SECRET|other|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207 (Sentry DSN, public key exposed)`
 - `https://trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js`
@@ -700,6 +706,10 @@ _src 2026-08-08 06:40 UTC — 422 secret hits_
   `SECRET|dev_url|https://data.fyers.in/dev-beta/mobileapi/get-user-settings`
 - `https://trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js`
   `SECRET|other|release: "tech-web@1.0"`
+- `https://trade.fyers.in/static/js/init/6/fy_trade.min.js`
+  `SECRET|api_key|Authorization header uses cookie-derived auth_token (no hardcoded secret)`
+- `https://trade.fyers.in/static/js/init/8/fy_trade.min.js`
+  `SECRET|api_key|trading_platform`
 - `https://trade.fyers.in/static/js/init/9.6/fy_trade.min.js`
   `SECRET|other|Sentry public DSN (release tech-web@1.0): https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
 - `https://trade.fyers.in/static/js/loader/2.1/loader.min.js`

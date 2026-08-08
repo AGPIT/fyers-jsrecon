@@ -1207,8 +1207,10 @@
   "host": "fyers.in",
   "size": 12322,
   "sha256": "54e749c672b37077",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/f37ba2521f.md"
  },
  {
   "url": "https://fyers.in/_next/static/chunks/1356-5d2cdedc98039c8c.js",
@@ -1430,8 +1432,10 @@
   "host": "fyers.in",
   "size": 12504,
   "sha256": "2c832663e0e51653",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/e50df9f6c9.md"
  },
  {
   "url": "https://fyers.in/_next/static/chunks/434f5981c9e711b0.js",
@@ -1501,7 +1505,9 @@
   "size": 12422,
   "sha256": "76e3cca0de557ba6",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/5239-9c05ef5316a23271.js",
@@ -1544,8 +1550,9 @@
   "sha256": "006fdc7b3d45f66d",
   "analyzed": false,
   "map": null,
-  "error": "fetch failed",
-  "retries": 2
+  "error": "unreachable",
+  "retries": 3,
+  "skipped": true
  },
  {
   "url": "https://fyers.in/_next/static/chunks/5964-2a1ddd40921d073b.js",
@@ -1670,8 +1677,10 @@
   "host": "fyers.in",
   "size": 12513,
   "sha256": "70c333c6634ee7ad",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/0e4fb19649.md"
  },
  {
   "url": "https://fyers.in/_next/static/chunks/8299-20309c2cd4daaf2e.js",
@@ -1765,7 +1774,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/(policyPages)/investor-charter-depositories/page-b381a383846390b3.js",
@@ -1844,7 +1853,9 @@
   "size": 12271,
   "sha256": "0adda14014716a39",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/(services)/fund-transfer/page-456750a31ee011fa.js",
@@ -1932,7 +1943,9 @@
   "size": 12400,
   "sha256": "7ba47225a4157311",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/commodity-trading/page-27d815aafa11b7e4.js",
@@ -1955,8 +1968,9 @@
   "sha256": "e01e94458a877bc1",
   "analyzed": false,
   "map": null,
-  "error": "fetch failed",
-  "retries": 2
+  "error": "unreachable",
+  "retries": 3,
+  "skipped": true
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/demat-account/%5Bslug%5D/page-94cf0bd02f70c218.js",
@@ -2022,8 +2036,9 @@
   "sha256": "e18cffefa4085509",
   "analyzed": false,
   "map": null,
-  "error": "fetch failed",
-  "retries": 2
+  "error": "unreachable",
+  "retries": 3,
+  "skipped": true
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/layout-4142bd5509f09ce4.js",
@@ -2151,7 +2166,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/stocks/page-b110332b593fd9f7.js",
@@ -46899,8 +46914,10 @@
   "host": "trade.fyers.in",
   "size": 12112,
   "sha256": "5a1e03f271babc9d",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/aa7507a9cd.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/init/6.2/fy_trade.min.js",
@@ -46927,16 +46944,20 @@
   "host": "trade.fyers.in",
   "size": 12112,
   "sha256": "5a1e03f271babc9d",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/a57cd882a7.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/init/8/fy_trade.min.js",
   "host": "trade.fyers.in",
   "size": 12066,
   "sha256": "427282eac7a37fb5",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/a4ab0a52a3.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/init/9.6/fy_trade.min.js",
@@ -47037,8 +47058,10 @@
   "host": "trade.fyers.in",
   "size": 12514,
   "sha256": "8eff59571f60a801",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/afb3e3e94e.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/orddetail/js/1.2/script.min.js",
