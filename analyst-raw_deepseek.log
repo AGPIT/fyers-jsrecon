@@ -2974,3 +2974,281 @@ STEP 6 — LEARNING
 
 STEP 7 — RISK SCORE
 [RISK] fyers-js: 78 — a new live account-tier portal host (myaccount.fyers.in) joined the surface, sitting directly on the API family whose unauthenticated reach was already proven (verified-pnl get-data → 200/status_code 1005 without a gate); the cookie-as-bearer + client-side JWT-gating family continues to accumulate host instances (myaccount, subscriptions, fundtransfer, bo-login). No new hard credential emerged and the new shell's API wiring remains unverified pending PASSIVE probes — exposure moderately high and expanding, exploit status unproven.
+===== RAW ANALYST 2026-08-08 16:02:16 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+[0m$ [0mcurl -s -i --max-time 15 'https://marketsmith.fyers.in/evaluation/Evaluation.html' 2>&1 | head -40
+HTTP/2 200 
+date: Sat, 08 Aug 2026 16:00:37 GMT
+content-type: text/html
+x-content-type-options: nosniff
+server: cloudflare
+x-amz-id-2: 1TvRkcq6Z6uwKhdXSdf7mAqmdO9Ab0KQeBb8TPIu9Kqn7V+1NmzMGbsOuYM9lNppaGnZ0P4iRAz3/Z59je0yeFm/Tp0eSH2D
+x-amz-request-id: 0FZGHTR9S8QC89K6
+last-modified: Fri, 02 Aug 2024 11:44:49 GMT
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+set-cookie: __cf_bm=6fQfceLYwuDDjrYyf7TStZSASRkreXC2bnxFXUqUHRQ-1786204837.6422963-1.0.1.1-CVDvWpOBjv2qijQbCKZZBOKqvC01tULRDjq_LhR0MfTtOzWhdHdCv2CmmY5IElIU.PUid6DCZgM6sFI6oBOg1HhpoOFd3A1dRKNErHDWFBIubwvU4bPHrShB.qJK8ZtX; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in; Expires=Sat, 08 Aug 2026 16:30:37 GMT
+set-cookie: _cfuvid=0qNgb1dFp2DEe2_6E149U04XTQze1FggOKinVvAg2Qs-1786204837.6422963-1.0.1.1-iHejTUm0tuqdQyroDKTRnrevX8U11QykgDNJbOzt6_Q; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in
+cf-cache-status: DYNAMIC
+cf-ray: a27fbc2b4fcd258c-ORD
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Market Smith</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <!-- Favicons -->
+    <link
+      href="https://assets.fyers.in/market-smith/marketsmith-favicon.svg"
+      rel="icon"
+    />
+    <link
+      href="https://assets.fyers.in/market-smith/marketsmith-favicon.svg"
+      rel="touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+[0m
+[0m$ [0mcurl -s --max-time 15 'https://marketsmith.fyers.in/' -o /dev/null -w '%{http_code} %{content_type}\n' 2>&1
+200 text/html
+[0m
+[0m$ [0mcurl -s --max-time 15 'https://marketsmith.fyers.in/evaluation/Evaluation.html' 2>&1 | grep -oE 'src="[^"]+"|href="[^"]+\.(js|css)"|https?://[a-z0-9.-]*fyers[^"'"'"']*' | sort -u
+href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+href="https://assets.fyers.in/styles/fyers-web.css"
+href="https://marketsmith.fyers.in/assets/css/globalHeader.css"
+href="https://marketsmith.fyers.in/assets/css/style.css"
+href="https://marketsmith.fyers.in/assets/vendor/aos/aos.css"
+href="https://marketsmith.fyers.in/assets/vendor/bootstrap/css/bootstrap.min.css"
+href="https://marketsmith.fyers.in/assets/vendor/boxicons/css/boxicons.min.css"
+href="https://marketsmith.fyers.in/assets/vendor/icofont/icofont.min.css"
+href="https://marketsmith.fyers.in/assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+href="https://marketsmith.fyers.in/assets/vendor/remixicon/remixicon.css"
+href="https://marketsmith.fyers.in/assets/vendor/venobox/venobox.css"
+https://alerts.fyers.in/
+https://app.fyers.in/symbol
+https://assets.fyers.in/market-smith/marketsmith-favicon.svg
+https://direct.fyers.in/
+https://fyers.in/api-bridge/
+https://fyers.in/app/
+https://fyers.in/brokerage-calculator/
+https://fyers.in/holiday-calendar/
+https://fyers.in/margin-calculator/equity-margin/
+https://fyers.in/notice-board/
+https://fyers.in/one/
+https://fyers.in/privacy-policy.php
+https://fyers.in/school-of-stocks/
+https://fyers.in/school-of-stocks/module/introduction-to-stock-markets.html
+https://fyers.in/school-of-stocks/module/technical-analysis.html
+https://fyers.in/terms-and-conditions.php
+https://fyers.in/trading-view.php
+https://insights.fyers.in/
+https://ipo.fyers.in/
+https://marketsmith.fyers.in/evaluation/Evaluation.html
+https://marketsmith.fyers.in/ideaLists/IdeaList.html
+https://marketsmith.fyers.in/marketOutlook/MarketOutlook.html
+https://marketsmith.fyers.in/modelPortfolio/MarketPortfolio.html
+https://myaccount.fyers.in/
+https://myapi.fyers.in/
+https://ofs.fyers.in/
+https://pledge.fyers.in/
+https://support.fyers.in
+https://thematic.fyers.in/
+https://trade.fyers.in
+src="https://assets.fyers.in/images/global-header/close-menu.svg"
+src="https://assets.fyers.in/images/global-header/empty-product-list.svg"
+src="https://assets.fyers.in/images/global-header/fyers-pledge-icon.svg"
+src="https://assets.fyers.in/images/global-header/icon-logout.svg"
+src="https://assets.fyers.in/images/global-header/menu-tradingview.svg"
+src="https://assets.fyers.in/images/global-header/user-img.svg"
+src="https://assets.fyers.in/images/pledge/logo-holiday-calender.svg"
+src="https://assets.fyers.in/images/pledge/logo-insight.svg"
+src="https://assets.fyers.in/images/pledge/logo-noticeboard.svg"
+src="https://assets.fyers.in/images/pledge/logo-sos.svg"
+src="https://assets.fyers.in/images/website/icon-arrow-right-header.svg"
+src="https://assets.fyers.in/images/website/icon-brokerage-calculator.svg"
+src="https://assets.fyers.in/images/website/icon-down-arrow.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-api-bridge.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-api.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-app.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-direct.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-one.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-thematic.svg"
+src="https://assets.fyers.in/images/website/icon-fyers-web.svg"
+src="https://assets.fyers.in/images/website/icon-grid-menu.svg"
+src="https://assets.fyers.in/images/website/icon-ipo.svg"
+src="https://assets.fyers.in/images/website/icon-margin-calculator.svg"
+src="https://assets.fyers.in/images/website/icon-my-account.svg"
+src="https://assets.fyers.in/images/website/icon-ofs.svg"
+src="https://assets.fyers.in/images/website/icon-open-blank.svg"
+src="https://assets.fyers.in/images/website/icon-price-alerts.svg"
+src="https://assets.fyers.in/market-smith/Marketsmith-logo.svg"
+src="https://assets.fyers.in/market-smith/arrow-right-circle.svg"
+src="https://assets.fyers.in/market-smith/minus-icon.svg"
+src="https://assets.fyers.in/market-smith/plus-icon.svg"
+src="https://code.jquery.com/jquery-1.12.4.js"
+src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+src="https://marketsmith.fyers.in/assets/js/globalHeader.min.js"
+src="https://marketsmith.fyers.in/assets/js/main.js"
+src="https://marketsmith.fyers.in/assets/js/marketSmith.js"
+src="https://marketsmith.fyers.in/assets/vendor/aos/aos.js"
+src="https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/counterup/counterup.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/isotope-layout/isotope.pkgd.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/jquery.easing/jquery.easing.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/owl.carousel/owl.carousel.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/venobox/venobox.min.js"
+src="https://marketsmith.fyers.in/assets/vendor/waypoints/jquery.waypoints.min.js"
+src="https://www.googletagmanager.com/gtag/js?id=UA-70168752-22"
+[0m
+[0m$ [0mcurl -s --max-time 15 'https://marketsmith.fyers.in/assets/js/marketSmith.js' -o /tmp/ms.js 2>&1; curl -s --max-time 15 'https://marketsmith.fyers.in/assets/js/main.js' -o /tmp/msmain.js 2>&1; echo '--- marketSmith.js endpoints ---'; grep -oE 'https?://[a-zA-Z0-9.-]*[^"'"'"' ]*|/api/[a-zA-Z0-9_/-]*|action=[a-zA-Z0-9_/-]*' /tmp/ms.js | sort -u | head -30; echo '--- main.js endpoints ---'; grep -oE 'https?://[a-zA-Z0-9.-]*[^"'"'"' ]*|/api/[a-zA-Z0-9_/-]*' /tmp/msmain.js | sort -u | head -30; echo '--- sizes ---'; wc -c /tmp/ms.js /tmp/msmain.js
+--- marketSmith.js endpoints ---
+https://api.fyers.in/api/beta/get_msiuser_details
+https://app.fyers.in/symbol
+https://login.fydev.tech?cb=
+https://login.fyers.co.in?cb=
+https://login.fyers.in/?cb=
+https://marketsmithindia.com/mstool/evaluation.jsp#/symbol/
+https://marketsmithindia.com/mstool/fyers/deleteMSIToken
+https://marketsmithindia.com/mstool/fyers/generateMSIToken?userAgent=
+https://marketsmithindia.com/mstool/ideaLists.jsp#/
+https://marketsmithindia.com/mstool/marketOutlook.jsp#/
+https://marketsmithindia.com/mstool/modelPortfolio.jsp#/
+https://public.fyers.in/sym_details/BSE_CM.json
+https://subscriptions${env}.fydev.tech`))
+https://subscriptions${env}.fyers.co.in`))
+https://subscriptions${env}.fyers.in`));
+https://subscriptions.fyers.in
+--- main.js endpoints ---
+--- sizes ---
+10580 /tmp/ms.js
+ 4858 /tmp/msmain.js
+15438 total
+[0m
+[0m$ [0mgrep -oE 'get_msiuser_details[^;,)]*|MSI[A-Za-z]*|[a-zA-Z]*[Tt]oken' /tmp/ms.js | sort -u | head -20; echo '---cb/param context---'; grep -oE '.{60}get_msiuser_details.{60}' /tmp/ms.js
+MSI
+authToken
+deleteMSIToken
+extractFyersIDFromToken
+generateMSIToken
+get_msiuser_details"
+token
+---cb/param context---
+[0m
+[0m$ [0mcurl -s -i --max-time 15 -X GET 'https://api.fyers.in/api/beta/get_msiuser_details' 2>&1 | head -25; echo '====POST===='; curl -s -i --max-time 15 -X POST 'https://api.fyers.in/api/beta/get_msiuser_details' -H 'Content-Type: application/json' -d '{}' 2>&1 | head -25
+HTTP/2 502 
+server: awselb/2.0
+date: Sat, 08 Aug 2026 16:00:53 GMT
+content-type: text/html
+content-length: 122
+
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
+====POST====
+HTTP/2 502 
+server: awselb/2.0
+date: Sat, 08 Aug 2026 16:00:53 GMT
+content-type: text/html
+content-length: 122
+
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
+[0m
+[0m$ [0mgrep -oE '.{180}get_msiuser_details.{180}' /tmp/ms.js; echo '===='; grep -oE 'api/beta/[a-zA-Z0-9_/-]*' /tmp/ms.js | sort -u; echo '==== beta root ===='; grep -oE 'https://api.fyers.in[a-zA-Z0-9_?=&./-]*' /tmp/ms.js | sort -u
+====
+api/beta/get_msiuser_details
+==== beta root ====
+https://api.fyers.in/api/beta/get_msiuser_details
+[0m
+[0m$ [0mgrep -oE '.{120}get_msiuser_details.{120}' /tmp/ms.js || grep -c 'msiuser' /tmp/ms.js; echo '== lines with msiuser =='; tr '\n' ' ' < /tmp/ms.js | grep -oE '.{0,80}msiuser.{0,120}' | head
+1
+== lines with msiuser ==
+ar authCookie = getCookie("_FYERS");   fetch("https://api.fyers.in/api/beta/get_msiuser_details", {     method: "get",     headers: { authorization: authCookie },   })     .then(function (response) {       r
+[0m
+[0m$ [0mcurl -s -i --max-time 15 -X GET 'https://api.fyers.in/api/beta/get_msiuser_details' -H 'authorization: INVALIDXYZ' -o /dev/null -w '%{http_code}\n' 2>&1; curl -s -i --max-time 15 -X GET 'https://api.fyers.in/api/beta/get_msiuser_details' -H 'authorization: ' -o /dev/null -w '%{http_code}\n' 2>&1
+502
+502
+[0m
+STEP 1 — DELTA
+[NEW] marketsmith.fyers.in — new in-scope host absent from KB/prior runs: /evaluation/Evaluation.html (200), /ideaLists/IdeaList.html, /marketOutlook/MarketOutlook.html, /modelPortfolio/MarketPortfolio.html live; S3+Cloudflare-backed marketing site.
+[NEW] api.fyers.in/api/beta/get_msiuser_details — new /api/beta/ root on the main API host; marketSmith.js calls GET with `authorization: getCookie("_FYERS")` (raw cookie-as-bearer); bare/absent/invalid header → 502 awselb, no 401/403 observed.
+[NEW] subscriptions${env}.fyers.in — env-templated subscriptions host string hardcoded in marketSmith.js (in-scope fyers.in variant of the cookie-as-auth family; .fydev.tech/.co.in variants out of scope).
+
+STEP 2 — PRIORITIZE
+[PRIO] api.fyers.in/api/beta/get_msiuser_details — 7.65 — attack=7,business=8,tech=7,gate=9,cloud=5,fresh=10
+[PRIO] myaccount.fyers.in (carried top existing, reaffirmed in attack-surface tail) — 7.10 — attack=7,business=8,tech=7,gate=6,cloud=4,fresh=10
+[PRIO] marketsmith.fyers.in (host) — 6.10 — attack=5,business=4,tech=5,gate=10,cloud=6,fresh=10
+[PRIO] subscriptions${env}.fyers.in (env template) — 5.90 — attack=4,business=6,tech=6,gate=8,cloud=5,fresh=8
+
+STEP 3 — HYPOTHESES
+[HYP] Raw _FYERS-cookie bearer on main-API beta root
+class: AUTH
+asset: api.fyers.in/api/beta/get_msiuser_details
+confidence: 55
+reasoning: marketSmith.js issues GET to this endpoint with `authorization: getCookie("_FYERS")` (verified by fetch context in bundle); live probe with bare, empty, and invalid authorization all return 502 from awselb — no 401/403 HTTP gate observed, consistent with the proven cookie-as-bearer family now reaching the main API host; endpoint name implies account-linked MSI user details.
+evidence_needed: no-cookie vs own-cookie response delta returning business JSON (not 401/403/502); endpoint returning MSI user-details tied to another account's cookie.
+verify_steps: PASSIVE — re-probe after backend recovery: `curl -s -i 'https://api.fyers.in/api/beta/get_msiuser_details'` (no auth) and with `-H 'authorization: x'` to map 502 vs 401/404; enumerate sibling /api/beta/* via remaining marketsmith JS. AUTH_HELPED: own-cookie GET and compare body vs no-cookie.
+impact: account-tier MarketSmith subscription/user-details disclosure if token-binding is absent; High if business data returns on bare cookie.
+testability: PASSIVE
+
+[HYP] marketsmith eval pages expose additional in-scope /api/beta/ wiring
+class: MISCONFIG
+asset: marketsmith.fyers.in (+ api.fyers.in/api/beta/*)
+confidence: 45
+reasoning: new in-scope product host ships live marketing pages whose bundle already yielded a novel unauth cookie-bearer root on the main API host; sibling pages (ideaLists/marketOutlook/modelPortfolio) and globalHeader.min.js are unexamined and may embed further in-scope endpoints or MSI token plumbing.
+evidence_needed: additional in-scope API root or endpoint in the unprobed marketsmith JS/pages.
+verify_steps: PASSIVE — `curl -s --max-time 12 'https://marketsmith.fyers.in/assets/js/globalHeader.min.js' | grep -oE 'https?://[^"'"'"' ]+|/api/[a-zA-Z0-9_/-]*|_FYERS'`; fetch the three sibling HTML pages and grep for `api.fyers.in`, `token`, `fydev`, `_FYERS`; test `curl -s -i 'https://api.fyers.in/api/beta/'` and likely sub-paths for 404 vs 502.
+impact: further unauth enumeration surface on the main API host; Low-Medium.
+testability: PASSIVE
+
+[HYP] Env-templated subscriptions dev host inherits cookie-as-auth with no gate
+class: AUTH
+asset: subscriptions${env}.fyers.in (dev/staging variants)
+confidence: 45
+reasoning: marketSmith.js hardcodes `subscriptions${env}.fyers.in` env-templated roots; the subscriptions.fyers.in family is already KB-accepted (raw `_FYERS` cookie as bearer, client-side JWT decode at_hash→tokenId, console.log in main_msi_1.4.js) — dev variants may resolve unauthenticated and reuse the same gate-less pattern.
+evidence_needed: resolvable dev/staging subscriptions host (e.g. subscriptionsdev/subscriptionstest.fyers.in) serving the same cookie-as-bearer API without an HTTP gate.
+verify_steps: PASSIVE — `for h in subscriptionsdev subscriptionsdev.fyers.in subscriptionstest.fyers.in; do curl -s -i --max-time 10 "https://$h/" -o /dev/null -w "%{http_code} $h\n"; done`; for any 200/301, fetch main_msi-style JS and grep `_FYERS`/`Authorization`.
+impact: unauth account-tier subscription/API access on dev tier; Medium if gate-less reach confirmed.
+testability: PASSIVE
+
+STEP 4 — SELF-CRITIQUE
+[PARKED] marketsmithindia.com mstool/fyers/generateMSIToken + deleteMSIToken, login.fydev.tech, login.fyers.co.in, subscriptions${env}.fydev.tech/.co.in: third-party / non-`.fyers.in` TLDs — out of scope.
+[PARKED] sgb appIdHash/api_key env table (home chunks): identical chunk names/hash family to prior run — reaffirmed, not new.
+[PARKED] Fernet token_id (gAAAAABa1N59… Prod/exception/datafeed), subscriptions 0KMS0EZVXI, widgets 1341…/9848…, apiv2 GSKZGJHIBV, ordwin demo fyTokens: demo/public identifiers (reaffirmed).
+[PARKED] trade init/5.9 token-in-URL → fyers.quantsapp.com: third-party sink, out of scope.
+[PARKED] myaccount.fyers.in/web/*.js fuzz artifacts (audit_payload_hasher.js etc.): catch-all 200 text/html scanner noise (reaffirmed).
+[PARKED] datapub.fyers.in:8862, community gtm.js guest JWT, GA4/GTM/Sentry DSN/CF jsd+challenge/Zoho formperma/Google keys: public-by-design / deferred (reaffirmed).
+[FINAL] 1) api.fyers.in/api/beta/get_msiuser_details AUTH (55, PASSIVE→AUTH_HELPED, 7.65) 2) subscriptions${env}.fyers.in AUTH (45, PASSIVE, 5.90) 3) marketsmith.fyers.in MISCONFIG (45, PASSIVE, 6.10). Carried-forward open leads retained: EDIS fydev/v1/edis AUTH (60), fydev margin/v1 AUTH (60), verified-pnl get-data AUTH (58), myaccount AUTH (50), api-i1 invest-tier AUTH (55), fundtransfer /v2 AUTH (50), bo-login validate.js AUTH (50), sgb /updatesgb MISCONFIG (45), data.fyers.in dev-tier MISCONFIG (48), anjuna/v1/margin MISCONFIG (42), debt widget MISCONFIG (42), dev.fyers.in orderwin-trade MISCONFIG (40).
+
+STEP 5 — NEXT ACTION
+[NEXT] PROBE: enumerate the new MSI surface — `curl -s --max-time 12 'https://marketsmith.fyers.in/assets/js/globalHeader.min.js' | grep -oE 'https?://[^"'"'"' ]+|/api/[a-zA-Z0-9_/-]*|_FYERS'`; then `curl -s --max-time 12 'https://marketsmith.fyers.in/marketOutlook/MarketOutlook.html'` and `https://marketsmith.fyers.in/ideaLists/IdeaList.html'` (grep for `api.fyers.in|/api/beta/|token`); then re-map the gate `curl -s -i 'https://api.fyers.in/api/beta/get_msiuser_details' -H 'authorization: test'` (502 vs 401/404). No credentials.
+
+STEP 6 — LEARNING
+[LEARN] ACCEPTED MISCONFIG @ marketsmith.fyers.in: new in-scope Market Smith product host (evaluation/ideaLists/marketOutlook/modelPortfolio pages) live — newly enumerable.
+[LEARN] ACCEPTED AUTH @ api.fyers.in/api/beta/get_msiuser_details: raw `_FYERS` cookie passed as `authorization`; bare/invalid header → 502 (no 401/403 gate observed); new /api/beta/ root on main API host — cookie-as-bearer family reaches the main host.
+[LEARN] REJECTED OTHER @ marketsmithindia.com mstool token endpoints + login.fydev.tech/.co.in + subscriptions${env}.fydev.tech/.co.in: out-of-scope TLDs / third-party.
+[LEARN] REJECTED OTHER @ GA4 G-JXG5NQ1WQJ / GTM-MB6PRVDG / Sentry DSN / CF jsd+challenge tokens / Zoho formperma / Google keys: public-by-design (reaffirmed).
+[LEARN] REJECTED OTHER @ Fernet token_id + demo api_key literals (0KMS0EZVXI, 1341…/9848…, GSKZGJHIBV, ordwin fyTokens): demo/public (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+
+STEP 7 — RISK SCORE
+[RISK] fyers-js: 79 — a new in-scope product host (marketsmith.fyers.in) surfaced, and its bundle exposed a novel /api/beta/ root on the main API host (get_msiuser_details) that consumes the raw `_FYERS` cookie as `authorization` with no 401/403 gate observed (backend currently 502, so business behavior unverifiable this run); cookie-as-bearer family now reaches api.fyers.in itself, plus an env-templated subscriptions dev-root lead. No new hard credential and MSI endpoint backends unhealthy — exposure moderately high and expanding, exploit status unproven.

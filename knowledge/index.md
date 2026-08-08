@@ -35,3 +35,5 @@
 - 2026-08-08 REJECTED OTHER @ signup.fyers.in: Flutter signup shell, stock packages only — no analyzable in-scope JS value.
 - 2026-08-08 REJECTED OTHER @ support.fyers.in: CF-challenge-only host, likely third-party helpdesk.
 - 2026-08-08 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+- 2026-08-08 ACCEPTED MISCONFIG @ marketsmith.fyers.in: new in-scope Market Smith product host (evaluation/ideaLists/marketOutlook/modelPortfolio pages) live — newly enumerable.
+- 2026-08-08 ACCEPTED AUTH @ api.fyers.in/api/beta/get_msiuser_details: raw `_FYERS` cookie passed as `authorization`; bare/invalid header → 502 (no 401/403 gate observed); new /api/beta/ root on main API host — cookie-as-bearer fam

@@ -1033,3 +1033,55 @@ testability: PASSIVE
 [LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
 [LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
 [RISK] fyers-js: 78 — a new live account-tier portal host (myaccount.fyers.in) joined the surface, sitting directly on the API family whose unauthenticated reach was already proven (verified-pnl get-data → 200/status_code 1005 without a gate); the cookie-as-bearer + client-side JWT-gating family continues to accumulate host instances (myaccount, subscriptions, fundtransfer, bo-login). No new hard credential emerged and the new shell's API wiring remains unverified pending PASSIVE probes — exposure moderately high and expanding, exploit status unproven.
+
+===== ANALYST 2026-08-08 16:02:16 UTC =====
+[NEW] marketsmith.fyers.in — new in-scope host absent from KB/prior runs: /evaluation/Evaluation.html (200), /ideaLists/IdeaList.html, /marketOutlook/MarketOutlook.html, /modelPortfolio/MarketPortfolio.html live; S3+Cloudflare-backed marketing site.
+[NEW] api.fyers.in/api/beta/get_msiuser_details — new /api/beta/ root on the main API host; marketSmith.js calls GET with `authorization: getCookie("_FYERS")` (raw cookie-as-bearer); bare/absent/invalid header → 502 awselb, no 401/403 observed.
+[NEW] subscriptions${env}.fyers.in — env-templated subscriptions host string hardcoded in marketSmith.js (in-scope fyers.in variant of the cookie-as-auth family; .fydev.tech/.co.in variants out of scope).
+[PRIO] api.fyers.in/api/beta/get_msiuser_details — 7.65 — attack=7,business=8,tech=7,gate=9,cloud=5,fresh=10
+[PRIO] myaccount.fyers.in (carried top existing, reaffirmed in attack-surface tail) — 7.10 — attack=7,business=8,tech=7,gate=6,cloud=4,fresh=10
+[PRIO] marketsmith.fyers.in (host) — 6.10 — attack=5,business=4,tech=5,gate=10,cloud=6,fresh=10
+[PRIO] subscriptions${env}.fyers.in (env template) — 5.90 — attack=4,business=6,tech=6,gate=8,cloud=5,fresh=8
+[HYP] Raw _FYERS-cookie bearer on main-API beta root
+class: AUTH
+asset: api.fyers.in/api/beta/get_msiuser_details
+confidence: 55
+reasoning: marketSmith.js issues GET to this endpoint with `authorization: getCookie("_FYERS")` (verified by fetch context in bundle); live probe with bare, empty, and invalid authorization all return 502 from awselb — no 401/403 HTTP gate observed, consistent with the proven cookie-as-bearer family now reaching the main API host; endpoint name implies account-linked MSI user details.
+evidence_needed: no-cookie vs own-cookie response delta returning business JSON (not 401/403/502); endpoint returning MSI user-details tied to another account's cookie.
+verify_steps: PASSIVE — re-probe after backend recovery: `curl -s -i 'https://api.fyers.in/api/beta/get_msiuser_details'` (no auth) and with `-H 'authorization: x'` to map 502 vs 401/404; enumerate sibling /api/beta/* via remaining marketsmith JS. AUTH_HELPED: own-cookie GET and compare body vs no-cookie.
+impact: account-tier MarketSmith subscription/user-details disclosure if token-binding is absent; High if business data returns on bare cookie.
+testability: PASSIVE
+[HYP] marketsmith eval pages expose additional in-scope /api/beta/ wiring
+class: MISCONFIG
+asset: marketsmith.fyers.in (+ api.fyers.in/api/beta/*)
+confidence: 45
+reasoning: new in-scope product host ships live marketing pages whose bundle already yielded a novel unauth cookie-bearer root on the main API host; sibling pages (ideaLists/marketOutlook/modelPortfolio) and globalHeader.min.js are unexamined and may embed further in-scope endpoints or MSI token plumbing.
+evidence_needed: additional in-scope API root or endpoint in the unprobed marketsmith JS/pages.
+verify_steps: PASSIVE — `curl -s --max-time 12 'https://marketsmith.fyers.in/assets/js/globalHeader.min.js' | grep -oE 'https?://[^"'"'"' ]+|/api/[a-zA-Z0-9_/-]*|_FYERS'`; fetch the three sibling HTML pages and grep for `api.fyers.in`, `token`, `fydev`, `_FYERS`; test `curl -s -i 'https://api.fyers.in/api/beta/'` and likely sub-paths for 404 vs 502.
+impact: further unauth enumeration surface on the main API host; Low-Medium.
+testability: PASSIVE
+[HYP] Env-templated subscriptions dev host inherits cookie-as-auth with no gate
+class: AUTH
+asset: subscriptions${env}.fyers.in (dev/staging variants)
+confidence: 45
+reasoning: marketSmith.js hardcodes `subscriptions${env}.fyers.in` env-templated roots; the subscriptions.fyers.in family is already KB-accepted (raw `_FYERS` cookie as bearer, client-side JWT decode at_hash→tokenId, console.log in main_msi_1.4.js) — dev variants may resolve unauthenticated and reuse the same gate-less pattern.
+evidence_needed: resolvable dev/staging subscriptions host (e.g. subscriptionsdev/subscriptionstest.fyers.in) serving the same cookie-as-bearer API without an HTTP gate.
+verify_steps: PASSIVE — `for h in subscriptionsdev subscriptionsdev.fyers.in subscriptionstest.fyers.in; do curl -s -i --max-time 10 "https://$h/" -o /dev/null -w "%{http_code} $h\n"; done`; for any 200/301, fetch main_msi-style JS and grep `_FYERS`/`Authorization`.
+impact: unauth account-tier subscription/API access on dev tier; Medium if gate-less reach confirmed.
+testability: PASSIVE
+[PARKED] marketsmithindia.com mstool/fyers/generateMSIToken + deleteMSIToken, login.fydev.tech, login.fyers.co.in, subscriptions${env}.fydev.tech/.co.in: third-party / non-`.fyers.in` TLDs — out of scope.
+[PARKED] sgb appIdHash/api_key env table (home chunks): identical chunk names/hash family to prior run — reaffirmed, not new.
+[PARKED] Fernet token_id (gAAAAABa1N59… Prod/exception/datafeed), subscriptions 0KMS0EZVXI, widgets 1341…/9848…, apiv2 GSKZGJHIBV, ordwin demo fyTokens: demo/public identifiers (reaffirmed).
+[PARKED] trade init/5.9 token-in-URL → fyers.quantsapp.com: third-party sink, out of scope.
+[PARKED] myaccount.fyers.in/web/*.js fuzz artifacts (audit_payload_hasher.js etc.): catch-all 200 text/html scanner noise (reaffirmed).
+[PARKED] datapub.fyers.in:8862, community gtm.js guest JWT, GA4/GTM/Sentry DSN/CF jsd+challenge/Zoho formperma/Google keys: public-by-design / deferred (reaffirmed).
+[FINAL] 1) api.fyers.in/api/beta/get_msiuser_details AUTH (55, PASSIVE→AUTH_HELPED, 7.65) 2) subscriptions${env}.fyers.in AUTH (45, PASSIVE, 5.90) 3) marketsmith.fyers.in MISCONFIG (45, PASSIVE, 6.10). Carried-forward open leads retained: EDIS fydev/v1/edis AUTH (60), fydev margin/v1 AUTH (60), verified-pnl get-data AUTH (58), myaccount AUTH (50), api-i1 invest-tier AUTH (55), fundtransfer /v2 AUTH (50), bo-login validate.js AUTH (50), sgb /updatesgb MISCONFIG (45), data.fyers.in dev-tier MISCONFIG (48), anjuna/v1/margin MISCONFIG (42), debt widget MISCONFIG (42), dev.fyers.in orderwin-trade MISCONFIG (40).
+[NEXT] PROBE: enumerate the new MSI surface — `curl -s --max-time 12 'https://marketsmith.fyers.in/assets/js/globalHeader.min.js' | grep -oE 'https?://[^"'"'"' ]+|/api/[a-zA-Z0-9_/-]*|_FYERS'`; then `curl -s --max-time 12 'https://marketsmith.fyers.in/marketOutlook/MarketOutlook.html'` and `https://marketsmith.fyers.in/ideaLists/IdeaList.html'` (grep for `api.fyers.in|/api/beta/|token`); then re-map the gate `curl -s -i 'https://api.fyers.in/api/beta/get_msiuser_details' -H 'authorization: test'` (502 vs 401/404). No credentials.
+[LEARN] ACCEPTED MISCONFIG @ marketsmith.fyers.in: new in-scope Market Smith product host (evaluation/ideaLists/marketOutlook/modelPortfolio pages) live — newly enumerable.
+[LEARN] ACCEPTED AUTH @ api.fyers.in/api/beta/get_msiuser_details: raw `_FYERS` cookie passed as `authorization`; bare/invalid header → 502 (no 401/403 gate observed); new /api/beta/ root on main API host — cookie-as-bearer family reaches the main host.
+[LEARN] REJECTED OTHER @ marketsmithindia.com mstool token endpoints + login.fydev.tech/.co.in + subscriptions${env}.fydev.tech/.co.in: out-of-scope TLDs / third-party.
+[LEARN] REJECTED OTHER @ GA4 G-JXG5NQ1WQJ / GTM-MB6PRVDG / Sentry DSN / CF jsd+challenge tokens / Zoho formperma / Google keys: public-by-design (reaffirmed).
+[LEARN] REJECTED OTHER @ Fernet token_id + demo api_key literals (0KMS0EZVXI, 1341…/9848…, GSKZGJHIBV, ordwin fyTokens): demo/public (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+[RISK] fyers-js: 79 — a new in-scope product host (marketsmith.fyers.in) surfaced, and its bundle exposed a novel /api/beta/ root on the main API host (get_msiuser_details) that consumes the raw `_FYERS` cookie as `authorization` with no 401/403 gate observed (backend currently 502, so business behavior unverifiable this run); cookie-as-bearer family now reaches api.fyers.in itself, plus an env-templated subscriptions dev-root lead. No new hard credential and MSI endpoint backends unhealthy — exposure moderately high and expanding, exploit status unproven.
