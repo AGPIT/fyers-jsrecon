@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 06:58 UTC — 427 secret hits_
+_src 2026-08-08 07:08 UTC — 434 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -48,6 +48,10 @@ _src 2026-08-08 06:58 UTC — 427 secret hits_
   `SECRET|none`
 - `https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js`
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
+- `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
+  `SECRET|google_key|G-NTFX8XLKVH`
+- `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
+  `SECRET|other|654-55Z-K47Z`
 - `https://assets.fyers.in/Lib/widget/fyers-widget.js`
   `SECRET|dev_url|http://localhost/Git/GitHub/fy_notifications/public.json`
 - `https://assets.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
@@ -274,6 +278,10 @@ _src 2026-08-08 06:58 UTC — 427 secret hits_
   `SECRET|api_key|LCFY9OOX3D`
 - `https://login.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|Cloudflare challenge session token embedded in both request paths (per‑request "A/b" proof, not an app credential): 0.38205379864735833:1786024823:YXT7e8nQfZnLcuSoU9H2fhJTbX0y34kj5QSnIx00eok`
+- `https://marketsmith.fyers.in/assets/js/marketSmith.js`
+  `SECRET|api_key|authToken forwarded in query string to marketsmithindia.com by generateMSIToken`
+- `https://marketsmith.fyers.in/assets/js/marketSmith.js`
+  `SECRET|jwt|_FYERS cookie JWT (base64url payload decoded via atob in extractFyersIDFromToken, fy_id claim)`
 - `https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
   `SECRET|api_key|ApiKeydownHandler (matches Bootstrap dropdown keydown, not a secret)`
 - `https://myaccount.fyers.in/static/js/3.0107deb7.chunk.js`
@@ -688,6 +696,8 @@ _src 2026-08-08 06:58 UTC — 427 secret hits_
   `SECRET|none|no hardcoded secrets found (all literal strings; client_id is "trading_platform", user_id read from global `tokenId`)`
 - `https://trade.fyers.in/static/js/init/2.2/fy_trade.min.js`
   `SECRET|other|None - client_id literal is "trading_platform", user_id references runtime var tokenId (no hardcoded secret)`
+- `https://trade.fyers.in/static/js/init/2.3/fy_trade.min.js`
+  `SECRET|other|none found`
 - `https://trade.fyers.in/static/js/init/2.9/fy_trade.min.js`
   `SECRET|api_key|client_id=trading_platform (not a secret; runtime token passed separately)`
 - `https://trade.fyers.in/static/js/init/4.0/fy_trade.min.js`
@@ -696,6 +706,8 @@ _src 2026-08-08 06:58 UTC — 427 secret hits_
   `SECRET|api_key|cookie _FYERS value passed as Authorization header (runtime credential)`
 - `https://trade.fyers.in/static/js/init/4.7/fy_trade.min.js`
   `SECRET|jwt|tokenId (runtime auth token, appended to URLs, not a hardcoded literal)`
+- `https://trade.fyers.in/static/js/init/5.2/fy_trade.min.js`
+  `SECRET|api_key|client_id: "trading_platform" (public TradingView widget client id)`
 - `https://trade.fyers.in/static/js/init/5.9/fy_trade.min.js`
   `SECRET|runtime_auth|access_token from cookie _FYERS passed in Authorization header / URL query (tokenId) to third-party fyers.quantsapp.com`
 - `https://trade.fyers.in/static/js/init/6.2/fy_trade.min.js`
@@ -742,6 +754,8 @@ _src 2026-08-08 06:58 UTC — 427 secret hits_
   `SECRET|internal_endpoint|https://data.fyers.in/dev-fyers/mobileapi/user-settings`
 - `https://trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js`
   `SECRET|other|hardcoded internal plaintext-HTTP backend endpoint 13.235.24.249:8080 serving /gtt/orders (deobfuscated from obfuscated string array "API_POINT")`
+- `https://trade.fyers.in/static/js/sentry/1.0/sentry.min.js`
+  `SECRET|other|no credentials found in file`
 - `https://trade.fyers.in/static/js/widgets/js/2.2/widgets.min.js`
   `SECRET|api_key|fyToken (auth token, variable `tokenId`) — no hardcoded secret value present`
 - `https://trade.fyers.in/static/js/widgets/js/2.3/widgets.min.js`

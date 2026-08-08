@@ -438,3 +438,6 @@
 200 | https://pledge.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html
 200 | https://trade.fyers.in/logo/SF-pop-out-chart.svg | image/svg+xml
 200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml
+200 | https://marketsmith.fyers.in/evaluation/Evaluation.html | text/html
+200 | https://trade.fyers.in/logo/SF-pop-out-chart.svg | image/svg+xml
+200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml
