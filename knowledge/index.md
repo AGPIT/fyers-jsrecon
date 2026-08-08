@@ -23,3 +23,8 @@
 - 2026-08-08 ACCEPTED MISCONFIG @ api.fyers.in: anjuna/v1/margin (GET+POST) newly embedded in prod ordwin bundle — new enumerable root, class alive pending probe.
 - 2026-08-08 ACCEPTED MISCONFIG @ dev.fyers.in: in-scope dev host (orderwin-trade + full trade-platform dev tree) newly enumerable.
 - 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
+- 2026-08-08 ACCEPTED AUTH @ bo-login.fyers.in: dedicated basket-order login host first inventoried (validate.js) — new in-scope auth surface, class alive pending probe.
+- 2026-08-08 ACCEPTED MISCONFIG @ debt.fyers.in: new in-scope debt-product host (widget + Flutter shell) newly enumerable.
+- 2026-08-08 REJECTED OTHER @ api-connect-docs.fyers.in/fyers-lib.js: public client SDK, public-by-design — not a finding.
+- 2026-08-08 REJECTED OTHER @ recruit.fyers.in: Zoho white-label recruitment host (third-party platform) — no in-scope JS value.
+- 2026-08-08 REJECTED OTHER @ webtrader.fyers.in: http:// URLs fetch 0 — dead/migrated host.
