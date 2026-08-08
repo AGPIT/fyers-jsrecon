@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 11:34 UTC — 469 secret hits_
+_src 2026-08-08 11:58 UTC — 472 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -484,6 +484,12 @@ _src 2026-08-08 11:34 UTC — 469 secret hits_
   `SECRET|google_key|902868841845-3qb23dhv0b5tqv7j7u2vbkur48v93b orq.apps.googleusercontent.com`
 - `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
   `SECRET|other|none`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/ru_RU.a3e09a2675229dce3e37ec88ca6ed4a2.js`
+  `SECRET|other|none_found`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/tr_TR.bd0ce3dd5fb8bf6540ac8edc08c05406.js`
+  `SECRET|other|none`
+- `https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/colorpicker/colorpicker-ui.20664a60007621c5afbfb89237e787ac.js`
+  `SECRET|other|none_found`
 - `https://sgb.fyers.in/_next/static/chunks/26.dbf16a6c160395f15a03.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.b3ba817385a4a55bb248.js`

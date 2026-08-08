@@ -2351,8 +2351,9 @@
   "sha256": "8910093c3bd4ddf4",
   "analyzed": false,
   "map": null,
-  "error": "fetch failed",
-  "retries": 2
+  "error": "unreachable",
+  "retries": 3,
+  "skipped": true
  },
  {
   "url": "https://fyers.in/_next/static/chunks/webpack-96d52126208a6bdf.js",
@@ -22376,99 +22377,127 @@
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/pt_PT.fa8c0e3abf0ecedc4c1b5a47484064d9.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/a4e7a4aca9.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/ru_RU.a3e09a2675229dce3e37ec88ca6ed4a2.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/832d679f36.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/sv_SE.a6c80f9f6a10d7ac326e63c7a9457067.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/abb194761e.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/ta_IN.81fba65226659bca42f05530e0032be1.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/1274015977.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/th_TH.f2b204357651aac65792379ce2b540a7.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/e588c1d927.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/tr_TR.bd0ce3dd5fb8bf6540ac8edc08c05406.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/651de7ac2b.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/vi_VN.4dbb34e5b07762aa05f66392fe02fe68.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/d3a610d76b.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/zh_CN.bc3e00f9c5aac57dc4a4e964bccd2d66.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/65ea5f6801.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/I18n/zh_TW.0da6aab2f00dbc3f482f403fb667caf8.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/d3202fb90f.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/avatar-navigator/lyte-avatar-navigator-item.aebc9f5aff3a0296578ed80d7e5e275d.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/4d260e985d.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/avatar-navigator/lyte-avatar-navigator.0a282a3151f70502c5081bc4f270a12e.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/53e90f7f2b.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/colorpicker/colorpicker-ui.20664a60007621c5afbfb89237e787ac.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/c7f282c228.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/colorpicker/lyte-colorpicker.db728be392e7d35f560b89ed910269b3.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/963deda01e.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/helpers/helpers-dev.21936455fa208a64f0fa650acc90aaaa.js",
   "host": "recruit.fyers.in",
   "size": 2737,
-  "analyzed": false,
-  "error": "html"
+  "analyzed": true,
+  "sha256": "49cb658f16690271",
+  "pass": "deep1",
+  "report": "reports/d1a8bfdeae.md"
  },
  {
   "url": "https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/helpers/helpers.6e61ee1335cda6a123d4760de93cbe6c.js",
