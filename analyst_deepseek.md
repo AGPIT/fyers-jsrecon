@@ -343,3 +343,48 @@ testability: PASSIVE
 [LEARN] REJECTED MISCONFIG @ subscriptions.fyers.in 0KMS0EZVXI: matches public 10-char OAuth client-id format → public-by-design identifier, dropped.
 [LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
 [RISK] fyers-js: 67 — delta adds one fresh infra signal (prod broker 12.1 referencing datapub.fyers.in:8862, previously unprobeable), a new live www Next.js surface (low-value marketing data), and one new env app-id; everything else repeats known patterns (demo Fernet token_id across 15+ datafeed bundles, public OAuth app-id maps, client-side-gated account surfaces on sgb/verifiedpnl). No new hard credential, but the fresh datafeed-port lead and persistent client-side auth gating keep overall JS exposure moderately high.
+
+===== ANALYST 2026-08-08 00:06:25 UTC =====
+[HYP] Verified-P&L get-data may not enforce server-side auth
+class: AUTH
+asset: https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data
+confidence: 58
+reasoning: bundle `verifiedpnl main.cf21f7c5.js` ships `pnl_url` and prior bundle evidence shows `_FYERS` JWT parsed client-side with "auth validity not server-verified"; probe confirms anonymous POST → 200 business error (1005), no 401 observed.
+evidence_needed: POST with required fields while varying the client-supplied token/account identifier yields another account's P&L or a data-bearing response for a token that does not match the server session.
+verify_steps: AUTH_HELPED: `curl -s -X POST 'https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data' -H 'Content-Type: application/json' -d '{}'` (done, 200/1005); then submit minimal field set with own token and again with a swapped token_id/account value; compare responses read-only.
+impact: cross-account P&L disclosure if server trusts client-supplied identity; Medium-High.
+testability: AUTH_HELPED
+[HYP] SGB account pages trust client-supplied token from URL/localStorage without server session binding
+class: AUTH
+asset: sgb.fyers.in (/details /orders /updatesgb; chunk c930e9b61683…4853267f48716fd0cb10.js)
+confidence: 50
+reasoning: chunk sets `Authorization` header straight from `urlParams.get('auth_code')` and `localStorage.auth_token`; pages are live 200; token passed verbatim with no scheme prefix — classic client-gated pattern with server validation unobserved.
+evidence_needed: a token obtained for one SGB session is accepted for a different user's /orders or /details response, or requests succeed with only a self-supplied localStorage token.
+verify_steps: AUTH_HELPED: fetch chunk (done) to enumerate header construction; then with own token hit `GET https://sgb.fyers.in/orders` (Authorization: <own token>) and swap token value to a second identifier; compare responses. Read-only.
+impact: account/scheme (SGB) holding data exposure if server-side binding absent; Medium.
+testability: AUTH_HELPED
+[HYP] dev-tier mobileapi user-settings endpoint reachable without auth
+class: MISCONFIG
+asset: https://data.fyers.in/dev-beta/mobileapi/get-user-settings
+confidence: 42
+reasoning: referenced in prod-loaded unminified `fy_trade_unminified.js` alongside sibling `dev-fyers/mobileapi/user-settings` in ordwin helper; dev-tier host reachable in prior scans.
+evidence_needed: HTTP 200 JSON with user/settings shape (or 401-only-gated) instead of 404/DNS failure.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/get-user-settings` ; `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/user-settings`. Read-only.
+impact: configuration/account settings enumeration if unauthenticated; Low-Medium.
+testability: PASSIVE
+[PARKED] subscriptions main-truedata key-class: `0KMS0EZVXI` is `appId_third_party` public body identifier (hash 7c924a7a…) — public-by-design, dropped.
+[PARKED] trade.fyers.in Fernet token_id (sha 568d3b6a…): demo HISTORY_TEST across bundles (reaffirmed).
+[PARKED] ordwin/6 `13.235.24.249:8080/gtt/orders`: third-party AWS IP, out of scope (reaffirmed).
+[PARKED] trade/ www GA4 G-JXG5NQ1WQJ + GTM-MB6PRVDG + Zoho formperma: public marketing/analytics (reaffirmed).
+[PARKED] Sentry DSN (init/2.0–12, sha 2be44cf2…): public-by-design client key.
+[PARKED] partners widget localhost:46475 dev_url: HUMAN_ONLY, out-of-band (reaffirmed).
+[PARKED] sgb/ipo `_next` & /404 returning text/html 200: SPA-shell mis-probe (reaffirmed).
+[PARKED] datapub.fyers.in:8862: no response this run; deferred not dead.
+[PARKED] ordwin/2.0 demo ids 101000000014366 / 51808097115-CO-1: demo data (reaffirmed).
+[FINAL] 1) verifiedpnl get-data AUTH (conf 58, AUTH_HELPED, prio 7.45)  2) sgb account-pages AUTH (conf 50, AUTH_HELPED, prio 6.10)  3) data.fyers.in dev-beta user-settings MISCONFIG (conf 42, PASSIVE, prio 5.20)
+[NEXT] PROBE: `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/get-user-settings` and `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/user-settings` — read-only, closes the cheapest PASSIVE lead and discriminates MISCONFIG-alive vs dead.
+[LEARN] ACCEPTED AUTH @ api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data: unauthenticated POST reaches business validation (200, status_code 1005) — no HTTP-layer auth gate observed; class alive pending field-level test.
+[LEARN] REJECTED MISCONFIG @ subscriptions main-truedata: 0KMS0EZVXI is `appId_third_party` public identifier (hash 7c924a7a…), not a credential.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no TCP/TLS response on this run; class still deferred, not dead.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+[RISK] fyers-js: 68 — delta adds a live account-data API (verified-pnl get-data) that answers unauthenticated POSTs with business errors, confirms a concrete client-gated auth pattern on SGB account pages with token passed via URL query/localStorage, and surfaces a dev-tier mobileapi endpoint from prod code. No new hard credentials (all literals remain public-by-design identifiers or demo data), but the client-only auth-gating pattern on two account surfaces plus an unrejected dev endpoint keeps overall JS-surface exposure moderately high, pending the PASSIVE/AUTH_HELPED probes.

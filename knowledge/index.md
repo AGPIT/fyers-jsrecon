@@ -5,3 +5,6 @@
 - 2026-08-07 REJECTED MISCONFIG @ datapub.fyers4: no new in-run evidence; class deferred not dead.
 - 2026-08-07 ACCEPTED MISCONFIG @ datapub.fyers.in:8862: new prod-bundle port reference gives a concrete in-scope probe target for a class previously deferred for lack of evidence (probe pending).
 - 2026-08-07 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+- 2026-08-08 ACCEPTED AUTH @ api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data: unauthenticated POST reaches business validation (200, status_code 1005) — no HTTP-layer auth gate observed; class alive pending field-level test.
+- 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no TCP/TLS response on this run; class still deferred, not dead.
+- 2026-08-08 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).

@@ -678,3 +678,263 @@ STEP 6 — LEARNING
 
 STEP 7 — RISK SCORE
 [RISK] fyers-js: 67 — delta adds one fresh infra signal (prod broker 12.1 referencing datapub.fyers.in:8862, previously unprobeable), a new live www Next.js surface (low-value marketing data), and one new env app-id; everything else repeats known patterns (demo Fernet token_id across 15+ datafeed bundles, public OAuth app-id maps, client-side-gated account surfaces on sgb/verifiedpnl). No new hard credential, but the fresh datafeed-port lead and persistent client-side auth gating keep overall JS exposure moderately high.
+===== RAW ANALYST 2026-08-08 00:06:25 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+[0m$ [0msource /dev/stdin <<'EOF'
+declare -A S=(
+ [FERNET]="gAAAAABa1N59RgFWfiG1JD_W5KO143HKlj9Ezz6HMInChy8ud97qUSx01m3CMeyFk--Rrp13NSSUaGzvtstiim9nILsCOT3y1jDWSqsl5bmM1B2CXOW0V-M="
+ [TRUEDATA0KMS]="0KMS0EZVXI"
+ [SGB_APPID]="QMABZB5R01"
+ [ZOHO_FORMPERMA]="ZiaB9_3-KvEZZd5rvzoAHYRq5jmkZvLNqH5Zy4RPzY4"
+ [SENTRY_DSN]="https://1c2eb39fUrFtR4DdRdf9Mrf9S2Sw5cyKi8mБзsRXt4TfY6DqNQWAzRpALds"
+ [ORD2_0_DEMO]="51808097115-CO-1"
+)
+for k in "${!S[@]}"; do printf '%s ' "$k"; printf '%s' "${S[$k]}" | sha256sum | cut -d' ' -f1; done
+EOF
+SGB_APPID 862722e853b17755c39bdafad060f0e0224065edf1bafa1d42a59c08c0f1a4c8
+ZOHO_FORMPERMA aa2a4a66684a5eaea5862aaf172457a27f487c821389751c7ec6be2368dbbcde
+SENTRY_DSN 2be44cf2447a1e2c06b8b9499b3d0e108f77a9d6f3cbdd7ceb70177d5fc5f608
+ORD2_0_DEMO dd7fe92d191599be37fab340944e1e07551256153cfb192917cfb3d92a6e101e
+FERNET 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534
+TRUEDATA0KMS 7c924a7a0b079b4bedbe973e90ec706878a2a4b9a58d526819be6afffdb29b4b
+[0m
+[0m$ [0mcurl -s -i --max-time 15 "https://api-a.prod.fyers.in/api/v1/verified-pnl/get-data" 2>&1 | cut -c1-600; echo "---ALT---"; curl -s -i --max-time 15 "https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data" 2>&1 | cut -c1-600
+---ALT---
+HTTP/2 405 
+date: Sat, 08 Aug 2026 00:04:20 GMT
+content-type: application/json
+content-length: 35
+x-content-type-options: nosniff
+server: cloudflare
+allow: POST, OPTIONS
+vary: Accept
+set-cookie: __cf_bm=qObnc92xsp.n9TWtdqsWjXmDN4JIcdN7bf59P9JIfmg-1786147460.341166-1.0.1.1-U3ItQLybKMVBZc1aAWCrSXtWB1HWdqWJ8qc1oElS_FbQeNWIpvURGzhRK6AICY3NwIvA08BG6kEWV6JRdkeiMAddtdyWb3PGAf7ts1hGAwpX7_l8P9kPtkVJtGR3PgIE; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in; Expires=Sat, 08 Aug 2026 00:34:20 GMT
+set-cookie: _cfuvid=_6cnxdLiy33AyfJY2XpYNWYbycUthWGBrrVNhgEVOWI-1786147460.341166-1.0.1.1-5A4634yCHjED8C0uaB0A7Dsk27dHQkPKnjE84SE_jxE; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in
+cf-cache-status: DYNAMIC
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+cf-ray: a27a435b2e8cf4e3-IAD
+
+{"title": "405 Method Not Allowed"}
+[0m
+[0m$ [0mcurl -s -i --max-time 15 "https://sgb.fyers.in/_next/static/chunks/c930e9b61683ff946dd89c25b851ab3372780cb.4853267f48716fd0c1c.dll.js" -o /tmp/t1; echo "rc=$?"; ls -la /tmp/t1; head -c 200 /tmp/t1
+rc=0
+-rw-r--r-- 1 runner runner 6003 Aug  8 00:04 /tmp/t1
+HTTP/2 404 
+date: Sat, 08 Aug 2026 00:04:21 GMT
+content-type: text/html
+server: cloudflare
+last-modified: Wed, 12 Mar 2025 05:53:27 GMT
+x-content-type-options: nosniff
+x-amz-error-code: NoSuchKe
+[0m
+[0m$ [0mcurl -s --max-time 20 "https://subscriptions.fyers.in/assets/js/main_msi_1.4.js" -o /tmp/msi.js; echo "rc=$?"; wc -c /tmp/msi.js; grep -oE '"(https?://[a-zA-Z0-9._/-]+)?"' /tmp/msi.js | sort -u | head -40
+rc=0
+19576 /tmp/msi.js
+""
+"https://marketsmith.fyers.in/evaluation/"
+"https://subscriptions.fyers.in/market-smith/"
+"https://subscriptions.fyers.in/status"
+"https://subscriptions.fyers.in/true-data.html"
+[0m
+[0m$ [0mcurl -s -i --max-time 15 -X POST "https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data" -H "Content-Type: application/json" -d '{}' 2>&1 | cut -c1-900
+HTTP/2 200 
+date: Sat, 08 Aug 2026 00:04:26 GMT
+content-type: application/json
+content-length: 78
+x-content-type-options: nosniff
+server: cloudflare
+set-cookie: __cf_bm=MjkKO2QVHzyVJXbsbshZ2XsnwASeEYxezWHDoIkk5n0-1786147466.3175633-1.0.1.1-eyPT4k_Kg6p236WJs0Ps6uKL0ofIfrmWJ_R6yPfP8B8ohWiuCHS9.pEBZEL5dJn2VPWQ3Z02RmWvlRvBfmis0ZxjOQoT2QLB0Yf2K6P8lUDvv4_AMmZUx2ASdW3EkpPo; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in; Expires=Sat, 08 Aug 2026 00:34:26 GMT
+set-cookie: _cfuvid=Lr3hh1OP3sJgTKykF16JUF8D7RMSm.DpvWF42aOCgdo-1786147466.3175633-1.0.1.1-NZDCh6ByeN1.v4ZAySYu6vUz6x30Rfc5AKp_9gCVOJM; HttpOnly; SameSite=None; Secure; Path=/; Domain=fyers.in
+cf-cache-status: DYNAMIC
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+cf-ray: a27a4380795fb1e2-IAD
+
+{"status": "error", "status_code": 1005, "message": "Required Fields Missing"}
+[0m
+[0m$ [0mcurl -s --max-time 20 "https://sgb.fyers.in/_next/static/chunks/c930e#4853267f48716fd0cb10.js" -o /tmp/sgb1.js -w "%{http_code}\n"; grep -oE 'auth_code|localStorage\.auth_token|Authorization' /tmp/sgb1.js | sort | uniq -c
+404
+[0m
+[0m$ [0mcurl -s --max-time 20 "https://subscriptions.fyers.in/assets/js/main-truedata.js" -o /tmp/td.js; grep -oE '.{40}0KMSoMEZVXI.{40}' /tmp/td.js | head; echo "---"; grep -oE '(token_at|session|authorization|headers)[^,;]{0,60}' /tmp/td.js | head -20
+---
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:tokenId
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+headers:{
+authorization:getCookie("_FYERS")
+[0m
+[0m$ [0mhead -c 300 /tmp/td.js; echo; echo "==="; grep -ob "0KMS0EZVXI" /tmp/td.js; echo "==="; grep -oE '.{0,60}0KMS0EZVXI.{0,60}' /tmp/td.js; echo "===appId==="; grep -oE '.{0,50}tokenId.{0,50}' /tmp/td.js | head
+!(function($) {
+    "use strict";
+  
+    // Smooth scroll for the navigation menu and links with .scrollto classes
+    $(document).on('click', '.nav-menu a, .mobile-nav a, .scrollto', function(e) {
+      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostna
+===
+8643:0KMS0EZVXI
+===
+      "appId_third_party":"0KMS0EZVXI",
+===appId===
+  var tokenId;
+            tokenId = fyObj.at_hash;
+            console.log(tokenId);
+            //alert(tokenId);
+          //const tokenAuth = tokenId;
+    //const tokenAuth = tokenId;
+        authorization:tokenId
+[0m
+[0m$ [0mcurl -s --max-time 20 "https://sgb.fyers.in/_next/static/chunks/c930e9b61683ff946dd89c25b851ab337282b22.d3a64d4a13fa91f39e0b.js" -o /tmp/sgb2.js -w "%{http_code}\n"; grep -oE 'auth_code|auth_token|Authorization|localStorage' /tmp/sgb2.js | sort | uniq -c
+404
+[0m
+[0m$ [0mfor u in "https://datapub.fyers.in:8862/" "http://datapub.fyers.in:8862/"; do echo "== $u"; curl -s -i --max-time 10 "$u" 2>&1 | cut -c1-400; echo; done
+== https://datapub.fyers.in:8862/
+
+== http://datapub.fyers.in:8862/
+[0m
+[0m$ [0mcurl -s --max-time 15 "https://sgb.fyers.in/_next/static/chunks/c930e9b61683ff946dd89c25b851ab3372722ca.38efa6cb3700fCb8310cb.js" -o /tmp/sgb3.js -w "%{http_code}\n" 2>/dev/null; curl -s --max-time 15 "https://sgb.fyers.in/details" -o /tmp/sgb.html -w "details=%{http_code}\n"; grep -oE 'src="[^"]+\.js"' /tmp/sgb.html | head -20
+404
+details=200
+src="https://assets.fyers.in/fy_notifications/js/3.0/fyers-widget.js"
+src="./_next/static/chunks/polyfills-ca922b6c9c16ca2bac5d.js"
+src="./_next/static/chunks/main-deb7eefa6ef9fb174cb3.js"
+src="./_next/static/chunks/webpack-0637a3d7d74d92b9bd30.js"
+src="./_next/static/chunks/framework.bb4f662c012aed22a730.js"
+src="./_next/static/chunks/commons.f9f6a69eecdfcfa2b339.js"
+src="./_next/static/chunks/pages/_app-75012f4c431f582d29dd.js"
+src="./_next/static/chunks/75fc9c18.9fdd4449564e9ca31488.js"
+src="./_next/static/chunks/6fa56ac929648c726664c103e8b224545524377b.05793146d2c90b0f33f9.js"
+src="./_next/static/chunks/b5f95d37e24f22597e4c7c8e90ef2491406f6045.7a0b2aaf78a336288a06.js"
+src="./_next/static/chunks/c930e9b61683ff946dd89c25b851ab337278c84b.4853267f48716fd0cb10.js"
+src="./_next/static/chunks/pages/details-795269c60d4e70ef3949.js"
+src="./_next/static/iOGL8CLGrtNDEooEpard8/_buildManifest.js"
+src="./_next/static/iOGL8CLGrtNDEooEpard8/_ssgManifest.js"
+[0m
+[0m$ [0mcurl -s --max-time 20 "https://sgb.fyers.in/_next/static/chunks/c930e9b61683ff946dd89c25b851ab337278c84b.4853267f48716fd0cb10.js" -o /tmp/sgb4.js -w "code=%{http_code}\n"; grep -oE 'auth_code|auth_token|Authorization|localStorage|searchParams|query' /tmp/sgb4.js | sort | uniq -c; echo ===; grep -oE '.{0,40}(auth_code|auth_token).{0,80}' /tmp/sgb4.js | head -15
+code=200
+      4 Authorization
+      1 auth_code
+      4 auth_token
+      4 localStorage
+     30 query
+===
+1]); // const authCode = urlParams.get('auth_code');
+                localStorage.getItem("auth_token") ? axiosInstance.defaults.headers.common["Authorization"] = "".concat(localSto
+rage.getItem("auth_token") === null ? "" : localStorage.getItem("auth_token")) : "";
+      return localStorage.auth_token;
+[0m
+[0m$ [0mgrep -oE '.{0,80}(data:\s*\{|body|get_data|pnl_fields|account|client_id|fy_id).{0,120}' /tmp/vpnl.js | head -20
+"!==typeof document?document:void 0)))return null;try{return e.activeElement||e.body}catch(t){return e.body}}function $(e,t){var n=t.checked;return L({},t,{defaultChecked:void 0,defaultValue:void 0,value:
+fi(e),ii=!0,!1;var t;if((t=3!==e.tag)&&!(t=5!==e.tag)&&(t="head"!==(t=e.type)&&"body"!==t&&!no(e.type,e.memoizedProps)),t&&(t=oi)){if(si(e))throw pi(),Error(i(418));for(;t;)li(e,t),t=so(t.nextSibling)}if(
+toString(12).slice(2);if("undefined"!==typeof document&&document.head&&document.body){var t=document.body.querySelectorAll("style[".concat(dt,"]"))||[],n=document.head.firstChild;Array.from(t).forEach((fu
+ion Et(e){return e.attachTo?e.attachTo:document.querySelector("head")||document.body}function _t(e){return Array.from((St.get(e)||e).children).filter((function(e){return"STYLE"===e.tagName}))}function kt(
+on="fixed",i.style.left="0",i.style.top="0",null===t||void 0===t||t(i),document.body.appendChild(i);var a=n?n(i):null===(r=getComputedStyle(i).content)||void 0===r?void 0:r.includes(Lt);return null===(o=i
+yle.position="fixed",e.style.visibility="hidden",e.style.top="-9999px",document.body.appendChild(e);var t=getComputedStyle(e).content||"";(t=t.replace(/^"/,"").replace(/"$/,"")).split(";").forEach((functi
+"]"));r&&(Xn=!1,null===(n=r.parentNode)||void 0===n||n.removeChild(r)),document.body.removeChild(e)}}(),!!Kn[e]}var Zn=gt(),Jn="_multi_value_";function er(e){return bn(Un(e),wn).replace(/\{%%%\:[^;];}/g,"
+,r.width="200px",r.height="150px",r.overflow="hidden",n.appendChild(t),document.body.appendChild(n);var o=t.offsetWidth;n.style.overflow="scroll";var i=t.offsetWidth;o===i&&(i=n.clientWidth),document.body
+kit-scrollbar"),n=t.width,r=t.height;return{width:Rl(n),height:Rl(r)}}(document.body).width,t=document.body.scrollHeight>(window.innerHeight||document.documentElement.clientHeight)&&window.innerWidth>docu
+ment.body.offsetWidth;Pt("\nhtml body {\n  overflow-y: hidden;\n  ".concat(t?"width: calc(100% - ".concat(e,"px);"):"","\n}"),r)}else Nt(r);return function()
+(function(t){return[e].concat(f(t))}))});function d(){r.parentElement||document.body.appendChild(r),o.current=!0}function p(){var e;null===(e=r.parentElement)||void 0===e||e.removeChild(r),o.current=!1}re
+2),w=b[0],x=b[1],S=null!==v&&void 0!==v?v:w;Dl(o&&r&&gt()&&(S===w||S===document.body));var C=null;c&&Ke(c)&&n&&(C=c.ref);var E=Ge(C,n);if(!h||!gt()||void 0===v)return null;var _,k=!1===S||("boolean"===typ
+rn t.style.position="absolute",t.style.zIndex="-9999",t.appendChild(e),document.body.appendChild(t),bp=1===e.scrollHeight,document.body.removeChild(t),bp}())}),[]),n},Cp=t.createContext({latestIndex:0,hor
+r"!==typeof n){var o=e.document;"number"!==typeof(n=o.documentElement[r])&&(n=o.body[r])}return n}var lh=t.memo((function(e){return e.children}),(function(e,t){return!t.shouldUpdate})),ch={width:0,height:
+e,l=e.ariaId,c=e.footer,s=e.closable,u=e.closeIcon,f=e.onClose,d=e.children,p=e.bodyStyle,h=e.bodyProps,m=e.modalRender,v=e.onMouseDown,g=e.onMouseUp,y=e.holderRef,b=e.visible,w=e.forceRender,x=e.width,S=
+:"".concat(r,"-content")},O,k,t.createElement("div",tn({className:"".concat(r,"-body"),style:p},h),d),_);return t.createElement("div",{key:"dialog-element",role:"dialog","aria-labelledby":a?l:null,"aria-m
+.concat(e.borderRadiusLG,"px 0 0"),marginBottom:e.marginXS}),De(r,"".concat(i,"-body"),{fontSize:e.fontSize,lineHeight:e.lineHeight,wordWrap:"break-word"}),De(r,"".concat(i,"-footer"),De({textAlign:"end",
+x",flexDirection:"column"},De(o,"".concat(i,"-content,\n          ").concat(i,"-body,\n          ").concat(i,"-confirm-body-wrapper"),{display:"flex",flexDirection:"column",flex:"auto"}),De(o,"".concat(i,
+"-confirm-body"),{marginBottom:"auto"}),o))]},Um=function(e){var t,n,r,o,i=e.componentCls,a="".concat(i,"-confirm");return De(o={},a,(
+rtl"}},"".concat(e.antCls,"-modal-header"),{display:"none"}),De(r,"".concat(a,"-body-wrapper"),Object.assign({},{"&::before":{display:"table",content:'""'},"&::after":{display:"table",clear:"both",content
+[0m
+[0m$ [0mcurl -s --max-time 25 "https://verifiedpnl.fyers.in/static/js/main.cf21f7c5.js" -o /tmp/vpnl.js -w "code=%{http_code} size=%{size_download}\n"; grep -oE '.{0,120}(get-data|verified-pnl).{0,180}' /tmp/vpnl.js | head -8
+code=200 size=841382
+rs",e.UseScrollRestoration="useScrollRestoration"}(je||(je={}));var Re=Object.freeze({no_state:"https://assets.fyers.in/verified-pnl/images/illustration-no-state.svg",external_link:"https://assets.fyers.in/images/website/icon-open-blank.svg",logout_icon:"https://assets.fyers.in/images/global-header/icon-logout.
+svg",fyers_logo:"https://assets.fyers.in/images/logo.svg",hamburger_menu:"https://assets.fyers.in/verified-pnl/images/hamburger-menu.svg",down_arrow_icon:"https://assets.fyers.in/images/website/icon-down-arrow.svg",pagination_down_arrow_icon:"https://assets.fyers.in/verified-pnl/images/dow
+n-arrow.svg",user_icon:"https://assets.fyers.in/verified-pnl/images/user.svg",document_icon:"https://assets.fyers.in/verified-pnl/images/icon-table-list.svg",grid_menu_icon:"https://assets.fyers.in/verified-pnl/images/icon-grid-menu.svg",close_menu_icon:"https://assets.fyers.in/verified-pnl/images/close-menu
+row_icon:"https://assets.fyers.in/images/website/icon-arrow-right-header.svg",fyers_loader_gif:"https://assets.fyers.in/verified-pnl/images/fyers-loader-white.gif"}),Te=n(184);var Ae=function(){return(0,Te.jsx)("footer",{children:(0,Te.jsx)("div",{className:"bottom-details",children:(0,Te.jsxs)("div",{className
+ogin_url:"https://login.fyers.in/?cb=https://verifiedpnl.fyers.in",pnl_url:"https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data",hostname:".fyers.in"}),xv=Object.freeze({login_url:wv.login_url,pnl_url:wv.pnl_url,hostname:wv.hostname}),Sv=Object.freeze({sign_up_url:"https://open-account.fyers.in/?u
+-3",children:[(0,Te.jsxs)("div",{className:"main-heading my-3",children:[(0,Te.jsx)("img",{src:"https://assets.fyers.in/verified-pnl/images/icon-table-list.svg",className:"mr-2",alt:"title"}),(0,Te.jsx)("span",{children:Rv(r)})]}),(0,Te.jsxs)("div",{className:"table-wrapper-container mb-5 mb-md-0 ".concat(r.cus
+ight",colSpan:7,onClick:function(){return n(e)},children:["View all"," ",(0,Te.jsx)("img",{src:"https://assets.fyers.in/verified-pnl/images/arrow.svg",alt:"arrow"})]})}):""]}):""},r)}))})]}),r.custom_options.hidePosition?(0,Te.jsx)("div",{className:"private-content",children:(0,Te.jsxs)("div",{class:!0,children
+:[(0,Te.jsx)("img",{src:"https://assets.fyers.in/verified-pnl/images/eye.svg"}),(0,Te.jsx)("div",{className:"header",children:"Private Content"}),(0,Te.jsx)("p",{children:"The user has shared the  verified P&L data anonymously"})]})}):null]}
+[0m
+## STEP 1 — DELTA
+- [NEW] api-a1-prod.fyers.in POST `/myaccount/prod/verified-pnl/get-data`: unauthenticated POST returns HTTP 200 JSON `status_code 1005 "Required Fields Missing"` — reaches business-validation layer with no observed auth gate (not 401).
+- [NEW] subscriptions.fyers.in main-truedata.js: literal `0KMS0EZVXI` resolved as `appId_third_party` body field (hash 7c924a7a…), NOT an Authorization key — resolves prior ambiguity.
+- [NEW] sgb.fyers.in chunk `c930e9b61683…4853267f48716fd0cb10.js`: `auth_code` read from URL query and set directly as `Authorization` header; `localStorage.auth_token` persisted and reused verbatim across account pages.
+- [NEW] trade.fyers.in `static/js/init/6.7/fy_trade_unminified.js` references dev-tier URL `https://data.fyers.in/dev-beta/mobileapi/get-user-settings`.
+- [CHANGED] datapub.fyers.in:8862: probed this run (HTTP+HTTPS) — no response/connection failed; class stays deferred, no new evidence.
+- [CHANGED] verifiedpnl get-data AUTH lead upgraded from config-only to live-reachable unauthenticated POST.
+
+## STEP 2 — PRIORITIZE
+- [PRIO] api-a1-prod.fyers.in verified-pnl get-data | 7.45 | attack 7 business 8 tech 7 gate 7 cloud 7 fresh 9
+- [PRIO] sgb.fyers.in account pages auth_code-in-URL / localStorage token | 6.10 | attack 6 business 7 tech 6 gate 5 cloud 4 fresh 8
+- [PRIO] data.fyers.in dev-beta mobileapi get-user-settings | 5.20 | attack 5 business 5 tech 6 gate 4 cloud 4 fresh 8
+
+## STEP 3 — HYPOTHESES
+[HYP] Verified-P&L get-data may not enforce server-side auth
+class: AUTH
+asset: https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data
+confidence: 58
+reasoning: bundle `verifiedpnl main.cf21f7c5.js` ships `pnl_url` and prior bundle evidence shows `_FYERS` JWT parsed client-side with "auth validity not server-verified"; probe confirms anonymous POST → 200 business error (1005), no 401 observed.
+evidence_needed: POST with required fields while varying the client-supplied token/account identifier yields another account's P&L or a data-bearing response for a token that does not match the server session.
+verify_steps: AUTH_HELPED: `curl -s -X POST 'https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data' -H 'Content-Type: application/json' -d '{}'` (done, 200/1005); then submit minimal field set with own token and again with a swapped token_id/account value; compare responses read-only.
+impact: cross-account P&L disclosure if server trusts client-supplied identity; Medium-High.
+testability: AUTH_HELPED
+
+[HYP] SGB account pages trust client-supplied token from URL/localStorage without server session binding
+class: AUTH
+asset: sgb.fyers.in (/details /orders /updatesgb; chunk c930e9b61683…4853267f48716fd0cb10.js)
+confidence: 50
+reasoning: chunk sets `Authorization` header straight from `urlParams.get('auth_code')` and `localStorage.auth_token`; pages are live 200; token passed verbatim with no scheme prefix — classic client-gated pattern with server validation unobserved.
+evidence_needed: a token obtained for one SGB session is accepted for a different user's /orders or /details response, or requests succeed with only a self-supplied localStorage token.
+verify_steps: AUTH_HELPED: fetch chunk (done) to enumerate header construction; then with own token hit `GET https://sgb.fyers.in/orders` (Authorization: <own token>) and swap token value to a second identifier; compare responses. Read-only.
+impact: account/scheme (SGB) holding data exposure if server-side binding absent; Medium.
+testability: AUTH_HELPED
+
+[HYP] dev-tier mobileapi user-settings endpoint reachable without auth
+class: MISCONFIG
+asset: https://data.fyers.in/dev-beta/mobileapi/get-user-settings
+confidence: 42
+reasoning: referenced in prod-loaded unminified `fy_trade_unminified.js` alongside sibling `dev-fyers/mobileapi/user-settings` in ordwin helper; dev-tier host reachable in prior scans.
+evidence_needed: HTTP 200 JSON with user/settings shape (or 401-only-gated) instead of 404/DNS failure.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/get-user-settings` ; `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/user-settings`. Read-only.
+impact: configuration/account settings enumeration if unauthenticated; Low-Medium.
+testability: PASSIVE
+
+## STEP 4 — SELF-CRITIQUE
+[PARKED] subscriptions main-truedata key-class: `0KMS0EZVXI` is `appId_third_party` public body identifier (hash 7c924a7a…) — public-by-design, dropped.
+[PARKED] trade.fyers.in Fernet token_id (sha 568d3b6a…): demo HISTORY_TEST across bundles (reaffirmed).
+[PARKED] ordwin/6 `13.235.24.249:8080/gtt/orders`: third-party AWS IP, out of scope (reaffirmed).
+[PARKED] trade/ www GA4 G-JXG5NQ1WQJ + GTM-MB6PRVDG + Zoho formperma: public marketing/analytics (reaffirmed).
+[PARKED] Sentry DSN (init/2.0–12, sha 2be44cf2…): public-by-design client key.
+[PARKED] partners widget localhost:46475 dev_url: HUMAN_ONLY, out-of-band (reaffirmed).
+[PARKED] sgb/ipo `_next` & /404 returning text/html 200: SPA-shell mis-probe (reaffirmed).
+[PARKED] datapub.fyers.in:8862: no response this run; deferred not dead.
+[PARKED] ordwin/2.0 demo ids 101000000014366 / 51808097115-CO-1: demo data (reaffirmed).
+[FINAL] 1) verifiedpnl get-data AUTH (conf 58, AUTH_HELPED, prio 7.45)  2) sgb account-pages AUTH (conf 50, AUTH_HELPED, prio 6.10)  3) data.fyers.in dev-beta user-settings MISCONFIG (conf 42, PASSIVE, prio 5.20)
+
+## STEP 5 — NEXT ACTION
+[NEXT] PROBE: `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/get-user-settings` and `curl -s -i --max-time 12 https://data.fyers.in/dev-beta/mobileapi/user-settings` — read-only, closes the cheapest PASSIVE lead and discriminates MISCONFIG-alive vs dead.
+
+## STEP 6 — LEARNING
+[LEARN] ACCEPTED AUTH @ api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data: unauthenticated POST reaches business validation (200, status_code 1005) — no HTTP-layer auth gate observed; class alive pending field-level test.
+[LEARN] REJECTED MISCONFIG @ subscriptions main-truedata: 0KMS0EZVXI is `appId_third_party` public identifier (hash 7c924a7a…), not a credential.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no TCP/TLS response on this run; class still deferred, not dead.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+
+## STEP 7 — RISK SCORE
+[RISK] fyers-js: 68 — delta adds a live account-data API (verified-pnl get-data) that answers unauthenticated POSTs with business errors, confirms a concrete client-gated auth pattern on SGB account pages with token passed via URL query/localStorage, and surfaces a dev-tier mobileapi endpoint from prod code. No new hard credentials (all literals remain public-by-design identifiers or demo data), but the client-only auth-gating pattern on two account surfaces plus an unrejected dev endpoint keeps overall JS-surface exposure moderately high, pending the PASSIVE/AUTH_HELPED probes.
