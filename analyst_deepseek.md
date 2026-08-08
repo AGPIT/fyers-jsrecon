@@ -912,3 +912,5 @@ testability: PASSIVE
 [LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
 [LEARN] REJECTED OTHER @ Fernet token_id (datafeed/Prod/exception): KB-dead HISTORY_TEST demo (reaffirmed).
 [RISK] fyers-js: 77 — live 200 on fundtransfer /v2 (account money-movement surface) now confirmed alongside a prod bundle that hardcodes a dev baseUrl (api.fyers.in/fundtransfer/dev) and client-side _FYERS parsing for fy_id; new novel margin root (anjuna/v1/margin) and an in-scope dev.fyers.in trade-platform tree are newly enumerable; cookie-as-auth family continues to accumulate host instances. No new hard credential emerged and all new gate shapes remain unverified pending PASSIVE probes — exposure moderately high and expanding, exploit status unproven.
+
+===== ANALYST 2026-08-08 13:30:59 UTC =====
