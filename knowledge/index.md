@@ -11,3 +11,6 @@
 - 2026-08-08 ACCEPTED AUTH @ sgb.fuers.in: in-bundle memory confirms auth_code + localStorage auth_token presented as Authorization without server-side/non-schematic binding observed.
 - 2026-08-08 ACCEPTED MISMOLE @ api-socket.fuers.in/api.fuers.in: dev-tier and WebSocket roots are now hard-embedded in prod broker bundles — newly enumerable (probe pending).
 - 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+- 2026-08-08 ACCEPTED MISCONFIG @ ipo.fyers.in: dev/staging API roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo) ship inside the prod bundle — newly enumerable dev-tier surface.
+- 2026-08-08 ACCEPTED AUTH @ api.fyers.in/fydev/v1/edis/*: base host resolved (edis/index + edis/details GET/POST with token_id, authCdsl.html 200 live) — strengthens the proven token-in-URL chain on settlement surface.
+- 2026-08-08 ACCEPTED AUTH @ fundtransfer.fyers.in/v2: cookie-as-bearer (validate("_FYERS")) + client-side-only limits — new account-tier instance of the family, probe pending.

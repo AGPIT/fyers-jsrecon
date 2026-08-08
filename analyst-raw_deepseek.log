@@ -1367,3 +1367,1067 @@ testability: PASSIVE
 
 === STEP 7 — RISK SCORE ===
 [RISK] fyers-js: 73 — EDIS financial settlement surface newly enumerated with the proven token-in-URL auth pattern (in-scope, high business value), verified-pnl get-data corroborated as cookie-carried with no server-side validity observed, and an additional unresolved sgb appId (AEHNSK9PRW) now surfaced. No new hard credential (0KMS0EZVXI/GSKZGJHIBV both appId-format public data), but the account-tier surface continues to grow around value-bound token auth; overall JS exposure moderately high pending the EDIS gate probe.
+===== RAW ANALYST 2026-08-08 09:22:43 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+[0m$ [0mls -la && echo "---" && ls -la reports 2>/dev/null | head -50
+total 1900
+drwxr-xr-x 8 runner runner    4096 Aug  8 09:19 .
+drwxr-xr-x 3 runner runner    4096 Aug  8 09:19 ..
+drwxr-xr-x 7 runner runner    4096 Aug  8 09:19 .git
+drwxr-xr-x 3 runner runner    4096 Aug  8 09:19 .github
+-rw-r--r-- 1 runner runner      21 Aug  8 09:19 .gitignore
+-rw-r--r-- 1 runner runner    2626 Aug  8 09:19 README.md
+-rw-r--r-- 1 runner runner      44 Aug  8 09:19 analyst-out.txt
+-rw-r--r-- 1 runner runner   77966 Aug  8 09:19 analyst-prompt.txt
+-rw-r--r-- 1 runner runner  133578 Aug  8 09:19 analyst-raw_deepseek.log
+-rw-r--r-- 1 runner runner   92624 Aug  8 09:19 analyst_deepseek.md
+-rw-r--r-- 1 runner runner   36129 Aug  8 09:19 attack-surface.md
+-rw-r--r-- 1 runner runner     340 Aug  8 09:19 config.json
+-rw-r--r-- 1 runner runner   75478 Aug  8 09:19 ctx.txt
+-rw-r--r-- 1 runner runner   69232 Aug  8 09:19 findings.md
+-rw-r--r-- 1 runner runner 1380629 Aug  8 09:19 js-inventory.json
+drwxr-xr-x 2 runner runner    4096 Aug  8 09:19 jsrecon
+drwxr-xr-x 2 runner runner    4096 Aug  8 09:19 knowledge
+drwxr-xr-x 2 runner runner   20480 Aug  8 09:19 reports
+drwxr-xr-x 2 runner runner    4096 Aug  8 09:19 scripts
+---
+total 1844
+drwxr-xr-x 2 runner runner 20480 Aug  8 09:19 .
+drwxr-xr-x 8 runner runner  4096 Aug  8 09:19 ..
+-rw-r--r-- 1 runner runner   802 Aug  8 09:19 007687c5de.md
+-rw-r--r-- 1 runner runner  1616 Aug  8 09:19 00b4aa24d4.md
+-rw-r--r-- 1 runner runner  3206 Aug  8 09:19 015fbe10d4.md
+-rw-r--r-- 1 runner runner   108 Aug  8 09:19 01e0176e01.md
+-rw-r--r-- 1 runner runner  2278 Aug  8 09:19 0271589309.md
+-rw-r--r-- 1 runner runner  2013 Aug  8 09:19 027c8471f7.md
+-rw-r--r-- 1 runner runner  1126 Aug  8 09:19 03cf53b7a9.md
+-rw-r--r-- 1 runner runner   884 Aug  8 09:19 03dafda130.md
+-rw-r--r-- 1 runner runner   370 Aug  8 09:19 048832cf30.md
+-rw-r--r-- 1 runner runner    81 Aug  8 09:19 051f30adb8.md
+-rw-r--r-- 1 runner runner    80 Aug  8 09:19 0541508434.md
+-rw-r--r-- 1 runner runner   488 Aug  8 09:19 05c1171cfd.md
+-rw-r--r-- 1 runner runner  3409 Aug  8 09:19 05df8ddaa8.md
+-rw-r--r-- 1 runner runner  1266 Aug  8 09:19 06b51d822e.md
+-rw-r--r-- 1 runner runner  1803 Aug  8 09:19 07c1ecf7c1.md
+-rw-r--r-- 1 runner runner   884 Aug  8 09:19 085de97b53.md
+-rw-r--r-- 1 runner runner   142 Aug  8 09:19 08f9abc5a1.md
+-rw-r--r-- 1 runner runner  1316 Aug  8 09:19 0a2c518a73.md
+-rw-r--r-- 1 runner runner   432 Aug  8 09:19 0a399fab50.md
+-rw-r--r-- 1 runner runner   163 Aug  8 09:19 0c2c86915f.md
+-rw-r--r-- 1 runner runner   518 Aug  8 09:19 0cc7d562dc.md
+-rw-r--r-- 1 runner runner  3801 Aug  8 09:19 0e04d97854.md
+-rw-r--r-- 1 runner runner  3375 Aug  8 09:19 0e3562a790.md
+-rw-r--r-- 1 runner runner   482 Aug  8 09:19 0e4fb19649.md
+-rw-r--r-- 1 runner runner  1724 Aug  8 09:19 0ec1f04aff.md
+-rw-r--r-- 1 runner runner  1115 Aug  8 09:19 0f73717d50.md
+-rw-r--r-- 1 runner runner  1161 Aug  8 09:19 0fda7a998f.md
+-rw-r--r-- 1 runner runner    91 Aug  8 09:19 12cedb6cf8.md
+-rw-r--r-- 1 runner runner    80 Aug  8 09:19 12df1470a3.md
+-rw-r--r-- 1 runner runner   898 Aug  8 09:19 12ee7f4f3b.md
+-rw-r--r-- 1 runner runner   702 Aug  8 09:19 12ef0b3646.md
+-rw-r--r-- 1 runner runner   384 Aug  8 09:19 13cb9c2c12.md
+-rw-r--r-- 1 runner runner   356 Aug  8 09:19 13ef968e42.md
+-rw-r--r-- 1 runner runner    88 Aug  8 09:19 1423dae7a2.md
+-rw-r--r-- 1 runner runner  1195 Aug  8 09:19 163f58b8e8.md
+-rw-r--r-- 1 runner runner    74 Aug  8 09:19 1763e2be70.md
+-rw-r--r-- 1 runner runner   304 Aug  8 09:19 1790e106a6.md
+-rw-r--r-- 1 runner runner   420 Aug  8 09:19 18c823ed68.md
+-rw-r--r-- 1 runner runner   697 Aug  8 09:19 192050f111.md
+-rw-r--r-- 1 runner runner    71 Aug  8 09:19 19f59d0aa1.md
+-rw-r--r-- 1 runner runner  3026 Aug  8 09:19 1aa0c8d57e.md
+-rw-r--r-- 1 runner runner    96 Aug  8 09:19 1b3a3bb1fa.md
+-rw-r--r-- 1 runner runner  3533 Aug  8 09:19 1bcd3cb987.md
+-rw-r--r-- 1 runner runner  2229 Aug  8 09:19 1ccc74fcde.md
+-rw-r--r-- 1 runner runner   267 Aug  8 09:19 1d8f73149b.md
+-rw-r--r-- 1 runner runner  1826 Aug  8 09:19 1d961f0cb6.md
+-rw-r--r-- 1 runner runner   854 Aug  8 09:19 1dbe72a84d.md
+[0m
+[0m$ [0mls knowledge/ && echo "---" && ls scripts/ && echo "---" && wc -l findings.md attack-surface.md analyst_deepseek.md
+index.md
+---
+sync-issues.py
+---
+   906 findings.md
+   444 attack-surface.md
+   680 analyst_deepseek.md
+  2030 total
+[0m
+[0m→ [0mRead knowledge/index.md
+[0m→ [0mRead findings.md[90m [limit=400][0m
+[0m→ [0mRead findings.md[90m [offset=400, limit=300][0m
+[0m→ [0mRead findings.md[90m [offset=700][0m
+[0m→ [0mRead attack-surface.md
+[0m
+[0m$ [0mpython3 - <<'EOF'
+import json
+d=json.load(open('js-inventory.json'))
+hosts={}
+for e in d:
+    h=e.get('host','?')
+    hosts[h]=hosts.get(h,0)+1
+for h in sorted(hosts):
+    print(f"{hosts[h]:5d} {h}")
+print("TOTAL", len(d))
+EOF
+5 alerts.fyers.in
+    4 api-connect-docs.fyers.in
+    2 api-docs.fyers.in
+    6 app.fyers.in
+   51 assets.fyers.in
+    1 bo-login.fyers.in
+    2 cdn.fyers.in
+    3 community.fyers.in
+    2 debt.fyers.in
+   24 dev.fyers.in
+   12 direct.fyers.in
+    2 forms.fyers.in
+   10 fundtransfer.fyers.in
+ 2662 fyers.in
+    1 insights.fyers.in
+    5 instaoptions-staging.fyers.in
+   16 instaoptions.fyers.in
+   79 ipo.fyers.in
+    1 journal.fyers.in
+   22 login.fyers.in
+   11 marketsmith.fyers.in
+   35 myaccount.fyers.in
+   18 myapi.fyers.in
+    6 old-login.fyers.in
+   41 open-account.fyers.in
+    7 open-an-account.fyers.in
+    2 partner-dashboard.fyers.in
+    2 partners.fyers.in
+   10 pledge.fyers.in
+    6 public.fyers.in
+ 3251 recruit.fyers.in
+   50 sgb.fyers.in
+    9 signup.fyers.in
+    7 subscriptions.fyers.in
+   26 support.fyers.in
+    2 thematic-admin.fyers.in
+    7 thematic.fyers.in
+  172 trade.fyers.in
+    1 tv.fyers.in
+    4 verifiedpnl.fyers.in
+    1 verifiedpnldocs.fyers.in
+    8 webtrader.fyers.in
+   47 www.fyers.in
+TOTAL 6633
+[0m
+[0m$ [0mpython3 - <<'EOF'
+import json
+d=json.load(open('js-inventory.json'))
+targets=['instaoptions','myapi','thematic','partner-dashboard','journal','insights','tv.fyers','verifiedpnldocs','recruit','ipo','fundtransfer','login']
+for e in d:
+    h=e.get('host','')
+    if any(t in h for t in targets):
+        status='analyzed' if e.get('analyzed') else f"err:{e.get('error','-')}"
+        rep=e.get('report','')
+        print(f"{h:40s} {e.get('size',0):>8d} {status:12s} {rep} {e.get('url','')[:90]}")
+EOF
+...output truncated...
+
+Full output saved to: /home/runner/.local/share/opencode/tool-output/tool_fe0ac92c0001GBDPqaM9dzuIMM
+
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mapView.624a33f954e379674ad6a312e11b199f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mark-selection.49df440e41a6f54264bce4f7ed7d7d05.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/markdown-fold.c8783b56c820030045a57f291660ea20.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/markdown.f9f371deedad364ae0525559a866ff3b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/match-highlighter.4e19cb7d520fb762527b082e77e2386
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/matchbrackets.7c67d671b0ae64ebabf263783f29d92e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/matchtags.545127ffedea5d77c0f68c809c75c5b6.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/merge.ca21432728dd30b916d55e11c9029a3c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mergeField.755044c8cd35866ed66aaa8f56e06d04.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/message_handler.8deeedcd3dd8a96bc8bb21a3ac4d297e.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/message_handler_spec.fd452a5a3e881e1dce726741000f
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/meta.a0481b430bc79875c3d778de5f2e564c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/metadata.61106e9b9a2d7ab2272ee3fa4d81a71a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/metadata_spec.6eab2635b280d2a15f7b82ded0b66abe.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/metrics.07f0930d6bb888670376402fd8711a36.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/microsoft.1a80cda2f0812b5766e221da4a663c50.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/migrationOnBoarding-min.df2406ff1b9fd4b2d4d98dd0c
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/migrationOnBoarding.3b109309aed143fc1817213b0ca6a
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/migration_import.c2328b18ca334123087609b7a6fee314
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/minmax.9e1aec9618c613cebea63bb881f94700.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mirc.96a95b10651c7f9ef235415b66346ebd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mixpanel.min.4da7379f01671948e17711bff8b90794.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mllike.bf30e9ce947e683689b7343437fbcb3a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mode-ecb.7b12f26cca36ecbf292bb9a527a4dc38.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/mode_test.283793c47c3eea75b5ce152f3372138c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/multi_test.e3445ccc378f72e3af914f340f40c9e7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/multiplex.b5c73e94185050bef0170420d0f53fd7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/multiplex_test.6e9c20d5c89c34f9245e1e346edc027b.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/murmurhash3.9e23f50aef21868208a837a576ca5a4b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/murmurhash3_spec.c7b893b08b9eb3329603111a4af51f22
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/network.1701d568044c7e2c105096256594b242.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/networkUtils.8cdc264790270a8a7ca2df713208eeac.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/network_spec.586667f2015ee65f0690bd8fc31e9a00.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/network_utils.85e50e211650949061ea206f8b2ee287.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/network_utils_spec.78e51a345ca1923ead65233c9a0265
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/new-candidate-portal-customize-jslist.80db38adee3
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/new-candidate-portal-main-jslist.66a3e530e55d4bb3
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/new-candidate-portal-router.101ad31c504d5387042b2
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/new-webform-render.c8c359888f04b87c05c8744ba512ee
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/newsetup.c6513061375f5560fee06aca05e7d70b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/nginx.aa3cdfb38cb0fcfdd0bf3edf17ccba20.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/node_stream.b836a8fc4496200024e02c5554321d08.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/node_stream_spec.25e486c03f90e14949d38b485afe53ea
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/notes-mixin.93027ea60156672fd16be7cf6ca96320.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ntriples.e31a7508dbfc5d15f6aec9d0e74c66f1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/obj.f9c17aba514a825830c031b7bb9b0320.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/objectUtils.b62bb576debd73c8b489fd99f5808254.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/octave.4eba3b327f4f0747b0d5bd799ee3cf91.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/onboarding.2fffd294e2d2e0cf9501c7da9949bb33.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/operator_list.0bab808822ef7bac8b22db7ff714e5b7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/overlay.8d0368dd4e583ae60aeeadb27d22a100.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/overlay_manager.07c4f6706f54968a7cc5bb1318de95a6.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/owl.carousel.ccdf893e7d8b26933af0c336bcc3943e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/parser.46823721b1e0fc972cd9c8e56e8d9fe2.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/parser_spec.09d374e8466663d2fd88c0746c5817a2.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pascal.f182e0f7d1a8780e58c05469f7c1a672.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/password_prompt.4f0fa5907139ff1fe2d199b9ae3b809d.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pattern.3e2bfb2c31e4b1f31576305100ddc304.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pattern_helper.bc5ee01a62048830b5416faeb8cd50b8.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.f92d52f21dbae80266f4f088e6bfcb91.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.image_decoders.be0c4387c1d8cbe2471fb2a35b75a1
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.image_decoders.min.0fbcf8bd0e9072c4a6a174774e
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.min.e8eb19172d61c52336eecb7fdbf29576.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.worker.c6617001a991521c9bcf2e11c4dd71c8.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.worker.entry.2d5f1e851c3335e486dcb3f0cd84e87a
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf.worker.min.66beaa5ea975c2aa49538c90029811fd.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_attachment_viewer.f8cc122ee1e5bc24d1c11c07a72
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_cursor_tools.641e56fdd3a5df9d74e035d6d110a2c8
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_document_properties.914531f00479f73f84be9b5ac
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_find_bar.4d44b23c96a378ac0cb428f75b4dfed4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_find_controller.be25370b84936706325efe6bca857
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_find_controller_spec.ba920b1058a761ec595135a3
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_find_utils.b11f750f3cb8b7f73ef7a1561b0530ba.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_find_utils_spec.9518d119e1b4da20b193001a6b057
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_history.c40b74e84f3ff7ee39907968961d5ead.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_history_spec.287ebb64d8135202bf9a9273fdee6636
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_link_service.078e44ae5c1ff6a8db71071e5d21e638
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_manager.c316ed1091b4fd9f59b5aaa55b54f219.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_outline_viewer.f875472004557eba35f1103cede84b
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_page_view.0be494ef51e71ac35f8fe19444c4682b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_presentation_mode.db1b457b563cb2b0867cdceedb8
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_print_service.d584e1f5fbe2a28fe283c4172dc5758
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_rendering_queue.e869f4c3d8bd3aec8f9eadb76a05b
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_sidebar.7b309b9afb62f4733b9379e48356bb48.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_sidebar_resizer.54d04a82213e84e73dbd65efc598c
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_single_page_viewer.2782bde9ee43c5079a8ab00c43
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_thumbnail_view.ceac31d7600bcbc353d66f1a39cd92
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_thumbnail_viewer.a36492d0a21535d1144d6ea0595a
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_viewer.component.1686610507a50667518a912e70c3
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pdf_viewer.e62d7145e08ea1eab6293f3283f9eb75.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pegjs.39569ff8056a49e1464169e71c05338d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/perfect-scrollbar.698f1a640c318b5472549e00ee5e420
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/perfect-scrollbar.jquery.min.cf1c19ba271fc4659f29
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/periodicalEx.7c52040778904d1b03603177ced6607a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/perl.d80f82da4210f76c01e00dc28c012bad.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/phantom_driver.9ef81c96901ef04a1025ea80e120bc74.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/phonebridgerc.96218f455192626f1d5168722fb6b455.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/php.3b86ae982d36c5bd2963f36abb7bc5fd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pig-hint.882b0d7dbebfe286e826fc7952d15cc7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pig.aea534f73778d901c3d7b7a2de9c71ef.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/placeholder.a406cc1590d2683a0114de4784f5421d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/platform-plugin.d1caf63f0fc161e0cbe1dac47768ad87.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/portalJS.f72386d9c731ced9287664fa361260f9.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/portalJS2.df87ffbed7c89a659265efc1a08f2bbf.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/portalLyteJS.c7e9aabfb7d320f499a4e99216b5fc4a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/portalSignInJSLIST.efbf627839effef0b9913767623c7f
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/portalSignInLyteJSLIST.83b2f6f3f37036ee18b7e3e676
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/preferences.b4ff1a28fcb6b29c19f7154731705844.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pretender.50bc97a453e91409cad8dae67228f84e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pricingDetails.4bba4ae856d3ee36ff101ea46409c79d.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/primitives.95d08cda1eb315ce4515a8236350f7e1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/primitives_spec.bcda0ab0e1e7bbd5c432a2945263ceba.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/printTemplates.480662dfdb7da14088dd5bbb8f4a406e.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/prism.dda48dd1feb3ccf50fb06594304a46e1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/privacy-message-compressed.aa90d3dbacdacae1db69fb
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/privacySettings.95d445a5c39891ae2b2b3fbb45e10880.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/privacySettingsHelper.02fc14c88e070747559e8d701eb
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/productDetails.48c6e285544b4dd4e4c09a8373450db8.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/profile.d59b7ba2edbfea96b4bb24a9e6fc8036.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/projectTemplates.ed4a57525258d697a825bc1c31f4b6df
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/promise.d8648ed50e3fd17b6f02cdadec300a87.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/properties.28e3372eced96bcec75fdd5b5feef022.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/prototype.725cd09eb6cca738be202daa99d2d328.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ps_parser.91eabe7ada92814f9708b8d8302999fb.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/pubnub.5d6f1a8d1b8680abf454ee27b53ae92e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/puppet.5ccae368be7af42727b0b74b17837a65.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/python-hint.44e7873600053b59f6b259deb5ac6390.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/python.a4c3446a52258d469448d4b08e62edb2.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/q.bf67fc777802a4c78845ad6e75da4a0b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/qeincludelist.567efa1309d290d5a818bf10faacd817.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/questionnaire_partials.43841ba42f32ff9787def1d1ae
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/quickTask.16e40e1cbe0f92e9e75f273faf433990.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/r.5f6bb647957f4ce95838408889e4dc09.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rasterize.0fb39b5e67f492bf683cbe09dc8849e3.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ratings-reviews-global.df210e1d8f85df9ddcce08c611
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rc-sdk-bundle.a44fe9ca45435c951180aa932db643df.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rc-sdk.eefc5405bac31b612432a21c663184b5.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rec-element-file-mixin.3304354a70b7fbe962e5618c37
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rec-element-mixin.89592f0a4e5b34590b2b5c469bb49be
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/recordSharing.3c38f1a12f4c01659b764eea3255664d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/renderingUtils.a7f7d9750290355cce142dc33bf78eb3.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rpm.d99c239ecbbf6643760055a639ebe31b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rst.0b63c1ca0a981a768c61c987867139a5.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ruby.5349e701ba9681ae356b089ce33dd6c3.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rulers.cd03669d62d1ea32c1d862d947b8b30c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/run.dd4232e6e06144fc3f8b100e263f6444.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/runmode-standalone.9ec3af4593a1775b739b80fafb8f76
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/runmode.3266201540178df80d191c73bbd88152.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/runmode.node.03339de05c0a8d0317c3d618fb804302.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/rust.0db77511cdc47f70110a800907ff578e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sandbox-min.4aee68dd4ec1ba258694af4181c44c60.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sandbox.689ef76a90a8e677c84bf617df5bf8b4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sandboxHandlebars.1c69bf7d379a5a9ea67c45b5edf62bd
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sass.bbafc8f3375b29ac6a117802690480af.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/savedjob.5df2dc46da944c41e6da3fb065a6f5f0.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/scheme.a387d3a97c172b0cd2e12116586f3164.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/screeningBotJSList.87dc77508d0941fba6253746d28a53
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/scrollpastend.68e06dd3d77a87661790bbb7ebe2f080.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/scss_test.c2adc306cbf77581fba085dc2d9a1b29.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/search.aa5dd7499e915bdd00f102a032926639.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/search_test.a8f88fbce48cc319c5dda78c6ac0cd54.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/searchcursor.db7b5efad61b276fe96f1473bed2973e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/secondary_toolbar.b11d4ae354c5726a39c656c8c5a8fa4
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/security.91c4823ca95d61ead6f89426c7bf38e7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/select2.6ed43c2beba160223132fb57b73224d2.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/select2.min.2de9e37b7b37de6a58049f9d7142eaa6.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/semantic.4cfb1e73c58b966a8221e75052abd0e9.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/setup.15df4fbf5e6717fa26ac6556eeddeafb.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/setupSecurity.2efef7d6a6390b0d756abfd3b91eeb3d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sha256.9d03099420a8dc25f591a9360f4cb913.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sharedWorker.2ee8664020512d64974c931289b01d4d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/shell.51ce4dadcd42f5a927b7d32dc395b7e6.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/show-hint.e3615dac47c1bb911c10b24ef90c25bf.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sieve.8a0ff5ae00f5dae1b6bc0b11924a570a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/simple.5f372900d0d31a5e7140e675a287ff3d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/simpleajax.b58f8f3d8faff5be8322e6c4ba752c87.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sizzle.3bfa79804d25c88f7eaf0a14a1b26238.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/slackNotificationHome.30ddd68304ba5213388a424d604
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/slackNotificationSetup.fa7603de571750a88bc1a52e77
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/slimScroll.min.13037c0df364f45cfbd96c973f8e3752.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/smalltalk.a5886a2dfc2454a0af4560a4c71cea54.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/smarty.753da7add1560884ca4b9fe05036b461.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/smartymixed.47f0ef9d72751f4734eef5a22b7c2edd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/solr.0e0beefbcb3266ab8f4d734ecdd8058d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sparql.ab113ba244588f8568cf0325724bc090.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/spec.70be05399d6bc2754251643c3998cfce.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/spectrum.abc1000a0549054865ad17ede6a11131.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sql-hint.c39c510ae11a8ef34b3b112eacdf1a62.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sql.2d7679e7ba250851e04f99da983b6ced.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/standard_fonts.b5441da6612163ad0904fcc72a8a18b2.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/stex.5e43ea780be36d5b7c31c3848399440b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/stream.516791d1808a38fa4bd9f4cb619e430e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/stream_spec.22de2c6966ae64a179437a79e47b6c5d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sublime.6475fbce53e43dfe0cb9ee64f0cba197.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/sublime_test.348cf82a75361d8646ec5c1914b0ab65.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/summernote.b00b9ae421c54021421ea06afb6baa81.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/supportTemplates.112b3b8cbb52dd517f924ea96828e51e
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/survey.9c78b1dc76aaadab8f25620c43f1e96f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/svg.a2abbaf8e0378297cb904a6978b97c1f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tag-it.82e03f0bb75699b7719aa40d3fa0010c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tag-it.min.1c4760ba2aba2e34f627240d492484e9.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tags-mixin.760d4a83134178da94edb7594095e136.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tcl.86fd08bbe4a4d0d2e7f93dc4ef993aed.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/telephonyAdminTool.596c5a31679feb11021699b5643ad7
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/template.7665cca9b5153416192edd742f365ab1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tern.5706d78c59b22d0eafbe0d270894088a.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/test.9c95216a7e8d035a0e6c666821c1f944.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/test_utils.57f8df6a14f3ee09027c7205ef583daa.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/testreporter.cfc03fa16e173e7a6256b3eb7b218137.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/text_layer.4a2f7ae817321510ed6c2f0f51976771.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/text_layer_builder.5f07c39adfaf1058f7b69391ebc445
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/thirdPartyUtils.3a7dc3f5b4b93e51712d0f02497fb034.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tiddlywiki.1f2b45445110b327844e98181d24891e.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/tiki.bbc431e55b6cf248cfb0421d0a939ebe.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/toml.1a91538a07d128e54c4e6283b82c7869.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/toolbar.c1bd1f2a6bd7b5209d1e5724b18b88cd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/trailingspace.650f095b187881451b0166d16ffd4091.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/translationHistory.8a5ea6f9b0a9e87ef6e7fff69b7225
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/transport_stream.a078b9fcf024f81bd4a1afba7f28c0ff
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/travelnow.0bc2dbc97e8b180915224cc4170ac3fd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/turtle.bbd2439c15c7d15e2a88461d3eee57e5.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/twilionotifier.a04aaf495a6c453bec52594527ea4113.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/type1_parser.ef21dc4175573b5445d611d6e7854748.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/type1_parser_spec.97f31ea7e7ee444c0422929bfa06dca
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ui_utils.77363034f0d2117224eafabaf03c5eae.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ui_utils_spec.7aa384e13df25851e83453eff76555b8.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/underscore.1d4e786b5e92a3c936043bd5d0981000.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/unicode.051663ebbff04d01c416aeee743ba6c4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/unicode_spec.15e9ed036b1b0b1efb770caa61202fd2.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/util.1641430bd22cdda4c8c993e302542c4c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/util_spec.67bea6fde16d95a4984f6d4dfe628e39.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/utils.ebc342f42acc9ff2b1c8c8ccf10a98d7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/validate.089f3e68471409ede733e23df9a8e9f3.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/validation.06844311dfea39395790c06559258653.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/validationUtils.a473e1297aa1e822adeb009edb64993c.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/validationrule.4c186a16944e610b158b8fd5ebfbd546.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vb.cf25c41eda8c30c468018719eb3c6701.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vbscript.1fe32175786bdcbf3e0e2caa98f95674.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/velocity.e20ac2ad2d2837e2599ddebae1a2309d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vendorPortal.0f3bbdec61c7652298c320d43d7555fd.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/verilog.93ce57ab62e16ea4fe158e07f514f822.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/videoInterviewCandidateView.3acd09a37ca456ee81633
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/view_history.cefa8e85a8c0689338d1b2e039d47221.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/viewer.f181cfc1953e2564ee2adb1b5ae6d0ff.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/viewer_compatibility.9bc69333d7129e75e59349b93867
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vim.13161893ffcc975f2780d394be0584c7.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vim_test.d73974b61cdc3c962094eccddb3cac7f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/voice-command.a3c18806a2eb5104bafd9884e7cf7fc3.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/voice-object.4774289ce648bbb008be48a9ebd933b4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/vtanimation.8c53ca70ba02d98ca35575b7d4a24960.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/walk.e8fbb20187050396f223f55f02ac5b5c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/webTab.08eb7d627d8be21fe6ed42cd503280f1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/web_tab.be03b239d5b35b8664334165519c8f1c.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/webform.19a0cb0d7e80d4f3cae3e8eec7734f66.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/webgl.c749dfbf6f0a8501e92aeb78635f680b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/webpack.63cc4580e6fe413add0c2573bfcb5387.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfActionHandler.0a4c06d786cae8de673ec5d872b1a416.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfActions.a2348c70aeb8b2ca52da3964f8731003.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfCriteria.cfd770e86fca4a7aa21d83116a01cb63.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfForm.d0c49f6c3e00ea22792418edd75ff165.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfNew.999dfc22cb14e4d215a92255e1cc3f69.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfTags.38ad1c7974a4791112e9acf045f18251.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfTimeTrigger.e74b6ac2b574861beeeeb725ab9f0868.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfdeluge.cd8f39bf853231561a0a8dc2fe975acf.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfmergefield.cd3558b8cd91bf90cb8ce799c5ead499.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/wfwebhook.177bbf48e340803023a9c4e08d8a3dfc.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/widget-scroller.fde8875ed5da61587a2cd2f5b11e371e.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/worker.afc88b772600cc816524f14eb7343949.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/worker_options.1415263bb592b7ae5ea272547cde2685.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/worker_stream.2333c684c1f93563e2abc2d0376901e1.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/workflow.782bb72276eb7b9278ad415a7d0021a6.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/xml-fold.7a99e1c95bea149f3757285e20402b5f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/xml-hint.cb3a0a036cfb442ac5faaeec1981b320.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/xml.b10ab613076264437850202aed9959d4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/xml_parser.57da6eaeff7be773a4c2ae8bfaeea943.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/xquery.ce1ccce3d159066b1f67313256a50c72.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/yaml-lint.117815f724aa2c3d671801ccedaa86ac.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/yaml.54dc5ced3a34c7ab1e02df107c32412b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/z80.5f9e49de0d2b03f560dbdd91dcaec96b.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcga.74e7d5b38c8be9561ef7feaf2b0085d4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm-libs.5f60f04208972a03827a993e4c0add59.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm2.b8cbfe9d89907af7c3212531588fbd15.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm3.6277319cf184489ad3a70cbfa5b24397.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm4.b08288f79044ff33887d1b06cf17d1a5.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm5.fabe8145f445460c9e90dc8de9eb5e62.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm6.24fa56fc1e73dc577a2c5db06169b804.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm7.c0f74ed44b0a33038184b24aa05d1353.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm8.5ab63eecab5e4675c3f5352f5222f303.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm_consent_portal.c9c74aa53a63486697cfd9577deec
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zcrm_custom_functions.min.784f63cfaefad881e62c2a5
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ze_init.d12e624dfc279322f7bddbb89b7241e4.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zia-setup-mixin.30c010ca62c83b1bfaacbc1c280febc2.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm.293d5f654838f3ebc0905a3952164355.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_adminemailsharing.68657b513e1fe75ef669ab9
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_apidashboard.3c7d95dc8626af7f22597da0e63a
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_blueprint_sandbox.d1146511d9a133638317879
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_calendarScheduleForm.6def0a68556df2a6bc07
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_chat.6a831e61f67147f2e85762401888e532.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_chatIntegration.b2d2f6a57a3855b7fa070e17d
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_crmplusimpl.0774ec7a1c50f10a89801ceb85675
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_dwr.0284e9fce083cba2b8387ff8e84b224f.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_emailAuth.49bfe21421125882146ee3e5e80888a
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_emailStatsExport.73b99618fedf8272f212e334
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_highcharts.15efe0b2d63f593604a21969c78815
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_import.6721150f2c59d6b54da40691c9219582.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_jquery.d5bd91b4fec953a6cda0f4c27f6a5d3b.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_mailClient.2df7ab2b864528155c6c4c15c1dc89
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_mbuilder.281ca575f0fe830942b0db1a18b50a0d
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_organizations.788c2f38c45974dfa47c6af8a63
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_profile.899327841d3f33fb9bfbbaa1865b19c9.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_recruiterinbox.1f1e811e748015637cba56d654
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_secClientSideValRemove.cf27e408d22df5b154
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_sharehomepage.62e98682ecf589d687592a6250d
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_slackHome.2a31093cf08fdba8a8d3e837f365953
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_slackSetup.066ef7a691484e9d004800a631866c
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_survey.eab9f64247eee96c388dcbf890d2e99f.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_translationbench.323c56a195c615c279bd9eb7
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_urlupdate.c6dfb8956d8f3e0660943bed77a16d4
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_videointerview.edf199e0a1e70c7404c31873be
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_webtab.158a48165c37454f386cee6df888ea90.j
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_zinvoice.7bf2b9c5435bb478d15d555f9a11f697
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_zprocess.a2d3137697b9ea352e5e0cf426b3b4da
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_zsocial.3f491d94191f8177ebce8d4c0d07f19a.
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zohocrm_zsocialinteg.4c899fbe421dc801e1823eb424bf
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zroffer_acceptform.1f2bfc5f35ecab2c432e14390edb53
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zsubscriptionsRLTemplates.acc77f0ff0016aa61044df6
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/ztinotifier.dd5aa4c7bb269c1c6d3cdd0b5f359d2d.js
+recruit.fyers.in                                0 err:fetch 0   https://recruit.fyers.in/jobs/javascript/zvpwebrtc.4f42ba8f9816929feba3503c207d281d.js
+thematic-admin.fyers.in                         0 err:fetch 0   https://thematic-admin.fyers.in/static/js/2.110207f0.chunk.js
+thematic-admin.fyers.in                         0 err:fetch 0   https://thematic-admin.fyers.in/static/js/main.6fd3a23c.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/2.4c4e86f3.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/2.8ce3abb4.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/2.bc22077c.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/main.1e9338ab.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/main.8616f49d.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/main.ca5eac72.chunk.js
+thematic.fyers.in                               0 err:fetch 0   https://thematic.fyers.in/static/js/main.dab5e820.chunk.js
+tv.fyers.in                                 28367 analyzed     reports/4ad7f337ec.md https://tv.fyers.in/assets/assets/js/web_support.js
+verifiedpnldocs.fyers.in                        0 err:fetch 0   https://verifiedpnldocs.fyers.in/static/js/main.3cdd37a9.js
+[0m
+[0m$ [0mpython3 - <<'EOF'
+import json
+d=json.load(open('js-inventory.json'))
+targets=['instaoptions','myapi','fundtransfer','ipo.fyers','marketsmith','login.fyers','journal','insights','partner-dashboard','thematic','old-login','webtrader','tv.fyers','api-connect','api-docs','forms','bo-login','debt','signup','subscriptions','support.fyers','recruit']
+for e in d:
+    h=e.get('host','')
+    u=e.get('url','')
+    if any(t in h for t in targets):
+        if e.get('analyzed'):
+            print(f"A | {h:28s} {e.get('size',0):>8d} {e.get('report',''):20s} {u[:95]}")
+        elif e.get('error'):
+            pass
+        else:
+            print(f"n | {h:28s} {e.get('size',0):>8d} {u[:95]}")
+EOF
+A | api-connect-docs.fyers.in      282475 reports/d24c4c68ce.md https://api-connect-docs.fyers.in/fyers-lib.js
+n | api-connect-docs.fyers.in        2011 https://api-connect-docs.fyers.in/js/code-block-buttons.js
+n | api-connect-docs.fyers.in        1058 https://api-connect-docs.fyers.in/js/codetabs.js
+n | api-connect-docs.fyers.in        2664 https://api-connect-docs.fyers.in/js/scrollSpy.js
+n | bo-login.fyers.in                2696 https://bo-login.fyers.in/validate.js
+n | debt.fyers.in                    3891 https://debt.fyers.in/flutter.js
+A | debt.fyers.in                   44394 reports/2b62c14280.md https://debt.fyers.in/fyers_widget/fyers-widget.min.js
+A | forms.fyers.in                  21085 reports/0a399fab50.md https://forms.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js
+n | forms.fyers.in                   1239 https://forms.fyers.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js
+A | fundtransfer.fyers.in           19191 reports/19f59d0aa1.md https://fundtransfer.fyers.in/v2/assets/js/Popper.js
+A | fundtransfer.fyers.in           50676 reports/e0a338dd8e.md https://fundtransfer.fyers.in/v2/assets/js/bootstrap.min.js
+A | fundtransfer.fyers.in           16061 reports/ef2e1a0e07.md https://fundtransfer.fyers.in/v2/assets/js/index.js
+A | fundtransfer.fyers.in           11728 reports/4c1e91c345.md https://fundtransfer.fyers.in/v2/assets/js/jquery.meanmenu.js
+A | fundtransfer.fyers.in           97163 reports/c639414bb7.md https://fundtransfer.fyers.in/v2/assets/js/jquery.min.js
+A | fundtransfer.fyers.in           10085 reports/93eb0e1a04.md https://fundtransfer.fyers.in/v2/assets/js/jquery.sticky.js
+n | fundtransfer.fyers.in            3297 https://fundtransfer.fyers.in/v2/assets/js/main.js
+A | fundtransfer.fyers.in           44342 reports/62c6f45eaa.md https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js
+n | fundtransfer.fyers.in            2680 https://fundtransfer.fyers.in/v2/assets/js/progress.js
+n | ipo.fyers.in                     1050 https://ipo.fyers.in/_next/static/-NoESV4_OMuzAbQtPi5TQ/_buildManifest.js
+n | ipo.fyers.in                     1050 https://ipo.fyers.in/_next/static/DiWusAcxqQITnDNlxRrk3/_buildManifest.js
+n | ipo.fyers.in                     1050 https://ipo.fyers.in/_next/static/VL3OKIMlrhLnci-C89Be9/_buildManifest.js
+A | ipo.fyers.in                    31007 reports/08f9abc5a1.md https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.0f7472ea1afc6
+A | ipo.fyers.in                    31007 reports/aa097f30b4.md https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.4b99bd43d2586
+A | ipo.fyers.in                    31007 reports/5ad3371891.md https://ipo.fyers.in/_next/static/chunks/5d803da5ef9d1718c712fe441612209655f8245f.99c7e57583a1a
+A | ipo.fyers.in                    32440 reports/5d6fa05748.md https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.cc87701246c10
+A | ipo.fyers.in                    44793 reports/295132c943.md https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f186fd3fb98cb
+A | ipo.fyers.in                    32675 reports/0a2c518a73.md https://ipo.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.f6fbd9dc97569
+A | ipo.fyers.in                   174070 reports/d912666fd2.md https://ipo.fyers.in/_next/static/chunks/75fc9c18.ccc0cedbfc497af63ab1.js
+A | ipo.fyers.in                   123421 reports/22916719a3.md https://ipo.fyers.in/_next/static/chunks/commons.170000e9415f63d35702.js
+A | ipo.fyers.in                   123421 reports/a0d4eb7c31.md https://ipo.fyers.in/_next/static/chunks/commons.2c82d30e6149795a08bc.js
+A | ipo.fyers.in                   123421 reports/509991a886.md https://ipo.fyers.in/_next/static/chunks/commons.48cfa6176a2e331deefe.js
+A | ipo.fyers.in                   138431 reports/a0462c8c4c.md https://ipo.fyers.in/_next/static/chunks/framework.bb4f662c012aed22a730.js
+A | ipo.fyers.in                    39908 reports/e6d0af1aad.md https://ipo.fyers.in/_next/static/chunks/main-e3d9544595bfee73adb8.js
+A | ipo.fyers.in                    18387 reports/444721e447.md https://ipo.fyers.in/_next/static/chunks/pages/_app-91ba28bf45345f9b84fc.js
+A | ipo.fyers.in                    18351 reports/eb8dd6358b.md https://ipo.fyers.in/_next/static/chunks/pages/_app-f9e2a107c62492cd1eb0.js
+A | ipo.fyers.in                   780031 reports/50981e471c.md https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js
+A | ipo.fyers.in                   779657 reports/bea08635b9.md https://ipo.fyers.in/_next/static/chunks/pages/details-15d40a0cbe3524f23f72.js
+A | ipo.fyers.in                   779950 reports/7ec1602305.md https://ipo.fyers.in/_next/static/chunks/pages/details-744d25aaf61e7be379a9.js
+A | ipo.fyers.in                   777496 reports/612263376c.md https://ipo.fyers.in/_next/static/chunks/pages/details-b6dbd5b53b66ca0e06d7.js
+A | ipo.fyers.in                   225905 reports/28ff435afb.md https://ipo.fyers.in/_next/static/chunks/pages/home-d194728825ab6f10a77d.js
+A | ipo.fyers.in                    94208 reports/e85322dcf5.md https://ipo.fyers.in/_next/static/chunks/polyfills-31b32effe638e7000a41.js
+A | ipo.fyers.in                    94208 reports/b3f81b09c9.md https://ipo.fyers.in/_next/static/chunks/polyfills-4d4b83e489615dee6d0d.js
+A | ipo.fyers.in                    12563 reports/3fd13376ef.md https://ipo.fyers.in/_next/static/chunks/webpack-4883f1e5c9ea9388334d.js
+A | login.fyers.in                  20981 reports/8dc5c86874.md https://login.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js
+A | login.fyers.in                   7973 reports/5161be5e3c.md https://login.fyers.in/scripts/common.min.js
+n | marketsmith.fyers.in             4858 https://marketsmith.fyers.in/assets/js/main.js
+A | marketsmith.fyers.in            10580 reports/ffbcd9266e.md https://marketsmith.fyers.in/assets/js/marketSmith.js
+A | marketsmith.fyers.in            14690 reports/85e35458c4.md https://marketsmith.fyers.in/assets/vendor/aos/aos.js
+A | marketsmith.fyers.in            81084 reports/289e817e12.md https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js
+n | marketsmith.fyers.in             2406 https://marketsmith.fyers.in/assets/vendor/counterup/counterup.min.js
+A | marketsmith.fyers.in            35445 reports/dedeb542f0.md https://marketsmith.fyers.in/assets/vendor/isotope-layout/isotope.pkgd.min.js
+n | marketsmith.fyers.in             2532 https://marketsmith.fyers.in/assets/vendor/jquery.easing/jquery.easing.min.js
+A | marketsmith.fyers.in            44342 reports/35274660b1.md https://marketsmith.fyers.in/assets/vendor/owl.carousel/owl.carousel.min.js
+A | marketsmith.fyers.in            15013 reports/5d78bccde3.md https://marketsmith.fyers.in/assets/vendor/venobox/venobox.min.js
+A | marketsmith.fyers.in             9028 reports/1790e106a6.md https://marketsmith.fyers.in/assets/vendor/waypoints/jquery.waypoints.min.js
+A | signup.fyers.in                785235 reports/8902d6c6db.md https://signup.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js
+n | signup.fyers.in                  5019 https://signup.fyers.in/assets/packages/flutter_dropzone_web/assets/flutter_dropzone.js
+A | signup.fyers.in                 28409 reports/6e4438c448.md https://signup.fyers.in/assets/packages/flutter_inappwebview_web/assets/web/web_support.js
+n | signup.fyers.in                  5285 https://signup.fyers.in/assets/packages/fluttertoast/assets/toastify.js
+A | signup.fyers.in                 21425 reports/2c201d9c6d.md https://signup.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js
+n | signup.fyers.in                  1516 https://signup.fyers.in/digilocker_dart_service.js
+A | signup.fyers.in                  9412 reports/0c2c86915f.md https://signup.fyers.in/flutter.js
+A | signup.fyers.in                  9740 reports/d230db1b82.md https://signup.fyers.in/flutter_bootstrap.js
+n | signup.fyers.in                  2404 https://signup.fyers.in/trust_lib_dart_service.js
+A | subscriptions.fyers.in          34880 reports/afa7c53522.md https://subscriptions.fyers.in/assets/js/main-truedata.js
+A | subscriptions.fyers.in          19576 reports/bcd4b485cb.md https://subscriptions.fyers.in/assets/js/main_msi_1.4.js
+A | subscriptions.fyers.in          14690 reports/1763e2be70.md https://subscriptions.fyers.in/assets/vendor/aos/aos.js
+A | subscriptions.fyers.in          80698 reports/67e3ef88e3.md https://subscriptions.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js
+n | subscriptions.fyers.in           2532 https://subscriptions.fyers.in/assets/vendor/jquery.easing/jquery.easing.min.js
+A | subscriptions.fyers.in          88145 reports/d3d28147ff.md https://subscriptions.fyers.in/assets/vendor/jquery/jquery.min.js
+A | subscriptions.fyers.in          44342 reports/f8b49475a8.md https://subscriptions.fyers.in/assets/vendor/owl.carousel/owl.carousel.min.js
+A | support.fyers.in                20747 reports/e3be4468f6.md https://support.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js
+n | support.fyers.in                 1239 https://support.fyers.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js
+A | tv.fyers.in                     28367 reports/4ad7f337ec.md https://tv.fyers.in/assets/assets/js/web_support.js
+[0m
+[0m$ [0mpython3 - <<'EOF'
+import json
+d=json.load(open('js-inventory.json'))
+targets=['instaoptions','myapi','journal','insights','partner-dashboard','thematic','old-login','webtrader','recruit','api-docs']
+seen=set()
+for e in d:
+    h=e.get('host','')
+    if any(t in h for t in targets) and h not in seen:
+        seen.add(h)
+        analyzed=[x for x in d if x.get('host')==h and x.get('analyzed')]
+        errs=[x.get('error') for x in d if x.get('host')==h and x.get('error')]
+        sizes=[x.get('size') for x in d if x.get('host')==h]
+        print(h, "| analyzed:", len(analyzed), "| errors:", len(errs), set(errs), "| sizes>0:", sum(1 for s in sizes if s and s>0))
+        for a in analyzed[:4]:
+            print("    A:", a.get('url'), a.get('report'))
+EOF
+webtrader.fyers.in | analyzed: 0 | errors: 8 {'fetch 0'} | sizes>0: 0
+api-docs.fyers.in | analyzed: 0 | errors: 2 {'html'} | sizes>0: 2
+insights.fyers.in | analyzed: 0 | errors: 1 {'fetch 0'} | sizes>0: 0
+instaoptions-staging.fyers.in | analyzed: 0 | errors: 5 {'fetch 0'} | sizes>0: 0
+instaoptions.fyers.in | analyzed: 0 | errors: 16 {'fetch 0'} | sizes>0: 0
+journal.fyers.in | analyzed: 0 | errors: 1 {'fetch 0'} | sizes>0: 0
+myapi.fyers.in | analyzed: 0 | errors: 18 {'fetch 0'} | sizes>0: 0
+old-login.fyers.in | analyzed: 0 | errors: 6 {'fetch 0'} | sizes>0: 0
+partner-dashboard.fyers.in | analyzed: 0 | errors: 2 {'fetch 0'} | sizes>0: 0
+recruit.fyers.in | analyzed: 0 | errors: 3251 {'html', 'fetch 0'} | sizes>0: 516
+thematic-admin.fyers.in | analyzed: 0 | errors: 2 {'fetch 0'} | sizes>0: 0
+thematic.fyers.in | analyzed: 0 | errors: 7 {'fetch 0'} | sizes>0: 0
+[0m
+[0m$ [0mecho "=== fundtransfer index.js ==="; cat reports/ef2e1a0e07.md; echo; echo "=== brokrage 2.15 ==="; cat reports/21fbbdc532.md 2>/dev/null; cat reports/4f866b285e.md 2>/dev/null; echo "=== brokrage 2.9 ==="; cat reports/4d0252d3b8.md; echo "=== ipo details ==="; cat reports/50981e471c.md | head -40; echo "=== marketSmith ==="; cat reports/ffbcd9266e.md
+=== fundtransfer index.js ===
+# https://fundtransfer.fyers.in/v2/assets/js/index.js
+ENDPOINT|ANY|/validate-vpa
+ENDPOINT|ANY|/payment/create
+NOTE|sink:localStorage in: localStorage.setItem("amount", $("#amount"
+NOTE|sink:localStorage in: localStorage.setItem("order_id", result.body.data.order_details.order_id
+NOTE|sink:localStorage in: localStorage.setItem("fy_payment_id", result.body.data.order_details.receipt
+NOTE|sink:localStorage in: localStorage.setItem("bank_code", result.body.data.order_details.bank_code
+NOTE|sink:atob in: atob($(value
+SECRET|other|Bank account numbers are base64-encoded via btoa into HTML "code" attrs and decoded client-side with atob(data-value of .bank_account) - trivially reversible, not a true secret
+SECRET|other|Authorization header token obtained via validate("_FYERS"); likely JWT/session stored in localStorage/sessionStorage and sent with every request
+ENDPOINT|POST|baseUrl + "/validate-vpa"
+ENDPOINT|POST|baseUrl + "/payment/create"
+ENDPOINT|GET|FUNDS  (FUNDS constant referenced but defined elsewhere; path not in this file)
+ENDPOINT|GET|BANK_DETAILS  (BANK_DETAILS constant referenced but defined elsewhere; path not in this file)
+HOST|HOST|baseUrl (baseUrl, loginPageUrl, FUNDS, BANK_DETAILS are all defined outside this file; no literal host is present)
+NOTE|NOTE|client-side redirect to result.body.data.order_details.payment_link (an arbitrary URL returned by the /payment/create API) for non-razorpay gateways
+NOTE|NOTE|Razorpay gateway fixed as primary ("Primary"/"Secondary" label) via setPaymentGateway; payment_gateway var trusted from UI
+NOTE|NOTE|isHDFC logic: bank_id "1006" forces HDFC handling; payload includes bank_id, account_no, account_ifsc, account_upi
+NOTE|NOTE|UPI limit 100k INR (Lakh), NetBanking limit 25 Lakh enforced client-side only
+NOTE|NOTE|sessionStorage.setItem("sessionId", validate('_FYERS')) persists auth token after payment creation
+
+=== brokrage 2.15 ===
+# https://assets.fyers.in/Lib/calculators/1.0/brokrage-calc.js
+ENDPOINT|POST|/trade/v3/spancalc
+HOST|api-t1.fydev.tech
+NOTE|Absolute spancalc endpoint. Missing MAIN fyers config is __cafinit__{ "color":"type":"hcccode","fontsize":"12px","rduready":">YController","Tharmoth":null,"byphraseregion_9036":null }
+SECRET|__cafinit__|b"zqthk presan".config .r {"tracechains":null,"convBasisIO":{"slot":360,"volatile":0.000026,"b":"BAY",STT:0.0001},"assumed":"noun"}
+NOTE|Some ecb serialized config detected — concealed:"2048\n".insp read from INPUT offset, watch QR gb. Organizedebra.
+NOTE|No literal API keys, tokens, or JWT present in source.
+NOTE|api-t1.fydev.tech is a dev/internal endpoint targeted in-scope assets.fyers.in; flagged as internal_endpoint.
+# https://assets.fyers.in/Lib/calculators/2.0/brokrage-calc.js
+SECRET|other|strike_price_is_uninitialized_undefined_reference
+NOTE|window.FyersCalculator.span_calls_api-t1.fyers.in
+ENDPOINT|POST|/trade/v3/spancalc
+HOST|api-t1.fyers.in
+NOTE|internal_API_using_jQuery_ajax_override
+NOTE|BracketOrderCoverOrder.oil references`strike_price`g spirit
+=== brokrage 2.9 ===
+# https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js
+SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)
+ENDPOINT|POST|https://api-t1.fyers.in/trade/v3/spancalc
+HOST|api-t1.fyers.in
+NOTE|strike_price used at lines 1000,1014 in BracketOrderCoverOrder.calculateMargin but never defined in scope (ReferenceError for sell-side options)
+=== ipo details ===
+# https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js
+ENDPOINT|ANY|/X5v
+ENDPOINT|ANY|/kxI
+ENDPOINT|ANY|/details
+ENDPOINT|ANY|/eipo
+ENDPOINT|ANY|/issue-list
+ENDPOINT|ANY|/issue-details
+ENDPOINT|ANY|/investors-details
+ENDPOINT|ANY|/place-order
+ENDPOINT|ANY|/order-book
+ENDPOINT|ANY|/modify-order
+ENDPOINT|ANY|/cancel-order
+ENDPOINT|ANY|/offer_list
+ENDPOINT|ANY|/offer_details
+NOTE|sink:new Function in: new Function("return this"
+NOTE|sink:localStorage in: localStorage.getItem("auth_token"
+NOTE|sink:localStorage in: localStorage.getItem("dpstatus"
+SECRET|other|APP_ID_EFR7964223-101 (prod Fyers API client id)
+SECRET|other|APP_ID_H4NMJ8X2NR-101 (dev/localhost Fyers API client id)
+SECRET|other|APP_ID_ZT6P4L9YQB-101 (staging Fyers API client id)
+SECRET|other|APP_ID_68USODQMOF-101 (dev Fyers API client id)
+SECRET|other|appIdHash_prod=2a88a14a353274a2f35430038b6d81725e2d17d8064785d62965e4da78033e9f
+SECRET|other|appIdHash_stag=1260e9be57e09bf77b06e322504fbf42e164d40578592c6e149f2e3714a6ce0
+SECRET|other|appIdHash_dev=45ac1f5f538de89ff8a4e2ad77214266b04db3ba2442d2db0d <- approximate
+ENDPOINT|get|https://api-t1.fyers.in/api/v3/generate-authcode
+ENDPOINT|get|https://api-i1.fyers.in/invest/v1/ipo
+ENDPOINT|get|https://api-i1.fyers.in/investment/jhelum/v1/api
+ENDPOINT|get|https://api-i1.fyers.in/investment/tapi/v1
+ENDPOINT|get|https://api-i1.fyers.co.in/invest/staging/ipo
+ENDPOINT|get|https://api-i1.fyers.co.in/investment/jhelum/staging/api
+ENDPOINT|get|https://api-i1.fyers.co.in/investment/tapi/staging
+ENDPOINT|get|https://api-i1.fydev.tech/invest/dev/ipo
+ENDPOINT|get|https://api-i1.fydev.tech/investment/data/dev/api
+ENDPOINT|get|https://api-i1.fydev.tech/investment/tapi/dev
+ENDPOINT|get|https://signup.fyers.in/?
+ENDPOINT|get|https://assets.fyers.in/product-list.json
+ENDPOINT|get|https://assets.fydev.tech/global-product/product-list.json
+ENDPOINT|get|/issue-list
+ENDPOINT|get|/issue-details
+ENDPOINT|get|/investors-details
+=== marketSmith ===
+# https://marketsmith.fyers.in/assets/js/marketSmith.js
+ENDPOINT|ANY|/evaluation/Evaluation.html
+NOTE|sink:innerHTML in: .innerHTML = userState), "Premium" == userState ? ((document.getElemen
+NOTE|sink:innerHTML in: .innerHTML = "Error"), (window.location = login_url + origin + "/evaluation/Evaluation.html"
+NOTE|sink:innerHTML in: .innerHTML = user.userState), "Premium" === user.userState ? ((document.ge
+NOTE|sink:innerHTML in: .innerHTML = uid)
+NOTE|sink:atob in: atob(fy_cookie
+NOTE|sink:atob in: atob(base64
+SECRET|jwt|_FYERS cookie JWT (base64url payload decoded via atob in extractFyersIDFromToken, fy_id claim)
+SECRET|api_key|authToken forwarded in query string to marketsmithindia.com by generateMSIToken
+ENDPOINT|GET|https://api.fyers.in/api/beta/get_msiuser_details
+ENDPOINT|GET|https://public.fyers.in/sym_details/BSE_CM.json
+ENDPOINT|GET|https://marketsmithindia.com/mstool/fyers/generateMSIToken
+ENDPOINT|GET|https://marketsmithindia.com/mstool/fyers/deleteMSIToken
+HOST|api.fyers.in
+HOST|public.fyers.in
+HOST|login.fyers.in
+HOST|login.fyers.co.in
+HOST|login.fydev.tech
+HOST|subscriptions.fyers.co.in
+HOST|subscriptions.fydev.tech
+HOST|subscriptions.fyers.in
+HOST|marketsmithindia.com
+HOST|app.fyers.in
+NOTE|_FYERS cookie value used directly as Authorization header to api.fyers.in without validation
+NOTE|Dev/staging URLs exposed (fydev.tech, subscriptions-dev.fyers.co.in, subscriptions-staging.fyers.co.in)
+NOTE|JWT decoded client-side from cookie without signature verification
+NOTE|authToken and userAgent sent to third-party marketsmithindia.com in query string (token leakage risk)
+NOTE|login_url built by string concatenation without encoding (open redirect / injection surface)
+NOTE|get_msiuser_details is an internal-looking beta API endpoint
+NOTE|redirectUpgrade opens app.fyers.in/symbol via window.open
+NOTE|msiIframe src set from msiUrl without allowlist check before assignment in symbolDataContent
+[0m
+[0m$ [0mls reports/ | wc -l; echo "---ordwin 4.6---"; find reports -newer README.md 2>/dev/null | head -1; echo "search helper_min report"; for f in reports/*.md; do if grep -ql "anjuna" "$f" 2>/dev/null; then echo "$f"; fi; done
+451
+---ordwin 4.6---
+reports
+search helper_min report
+reports/82d7ff48f2.md
+reports/cc9a94105f.md
+reports/dc44903aef.md
+reports/fc0c024153.md
+[0m
+[0m$ [0mfor f in reports/82d7ff48f2.md reports/cc9a94105f.md reports/dc44903aef.md reports/fc0c024153.md; do echo "=== $f ==="; grep -l "edis" $f 2>/dev/null && echo "HAS EDIS"; grep -l "fydev" $f && echo "HAS FYDEV"; done; echo "---- search broker/13 EDIS ----"; grep -rl "authCdsl" reports/ | head; echo "---- search verified-pnl ----"; grep -rl "verified-pnl" reports/ | head; echo "---- search margin/v1 ----"; grep -rl "margin/v1\|anjuna" reports/ | head
+=== reports/82d7ff48f2.md ===
+reports/82d7ff48f2.md
+HAS FYDEV
+=== reports/cc9a94105f.md ===
+reports/cc9a94105f.md
+HAS FYDEV
+=== reports/dc44903aef.md ===
+reports/dc44903aef.md
+HAS FYDEV
+=== reports/fc0c024153.md ===
+reports/fc0c024153.md
+HAS FYDEV
+---- search broker/13 EDIS ----
+reports/e8fc75e487.md
+reports/0e04d97854.md
+reports/48d271f951.md
+reports/analyst-latest.txt
+reports/d0451f9b90.md
+reports/76ee7eb11e.md
+reports/5a88e59160.md
+---- search verified-pnl ----
+reports/c25559dd26.md
+reports/analyst-latest.txt
+reports/1ccc74fcde.md
+reports/f341c5a592.md
+reports/4f59253f29.md
+---- search margin/v1 ----
+reports/analyst-latest.txt
+reports/007687c5de.md
+reports/cc9a94105f.md
+reports/82d7ff48f2.md
+reports/fc0c024153.md
+reports/dc44903aef.md
+[0m
+[0m$ [0mecho "=== analyst-latest ==="; tail -c 3000 reports/analyst-latest.txt; echo; echo "=== e8fc75e487 (broker13 EDIS) ==="; cat reports/e8fc75e487.md
+=== analyst-latest ===
+ subscriptions main-truedata.js 0KMS0EZVXI: 10-char literal matches public Fyers client_id/appId format (same family as QMABZB5R01/N43J3GIGOM); no private-key role evidenced — likely public-by-design, not a secret finding (class open, parked not dead).
+[PARKED] apiv2-login-ie-support login.js GSKZGJHIBV: app_id inside a commented sample payload on a legacy IE-support login page — test/comment data.
+[PARKED] trade datafeed/Prod Fernet token (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534): KB-dead HISTORY_TEST demo data, reaffirmed.
+[PARKED] ordwin 2.4 fyToken 101000000014366: hardcoded demo identifier, not a live credential.
+[PARKED] myaccount.fyers.in/web/* suspicious .js (audit_payload_hasher, csrf_reference_validator, otp_token_invalidator, etc.): all 200 text/html — SPA-fallback artifacts, not fetchable code.
+[PARKED] trade ordwin/6 backend 13.235.24.249:8080: out-of-scope host, architecture intel only.
+[PARKED] GA4/GTM/Sentry DSNs/Cloudflare jsd/Zoho formperma keys: public-by-design.
+[FINAL] 1) EDIS token-in-query AUTH (60, AUTH_HELPED, 6.65) 2) verified-pnl get-data cookie-carrier AUTH (58, AUTH_HELPED, 5.90) 3) sgb AEHNSK9PRW MISCONFIG (45, PASSIVE, 5.40)
+[NEXT] PROBE: `curl -s --max-time 20 'https://trade.fyers.in/static/js/broker/13/bundle.min.js' | grep -oE 'https?://[^"'"'"' ]*|/edis/[a-zA-Z0-9._-]*|token_id[^&"'"'"' ]*'` to resolve the exact EDIS base host, then `curl -s -i --max-time 12 'https://<resolved-base>/edis/details'` (no token) to record gate shape; escalate to own-token AUTH_HELPED diff next run.
+[LEARN] ACCEPTED AUTH @ broker/13 EDIS endpoints: token_id-in-query extends the proven token-in-URL family to the EDIS settlement surface — newly enumerable.
+[LEARN] ACCEPTED AUTH @ api-a1-prod verified-pnl get-data: main.606be587 _FYERS client-side parse ("auth validity not server-verified") corroborates cookie-as-auth carrier — class alive, field-level test pending.
+[LEARN] REJECTED OTHER @ subscriptions main-truedata.js 0KMS0EZVXI: matches public 10-char Fyers appId/client_id format; no private role evidenced — parked, not dead.
+[LEARN] REJECTED OTHER @ trade apiv2-login-ie-support login.js GSKZGJHIBV: app_id in commented sample on legacy login — test data.
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web suspicious *.js names: all 200 text/html SPA fallback — noise.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+[RISK] fyers-js: 73 — EDIS financial settlement surface newly enumerated with the proven token-in-URL auth pattern (in-scope, high business value), verified-pnl get-data corroborated as cookie-carried with no server-side validity observed, and an additional unresolved sgb appId (AEHNSK9PRW) now surfaced. No new hard credential (0KMS0EZVXI/GSKZGJHIBV both appId-format public data), but the account-tier surface continues to grow around value-bound token auth; overall JS exposure moderately high pending the EDIS gate probe.
+
+=== e8fc75e487 (broker13 EDIS) ===
+# https://trade.fyers.in/static/js/broker/11.4/bundle.min.js
+ENDPOINT|ANY|/minquantity
+ENDPOINT|ANY|/orders
+ENDPOINT|ANY|/exit_positions
+ENDPOINT|ANY|/positions
+ENDPOINT|ANY|/tradebook
+ENDPOINT|ANY|/holdings
+ENDPOINT|ANY|/funds
+ENDPOINT|ANY|/funds/details
+ENDPOINT|ANY|/logout
+ENDPOINT|ANY|/updatewatchlist
+ENDPOINT|ANY|/popout_chart/index.html
+ENDPOINT|ANY|/watchlist/web
+NOTE|sink:WebSocket in: new WebSocket(url
+NOTE|sink:localStorage in: localStorage.getItem("fyerstrade_instantOrderFlag"
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"rsToken"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"rsToken",response.id
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"chartLayout",JSON.stringify(data
+NOTE|sink:localStorage in: localStorage.setItem(localStorageKey,"dark"
+NOTE|sink:localStorage in: localStorage.setItem(localStorageKey,"light"
+NOTE|sink:localStorage in: localStorage.getItem(localStorageKey
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"corpActFlag"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"corpActFlag",value
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"contFutFlag"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"contFutFlag",!0
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"contFutFlag",!1
+SECRET|other|no hardcoded credentials found; auth tokens are populated at runtime (e.g. getCookie("_FYERS"), Authorization header set from token variable)
+ENDPOINT|GET|/watchlist/web
+ENDPOINT|GET|/values list /holdings /orders /positions /tradebook /funds /minquantity /updatewatchlist /exit_positions /logout
+ENDPOINT|POST|/funds
+ENDPOINT|POST|https://data.fyers.in/dev-fyers/mobileapi/user-settings
+ENDPOINT|GET|https://data.fyers.in/dev-fyers/mobileapi/get-user-settings?token_id=
+ENDPOINT|POST|https://api.fyers.in/vagator/v1/logout
+ENDPOINT|GET|/edis/authCdsl.html
+HOST|https://api.fyers.in/fydev/v1
+HOST|https://api.fyers.in/fy/cdsl/dev
+HOST|https://api.fyers.in/vagator/v1
+HOST|https://data.fyers.in
+HOST|https://datapub.fyers.in:8862
+HOST|wss://api-socket.fyers.in/dev/order
+HOST|https://alerts.fyers.in
+HOST|https://login.fyers.in
+HOST|https://betatrade.fyers.in
+HOST|https://trade.fyers.in
+NOTE|app_id hardcoded as "2" (public client id)
+NOTE|RS_TOKEN and CLIENT_ID fields present but empty at declaration
+NOTE|WebSocket order stream RS header/body field lists exposed (RS_RESP_BODY_LIST_2222 include PAN, client id fields)
+NOTE|Authorization header set from runtime token; XHR uses withCredentials:true; exposed fields: Authorization/password/bearer/app_id
+NOTE|dev/beta host variants (betatrade.fyers.in, /dev-fyers/ paths) reachable in production bundle
+[0m
+[0m$ [0mgrep -l "broker/13" reports/*.md 2>/dev/null | head -3; echo "---"; for f in $(grep -rl "edis/details\|edis/index" reports/*.md 2>/dev/null | head -3); do echo "=== $f ==="; cat "$f"; done 2>/dev/null | head -120
+reports/5a88e59160.md
+---
+=== reports/0e04d97854.md ===
+# https://trade.fyers.in/static/js/broker/12.1/bundle.min.js
+ENDPOINT|ANY|/minquantity
+ENDPOINT|ANY|/orders
+ENDPOINT|ANY|/exit_positions
+ENDPOINT|ANY|/positions
+ENDPOINT|ANY|/tradebook
+ENDPOINT|ANY|/holdings
+ENDPOINT|ANY|/funds
+ENDPOINT|ANY|/funds/details
+ENDPOINT|ANY|/logout
+ENDPOINT|ANY|/updatewatchlist
+ENDPOINT|ANY|/popout_chart/index.html
+ENDPOINT|ANY|/watchlist/web
+NOTE|sink:WebSocket in: new WebSocket(url
+NOTE|sink:localStorage in: localStorage.getItem("fyerstrade_instantOrderFlag"
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"rsToken"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"rsToken",response.id
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"chartLayout",JSON.stringify(data
+NOTE|sink:localStorage in: localStorage.setItem(localStorageKey,"dark"
+NOTE|sink:localStorage in: localStorage.setItem(localStorageKey,"light"
+NOTE|sink:localStorage in: localStorage.getItem(localStorageKey
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"corpActFlag"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"corpActFlag",value
+NOTE|sink:localStorage in: localStorage.getItem(globalDefines.localStorageDefaulSuffix+"contFutFlag"
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"contFutFlag",!0
+NOTE|sink:localStorage in: localStorage.setItem(globalDefines.localStorageDefaulSuffix+"contFutFlag",!1
+SECRET|internal_endpoint|https://api.fyers.in/fydev/v1
+SECRET|internal_endpoint|https://api.fyers.in/fy/cdsl/dev
+SECRET|internal_endpoint|https://api.fyers.in/vagator/v1
+SECRET|internal_endpoint|https://datapub.fyers.in:8862
+SECRET|internal_endpoint|wss://api-socket.fyers.in/dev/order
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/orders
+ENDPOINT|POST|https://api.fyers.in/fydev/v1/orders
+ENDPOINT|PATCH|https://api.fyers.in/fydev/v1/orders
+ENDPOINT|DELETE|https://api.fyers.in/fydev/v1/orders
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/positions
+ENDPOINT|POST|https://api.fyers.in/fydev/v1/positions
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/exit_positions
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/funds
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/funds/details
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/holdings
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/tradebook
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/updatewatchlist
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/watchlist/web
+ENDPOINT|POST|https://api.fyers.in/fydev/v1/watchlist/web
+ENDPOINT|DELETE|https://api.fyers.in/fydev/v1/watchlist/web
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/minquantity
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/validate/details?flag=
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/edis/index?token_id=
+ENDPOINT|GET|https://api.fyers.in/fydev/v1/edis/details?token_id=
+ENDPOINT|GET|https://api.fyers.in/vagator/v1/logout
+ENDPOINT|GET|https://api.fyers.in/fy/cdsl/dev/{path}
+ENDPOINT|GET|https://trade.fyers.in/edis/authCdsl.html?token_id=
+HOST|api.fyers.in
+HOST|datapub.fyers.in
+HOST|api-socket.fyers.in
+HOST|login.fyers.in
+HOST|trade.fyers.in
+HOST|alerts.fyers.in
+HOST|betatrade.fyers.in
+NOTE|betatrade.fyers.in referenced as alternate trade host (dev/staging environment)
+NOTE|Refresh/auth token cookies read: _FYERS, _userID, _userName; refresh token cookie name dynamic
+NOTE|Order/position updates streamed via SignalR hub (SignalRHub) and WebSocket wss://api-socket.fyers.in/dev/order?type=orderUpdate
+NOTE|CDSL authorisation flow: token_id passed to edis endpoints; base API selected via cdslFlag -> api.fyers.in/fy/cdsl/dev
+NOTE|Logout posts to vagator/v1/logout then redirects to login.fyers.in
+NOTE|No hardcoded credentials, keys, or OAuth secrets present in file
+=== reports/25150059ff.md ===
+# https://trade.fyers.in/static/js/broker/9.93/bundle.min.js
+NOTE|sink:WebSocket in: new WebSocket(_0x2fecx1e
+SECRET|none|none
+ENDPOINT|GET|/minquantity
+ENDPOINT|GET|/symbols
+ENDPOINT|POST|/edis/details?token_id=
+ENDPOINT|POST|/edis/index?token_id=
+ENDPOINT|GET|/orders
+ENDPOINT|POST|/orders
+ENDPOINT|PATCH|/orders
+ENDPOINT|DELETE|/orders
+ENDPOINT|POST|/exit_positions
+ENDPOINT|GET|/positions
+ENDPOINT|GET|/tradebook
+ENDPOINT|GET|/holdings
+ENDPOINT|GET|/funds
+ENDPOINT|GET|/funds/details
+ENDPOINT|POST|/logout
+ENDPOINT|GET|/updatewatchlist
+ENDPOINT|GET|/validate
+ENDPOINT|GET|/validate/details?flag=
+ENDPOINT|GET|/watchlist/web
+ENDPOINT|GET|/popout_chart/index.html
+HOST|login.fyers.in
+HOST|trade.fyers.in
+HOST|betatrade.fyers.in
+HOST|datapub.fyers.in:8862
+HOST|alerts.fyers.in
+HOST|data.fyers.in
+HOST|api.fyers.in
+NOTE|dev_url|https://betatrade.fyers.in/ used as alternate base URL (beta env)
+NOTE|internal_endpoint|SignalR hub at https://datapub.fyers.in:8862 (hubConnection, createHubProxy)
+NOTE|internal_endpoint|Order websocket wss://data.fyers.in/orderSock?type=orderUpdate
+NOTE|internal_endpoint|REST base https://data.fyers.in/fy/v2 and https://api.fyers.in/fy/cdsl/v1
+NOTE|other|Auth/cdsl flow: POST /edis/details, /edis/index, /validate/details?flag= using token_id query param; RS_TOKEN & fyToken stored in localStorage
+NOTE|other|Cookie domain=.fyers.in invalidated via expires=Thu, 01 Jan 2018 12:00:00 UTC;path=/;domain=.fyers.in
+=== reports/48d271f951.md ===
+# https://trade.fyers.in/static/js/broker/9.55/bundle.min.js
+NOTE|sink:WebSocket in: new WebSocket(_0x5f35x16
+SECRET|none found in file
+ENDPOINT|GET|/minquantity
+ENDPOINT|GET|/symbols
+ENDPOINT|POST|/edis/details?token_id=
+ENDPOINT|GET|/edis/index?token_id=
+ENDPOINT|GET|/edis/authCdsl.html?token_id=
+ENDPOINT|POST|/orders
+ENDPOINT|PATCH|/orders
+ENDPOINT|DELETE|/orders
+ENDPOINT|POST|/exit_positions
+ENDPOINT|GET|/positions
+ENDPOINT|GET|/tradebook
+ENDPOINT|GET|/holdings
+[0m
+## STEP 1 — DELTA
+
+- [NEW] ipo.fyers.in: first IPO/invest-tier surface — prod bundle ships full account-tier API family `api-i1.fyers.in/invest/v1/ipo`, `/investment/jhelum/v1/api`, `/investment/tapi/v1`, `api-t1.fyers.in/api/v3/generate-authcode`, client endpoints `/place-order /order-book /modify-order /cancel-order /investors-details /eipo /issue-list`, gated client-side on `localStorage.getItem("auth_token")`/`dpstatus`, plus prod/dev/staging/localhost appId table (EFR7964223/68USODQMOF/LCFY9OOX3D/ZT6P4L9YQB/H4NMJ8X2NR).
+- [NEW] api-t1.fyers.in: new API host (never probed) — `POST /trade/v3/spancalc` (brokrage-calc 2.0/2.9/2.15, flagged unauth/no-auth) and `GET /api/v3/generate-authcode`.
+- [NEW] fundtransfer.fyers.in/v2: new host — `POST /validate-vpa`, `POST /payment/create`; Authorization from `validate("_FYERS")` persisted to sessionStorage as `sessionId`; UPI ₹100k/NetBanking ₹25L limits "enforced client-side only"; bank accounts base64-in-HTML; client redirect to API-returned `order_details.payment_link`.
+- [NEW] EDIS chain resolved: broker/12.1 + broker/9.x give exact base `api.fyers.in/fydev/v1/edis/index?token_id=`, `/edis/details?token_id=` (GET+POST), `api.fyers.in/fy/cdsl/dev|v1`, `data.fyers.in/fy/v2`, and attack-surface confirms `trade.fyers.in/edis/authCdsl.html?token_id=` → 200 live.
+- [NEW] trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js: `api.fyers.in/fydev/v1/margin/v1?token_id=` (new margin variant of the token-in-URL family).
+- [NEW] trade.fyers.in/static/js/init/6.7/fy_trade_unminified.js: dev_url `data.fyers.in/dev-beta/mobileapi/get-user-settings` (second dev-tier variant; also `data.fyers.in/dev-fyers/mobileapi/get-user-settings?token_id=` in broker bundles).
+- [NEW] betatrade.fyers.in: alternate trade host hard-referenced in prod broker 9.93/11.4/12.1 bundles (dev/beta env) — unprobed in-scope host.
+- [CHANGED] marketsmith.fyers.in marketSmith.js: new detail — `authToken`+`userAgent` forwarded in query string to 3P `marketsmithindia.com`; `login_url` string-concat open-redirect surface; `msiIframe` src unallowlisted; in-scope `api.fyers.in/api/beta/get_msiuser_details` internal beta endpoint.
+- [CHANGED] sgb appId-family: ipo.fyers.in is a second Next.js OAuth app with the same prod/dev/staging/localhost appId+appIdHash env-table pattern (extends sgb MISCONFIG lead to new host).
+
+## STEP 2 — PRIORITIZE
+
+- [PRIO] api-i1.fyers.in invest-tier (ipo.fyers.in) | 7.20 | attack 7 business 9 tech 7 gate 5 cloud 4 fresh 10
+- [PRIO] fundtransfer.fyers.in/v2 payment API | 6.25 | attack 6 business 8 tech 5 gate 6 cloud 3 fresh 8
+- [PRIO] api.fyers.in/fydev/v1/margin/v1?token_id= | 6.10 | attack 6 business 7 tech 6 gate 5 cloud 3 fresh 9
+- [PRIO] api-t1.fyers.in/trade/v3/spancalc | 6.00 | attack 6 business 5 tech 6 gate 7 cloud 4 fresh 9
+- [PRIO] betatrade.fyers.in (dev trade host) | 5.50 | attack 5 business 6 tech 5 gate 6 cloud 3 fresh 8
+- [PRIO] api.fyers.in/fydev/v1/edis/* (resolved, existing lead) | 6.55 | attack 6 business 9 tech 7 gate 5 cloud 3 fresh 7
+
+## STEP 3 — HYPOTHESES
+
+[HYP] IPO invest-tier API trusts a client-local auth token with no server-issued gate observed
+class: AUTH
+asset: api-i1.fyers.in/invest/v1/ipo (+ /investment/tapi/v1, /place-order, /order-book)
+confidence: 55
+reasoning: ipo.fyers.in details bundles gate on localStorage.getItem("auth_token")/"dpstatus" client-side and resolve authcode via api-t1.fyers.in/api/v3/generate-authcode; the prod bundle also ships staging/dev roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo); IPO ordering endpoints were never gate-probed and match the verifiedpnl/sgb localStorage-token family in KB.
+evidence_needed: /invest/v1/ipo or /investment/tapi/v1 returning a business body (not 401) with no header or with a cross-session token.
+verify_steps: PASSIVE first — `curl -s -i --max-time 12 'https://api-i1.fyers.in/invest/v1/ipo'` and `curl -s -i --max-time 12 'https://api-i1.fyers.in/investment/tapi/v1'` — record status/content-type only; if 401, AUTH_HELPED: repeat with own localStorage auth_token, then a peer token, diff codes (never read another user's order body).
+impact: cross-account IPO subscription/order-book disclosure or order manipulation if value-bound only; Medium-High.
+testability: AUTH_HELPED
+
+[HYP] fundtransfer payment API binds auth by cookie value and enforces limits/gateway client-side only
+class: AUTH
+asset: fundtransfer.fyers.in/v2 (POST /validate-vpa, POST /payment/create)
+confidence: 50
+reasoning: index.js sends Authorization = validate("_FYERS") on every request and persists it to sessionStorage as "sessionId" after /payment/create; UPI (₹100k) and NetBanking (₹25L) limits are enforced client-side only and payment_gateway is trusted from UI; cookie-as-bearer + client-side-only rules match the verifiedpnl/subscriptions family in KB.
+evidence_needed: /payment/create or /validate-vpa answering with business data when Authorization carries a token from a different session, or accepting params the client rejects.
+verify_steps: AUTH_HELPED: PASSIVE first — re-grep index.js for baseUrl/FUNDS/BANK_DETAILS definitions (defined elsewhere), then `curl -s -i --max-time 12 'https://fundtransfer.fyers.in/v2/<resolved>/validate-vpa'` (no auth) to record gate shape; then own-token vs peer-token status diff — never read another user's bank data.
+impact: cross-account fund-transfer/PF detail disclosure or payment manipulation if value-bound; Medium.
+testability: AUTH_HELPED
+
+[HYP] fydev margin/v1 trusts token_id passed via URL query as sole credential
+class: AUTH
+asset: api.fyers.in/fydev/v1/margin/v1?token_id=
+confidence: 60
+reasoning: ordwin/4.6 helper_min.js hard-embeds `https://api.fyers.in/fydev/v1/margin/v1?token_id=` in a prod bundle; same token-in-URL family already proven on anjuna/v1/margin, fydev/v1/baskets and now EDIS (fydev/v1/edis/*?token_id=); margin returns account-tier position/limit data.
+evidence_needed: no-token request answering with business body, or a token minted for another session returning business data.
+verify_steps: PASSIVE — `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/margin/v1'` and `curl -s -i --max-time 12 'https://api.fyers.in/anjuna/v1/margin'` (no token) — record status/type only (expect 401 vs business delta); AUTH_HELPED: repeat with own token_id then a peer token.
+impact: cross-account margin/limit disclosure if value-bound; Medium.
+testability: AUTH_HELPED
+
+## STEP 4 — SELF-CRITIQUE
+
+[PARKED] marketsmith token-in-query to 3P (marketsmithindia.com): primary sink is a third-party host — out of scope per rules; in-scope `api.fyers.in/api/beta/get_msiuser_details` retained as enumeration lead, class MISCONFIG deferred.
+[PARKED] ipo appId/appIdHash env table: mechanism identical to the already-open sgb MISCONFIG lead (new host instance) — folded as evidence, not a separate hypothesis.
+[PARKED] fundtransfer bank-accounts base64-in-HTML: reversible client-side display encoding, not a credential — corroboration only.
+[PARKED] Fernet token_id (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534) across datafeed/Prod bundles: KB-dead HISTORY_TEST demo data, reaffirmed.
+[PARKED] widgets literals 1341655KwEfgY / 984896EWiONu: no surrounding code in snapshot, re-grep pending.
+[PARKED] myaccount.fyers.in/web/*.js (audit_payload_hasher, otp_token_invalidator, etc.) and community `_ws/*`: 200 text/html SPA fallback — noise.
+[PARKED] api-docs.fyers.in, recruit.fyers.in (Zoho), webtrader/instaoptions/thematic/myapi/partner-dashboard: fetch-0/html errors — no analyzable surface this run.
+[FINAL] 1) api-i1 invest-tier AUTH (55, AUTH_HELPED, 7.20) 2) fundtransfer AUTH (50, AUTH_HELPED, 6.25) 3) fydev margin/v1 AUTH (60, AUTH_HELPED, 6.10) — plus retained: EDIS fydev/v1/edis token-in-query AUTH (60, base host now resolved), verifiedpnl get-data AUTH (58), sgb appId MISCONFIG (45).
+
+## STEP 5 — NEXT ACTION
+
+[NEXT] PROBE: gate shape on the highest-priority new invest-tier API — `curl -s -i --max-time 12 'https://api-i1.fyers.in/invest/v1/ipo'` and `curl -s -i --max-time 12 'https://api-i1.fyers.in/investment/tapi/v1'` — record status/content-type only; if 401 on both, escalate to AUTH_HELPED with own token next run.
+
+## STEP 6 — LEARNING
+
+[LEARN] ACCEPTED MISCONFIG @ ipo.fyers.in: dev/staging API roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo) ship inside the prod bundle — newly enumerable dev-tier surface.
+[LEARN] ACCEPTED AUTH @ api-i1.fyers.in invest-tier: account-tier IPO endpoints with localStorage auth_token client-gating — class alive pending gate probe.
+[LEARN] ACCEPTED AUTH @ api.fyers.in/fydev/v1/edis/*: base host resolved (edis/index + edis/details GET/POST with token_id, authCdsl.html 200 live) — strengthens the proven token-in-URL chain on settlement surface.
+[LEARN] ACCEPTED AUTH @ fundtransfer.fyers.in/v2: cookie-as-bearer (validate("_FYERS")) + client-side-only limits — new account-tier instance of the family, probe pending.
+[LEARN] REJECTED OTHER @ marketsmith marketsmithindia.com token-in-query: third-party sink, out of scope — architecture intel only.
+[LEARN] REJECTED OTHER @ Google OAuth client IDs, reCAPTCHA site key, GA4/GTM, Sentry DSN, Cloudflare jsd, Zoho formperma, Google Ads tag, Facebook app_id: public-by-design (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web/*.js and community `_ws/*`: 200 text/html SPA fallback — noise (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+
+## STEP 7 — RISK SCORE
+
+[RISK] fyers-js: 75 — run surfaces a new large account-tier IPO/invest API family (api-i1.fyers.in ordering endpoints + api-t1 authcode host) with client-side localStorage auth gating and dev/staging roots shipped in prod, a new funds-movement host (fundtransfer) with cookie-as-bearer and client-side-only limits, and the EDIS token-in-URL chain now fully resolved with a live 200 probe. No hard credential emerged (all appIds/hashes are public client identifiers; Fernet string reaffirmed demo data), and every new gate status is still unknown pending the PASSIVE probes — overall JS surface exposure moderately high and expanding, but exploit status unproven.

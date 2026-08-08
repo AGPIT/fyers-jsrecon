@@ -678,3 +678,65 @@ testability: PASSIVE
 [LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web suspicious *.js names: all 200 text/html SPA fallback — noise.
 [LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
 [RISK] fyers-js: 73 — EDIS financial settlement surface newly enumerated with the proven token-in-URL auth pattern (in-scope, high business value), verified-pnl get-data corroborated as cookie-carried with no server-side validity observed, and an additional unresolved sgb appId (AEHNSK9PRW) now surfaced. No new hard credential (0KMS0EZVXI/GSKZGJHIBV both appId-format public data), but the account-tier surface continues to grow around value-bound token auth; overall JS exposure moderately high pending the EDIS gate probe.
+
+===== ANALYST 2026-08-08 09:22:43 UTC =====
+[PARKED] apiv2-login-ie-support login.js GSKZGJHIBV: app_id inside a commented sample payload on a legacy IE-support login page — test/comment data.
+[PARKED] trade datafeed/Prod Fernet token (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534): KB-dead HISTORY_TEST demo data, reaffirmed.
+[PARKED] ordwin 2.4 fyToken 101000000014366: hardcoded demo identifier, not a live credential.
+[PARKED] myaccount.fyers.in/web/* suspicious .js (audit_payload_hasher, csrf_reference_validator, otp_token_invalidator, etc.): all 200 text/html — SPA-fallback artifacts, not fetchable code.
+[PARKED] trade ordwin/6 backend 13.235.24.249:8080: out-of-scope host, architecture intel only.
+[PARKED] GA4/GTM/Sentry DSNs/Cloudflare jsd/Zoho formperma keys: public-by-design.
+[FINAL] 1) EDIS token-in-query AUTH (60, AUTH_HELPED, 6.65) 2) verified-pnl get-data cookie-carrier AUTH (58, AUTH_HELPED, 5.90) 3) sgb AEHNSK9PRW MISCONFIG (45, PASSIVE, 5.40)
+[NEXT] PROBE: `curl -s --max-time 20 'https://trade.fyers.in/static/js/broker/13/bundle.min.js' | grep -oE 'https?://[^"'"'"' ]*|/edis/[a-zA-Z0-9._-]*|token_id[^&"'"'"' ]*'` to resolve the exact EDIS base host, then `curl -s -i --max-time 12 'https://<resolved-base>/edis/details'` (no token) to record gate shape; escalate to own-token AUTH_HELPED diff next run.
+[LEARN] ACCEPTED AUTH @ broker/13 EDIS endpoints: token_id-in-query extends the proven token-in-URL family to the EDIS settlement surface — newly enumerable.
+[LEARN] ACCEPTED AUTH @ api-a1-prod verified-pnl get-data: main.606be587 _FYERS client-side parse ("auth validity not server-verified") corroborates cookie-as-auth carrier — class alive, field-level test pending.
+[LEARN] REJECTED OTHER @ subscriptions main-truedata.js 0KMS0EZVXI: matches public 10-char Fyers appId/client_id format; no private role evidenced — parked, not dead.
+[LEARN] REJECTED OTHER @ trade apiv2-login-ie-support login.js GSKZGJHIBV: app_id in commented sample on legacy login — test data.
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web suspicious *.js names: all 200 text/html SPA fallback — noise.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+[RISK] fyers-js: 73 — EDIS financial settlement surface newly enumerated with the proven token-in-URL auth pattern (in-scope, high business value), verified-pnl get-data corroborated as cookie-carried with no server-side validity observed, and an additional unresolved sgb appId (AEHNSK9PRW) now surfaced. No new hard credential (0KMS0EZVXI/GSKZGJHIBV both appId-format public data), but the account-tier surface continues to grow around value-bound token auth; overall JS exposure moderately high pending the EDIS gate probe.
+[HYP] IPO invest-tier API trusts a client-local auth token with no server-issued gate observed
+class: AUTH
+asset: api-i1.fyers.in/invest/v1/ipo (+ /investment/tapi/v1, /place-order, /order-book)
+confidence: 55
+reasoning: ipo.fyers.in details bundles gate on localStorage.getItem("auth_token")/"dpstatus" client-side and resolve authcode via api-t1.fyers.in/api/v3/generate-authcode; the prod bundle also ships staging/dev roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo); IPO ordering endpoints were never gate-probed and match the verifiedpnl/sgb localStorage-token family in KB.
+evidence_needed: /invest/v1/ipo or /investment/tapi/v1 returning a business body (not 401) with no header or with a cross-session token.
+verify_steps: PASSIVE first — `curl -s -i --max-time 12 'https://api-i1.fyers.in/invest/v1/ipo'` and `curl -s -i --max-time 12 'https://api-i1.fyers.in/investment/tapi/v1'` — record status/content-type only; if 401, AUTH_HELPED: repeat with own localStorage auth_token, then a peer token, diff codes (never read another user's order body).
+impact: cross-account IPO subscription/order-book disclosure or order manipulation if value-bound only; Medium-High.
+testability: AUTH_HELPED
+[HYP] fundtransfer payment API binds auth by cookie value and enforces limits/gateway client-side only
+class: AUTH
+asset: fundtransfer.fyers.in/v2 (POST /validate-vpa, POST /payment/create)
+confidence: 50
+reasoning: index.js sends Authorization = validate("_FYERS") on every request and persists it to sessionStorage as "sessionId" after /payment/create; UPI (₹100k) and NetBanking (₹25L) limits are enforced client-side only and payment_gateway is trusted from UI; cookie-as-bearer + client-side-only rules match the verifiedpnl/subscriptions family in KB.
+evidence_needed: /payment/create or /validate-vpa answering with business data when Authorization carries a token from a different session, or accepting params the client rejects.
+verify_steps: AUTH_HELPED: PASSIVE first — re-grep index.js for baseUrl/FUNDS/BANK_DETAILS definitions (defined elsewhere), then `curl -s -i --max-time 12 'https://fundtransfer.fyers.in/v2/<resolved>/validate-vpa'` (no auth) to record gate shape; then own-token vs peer-token status diff — never read another user's bank data.
+impact: cross-account fund-transfer/PF detail disclosure or payment manipulation if value-bound; Medium.
+testability: AUTH_HELPED
+[HYP] fydev margin/v1 trusts token_id passed via URL query as sole credential
+class: AUTH
+asset: api.fyers.in/fydev/v1/margin/v1?token_id=
+confidence: 60
+reasoning: ordwin/4.6 helper_min.js hard-embeds `https://api.fyers.in/fydev/v1/margin/v1?token_id=` in a prod bundle; same token-in-URL family already proven on anjuna/v1/margin, fydev/v1/baskets and now EDIS (fydev/v1/edis/*?token_id=); margin returns account-tier position/limit data.
+evidence_needed: no-token request answering with business body, or a token minted for another session returning business data.
+verify_steps: PASSIVE — `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/margin/v1'` and `curl -s -i --max-time 12 'https://api.fyers.in/anjuna/v1/margin'` (no token) — record status/type only (expect 401 vs business delta); AUTH_HELPED: repeat with own token_id then a peer token.
+impact: cross-account margin/limit disclosure if value-bound; Medium.
+testability: AUTH_HELPED
+[PARKED] marketsmith token-in-query to 3P (marketsmithindia.com): primary sink is a third-party host — out of scope per rules; in-scope `api.fyers.in/api/beta/get_msiuser_details` retained as enumeration lead, class MISCONFIG deferred.
+[PARKED] ipo appId/appIdHash env table: mechanism identical to the already-open sgb MISCONFIG lead (new host instance) — folded as evidence, not a separate hypothesis.
+[PARKED] fundtransfer bank-accounts base64-in-HTML: reversible client-side display encoding, not a credential — corroboration only.
+[PARKED] Fernet token_id (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534) across datafeed/Prod bundles: KB-dead HISTORY_TEST demo data, reaffirmed.
+[PARKED] widgets literals 1341655KwEfgY / 984896EWiONu: no surrounding code in snapshot, re-grep pending.
+[PARKED] myaccount.fyers.in/web/*.js (audit_payload_hasher, otp_token_invalidator, etc.) and community `_ws/*`: 200 text/html SPA fallback — noise.
+[PARKED] api-docs.fyers.in, recruit.fyers.in (Zoho), webtrader/instaoptions/thematic/myapi/partner-dashboard: fetch-0/html errors — no analyzable surface this run.
+[FINAL] 1) api-i1 invest-tier AUTH (55, AUTH_HELPED, 7.20) 2) fundtransfer AUTH (50, AUTH_HELPED, 6.25) 3) fydev margin/v1 AUTH (60, AUTH_HELPED, 6.10) — plus retained: EDIS fydev/v1/edis token-in-query AUTH (60, base host now resolved), verifiedpnl get-data AUTH (58), sgb appId MISCONFIG (45).
+[NEXT] PROBE: gate shape on the highest-priority new invest-tier API — `curl -s -i --max-time 12 'https://api-i1.fyers.in/invest/v1/ipo'` and `curl -s -i --max-time 12 'https://api-i1.fyers.in/investment/tapi/v1'` — record status/content-type only; if 401 on both, escalate to AUTH_HELPED with own token next run.
+[LEARN] ACCEPTED MISCONFIG @ ipo.fyers.in: dev/staging API roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo) ship inside the prod bundle — newly enumerable dev-tier surface.
+[LEARN] ACCEPTED AUTH @ api-i1.fyers.in invest-tier: account-tier IPO endpoints with localStorage auth_token client-gating — class alive pending gate probe.
+[LEARN] ACCEPTED AUTH @ api.fyers.in/fydev/v1/edis/*: base host resolved (edis/index + edis/details GET/POST with token_id, authCdsl.html 200 live) — strengthens the proven token-in-URL chain on settlement surface.
+[LEARN] ACCEPTED AUTH @ fundtransfer.fyers.in/v2: cookie-as-bearer (validate("_FYERS")) + client-side-only limits — new account-tier instance of the family, probe pending.
+[LEARN] REJECTED OTHER @ marketsmith marketsmithindia.com token-in-query: third-party sink, out of scope — architecture intel only.
+[LEARN] REJECTED OTHER @ Google OAuth client IDs, reCAPTCHA site key, GA4/GTM, Sentry DSN, Cloudflare jsd, Zoho formperma, Google Ads tag, Facebook app_id: public-by-design (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web/*.js and community `_ws/*`: 200 text/html SPA fallback — noise (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
+[RISK] fyers-js: 75 — run surfaces a new large account-tier IPO/invest API family (api-i1.fyers.in ordering endpoints + api-t1 authcode host) with client-side localStorage auth gating and dev/staging roots shipped in prod, a new funds-movement host (fundtransfer) with cookie-as-bearer and client-side-only limits, and the EDIS token-in-URL chain now fully resolved with a live 200 probe. No hard credential emerged (all appIds/hashes are public client identifiers; Fernet string reaffirmed demo data), and every new gate status is still unknown pending the PASSIVE probes — overall JS surface exposure moderately high and expanding, but exploit status unproven.
