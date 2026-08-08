@@ -19,3 +19,7 @@
 - 2026-08-08 REJECTED OTHER @ public.fyers.in/messages/messagesLinks.json: probable static links config — parked, not dead.
 - 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
 - 2026-08-08 ACCEPTED MISCONFIG @ sgb.fyers.in: /updatesgb live 200 route first probed — new in-scope route, class alive pending gate check.
+- 2026-08-08 ACCEPTED AUTH @ fundtransfer.fyers.in/v2: first live 200 probe of /v2/ plus prod bundle hardcoding dev baseUrl (api.fyers.in/fundtransfer/dev) and _FYERS client-side parse for fy_id — cookie-as-bearer f
+- 2026-08-08 ACCEPTED MISCONFIG @ api.fyers.in: anjuna/v1/margin (GET+POST) newly embedded in prod ordwin bundle — new enumerable root, class alive pending probe.
+- 2026-08-08 ACCEPTED MISCONFIG @ dev.fyers.in: in-scope dev host (orderwin-trade + full trade-platform dev tree) newly enumerable.
+- 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
