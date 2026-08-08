@@ -365,3 +365,16 @@
 200 | https://myaccount.fyers.in/web/main.dart.js | text/html
 200 | https://myaccount.fyers.in/web/manifest.json | text/html
 200 | https://myaccount.fyers.in/web/static/js/main.dart.js | text/html
+200 | https://myaccount.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js | application/javascript; charset=UTF-8
+200 | https://myaccount.fyers.in/web/ | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/clevertap_plugin/assets/cle | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/clevertap_plugin/assets/clevertap.js | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web/web_support.js | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web_support.js | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_dark.gif | text/html
+200 | https://myaccount.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html
+200 | https://myaccount.fyers.in/web/flutter_service_worker.js | text/html
+200 | https://myaccount.fyers.in/web/flutter_service_worker.js?v=485708241 | text/html
+200 | https://myaccount.fyers.in/web/js_dart_service.js | text/html
+200 | https://myaccount.fyers.in/web/main.dart.js | text/html
+200 | https://myaccount.fyers.in/web/manifest.json | text/html

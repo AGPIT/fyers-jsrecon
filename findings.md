@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 03:07 UTC — 354 secret hits_
+_src 2026-08-08 04:25 UTC — 384 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -303,6 +303,66 @@ _src 2026-08-08 03:07 UTC — 354 secret hits_
 - `https://myaccount.fyers.in/static/js/4.8e7aa1f9.chunk.js`
   `SECRET|google_key|286450894109-608ml77icehbhpvplo2645hqqm6rtope.apps.googleusercontent.com`
 - `https://myaccount.fyers.in/static/js/4.8e7aa1f9.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.b4addfbb.chunk.js`
+  `SECRET|other|Google OAuth client ID (prod): 286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com (public identifier, non-secret in OAuth flow)`
+- `https://myaccount.fyers.in/static/js/4.b4addfbb.chunk.js`
+  `SECRET|other|Google OAuth client ID (staging, commented out): 902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.b5f71db7.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.b5f71db7.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.bd0ed1b0.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.bd0ed1b0.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com|staging_commented_out`
+- `https://myaccount.fyers.in/static/js/4.c07cda26.chunk.js`
+  `SECRET|google_key|286450894109-608mlh1icehbhpuvp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/4.c07cda26.chunk.js`
+  `SECRET|google_key|902868841845-8b1fb36b05b4a6763c0f7d1b71f93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.0255cb6f.chunk.js`
+  `SECRET|other|google_oauth_client_id(staging_commented_out)=902868841845-3qb23dhvhltyp5rnjw7vkj47v23borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.0255cb6f.chunk.js`
+  `SECRET|other|google_oauth_client_id=286450894109-608ml77icehbph2lp26g5hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.18cb11d2.chunk.js`
+  `SECRET|google_key|OAuth client web ID (staging, commented out): 902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.18cb11d2.chunk.js`
+  `SECRET|google_key|OAuth client web ID for Google Sign-In (public client identifier, not a credential): 286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.2a338b92.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.2a338b92.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.4fac399c.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.4fac399c.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.711f75bb.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.711f75bb.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b6tnvj7u2vbkk48k93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.7fcf36a1.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com (prod OAuth client id, index.html meta tag)`
+- `https://myaccount.fyers.in/static/js/main.7fcf36a1.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com (staging OAuth client id, present in commented block)`
+- `https://myaccount.fyers.in/static/js/main.8ad527e5.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpv6s2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.8ad527e5.chunk.js`
+  `SECRET|google_key|902868841845-701ibq3gt4iu3b346gugz9l50cehko.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.9fd03e07.chunk.js`
+  `SECRET|google_key|286450894109-608ml77ciehbhpvplp264hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.9fd03e07.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnv7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.b5dab539.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.b5dab539.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v9c3borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.baf04448.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.baf04448.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.cf2e3ae9.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://myaccount.fyers.in/static/js/main.cf2e3ae9.chunk.js`
   `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
 - `https://partners.fyers.in/fyers_widget/fyers-widget.min.js`
   `SECRET|dev_url|http://127.0.0.1:46475/fy_notifications/js/data.json`

@@ -21055,107 +21055,137 @@
  {
   "url": "https://myaccount.fyers.in/static/js/4.b4addfbb.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "8a48759780aa2eac",
+  "pass": "deep1",
+  "report": "reports/fe86729f19.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/4.b5f71db7.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "7b408718cc00f28d",
+  "pass": "deep1",
+  "report": "reports/c9ae9b53e1.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/4.bd0ed1b0.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "fe792cfdbd3e6f6b",
+  "pass": "deep1",
+  "report": "reports/7d1b0b43a5.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/4.c07cda26.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "ec1b5adafc7e4966",
+  "pass": "deep1",
+  "report": "reports/af4ed9e583.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.0255cb6f.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "b9222696dbdda4d2",
+  "pass": "deep1",
+  "report": "reports/499725548b.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.18cb11d2.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "2a02727a89d9fc2c",
+  "pass": "deep1",
+  "report": "reports/a7809c9693.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.2a338b92.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "1db8bdc6cec8ec83",
+  "pass": "deep1",
+  "report": "reports/b19d64d70b.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.4fac399c.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a32af8e916fc8973",
+  "pass": "deep1",
+  "report": "reports/fd041039aa.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.711f75bb.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "f75d4c7485f65859",
+  "pass": "deep1",
+  "report": "reports/00b4aa24d4.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.7fcf36a1.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "dc22df727201a6c0",
+  "pass": "deep1",
+  "report": "reports/6930729c3d.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.8ad527e5.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "cd25f079a874058b",
+  "pass": "deep1",
+  "report": "reports/e9378e2fd1.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.9fd03e07.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "0156045a8c22c77e",
+  "pass": "deep1",
+  "report": "reports/a626e80eec.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.b5dab539.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "96befbbc154bfcf0",
+  "pass": "deep1",
+  "report": "reports/83bcbcd3af.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.baf04448.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "3624c60baee6fe62",
+  "pass": "deep1",
+  "report": "reports/1dbe72a84d.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.cf2e3ae9.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "ed6747ee440c7dbc",
+  "pass": "deep1",
+  "report": "reports/5129f44a62.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.d29b99b8.chunk.js",
