@@ -21190,44 +21190,56 @@
  {
   "url": "https://myaccount.fyers.in/static/js/main.d29b99b8.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "84ee1d382622112c",
+  "pass": "deep1",
+  "report": "reports/a7394c955e.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.d3bd4215.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "bd96b49a3f8a27c9",
+  "pass": "deep1",
+  "report": "reports/91bee205e5.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.da664cf4.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a5297b5539392764",
+  "pass": "deep1",
+  "report": "reports/0ec1f04aff.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.e74443b9.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "9c96ddd94a3fcf16",
+  "pass": "deep1",
+  "report": "reports/56015c7dd0.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.e9c6255e.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "3d02ea8da2d93635",
+  "pass": "deep1",
+  "report": "reports/58d10e05fe.md"
  },
  {
   "url": "https://myaccount.fyers.in/static/js/main.f5bcac04.chunk.js",
   "host": "myaccount.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a31fe342d253a5b9",
+  "pass": "deep1",
+  "report": "reports/5ca464bd60.md"
  },
  {
   "url": "https://myapi.fyers.in/assets/js/main.js",
@@ -21785,65 +21797,83 @@
  {
   "url": "https://pledge.fyers.in/assets/js/2.0/jwt-decode.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "80a03832d27a2196",
+  "pass": "deep1",
+  "report": "reports/de23bba69e.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/js/2.5/main.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "486ba3f6fa3941af",
+  "pass": "deep1",
+  "report": "reports/03cf53b7a9.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/vendor/aos/aos.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a0b409021663ca9d",
+  "pass": "deep1",
+  "report": "reports/baf6090691.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "10f88a28daf0678c",
+  "pass": "deep1",
+  "report": "reports/3f95690d90.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/vendor/jquery.easing/jquery.easing.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "94763a9627cb5f0b",
+  "pass": "deep1",
+  "report": "reports/f56c32687d.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/vendor/jquery/jquery.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "5248eabbbf4df0b6",
+  "pass": "deep1",
+  "report": "reports/bdd412771e.md"
  },
  {
   "url": "https://pledge.fyers.in/assets/vendor/venobox/venobox.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "aa0d520a1bb87a4c",
+  "pass": "deep1",
+  "report": "reports/8555612160.md"
  },
  {
   "url": "https://pledge.fyers.in/jquery_easing/jquery.easing.min.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "ba59c4aa7c1fdc94",
+  "pass": "deep1",
+  "report": "reports/89d6897894.md"
  },
  {
   "url": "https://pledge.fyers.in/src/js/pledge.js",
   "host": "pledge.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "646c259dd67b9803",
+  "pass": "deep1",
+  "report": "reports/e10d85c21b.md"
  },
  {
   "url": "https://pledge.fyers.in/unpledge/js/Unpledgemain.js",
