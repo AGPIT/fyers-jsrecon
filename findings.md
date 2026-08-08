@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 08:36 UTC — 446 secret hits_
+_src 2026-08-08 09:15 UTC — 451 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -48,6 +48,8 @@ _src 2026-08-08 08:36 UTC — 446 secret hits_
   `SECRET|none`
 - `https://assets.fyers.in/Lib/calculators/2.9/brokrage-calc.js`
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
+- `https://assets.fyers.in/Lib/hawkeye/hawkeye.js`
+  `SECRET|jwt|localStorage.getItem('access_token') JWT with exp claim decoded via atob`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
   `SECRET|google_key|G-NTFX8XLKVH`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
@@ -558,6 +560,8 @@ _src 2026-08-08 08:36 UTC — 446 secret hits_
   `SECRET|jwt|cookie `_FYERS` decoded client-side; `at_hash` claim extracted to global `tokenId` and logged via console.log (validate at lines 204-216)`
 - `https://support.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|oneshot upload token/state: `bCTsUNlmGmLGXsvtRnrHBZntlpZ0yxS05_ANr6rKfks` (site-specific CF challenge identifier, embedded in endpoint path)`
+- `https://trade.fyers.in/30daysChallenge/live/js/init.min.js`
+  `SECRET|other|support@fyers.in (support contact string)`
 - `https://trade.fyers.in/30daysChallenge/live/lib/jquery/jquery.min.js`
   `SECRET|other|jquery 3.2.1 library (known standard minified jQuery; no embedded secrets detected)`
 - `https://trade.fyers.in/Prod/1.2/bundle.min.js`
@@ -566,6 +570,8 @@ _src 2026-08-08 08:36 UTC — 446 secret hits_
   `SECRET|none|no hardcoded credentials/keys/tokens present`
 - `https://trade.fyers.in/Prod/1.2/fyers_common_modules.js`
   `SECRET|jwt|token (JWT user session token passed in Authorization header / `authorization` header of fetch calls)`
+- `https://trade.fyers.in/Prod/1.2/globalConstant.min.js`
+  `SECRET|other|None found (obfuscator junk strings only)`
 - `https://trade.fyers.in/Prod/1.2/orderWindow.min.js`
   `SECRET|none`
 - `https://trade.fyers.in/Prod/1.2/posConv.min.js`
@@ -644,12 +650,16 @@ _src 2026-08-08 08:36 UTC — 446 secret hits_
   `SECRET|none|none`
 - `https://trade.fyers.in/static/js/broker/9.99/bundle.min.js`
   `SECRET|other|no hardcoded credentials (no AWS/Google/GitHub/JWT/DB keys); only public app_id "2" and runtime cookie-based session tokens`
+- `https://trade.fyers.in/static/js/common/1.5/fy_common.min.js`
+  `SECRET|other|none_hardcoded`
 - `https://trade.fyers.in/static/js/common/2.0/fy_common.min.js`
   `SECRET|other|_FYERS cookie base64-decoded on client: contains at_hash and poa_flag`
 - `https://trade.fyers.in/static/js/common/2.0/fy_common.min.js`
   `SECRET|other|token_id extracted from _FYERS cookie (at_hash field) and appended to chartSettings URL as query param ?token_id=`
 - `https://trade.fyers.in/static/js/common/2.2/fy_common.min.js`
   `SECRET|jwt|_FYERS cookie (JWT-style, base64-decoded via atob, exposes at_hash/poa_flag; used as Authorization header)`
+- `https://trade.fyers.in/static/js/common/4/fy_common.min.js`
+  `SECRET|jwt|_FYERS cookie access token (JWT payload at_hash/poa_flag decoded via atob, used in Authorization header)`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js`
   `SECRET|other|Authorization header set from "_FYERS" cookie; request param token_id injected at runtime`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js`
