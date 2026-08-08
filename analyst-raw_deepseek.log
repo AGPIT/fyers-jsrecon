@@ -938,3 +938,77 @@ testability: PASSIVE
 
 ## STEP 7 — RISK SCORE
 [RISK] fyers-js: 68 — delta adds a live account-data API (verified-pnl get-data) that answers unauthenticated POSTs with business errors, confirms a concrete client-gated auth pattern on SGB account pages with token passed via URL query/localStorage, and surfaces a dev-tier mobileapi endpoint from prod code. No new hard credentials (all literals remain public-by-design identifiers or demo data), but the client-only auth-gating pattern on two account surfaces plus an unrejected dev endpoint keeps overall JS-surface exposure moderately high, pending the PASSIVE/AUTH_HELPED probes.
+===== RAW ANALYST 2026-08-08 02:32:25 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+=== STEP 1 — DELTA ===
+[NEW] subscriptions.fyers.in/assets/js/main_msi_1.4.js: raw `_FYERS` cookie value is set as the Authorization header on every subscriptions API request, and the cookie JWT is decoded client-side with the `at_hash` claim extracted to a global `tokenId` (console.log, lines 204-216).
+[NEW] trade.fyers.in/edis/authCdsl.html?token_id= now confirmed live 200 (attack surface), matching broker/13/bundle.min.js which passes `token_id` via URL query to /edis/details, /edis/index, /edis/authCdsl.html.
+[NEW] trade.fyers.in/static/js/broker/12.1/bundle.min.js adds dev-tier API roots api.fyers.in/fy/cdsl/dev, api.fyers.in/fydev/v1, api.fyers.in/vagator/v1 and a dev websocket wss://api-socket.fyers.in/dev/order (datapub:8862 already on file).
+[NEW] ordwin/js/4.6/helper_min.js surfaces internal endpoints api.fyers.in/anjuna/v1/margin, api.fyers.in/fydev/v1/baskets?token_id=, api.fyers.in/fydev/v1/margin/v1?token_id=, data.fyers.in/dev-fyers/mobileapi/user-settings, dev.fyers.in/orderwin-trade/static/js/ordwin/warning.svg.
+[CHANGED] sgb.fyers.in auth pattern gains a second chunk (c930e9b61683…38efa6cb924d0fcb8377.js) also building Authorization from urlParams `auth_code` + localStorage.auth_token; /orders and /updatesgb confirmed live 200.
+[CHANGED] ordwin/js/2.4/helper.min.js repeats the hardcoded demo fyToken 101000000014366 (was 2.0 in prior run; same demo data, new version).
+
+=== STEP 2 — PRIORITIZE ===
+[PRIO] trade.fyers.in/edis/* token-in-URL OAuth callback flow | 5.50 | attack 6 business 7 tech 6 gate 3 cloud 1 fresh 8
+[PRIO] api.fyers.in dev-tier roots (fydev/v1, fy/cdsl/dev, anjuna/v1/margin, wss dev) | 5.45 | attack 6 business 5 tech 7 gate 5 cloud 2 fresh 7
+[PRIO] subscriptions.fyers.in main_msi cookie-as-bearer surface | 5.15 | attack 5 business 6 tech 6 gate 4 cloud 2 fresh 7
+
+=== STEP 3 — HYPOTHESES ===
+[HYP] EDIS callback token_id in URL may be accepted without server-side binding to the initiating OAuth session
+class: AUTH
+asset: trade.fyers.in/edis/authCdsl.html?token_id= (broker/13/bundle.min.js)
+confidence: 45
+reasoning: broker 13 passes token_id via query params to /edis/details, /edis/index, /edis/authCdsl.html; live probe confirms authCdsl.html?token_id= returns 200. Token-in-URL without a scheme prefix mirrors the known client-gated sgb pattern; server-side binding unobserved.
+evidence_needed: /edis/details responding with data for a token_id not tied to the caller's session, or a self-supplied token_id accepted.
+verify_steps: AUTH_HELPED: `curl -s -i --max-time 12 'https://trade.fyers.in/edis/details?token_id=<own>'` and `curl -s -i --max-time 12 'https://trade.fyers.in/edis/index?token_id=<own>'`; re-run with a swapped token_id and compare status/shape. Read-only.
+impact: EDIS mandate/holding detail exposure if binding is absent; Medium.
+testability: AUTH_HELPED
+[HYP] api.fyers.in dev-tier endpoints reachable with no or weak auth
+class: MISCONFIG
+asset: api.fyers.in/fydev/v1 (+/fy/cdsl/dev, /anjuna/v1/margin) from broker/12.1 + ordwin/4.6
+confidence: 42
+reasoning: a prod broker bundle hardcodes dev API roots (fydev/v1, fy/cdsl/dev, vagator/v1) and a dev websocket (api-socket.fyers.in/dev/order); ordwin 4.6 calls fydev/v1/baskets?token_id= and fydev/v1/margin/v1?token_id= with the token as a query param. Dev-tier services are historically less gated.
+evidence_needed: any non-401/404 HTTP response on these paths, ideally data-bearing JSON.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/margin/v1?token_id=x'` ; `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/baskets'` ; `curl -s -i --max-time 12 'https://api.fyers.in/fy/cdsl/dev'`. Read-only.
+impact: unauthenticated margin/basket/CDSL dev-API access if a gate is missing; Medium.
+testability: PASSIVE
+[HYP] subscriptions API may authenticate off the client-decodable `_FYERS` cookie without re-validating claims server-side
+class: AUTH
+asset: subscriptions.fyers.in (main_msi_1.4.js → subscriptions API flow)
+confidence: 40
+reasoning: the bundle sets Authorization to the raw `_FYERS` cookie value on every subscriptions API request and decodes the JWT client-side (at_hash → tokenId, console.log lines 204-216). If the backend trusts the cookie-derived bearer without server-side claim validation, a tampered/swapped cookie-derived header could be accepted.
+evidence_needed: a request carrying an altered or another-session `_FYERS`-derived Authorization header still returns data / another account's payload.
+verify_steps: AUTH_HELPED: with own session, `curl -s 'https://subscriptions.fyers.in/api/subs/get_subscriptions' -H 'Authorization: <_FYERS cookie value>'`; re-run with a second account's cookie value and diff responses. Read-only.
+impact: cross-account subscription/billing data if claims are not re-verified; Medium.
+testability: AUTH_HELPED
+
+=== STEP 4 — SELF-CRITIQUE ===
+[PARKED] subscriptions main-truedata 0KMS0EZVXI: public OAuth client-id format → public-by-design identifier (reaffirmed).
+[PARKED] trade.fyers.in datafeed Fernet token_id (sha 568d3b6a…): demo HISTORY_TEST across 15+ bundles (reaffirmed).
+[PARKED] ordwin/2.0+2.4 demo ids 101000000014366 / 1100000005899114 / 51808097115-CO-1: demo data (reaffirmed).
+[PARKED] sgb env-map client ids + appIdHashes (QMABZB5R01, N43J3GIGOM, AF0MATWSX3, H4NMJ8X2NR, AEHNSK9PRW…): public OAuth app identifiers (reaffirmed).
+[PARKED] www.fyers.in GA4 G-JXG5NQ1WQJ + GTM-MB6PRVDG + Zoho formperma ZiaB9_3-…: public marketing/analytics/form tokens (reaffirmed).
+[PARKED] trade.fyers.in Sentry DSN (sha 2be44cf2…) + GA4 G-NTFX8XLKVH: public-by-design client keys (reaffirmed).
+[PARKED] login/signup/support/alerts/direct Cloudflare jsd challenge tokens/site-ids: per-request proofs, not credentials (reaffirmed).
+[PARKED] community.fyers.in/member/gtm.js GUEST JWT: public-by-design (reaffirmed).
+[PARKED] public/partners.fyers.in localhost:46475 dev_url: HUMAN_ONLY, out-of-band (reaffirmed).
+[PARKED] 13.235.24.249:8080/gtt/orders (ordwin/6): third-party AWS IP, out of scope (reaffirmed).
+[PARKED] datapub.fyers.in:8862: no new response this run; class deferred, not dead (reaffirmed).
+[PARKED] sgb/ipo `_next` & /404 text/html 200: SPA-shell mis-probe (reaffirmed).
+[FINAL] 1) trade.fyers.in/edis token-in-URL AUTH (conf 45, AUTH_HELPED, prio 5.50)  2) api.fyers.in dev-tier MISCONFIG (conf 42, PASSIVE, prio 5.45)  3) subscriptions cookie-as-bearer AUTH (conf 40, AUTH_HELPED, prio 5.15) — plus retained existing leads: verifiedpnl get-data AUTH (58), sgb account-pages AUTH (50), data.fyers.in dev-beta user-settings MISCONFIG (42).
+
+=== STEP 5 — NEXT ACTION ===
+[NEXT] PROBE: `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/margin/v1?token_id=x'` ; `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/baskets'` ; `curl -s -i --max-time 12 'https://api.fyers.in/fy/cdsl/dev'` — read-only, cheapest PASSIVE discriminator for the new dev-tier MISCONFIG lead; any non-401/404 reply escalates.
+
+=== STEP 6 — LEARNING ===
+[LEARN] REJECTED OTHER @ www.fyers.in GA4/GTM + Zoho formperma: public marketing/analytics/form tokens, not findings.
+[LEARN] REJECTED OTHER @ trade.fyers.in Sentry DSN + GA4 G-NTFX8XLKVH: public-by-design client keys.
+[LEARN] REJECTED OTHER @ Cloudflare jsd challenge tokens across login/signup/support/alerts/direct: per-request proofs, not credentials.
+[LEARN] REJECTED MISCONFIG @ subscriptions main-truedata 0KMS0EZVXI: public OAuth client-id format, not a credential.
+[LEARN] REJECTED AUTH @ trade.fyers.in datafeed Fernet token_id (sha 568d3b6a…): demo HISTORY_TEST data, not live auth material.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+
+=== STEP 7 — RISK SCORE ===
+[RISK] fyers-js: 69 — delta adds an EDIS OAuth callback confirmed live with token_id in URL, raw-cookie-as-bearer auth on the subscriptions API (client-side JWT decode + at_hash exposure), and dev-tier API roots/websocket hardcoded into prod bundles. No new hard credential (all literals remain public app ids or demo data), but account-adjacent surfaces (EDIS mandates, subscriptions billing, dev APIs) multiply the client-side-auth-gating pattern already seen on sgb/verifiedpnl, keeping overall JS-surface exposure moderately high pending the PASSIVE/AUTH_HELPED probes.
