@@ -740,3 +740,61 @@ testability: AUTH_HELPED
 [LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web/*.js and community `_ws/*`: 200 text/html SPA fallback — noise (reaffirmed).
 [LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; still deferred not dead.
 [RISK] fyers-js: 75 — run surfaces a new large account-tier IPO/invest API family (api-i1.fyers.in ordering endpoints + api-t1 authcode host) with client-side localStorage auth gating and dev/staging roots shipped in prod, a new funds-movement host (fundtransfer) with cookie-as-bearer and client-side-only limits, and the EDIS token-in-URL chain now fully resolved with a live 200 probe. No hard credential emerged (all appIds/hashes are public client identifiers; Fernet string reaffirmed demo data), and every new gate status is still unknown pending the PASSIVE probes — overall JS surface exposure moderately high and expanding, but exploit status unproven.
+
+===== ANALYST 2026-08-08 10:06:53 UTC =====
+[NEW] subscriptions.fyers.in/assets/js/main_msi_1.4.js: `_FYERS` cookie used as raw Authorization on every subscriptions API request; cookie JWT decoded client-side, `at_hash` extracted to global `tokenId` and console.log'd (validate 204-216) — new host instance of the cookie-as-auth family.
+[NEW] api.fyers.in/fy/cdsl/dev + api.fyers.in/vagator/v1: novel dev API roots hard-embedded in broker/12.1 prod bundle (settlement/EDIS-adjacent family).
+[NEW] data.fyers.in/dev-beta/mobileapi/get-user-settings (init/6.7) + data.fyers.in/dev-fyers/mobileapi/user-settings (ordwin/4.6): dev-tier mobileapi roots shipped in prod bundles.
+[NEW] public.fyers.in/messages/messagesLinks.json: new endpoint reference in prod bundle (Prod/1.2 posConv.min.js).
+[PRIO] subscriptions.fyers.in (main_msi_1.4.js API) — priority 5.70 — attack=6,business=6,tech=7,gate=3,cloud=3,fresh=9
+[PRIO] data.fyers.in dev-tier mobileapi (dev-beta/dev-fyers) — priority 5.35 — attack=5,business=4,tech=6,gate=6,cloud=4,fresh=9
+[PRIO] api.fyers.in/vagator/v1 + /fy/cdsl/dev — priority 4.70 — attack=4,business=4,tech=5,gate=5,cloud=4,fresh=8
+[PRIO] public.fyers.in/messages/messagesLinks.json — priority 4.65 — attack=4,business=3,tech=4,gate=8,cloud=3,fresh=8
+[HYP] subscriptions API trusts the _FYERS cookie value as bearer auth, decoded client-side with tokenId console-logged
+class: AUTH
+asset: subscriptions.fyers.in (API consumed by main_msi_1.4.js)
+confidence: 55
+reasoning: main_msi_1.4.js sets Authorization to the raw `_FYERS` session cookie on every subscriptions request and decodes the JWT client-side, extracting at_hash as global tokenId (console.log, validate 204-216); cookie-as-bearer with no server-side session binding observed matches the fundtransfer/verified-pnl family already alive in KB.
+evidence_needed: a subscriptions API endpoint returning business data when Authorization carries a cookie minted for a different session, proving value-only binding (plus whether tokenId console.log reaches server logs).
+verify_steps: PASSIVE: `curl -s --max-time 20 'https://subscriptions.fyers.in/assets/js/main_msi_1.4.js' | grep -oE 'https?://[^"'']*|/[vV][0-9]+[a-zA-Z0-9_/-]*'` to resolve the API base/paths, then `curl -s -i --max-time 12 'https://subscriptions.fyers.in/<resolved>'` (no header) to record gate shape. AUTH_HELPED: own _FYERS cookie vs a peer cookie, status/code diff — never read another user's subscription body.
+impact: cross-account subscription/plan disclosure or manipulation if the cookie is value-bound; Medium.
+testability: AUTH_HELPED
+[HYP] prod bundles leak data.fyers.in dev-tier mobileapi roots (weakly gated user-settings surface)
+class: MISCONFIG
+asset: data.fyers.in/dev-beta/mobileapi/get-user-settings and /dev-fyers/mobileapi/user-settings
+confidence: 48
+reasoning: init/6.7 fy_trade_unminified.js and ordwin/4.6 helper_min.js hard-embed data.fyers.in dev-beta/dev-fyers mobileapi roots in prod bundles; dev-tier API roots in prod match the ACCEPTED ipo dev/staging-root family in KB; user-settings is account-adjacent data.
+evidence_needed: dev-tier host answering with business JSON (user-settings body) or a gate weaker than the prod equivalent.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://data.fyers.in/dev-beta/mobileapi/get-user-settings'` and `curl -s -i --max-time 12 'https://data.fyers.in/dev-fyers/mobileapi/user-settings'` — record status/content-type only, no credentials.
+impact: unauthenticated dev-tier user-settings exposure; Low-Medium.
+testability: PASSIVE
+[HYP] broker/12.1 prod bundle embeds novel api.fyers.in dev roots (fy/cdsl/dev, vagator/v1)
+class: MISCONFIG
+asset: api.fyers.in/fy/cdsl/dev and api.fyers.in/vagator/v1
+confidence: 45
+reasoning: broker/12.1/bundle.min.js hard-embeds these roots beside already-known dev references (fydev/v1, datapub:8862, api-socket dev WS); cdsl ties to the EDIS/settlement token-in-URL family already open in KB; vagator/v1 has no prior reference in KB.
+evidence_needed: these dev paths resolving and answering 200/business (vs 404), or returning data without auth.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://api.fyers.in/vagator/v1'` and `curl -s -i --max-time 12 'https://api.fyers.in/fy/cdsl/dev'` — record status/content-type only.
+impact: dev-tier settlement/API enumeration; Medium only if a root answers unauthenticated.
+testability: PASSIVE
+[PARKED] public.fyers.in/messages/messagesLinks.json: single endpoint ref for a message-links config; probable static JSON — info-disclosure noise risk, no confidence path to impact.
+[PARKED] trade init/5.9 _FYERS access_token forwarded to fyers.quantsapp.com: third-party sink, out of scope per rules — architecture intel only.
+[PARKED] trade widgets.min.js literals (sha256 7b678b402d72179c53832ba099bcf548e2dc55c058e16546e0b783ffef3faa7d / db159866c168cc79a3027ff9e8d9dfe2cac8cf7596e6e332123218d711f1eee9): no surrounding code in snapshot, re-grep pending.
+[PARKED] subscriptions main-truedata.js 0KMS0EZVXI (sha256 7c924a7a0b079b4bedbe973e90ec706878a2a4b9a58d526819be6afffdb29b4b): public 10-char appId format, no private-key role (reaffirmed).
+[PARKED] trade datafeed/Prod Fernet token (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534): KB-dead HISTORY_TEST demo data (reaffirmed).
+[PARKED] ordwin/2.4 fyToken 101000000014366 + helper 1100000005899114 / 51808097115-CO-1: hardcoded demo identifiers.
+[PARKED] myaccount/direct/pledge/alerts/app Flutter .js (audit_payload_hasher, csrf_reference_validator, etc.): all 200 text/html SPA fallback — noise (reaffirmed).
+[PARKED] trade ordwin/6 13.235.24.249:8080 /gtt/orders: out-of-scope host, architecture intel only.
+[PARKED] datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
+[FINAL] 1) subscriptions cookie-as-auth AUTH (55, AUTH_HELPED, 5.70) 2) data.fyers.in dev-tier mobileapi MISCONFIG (48, PASSIVE, 5.35) 3) api.fyers.in vagator/fy-cdsl-dev MISCONFIG (45, PASSIVE, 4.70) — carried-forward open leads retained: EDIS token-in-URL AUTH (60), verified-pnl get-data AUTH (58), api-i1 invest-tier AUTH (55), fundtransfer AUTH (50), sgb MISCONFIG (45).
+[NEXT] PROBE: `curl -s --max-time 20 'https://subscriptions.fyers.in/assets/js/main_msi_1.4.js' | grep -oE 'https?://[^"'']*|/[vV][0-9]+[a-zA-Z0-9_/-]*'` to resolve the subscriptions API base/paths, then `curl -s -i --max-time 12 'https://subscriptions.fyers.in/<resolved>'` (no auth) to record gate shape; escalate to own-cookie vs peer-cookie diff next run.
+[LEARN] ACCEPTED AUTH @ subscriptions.fyers.in: raw _FYERS cookie as bearer Authorization + client-side JWT decode (at_hash→tokenId, console.log) — new host instance of the cookie-as-auth family.
+[LEARN] ACCEPTED MISCONFIG @ data.fyers.in: dev-beta/dev-fyers mobileapi roots shipped in prod bundles — newly enumerable dev-tier surface.
+[LEARN] REJECTED OTHER @ trade init/5.9: _FYERS access_token forwarded to fyers.quantsapp.com — third-party sink, out of scope.
+[LEARN] REJECTED OTHER @ public.fyers.in/messages/messagesLinks.json: probable static links config — parked, not dead.
+[LEARN] REJECTED OTHER @ sgb appId AF0MATWSX3: confirmed staging client_id in env mapping — not an unaccounted secret.
+[LEARN] REJECTED MISCONFIG @ myaccount/direct/pledge/alerts/app Flutter .js: all 200 text/html SPA fallback (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
+[LEARN] REJECTED OTHER @ GA4/GTM/Sentry DSN/Cloudflare jsd/Zoho formperma/Google keys: public-by-design (reaffirmed).
+[RISK] fyers-js: 76 — new host instance of the proven cookie-as-auth family (subscriptions: raw cookie bearer + client-side JWT decode with tokenId console.log), new dev-tier mobileapi roots on data.fyers.in, and novel settlement-adjacent dev roots (vagator/v1, fy/cdsl/dev) all shipping in prod bundles. No new hard credential (Fernet/0KMS0EZVXI reaffirmed demo/public; AF0MATWSX3 = mapped staging client_id), and all new gate shapes unverified pending PASSIVE probes — JS surface exposure moderately high and expanding, exploit status unproven.

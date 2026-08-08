@@ -14,3 +14,7 @@
 - 2026-08-08 ACCEPTED MISCONFIG @ ipo.fyers.in: dev/staging API roots (api-i1.fyers.co.in/invest/staging/ipo, api-i1.fydev.tech/invest/dev/ipo) ship inside the prod bundle — newly enumerable dev-tier surface.
 - 2026-08-08 ACCEPTED AUTH @ api.fyers.in/fydev/v1/edis/*: base host resolved (edis/index + edis/details GET/POST with token_id, authCdsl.html 200 live) — strengthens the proven token-in-URL chain on settlement surface.
 - 2026-08-08 ACCEPTED AUTH @ fundtransfer.fyers.in/v2: cookie-as-bearer (validate("_FYERS")) + client-side-only limits — new account-tier instance of the family, probe pending.
+- 2026-08-08 ACCEPTED AUTH @ subscriptions.fyers.in: raw _FYERS cookie as bearer Authorization + client-side JWT decode (at_hash→tokenId, console.log) — new host instance of the cookie-as-auth family.
+- 2026-08-08 ACCEPTED MISCONFIG @ data.fyers.in: dev-beta/dev-fyers mobileapi roots shipped in prod bundles — newly enumerable dev-tier surface.
+- 2026-08-08 REJECTED OTHER @ public.fyers.in/messages/messagesLinks.json: probable static links config — parked, not dead.
+- 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
