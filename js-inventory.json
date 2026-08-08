@@ -123,9 +123,11 @@
  {
   "url": "https://alerts.fyers.in/static/js/main.fe48286e.js",
   "host": "alerts.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "473a7bfdc76bd62c",
+  "pass": "deep1",
+  "report": "reports/285ded092a.md"
  },
  {
   "url": "https://api-connect-docs.fyers.in/fyers-lib.js",
@@ -940,86 +942,110 @@
  {
   "url": "https://direct.fyers.in/static/js/2.3b51a09f.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "82863def2c43725e",
+  "pass": "deep1",
+  "report": "reports/f45a43d8f8.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/2.8e25f09c.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "3e746c16ed5b9ae6",
+  "pass": "deep1",
+  "report": "reports/7e40bd0205.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/2.b2092b74.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a6b35db01f9a250e",
+  "pass": "deep1",
+  "report": "reports/b3ddd88f51.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/2.b29fef73.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "6ab7f859c5ab4a99",
+  "pass": "deep1",
+  "report": "reports/c253085b55.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/2.d369e917.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "d17ec65ac166e707",
+  "pass": "deep1",
+  "report": "reports/d51f7539e7.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/2.dbe3746b.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "78eef23dd30d83c1",
+  "pass": "deep1",
+  "report": "reports/ae4c02dd9d.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.17d7affa.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "052dc1a9dd00f70b",
+  "pass": "deep1",
+  "report": "reports/c322f4d3bc.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.91cbef6b.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a3da3963e736cd45",
+  "pass": "deep1",
+  "report": "reports/fa5f5e17d9.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.a33357cd.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "ef92f5bc02f37802",
+  "pass": "deep1",
+  "report": "reports/765178c964.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.aae02271.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "66f3e0c3287ebefb",
+  "pass": "deep1",
+  "report": "reports/0fda7a998f.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.cee37e7c.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "68f940dcadc8351c",
+  "pass": "deep1",
+  "report": "reports/50f3701448.md"
  },
  {
   "url": "https://direct.fyers.in/static/js/main.cfedfcc4.chunk.js",
   "host": "direct.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "db0725ac57f10171",
+  "pass": "deep1",
+  "report": "reports/163f58b8e8.md"
  },
  {
   "url": "https://forms.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js",
@@ -1810,7 +1836,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/(services)/haircut/stock/layout-30954c1d5312bd3a.js",
@@ -2039,8 +2065,9 @@
   "sha256": "63f383bd54fe2263",
   "analyzed": false,
   "map": null,
-  "error": "fetch failed",
-  "retries": 2
+  "error": "unreachable",
+  "retries": 3,
+  "skipped": true
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/page-10917bacad750e01.js",

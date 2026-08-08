@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 00:00 UTC — 307 secret hits_
+_src 2026-08-08 01:25 UTC — 332 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -16,6 +16,10 @@ _src 2026-08-08 00:00 UTC — 307 secret hits_
   `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
 - `https://alerts.fyers.in/static/js/main.ba1218f2.js`
   `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.fe48286e.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.fe48286e.js`
+  `SECRET|google_key|902868841845-3wj23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com|staging_commented`
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
 - `https://assets.fyers.in/Lib/calculators/1.0/brokrage-calc.js`
@@ -66,6 +70,52 @@ _src 2026-08-08 00:00 UTC — 307 secret hits_
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5O`
 - `https://community.fyers.in/member/gtm.js`
   `SECRET|jwt|eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6ImZLR0cifQ.eyJpZCI6IkdVRVNUX0xWV1c0VFRVTVlQOVdnQSIsIm5ldHdvcmtJZCI6IlpLbHp5OWl3QnEiLCJuZXR3b3JrRG9tYWluIjoiZnllcnMuYmV0dGVybW9kZS5pbyIsInRva2VuVHlwZSI6IkdVRVNUIiwiZW50aXR5SWQiOm51bGwsInBlcm1pc3Npb25Db250ZXh0IjpudWxsLCJwZXJtaXNzaW9ucyI6bnVsbCwiaWF0IjoxNzg2MDI4MTU0LCJleHAiOjE3ODYwNDI1NTR9.lhrak6dQmTgIoWoaIMMWmsLldtRv1RKL-8aWn1UqtZSDX4d2FkOq5uOsZing6AWhXbPzVkrAc55hRX3N6NnN5A`
+- `https://direct.fyers.in/static/js/2.3b51a09f.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvpp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.3b51a09f.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.8e25f09c.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.8e25f09c.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.b2092b74.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.b2092b74.chunk.js`
+  `SECRET|google_key|902868842204-3qb23dhv0b3frfdl4rkcefm3ms9f22g0.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.b29fef73.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.d369e917.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.d369e917.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.dbe3746b.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/2.dbe3746b.chunk.js`
+  `SECRET|google_key|s(taging)0248684145-9qb23d4570b5tnvj2u2vbr8v93borq.apps.googleusercontent.com (staging client id shipped in prod assets)`
+- `https://direct.fyers.in/static/js/main.17d7affa.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.17d7affa.chunk.js`
+  `SECRET|google_key|902865841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.91cbef6b.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.91cbef6b.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.a33357cd.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hggm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.a33357cd.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.aae02271.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.aae02271.chunk.js`
+  `SECRET|google_key|902868673689-3qb23dhv0b5tnvj7u2vbkur48v9guorep.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.cee37e7c.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.cee37e7c.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.cfedfcc4.chunk.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://direct.fyers.in/static/js/main.cfedfcc4.chunk.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
 - `https://forms.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js`
   `SECRET|other|none_found`
 - `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
