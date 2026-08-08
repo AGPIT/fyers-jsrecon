@@ -500,3 +500,44 @@ testability: PASSIVE
 [LEARN] ACCEPTED MISCONFIG @ direct.fyers.in Flutter web: new host live with unauthenticated 200 static responses; endpoint gating unverified.
 [LEARN] REJECTED OTHER @ www.fyers.in GA4/GTM/Zoho formperma/Sentry DSN/Cloudflare jsd tokens: public-by-design marketing/analytics keys (reaffirmed).
 [RISK] fyers-js: 70 — delta adds three previously-unanalysed account-adjacent Flutter web builds (myaccount, direct, alerts), a Next.js migration on marketing domains, and two unverified api_key-class literals; no new hard credential and no confirmed vuln, but none of the prior high-value leads (verifiedpnl get-data answering 200/1005 anonymously, dev-tier API roots, sgb/edis client-gated auth) have been closed, and the newly live account-app bundles sit unanalyzed — JS-surface exposure remains moderately high.
+
+===== ANALYST 2026-08-08 05:23:59 UTC =====
+[NEW] pledge.fyers.in live Flutter web build: /web/flutter.js, /web/main.dart.js, /web/flutter_service_worker.js, /web/manifest.json all 200 (account-adjacent pledge/collateral surface).
+[NEW] verifiedpnl.fyers.in/static/js/main.78f0294e.js embeds a Google API-key literal (AIza…, truncated in scan).
+[NEW] myaccount.fyers.in/web returns 200 text/html for security-themed bogus paths (audit_payload_hasher.js, csrf_reference_validator.js, otp_token_invalidator.js, security_probe_guard.js…) — SPA-fallback artifacts, not real endpoints.
+[CHANGED] sgb.fyers.in _next chunk c930e9b6…/4853267…/d3a64d4a….: URL-query `auth_code` AND localStorage `auth_token` are each converted verbatim into the Authorization header — the token-in-URL→bearer mechanism for sgb is now directly evidenced in-bundle.
+[PRIO] api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data | 6.50 | attack 7 business 7 tech 7 gate 9 cloud 4 fresh 2
+[PRIO] pledge.fuers.in/web/ (new Flutter app) | 5.40 | attack 6 business 4 tech 7 gate 5 cloud 2 fresh 9
+[PRIO] sgb.fuers.in account auth flow (auth_code→Authorization) | 5.25 | attack 7 business 5 tech 6 gate 4 cloud 2 fresh 6
+[HYP] verified-pnl get-data has no server auth gate; payload alone reaches business layer
+class: AUTH
+asset: api-a1-prod.fuers.in/myaccount/prod/verified-pnl/get-data
+confidence: 58
+reasoning: unauthenticated POST already returns 200 with business status_code 1005 (KB-accepted today); only a frozen pnl_url config in main.cf21f7c5.js and no HTTP enforcement observed. Client UI gates on client-side `_FYERS` parse (main.606be587.js), so server-side binding is unverified.
+evidence_needed: same endpoint returns different business codes (data vs 1005) for valid/invalid payloads with no Authorization header, or responds to another user's fy_id.
+verify_steps: AUTH_HELPED: repeat the prior blind POST `curl -s -i -X POST 'https://api-a1-prod.fuers.in/myaccount/prod/verified-pnl/get-data' -H 'Content-Type: application/json' -d '…own fy_id…'`; then send identical payload with a peer/arbitrary fy_id and diff status_code. Read-only, own-account only.
+impact: cross-account verified P&L disclosure if id-only binding; Medium.
+[HYP] pledge Flutter app ships server routes with client-side-only gating
+class: AUTH
+asset: pledgebh.fyers.in/web/
+confidence: 42
+reasoning: brand-new pledge/collateral Flutter build; every probe (main.dart.js, flutter_service_worker.js, manifest.json) returned 200 text/html — real JS was never fetched, so endpoint list and Authorization construction are unseen; account-adjacent host, same family as verifiedpnl/myaccount which construct auth from storage/cookie client-side.
+evidence_needed: fetch real main.dart.js; it must list live API hosts and show that Authorization is built from localStorage/`_FYERS` at runtime.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://pledgebh.fuers.in/web/'` (parse `flutter_bootstrap/main.dart.js` src), then fetch the real chunk and grep for `api.fuers.in`, `Authorization`, `_FYERS`, `token`. Read-only.
+impact: endpoint enumeration on a collateral/pledge surface; scenarios Medium if any PATH answers unauthenticated.
+[HYP] sgb auth-code-in-URL suggests token-bound-only session model
+class: AUTH
+asset: sgb.fuers.in OAuth account flow
+confidence: 48
+reasoning: in-bundle evidence now shows URL `auth_code` taken verbatim into Authorization header; localStorage auth_token read the same and set to Authorization as JWT-style bearer without scheme. If backend resolves tokens purely by value (no session binding), page/param-level reuse or unauth access across sessions.
+impact: cross-account SGB portfolio/booking data access; Medium.
+[PARKED] verifiedpn main.78f02902e.js Google AIza…-key: value truncated in scan/unendpoint unknown-使用; client-side JS keys public-by-design class — dropped pending full-value grep.
+[PARKED] myaccount.fivers.in/web many suspiciously-named *.js (audit_payload_hasher.js, security_probe_guard.js…): all 200 text/html — SPA-fallback artifacts, not fetchable chat code.
+[PARKED] trade.fuers.in/Prod/1.2/widgets.min.js 1341655KwEfgY / 984896EWiONu: no surrounding code in scan slice; non-detriminable until grep (re-affirmed from prior).
+[PARKED] subscriptions main_mis_1.4 at_hash console.log/tokenId: already an existing lead (cookie-as-bearer AUTH 40), no new delta.
+[NEXT] PROBE: `curl -s -i --max-time 12 'https://pledgebh.fuers.in/web/'` capture real flutter bootstrap / main.dart.js path, then `curl -s --max-time 25 'https://pledgebh.fuers.in/web/main.dart.js'` and grep for `api.fu` `Authorization` `_FYERS` — highest-value newly-verified surface, fully read-through PASSIVE.
+[LEARN] ACCEPTED OTHER @ pledgebh.fuers.in Flutter web: new account-adjacent live host conformational bundle unanalyzed (all HTML fallback).
+[LEARN] ACCEPTED AUTH @ sgb.fuers.in: in-bundle memory confirms auth_code + localStorage auth_token presented as Authorization without server-side/non-schematic binding observed.
+[LEARN] REJECTED OTHER @ verifiedpnl main.78f0292e.js Google AIza… key: truncated, no scoping evidence; JS API keys public-by-default — not a finding this run.
+[LEARN] REJECTED MISCONFIG @ myaccount.fuers.in/web security-named *.js (audit_*, csrf_*, otp_*): SPA fallback HTML artifacts, not actual app scripts.
+[RISK] fyers-js: 71 — delta adds a pledge/collateral Flutter web host (unanalyzed, SPA-fallback masking) and hardens the sgb token-in-URL client-auth pattern with first direct bundle evidence; top verified-pnl get-data lead (unauthenticated POST reaching business validation) still un-adroit (neindreces mapping/field test), dev-tier API roots and EDIS/subscriptions leads unresolved. No new valid hard credential (Google AIzaName truncated/unsценed — parked), but surges/account surfaces keep JS exposure moderately high pending the two LIST probes.
