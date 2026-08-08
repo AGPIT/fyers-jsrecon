@@ -332,3 +332,8 @@
 200 | https://trade.fyers.in/popout_chart/index.html?symbol={symbol}&resolution={resolution}&theme={theme} | text/html
 200 | https://trade.fyers.in/logo/SF-pop-out-chart.svg | image/svg+xml
 200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml
+200 | https://alerts.fyers.in/cdn-cgi/challenge-platform/scripts/jsd/main.js | application/javascript; charset=UTF-8
+200 | https://alerts.fyers.in/web/ | text/html
+200 | https://alerts.fyers.in/web/assets/packages/flutter_inappwebview_web/assets/web/web_support.js | text/html
+200 | https://alerts.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_dark.gif | text/html
+200 | https://alerts.fyers.in/web/assets/packages/fy_ui/assets/gifs/loader_light.gif | text/html

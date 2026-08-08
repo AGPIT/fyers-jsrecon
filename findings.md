@@ -1,7 +1,21 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-07 23:43 UTC — 299 secret hits_
+_src 2026-08-08 00:00 UTC — 307 secret hits_
 
+- `https://alerts.fyers.in/static/js/main.17f0956d.js`
+  `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.17f0956d.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.6c2e34d1.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.6c2e34d1.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.6f44cebf.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.6f44cebf.js`
+  `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
+- `https://alerts.fyers.in/static/js/main.ba1218f2.js`
+  `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
 - `https://app.fyers.in/assets/packages/clevertap_plugin/assets/clevertap.js`
   `SECRET|other|none found`
 - `https://assets.fyers.in/Lib/calculators/1.0/brokrage-calc.js`
@@ -218,6 +232,8 @@ _src 2026-08-07 23:43 UTC — 299 secret hits_
   `SECRET|other|no hardcoded secrets found (auth_token read at runtime from localStorage)`
 - `https://sgb.fyers.in/_next/static/chunks/main-1f1bdab0e2f336010c3f.js`
   `SECRET|jwt|none`
+- `https://sgb.fyers.in/_next/static/chunks/pages/_app-11349114685a3ea0e08e.js`
+  `SECRET|other|None found`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`
   `SECRET|other|appIdHash=39abc82e995e6c2e8ab69086650b1fa700300322a2fb0d846902e0804ca1bf0c`
 - `https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js`

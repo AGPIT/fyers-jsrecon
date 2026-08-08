@@ -86,32 +86,39 @@
  {
   "url": "https://alerts.fyers.in/static/js/main.17f0956d.js",
   "host": "alerts.fyers.in",
-  "size": 16499,
-  "sha256": "29cb0faeb8475019",
-  "analyzed": false,
+  "size": 16498,
+  "sha256": "2f1d5a4c8065a81d",
+  "analyzed": true,
   "map": null,
-  "report": "reports/9e2383c6fb.md"
+  "report": "reports/9e2383c6fb.md",
+  "pass": "deep1"
  },
  {
   "url": "https://alerts.fyers.in/static/js/main.6c2e34d1.js",
   "host": "alerts.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "a6c43dc8ad102e9c",
+  "pass": "deep1",
+  "report": "reports/bbc9e9a5a1.md"
  },
  {
   "url": "https://alerts.fyers.in/static/js/main.6f44cebf.js",
   "host": "alerts.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "e1516e2dedf93fa5",
+  "pass": "deep1",
+  "report": "reports/4c5dccb3c8.md"
  },
  {
   "url": "https://alerts.fyers.in/static/js/main.ba1218f2.js",
   "host": "alerts.fyers.in",
-  "size": 16499,
-  "analyzed": false,
-  "error": "html"
+  "size": 16498,
+  "analyzed": true,
+  "sha256": "781a4a95b4aeb2c2",
+  "pass": "deep1",
+  "report": "reports/a170a7fc7f.md"
  },
  {
   "url": "https://alerts.fyers.in/static/js/main.fe48286e.js",
@@ -495,8 +502,10 @@
   "host": "assets.fyers.in",
   "size": 18561,
   "sha256": "d19b6478e8d94f23",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/3432c793bb.md"
  },
  {
   "url": "https://assets.fyers.in/cdn-cgi/challenge-platform/h/b/scripts/jsd/8eb6d5cd556e/main.js",
@@ -1799,7 +1808,9 @@
   "size": 17580,
   "sha256": "601e4d030f54b67d",
   "analyzed": false,
-  "map": null
+  "map": null,
+  "error": "fetch failed",
+  "retries": 1
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/(services)/haircut/stock/layout-30954c1d5312bd3a.js",
@@ -2029,7 +2040,7 @@
   "analyzed": false,
   "map": null,
   "error": "fetch failed",
-  "retries": 1
+  "retries": 2
  },
  {
   "url": "https://fyers.in/_next/static/chunks/app/page-10917bacad750e01.js",
@@ -20319,8 +20330,10 @@
   "host": "ipo.fyers.in",
   "size": 18387,
   "sha256": "b52f3f714a9bd5b3",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/444721e447.md"
  },
  {
   "url": "https://ipo.fyers.in/_next/static/chunks/pages/_app-bb67e29b6cc75bc68bce.js",
@@ -20334,8 +20347,10 @@
   "host": "ipo.fyers.in",
   "size": 18351,
   "sha256": "27bb863f1f38c2b1",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/eb8dd6358b.md"
  },
  {
   "url": "https://ipo.fyers.in/_next/static/chunks/pages/details-0147514f0742b47de057.js",
@@ -21329,8 +21344,10 @@
   "host": "open-account.fyers.in",
   "size": 18737,
   "sha256": "b704f1c3bc357d2e",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/a270abba37.md"
  },
  {
   "url": "https://open-account.fyers.in/data/jquery.dataTables.min.js",
@@ -44837,24 +44854,30 @@
   "host": "sgb.fyers.in",
   "size": 18383,
   "sha256": "0da6b3fbcd7de0d1",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/05c1171cfd.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/pages/_app-5cf1e6da0f5eab8c3205.js",
   "host": "sgb.fyers.in",
   "size": 18381,
   "sha256": "29b32f99fa49b9a5",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/64e651b4c8.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/pages/_app-75012f4c431f582d29dd.js",
   "host": "sgb.fyers.in",
   "size": 18381,
   "sha256": "6abe7f7bfcae22c3",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/518b97c917.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/pages/_app-8ca4802063e2b1f19c33.js",
@@ -44868,8 +44891,10 @@
   "host": "sgb.fyers.in",
   "size": 18383,
   "sha256": "79393a499f9f9e8c",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/693c7cad33.md"
  },
  {
   "url": "https://sgb.fyers.in/_next/static/chunks/pages/details-33907670c16c0471dfdd.js",
@@ -46226,8 +46251,10 @@
   "host": "trade.fyers.in",
   "size": 17383,
   "sha256": "35c1bd91118458e5",
-  "analyzed": false,
-  "map": null
+  "analyzed": true,
+  "map": null,
+  "pass": "deep1",
+  "report": "reports/1423dae7a2.md"
  },
  {
   "url": "https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js",
