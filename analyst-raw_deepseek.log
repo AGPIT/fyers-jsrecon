@@ -1012,3 +1012,71 @@ testability: AUTH_HELPED
 
 === STEP 7 — RISK SCORE ===
 [RISK] fyers-js: 69 — delta adds an EDIS OAuth callback confirmed live with token_id in URL, raw-cookie-as-bearer auth on the subscriptions API (client-side JWT decode + at_hash exposure), and dev-tier API roots/websocket hardcoded into prod bundles. No new hard credential (all literals remain public app ids or demo data), but account-adjacent surfaces (EDIS mandates, subscriptions billing, dev APIs) multiply the client-side-auth-gating pattern already seen on sgb/verifiedpnl, keeping overall JS-surface exposure moderately high pending the PASSIVE/AUTH_HELPED probes.
+===== RAW ANALYST 2026-08-08 03:56:17 UTC =====
+[0m
+> build · deepseek-v4-flash-free
+[0m
+STEP 1 — DELTA
+[NEW] myaccount.fyers.in live Flutter web account app — /web/ (main.dart.js, flutter_service_worker.js, js_dart_service.js, /web/static/js/main.dart.js) all 200 text/html (SPA fallback).
+[NEW] direct.fyers.in live Flutter web app — /web/ (main.dart.js, flutter_service_worker.js, clevertap.js) all 200.
+[NEW] alerts.fyers.in Flutter web build — /web/ now live alongside the previously-known /static/js/main.* app.
+[CHANGED] www.fyers.in + apex fyers.in now serve a Next.js app — /_next/static/chunks|css|media/* all 200 text/html, coexisting with legacy WordPress/General-assets.
+[NEW] trade.fyers.in/Prod/1.2/widgets.min.js: two new api_key-class literals `1341655KwEfgY` and `984896EWiONu`.
+[NEW] trade.fyers.in/popout/chart.html and /popout_chart/index.html?symbol=&resolution=&theme= live 200 (chart popout UI).
+[NEW] myaccount.fyers.in/web/flutter_201291.py_style.py returns 200 — anomalous .py path served by SPA fallback (artifact).
+
+STEP 2 — PRIORITIZE
+[PRIO] myaccount.fyers.in Flutter web account app | 6.30 | attack 6 business 8 tech 7 gate 5 cloud 2 fresh 8
+[PRIO] direct.fyers.in Flutter web app | 5.55 | attack 5 business 6 tech 6 gate 6 cloud 2 fresh 8
+[PRIO] www.fyers.in + fyers.in Next.js app | 5.00 | attack 4 business 4 tech 6 gate 8 cloud 1 fresh 8
+[PRIO] trade.fyers.in popout chart | 4.35 | attack 3 business 4 tech 5 gate 7 cloud 1 fresh 7
+
+STEP 3 — HYPOTHESES
+[HYP] myaccount Flutter web account bundle exposes account-API endpoints and client-side gating
+class: AUTH
+asset: myaccount.fyers.in/web/ (main.dart.js)
+confidence: 45
+reasoning: live account-app web build served 200 on main.dart.js, flutter_service_worker.js, js_dart_service.js; all returned text/html (SPA fallback), so the bundle was never analyzed — its endpoints/gating logic are unseen. Precedent verifiedpnl: account-app JS gates UI on a client-parsed `_FYERS` JWT, so server-side binding is unverified by default here too.
+evidence_needed: real JS fetchable; it lists live account API hosts/paths and shows whether Authorization is built client-side from storage/cookie.
+verify_steps: PASSIVE: `curl -s -i --max-time 15 'https://myaccount.fyers.in/web/'` and parse script src for the real asset path; then `curl -s --max-time 20 'https://myaccount.fyers.in/web/main.dart.js'` (if HTML, use the path from index) and grep for `https://`, `api.fyers.in`, `Authorization`, `_FYERS`. Read-only.
+impact: endpoint enumeration on an account-management surface; Medium.
+testability: PASSIVE
+[HYP] direct.fyers.in Flutter web serves unauthenticated data/API endpoints
+class: MISCONFIG
+asset: direct.fyers.in/web/
+confidence: 40
+reasoning: brand-new live Flutter host; every probed asset returns 200 with no auth signal; bundle unanalysed (text/html mis-probes). No KB rejection of this class and no in-run gate observed.
+evidence_needed: fetchable JS containing endpoint URLs, or any endpoint replying non-401/404 without credentials.
+verify_steps: PASSIVE: `curl -s -i --max-time 15 'https://direct.fyers.in/web/'` to locate main.dart.js; fetch it and grep for api hosts; probe any found api.fyers.in-style paths read-only. Do not touch third-party hosts.
+impact: unauthenticated endpoint/disclosure if a gate is missing; Low-Medium.
+testability: PASSIVE
+[HYP] www.fyers.in Next.js app exposes unauthenticated API/data routes
+class: MISCONFIG
+asset: www.fyers.in/_next/static
+confidence: 42
+reasoning: Next.js build live on marketing domain; all chunk/css/media fetches returned 200 text/html (SPA shell), so chunk contents are unanalysed; Next.js apps commonly ship /api/* or server actions, and this site sits alongside legacy WordPress routing that may leave inconsistent fallback behavior.
+evidence_needed: any /api/* or _next/data/* path returning 200 JSON (not HTML), or a chunk containing a data endpoint.
+verify_steps: PASSIVE: `curl -s -i --max-time 15 'https://www.fyers.in/'` to capture buildId; `curl -s -i --max-time 12 'https://www.fyers.in/api/'`; then fetch one real chunk from the build manifest and grep for `/api` and host strings. Read-only.
+impact: low-value data/endpoint disclosure on public marketing surface; Low.
+testability: PASSIVE
+
+STEP 4 — SELF-CRITIQUE
+[PARKED] trade widgets.min.js literals 1341655KwEfgY/984896EWiONu: no surrounding code in scan output; indistinguishable from public widget/partner identifiers until context-grep — not dropped as finding yet.
+[PARKED] myaccount flutter_201291.py_style.py 200: SPA-fallback artifact (index.html served for unknown /web paths), not a real .py endpoint.
+[PARKED] www.fyers.in/downloads/ and apex marketing pages: static content, no JS-surface signal.
+[PARKED] trade.fyers.in popout chart paths: plain UI shell, no auth/endpoint signal yet.
+[PARKED] webtrader.fyers.in legacy fetch-0 inventory: dead/blocked legacy host, no new evidence.
+[PARKED] localhost:46475 dev_url (fy_notifications/js/data.json): HUMAN_ONLY, out-of-band (reaffirmed).
+[PARKED] datapub.fyers.in:8862 / edis / api.fyers.in dev-tier / subscriptions cookie-bearer / verifiedpnl get-data / sgb pages: prior leads retained, not re-hypothesized (no new evidence this run).
+[FINAL] 1) myaccount.fyers.in Flutter account bundle AUTH (conf 45, PASSIVE, prio 6.30)  2) direct.fyers.in Flutter MISCONFIG (conf 40, PASSIVE, prio 5.55)  3) www.fyers.in Next.js MISCONFIG (conf 42, PASSIVE, prio 5.00) — retained higher-prio open leads from prior runs: verifiedpnl get-data AUTH (58), sgb account-pages AUTH (50), edis token-in-URL AUTH (45), api.fyers.in dev-tier MISCONFIG (42).
+
+STEP 5 — NEXT ACTION
+[NEXT] PROBE: `curl -s -i --max-time 15 'https://myaccount.fyers.in/web/'` (capture real JS path from index), then `curl -s --max-time 20 'https://myaccount.fyers.in/web/main.dart.js'` and grep response for api hosts/endpoints — closes the highest-prio new surface with a read-only fetch.
+
+STEP 6 — LEARNING
+[LEARN] ACCEPTED OTHER @ myaccount.fyers.in Flutter web: new live account-app bundle is a fetchable target; SPA fallback returns 200 HTML for unknown /web paths.
+[LEARN] ACCEPTED MISCONFIG @ direct.fyers.in Flutter web: new host live with unauthenticated 200 static responses; endpoint gating unverified.
+[LEARN] REJECTED OTHER @ www.fyers.in GA4/GTM/Zoho formperma/Sentry DSN/Cloudflare jsd tokens: public-by-design marketing/analytics keys (reaffirmed).
+
+STEP 7 — RISK SCORE
+[RISK] fyers-js: 70 — delta adds three previously-unanalysed account-adjacent Flutter web builds (myaccount, direct, alerts), a Next.js migration on marketing domains, and two unverified api_key-class literals; no new hard credential and no confirmed vuln, but none of the prior high-value leads (verifiedpnl get-data answering 200/1005 anonymously, dev-tier API roots, sgb/edis client-gated auth) have been closed, and the newly live account-app bundles sit unanalyzed — JS-surface exposure remains moderately high.
