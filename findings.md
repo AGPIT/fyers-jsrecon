@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 09:54 UTC — 458 secret hits_
+_src 2026-08-08 10:26 UTC — 465 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -52,6 +52,8 @@ _src 2026-08-08 09:54 UTC — 458 secret hits_
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
 - `https://assets.fyers.in/Lib/hawkeye/hawkeye.js`
   `SECRET|jwt|localStorage.getItem('access_token') JWT with exp claim decoded via atob`
+- `https://assets.fyers.in/Lib/redux/redux.min.js`
+  `SECRET|other|none`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement-new.min.js`
   `SECRET|api_key|RK8-4RR-9Z7Z`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement.min.js`
@@ -68,6 +70,10 @@ _src 2026-08-08 09:54 UTC — 458 secret hits_
   `SECRET|dev_url|https://dev.fyers.in/messages/public.json`
 - `https://assets.fyers.in/loader/js/loader.min.js`
   `SECRET|none|— (no keys/tokens/credentials in file)`
+- `https://assets.fyers.in/sales-pitch/2.0/sales-pitch.js`
+  `SECRET|other|none found`
+- `https://assets.fyers.in/sales-pitch/3.0/sales-pitch.js`
+  `SECRET|other|919731162865`
 - `https://assets.fyers.in/scripts/fyers.js`
   `SECRET|other|Facebook app_id 166842650780922 embedded in client-side share dialog URL`
 - `https://assets.fyers.in/tv_lib/v25/charting_library.standalone.js`
@@ -424,6 +430,12 @@ _src 2026-08-08 09:54 UTC — 458 secret hits_
   `SECRET|google_key|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
 - `https://open-account.fyers.in/dist/service.js`
   `SECRET|other|AW-628758356/t7sNCLfMmPwBENSu6KsC`
+- `https://open-account.fyers.in/dist/typeSelection.js`
+  `SECRET|other|endpoints.DEMAT_REDIRECTION_API (referenced from global `endpoints` object, path not defined in file)`
+- `https://open-account.fyers.in/dist/typeSelection.js`
+  `SECRET|other|endpoints.NEW_DOMAIN (referenced from global `endpoints` object, domain not defined in file)`
+- `https://open-account.fyers.in/dist/typeSelection.js`
+  `SECRET|other|endpoints.SAVE_USER_TYPE_API (referenced from global `endpoints` object, path not defined in file)`
 - `https://partners.fyers.in/fyers_widget/fyers-widget.min.js`
   `SECRET|dev_url|http://127.0.0.1:46475/fy_notifications/js/data.json`
 - `https://pledge.fyers.in/assets/js/2.0/jwt-decode.js`
@@ -614,6 +626,8 @@ _src 2026-08-08 09:54 UTC — 458 secret hits_
   `SECRET|other|no hardcoded secrets - secret_key read from localStorage, token_id passed in from caller`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/2.0/bo.min.js`
   `SECRET|other|secret_key read from localStorage and used to sign marketStat (MD5(keyword|timestamp|secret_key))`
+- `https://trade.fyers.in/static/js/basket-order/assets/js/2.0/margin_bo.min.js`
+  `SECRET|other|fyToken variable reference (auth token, value not embedded)`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/2.3/bo.min.js`
   `SECRET|other|fyToken runtime session token read from `_FYERS` cookie and sent as `Authorization` header (not a hardcoded key)`
 - `https://trade.fyers.in/static/js/basket-order/assets/js/2.4/margin_bo.min.js`
