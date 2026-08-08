@@ -974,3 +974,62 @@ testability: PASSIVE
 [LEARN] REJECTED OTHER @ Fernet token_id + public app_ids (sgb appIdHash table, 0KMS0EZVXI, GSKZGJHIBV, widget literals): demo/public identifiers (reaffirmed).
 [LEARN] REJECTED OTHER @ GA4 G-JXG5NQ1WQJ / GTM-MB6PRVDG / Sentry DSN / Cloudflare jsd+challenge tokens / Zoho formperma / Google keys: public-by-design (reaffirmed).
 [RISK] fyers-js: 78 — new in-scope auth-adjacent host (bo-login.fyers.in) and debt-product host (debt.fyers.in) surfaced; sgb prod home chunks now ship a full appIdHash/api_key env table; cookie-as-auth family re-confirmed across subscriptions main_msi_1.4 (client-side JWT decode, token-derived tokenId console.logged), trade common/datafeed/EDIS/popout (_FYERS at_hash→token_id token-in-URL). No new hard credential emerged and all new gate shapes remain unverified pending PASSIVE probes — exposure moderately high and slowly expanding, exploit status unproven.
+
+===== ANALYST 2026-08-08 15:02:49 UTC =====
+[NEW] myaccount.fyers.in — account-tier Flutter portal host live 200 (/web/, main.dart.js, clevertap_plugin, js_dart_service, manifest.json); absent from KB and all prior runs (KB only references myaccount as a *path* on api-a1-prod.fyers.in); sibling to verifiedpnl, sharing the api-a1-prod/myaccount API family.
+[NEW] signup.fyers.in — Flutter signup shell host (flutter_dropzone_web + flutter_inappwebview_web packages, CF challenge jsd only); absent from KB and prior runs.
+[NEW] support.fyers.in — Cloudflare-challenge-fronted support host (cdn-cgi/challenge-platform jsd only); absent from KB and prior runs.
+[PRIO] myaccount.fyers.in (account portal shell) — 7.10 — attack=7,business=8,tech=7,gate=6,cloud=4,fresh=10
+[PRIO] signup.fyers.in (signup Flutter shell) — 5.45 — attack=4,business=5,tech=5,gate=7,cloud=4,fresh=10
+[PRIO] support.fyers.in (CF-fronted helpdesk) — 5.05 — attack=3,business=3,tech=4,gate=9,cloud=6,fresh=10
+[HYP] myaccount portal shell mirrors the client-side-gated verified-P&L family
+class: AUTH
+asset: myaccount.fyers.in/web/ (+ api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data)
+confidence: 50
+reasoning: New account-tier host (absent from KB/prior runs) serving a live Flutter shell. Sibling verifiedpnl main.606be587.js parses the `_FYERS` JWT client-side (getUserDetails.js:33739, auth validity "not server-verified", gates UI, sends to get-data), and KB already records an unauthenticated POST to api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data reaching business validation (200, status_code 1005) — the "myaccount" path family now has a dedicated host.
+evidence_needed: myaccount shell wiring `_FYERS` cookie into api-a1-prod/myaccount/* calls, and a no-cookie vs cookie body delta returning business data (not 401/403).
+verify_steps: PASSIVE — `curl -s -i --max-time 12 'https://myaccount.fyers.in/web/'` (status/content-type); `curl -s --max-time 12 'https://myaccount.fyers.in/web/main.dart.js' -o /tmp/mymain.js` then `grep -oE "https?://[a-zA-Z0-9.-]*fyers[^\"']*|/myaccount/[a-zA-Z0-9_/-]*"` (endpoint enumeration only, no values); `curl -s -i --max-time 12 -X POST 'https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data' -H 'Content-Type: application/json' -d '{}'` (status/content-type only). AUTH_HELPED: no-cookie vs own-cookie body delta on surfaced myaccount endpoints.
+impact: account-tier portfolio/P&L data exposure if the portal API gate mirrors verified-pnl's proven absent HTTP auth; High if peer/no-cookie body returns business JSON.
+testability: PASSIVE
+[HYP] signup Flutter shell exposes registration-flow endpoints
+class: MISCONFIG
+asset: signup.fyers.in/web/
+confidence: 30
+reasoning: New host but assets are only standard Flutter packages (dropzone/inappwebview, "none found") plus a CF challenge script; the sibling Flutter shell family (app/direct/pledge/alerts) was previously parked as SPA-fallback noise with no analyzable in-scope findings.
+evidence_needed: any non-standard endpoint or dev root in signup main.dart.js.
+verify_steps: PASSIVE — `curl -s --max-time 12 'https://signup.fyers.in/web/main.dart.js' | grep -oE "https?://[a-zA-Z0-9.-]*fyers[^\"']*|/api/[a-zA-Z0-9_/-]*"`.
+impact: minor enumeration only.
+testability: PASSIVE
+[HYP] support host is a third-party helpdesk behind Cloudflare
+class: OTHER
+asset: support.fyers.in
+confidence: 20
+reasoning: Only surfaced artifact is cdn-cgi/challenge-platform jsd/main.js (CF challenge, public-by-design); no in-scope analyzable JS in findings; pattern consistent with an external helpdesk parked under the domain.
+evidence_needed: an in-scope helpdesk API or Fyers-authored bundle.
+verify_steps: PASSIVE — `curl -s -i --max-time 12 'https://support.fyers.in/'` (status/content-type only).
+impact: negligible on current evidence.
+testability: PASSIVE
+[PARKED] signup Flutter shell MISCONFIG: confidence 30 < 40, no non-standard endpoint evidence, sibling shell family already parked as SPA-fallback noise.
+[PARKED] support host OTHER: confidence 20 < 40, likely third-party helpdesk, no in-scope JS value.
+[PARKED] sgb home chunk appIdHash/api_key env table: identical chunk names to prior run — reaffirmed CHANGED from 14:11:59, no new hashes beyond the same prod/staging/dev family.
+[PARKED] ordwin/6 13.235.24.249:8080 /gtt/orders (plaintext HTTP backend): out-of-scope raw IP (reaffirmed).
+[PARKED] subscriptions 0KMS…EZVXI, apiv2 GSKZ…, widgets 1341…/9848…, ordwin demo fyTokens (101000000014366 etc.): demo/public identifiers, no private-key role (reaffirmed).
+[PARKED] Fernet token_id (gAAAAABa1N59… across Prod/exception/datafeed bundles): KB-dead HISTORY_TEST demo (reaffirmed).
+[PARKED] datafeed/option-chain/HSM marketStat + token_id-in-URL + _FYERS at_hash→token_id chain: same token-in-URL AUTH family already carried (reaffirmed).
+[PARKED] Sentry DSN, GA4 G-JXG5NQ1WQJ, GTM-MB6PRVDG, CF jsd/challenge tokens, Zoho formperma: public-by-design.
+[LEARN] REJECTED OTHER @ signup.fyers.in: Flutter signup shell, only stock packages + CF challenge — no analyzable in-scope value.
+[LEARN] REJECTED OTHER @ support.fyers.in: CF-challenge-only host, likely third-party helpdesk.
+[LEARN] REJECTED OTHER @ myaccount.fyers.in/web/*.js fuzz artifacts (audit_payload_hasher.js, data_exfiltration_logger.js, threat_model_viewer.js, etc.): catch-all 200 text/html SPA/WAF responses, not real files — scanner noise.
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+[FINAL] 1) myaccount.fyers.in AUTH (50, PASSIVE→AUTH_HELPED, 7.10). Carried-forward open leads retained: EDIS fydev/v1/edis AUTH (60), fydev margin/v1 AUTH (60), verified-pnl get-data AUTH (58), subscriptions cookie-as-auth AUTH (55), api-i1 invest-tier AUTH (55), fundtransfer /v2 AUTH (50), bo-login validate.js AUTH (50), sgb MISCONFIG (45), data.fyers.in dev-tier MISCONFIG (48), anjuna/v1/margin MISCONFIG (42), debt widget MISCONFIG (42), dev.fyers.in orderwin-trade MISCONFIG (40).
+[NEXT] PROBE: fingerprint the new account-tier host and re-confirm the gate — `curl -s -i --max-time 12 'https://myaccount.fyers.in/web/'`; then `curl -s --max-time 12 'https://myaccount.fyers.in/web/main.dart.js' -o /tmp/mymain.js` + `grep -oE "https?://[a-zA-Z0-9.-]*fyers[^\"']*|/myaccount/[a-zA-Z0-9_/-]*"`; then `curl -s -i --max-time 12 -X POST 'https://api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data' -H 'Content-Type: application/json' -d '{}'` (status/content-type only, no credentials). If the shell wires `_FYERS` into api-a1-prod/myaccount/*, escalate to AUTH_HELPED no-cookie vs own-cookie delta next run.
+[LEARN] ACCEPTED AUTH @ myaccount.fyers.in: new account-tier Flutter host live, sibling to verifiedpnl and sharing the api-a1-prod/myaccount API family — cookie-as-auth class gets a new host instance pending gate probe.
+[LEARN] REJECTED OTHER @ signup.fyers.in: Flutter signup shell, stock packages only — no analyzable in-scope JS value.
+[LEARN] REJECTED OTHER @ support.fyers.in: CF-challenge-only host, likely third-party helpdesk.
+[LEARN] REJECTED OTHER @ myaccount.fyers.in/web/*.js fuzz artifacts: catch-all 200 text/html, not real files.
+[LEARN] REJECTED OTHER @ Sentry DSN / GA4 / GTM / CF jsd+challenge tokens / Zoho formperma: public-by-design (reaffirmed).
+[LEARN] REJECTED OTHER @ Fernet token_id + demo app_id/api_key literals (subscriptions, apiv2, widgets, ordwin fyTokens): demo/public identifiers (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead (reaffirmed).
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+[RISK] fyers-js: 78 — a new live account-tier portal host (myaccount.fyers.in) joined the surface, sitting directly on the API family whose unauthenticated reach was already proven (verified-pnl get-data → 200/status_code 1005 without a gate); the cookie-as-bearer + client-side JWT-gating family continues to accumulate host instances (myaccount, subscriptions, fundtransfer, bo-login). No new hard credential emerged and the new shell's API wiring remains unverified pending PASSIVE probes — exposure moderately high and expanding, exploit status unproven.

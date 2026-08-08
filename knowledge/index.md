@@ -28,3 +28,10 @@
 - 2026-08-08 REJECTED OTHER @ api-connect-docs.fyers.in/fyers-lib.js: public client SDK, public-by-design — not a finding.
 - 2026-08-08 REJECTED OTHER @ recruit.fyers.in: Zoho white-label recruitment host (third-party platform) — no in-scope JS value.
 - 2026-08-08 REJECTED OTHER @ webtrader.fyers.in: http:// URLs fetch 0 — dead/migrated host.
+- 2026-08-08 REJECTED OTHER @ signup.fyers.in: Flutter signup shell, only stock packages + CF challenge — no analyzable in-scope value.
+- 2026-08-08 REJECTED OTHER @ support.fyers.in: CF-challenge-only host, likely third-party helpdesk.
+- 2026-08-08 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
+- 2026-08-08 ACCEPTED AUTH @ myaccount.fyers.in: new account-tier Flutter host live, sibling to verifiedpnl and sharing the api-a1-prod/myaccount API family — cookie-as-auth class gets a new host instance pend
+- 2026-08-08 REJECTED OTHER @ signup.fyers.in: Flutter signup shell, stock packages only — no analyzable in-scope JS value.
+- 2026-08-08 REJECTED OTHER @ support.fyers.in: CF-challenge-only host, likely third-party helpdesk.
+- 2026-08-08 REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (reaffirmed).
