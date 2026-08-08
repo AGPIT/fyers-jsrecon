@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 07:08 UTC — 434 secret hits_
+_src 2026-08-08 07:45 UTC — 440 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -284,6 +284,8 @@ _src 2026-08-08 07:08 UTC — 434 secret hits_
   `SECRET|jwt|_FYERS cookie JWT (base64url payload decoded via atob in extractFyersIDFromToken, fy_id claim)`
 - `https://marketsmith.fyers.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js`
   `SECRET|api_key|ApiKeydownHandler (matches Bootstrap dropdown keydown, not a secret)`
+- `https://marketsmith.fyers.in/assets/vendor/waypoints/jquery.waypoints.min.js`
+  `SECRET|other|none`
 - `https://myaccount.fyers.in/static/js/3.0107deb7.chunk.js`
   `SECRET|google_key|286450894109-608ml77icehbhpvplp2645hqqm6rtope.apps.googleusercontent.com`
 - `https://myaccount.fyers.in/static/js/3.0107deb7.chunk.js`
@@ -451,6 +453,8 @@ _src 2026-08-08 07:08 UTC — 434 secret hits_
 - `https://pledge.fyers.in/src/js/pledge.js`
   `SECRET|google_key|902868841845-3qb23dhv0b5tqv7j7u2vbkur48v93b orq.apps.googleusercontent.com`
 - `https://public.fyers.in/haircut-mf/assets/vendor/jquery/jquery.min.js`
+  `SECRET|other|none`
+- `https://sgb.fyers.in/_next/static/chunks/26.dbf16a6c160395f15a03.js`
   `SECRET|other|none`
 - `https://sgb.fyers.in/_next/static/chunks/61fe32111765d6645b96fc3d8e2e36f3b2d36f0c.b3ba817385a4a55bb248.js`
   `SECRET|other|https://support.fyers.in/ (public support link, not a credential)`
@@ -632,6 +636,12 @@ _src 2026-08-08 07:08 UTC — 434 secret hits_
   `SECRET|none|none`
 - `https://trade.fyers.in/static/js/broker/9.99/bundle.min.js`
   `SECRET|other|no hardcoded credentials (no AWS/Google/GitHub/JWT/DB keys); only public app_id "2" and runtime cookie-based session tokens`
+- `https://trade.fyers.in/static/js/common/2.0/fy_common.min.js`
+  `SECRET|other|_FYERS cookie base64-decoded on client: contains at_hash and poa_flag`
+- `https://trade.fyers.in/static/js/common/2.0/fy_common.min.js`
+  `SECRET|other|token_id extracted from _FYERS cookie (at_hash field) and appended to chartSettings URL as query param ?token_id=`
+- `https://trade.fyers.in/static/js/common/2.2/fy_common.min.js`
+  `SECRET|jwt|_FYERS cookie (JWT-style, base64-decoded via atob, exposes at_hash/poa_flag; used as Authorization header)`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js`
   `SECRET|other|Authorization header set from "_FYERS" cookie; request param token_id injected at runtime`
 - `https://trade.fyers.in/static/js/datafeed/udf/10.1/bundle.min.js`
@@ -688,6 +698,8 @@ _src 2026-08-08 07:08 UTC — 434 secret hits_
   `SECRET|other|auth_token and token_id are passed as request variables (Authorization header + query param), not hardcoded values`
 - `https://trade.fyers.in/static/js/hsweb/hslibo.js`
   `SECRET|other|No hardcoded credentials found; only runtime auth inputs (jwt, x-access-token, Sid, redis key) are passed in by caller`
+- `https://trade.fyers.in/static/js/init/1.8/fy_trade.min.js`
+  `SECRET|other|none (obfuscated TradingView widget init only, no literal credentials)`
 - `https://trade.fyers.in/static/js/init/11/fy_trade.min.js`
   `SECRET|api_key|https://1c2eb9968896499196eb6b8358aa456c@o1210471.ingest.sentry.io/6533207`
 - `https://trade.fyers.in/static/js/init/12/fy_trade.min.js`
