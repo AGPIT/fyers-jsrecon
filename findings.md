@@ -1,6 +1,6 @@
 # JS Recon Findings (fyers.in) — deep scan
 
-_src 2026-08-08 10:26 UTC — 465 secret hits_
+_src 2026-08-08 11:06 UTC — 469 secret hits_
 
 - `https://alerts.fyers.in/static/js/main.17f0956d.js`
   `SECRET|dev_url|902868841845-3qb23dhv0b5tnvj7u2vbkur48v93borq.apps.googleusercontent.com`
@@ -52,6 +52,10 @@ _src 2026-08-08 10:26 UTC — 465 secret hits_
   `SECRET|api_key|api-t1.fyers.in/trade/v3/spancalc (brokerage span-calc API endpoint)`
 - `https://assets.fyers.in/Lib/hawkeye/hawkeye.js`
   `SECRET|jwt|localStorage.getItem('access_token') JWT with exp claim decoded via atob`
+- `https://assets.fyers.in/Lib/logAnalyticEvents/log-analytic-events.js`
+  `SECRET|api_key|654-55Z-K47Z`
+- `https://assets.fyers.in/Lib/logAnalyticEvents/log-analytic-events.js`
+  `SECRET|google_key|G-XML17FXF98`
 - `https://assets.fyers.in/Lib/redux/redux.min.js`
   `SECRET|other|none`
 - `https://assets.fyers.in/Lib/user-engagement/user-engagement-new.min.js`
@@ -70,6 +74,8 @@ _src 2026-08-08 10:26 UTC — 465 secret hits_
   `SECRET|dev_url|https://dev.fyers.in/messages/public.json`
 - `https://assets.fyers.in/loader/js/loader.min.js`
   `SECRET|none|— (no keys/tokens/credentials in file)`
+- `https://assets.fyers.in/sales-pitch/1.0/sales-pitch.js`
+  `SECRET|other|supportWhatsAppNumber:919731162865`
 - `https://assets.fyers.in/sales-pitch/2.0/sales-pitch.js`
   `SECRET|other|none found`
 - `https://assets.fyers.in/sales-pitch/3.0/sales-pitch.js`
@@ -146,6 +152,8 @@ _src 2026-08-08 10:26 UTC — 465 secret hits_
   `SECRET|other|Authorization header token obtained via validate("_FYERS"); likely JWT/session stored in localStorage/sessionStorage and sent with every request`
 - `https://fundtransfer.fyers.in/v2/assets/js/index.js`
   `SECRET|other|Bank account numbers are base64-encoded via btoa into HTML "code" attrs and decoded client-side with atob(data-value of .bank_account) - trivially reversible, not a true secret`
+- `https://fundtransfer.fyers.in/v2/assets/js/main.js`
+  `SECRET|dev_url|https://api.fyers.in/fundtransfer/dev`
 - `https://fundtransfer.fyers.in/v2/assets/js/owl.carousel.min.js`
   `SECRET|other|none_found`
 - `https://fyers.in/_next/static/chunks/131-d24839065f1193bd.js`

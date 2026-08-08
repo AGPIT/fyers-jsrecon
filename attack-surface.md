@@ -443,3 +443,4 @@
 200 | https://trade.fyers.in/logo/SF-reset-chart.svg | image/svg+xml
 200 | https://fyers.in/_next/static/media/arrow-right-s-line.d25ddafb.svg | image/svg+xml
 200 | https://sgb.fyers.in/updatesgb | text/html
+200 | https://fundtransfer.fyers.in/v2/ | text/html
