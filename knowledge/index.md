@@ -18,3 +18,4 @@
 - 2026-08-08 ACCEPTED MISCONFIG @ data.fyers.in: dev-beta/dev-fyers mobileapi roots shipped in prod bundles — newly enumerable dev-tier surface.
 - 2026-08-08 REJECTED OTHER @ public.fyers.in/messages/messagesLinks.json: probable static links config — parked, not dead.
 - 2026-08-08 REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
+- 2026-08-08 ACCEPTED MISCONFIG @ sgb.fyers.in: /updatesgb live 200 route first probed — new in-scope route, class alive pending gate check.

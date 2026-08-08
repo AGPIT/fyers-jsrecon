@@ -798,3 +798,65 @@ testability: PASSIVE
 [LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
 [LEARN] REJECTED OTHER @ GA4/GTM/Sentry DSN/Cloudflare jsd/Zoho formperma/Google keys: public-by-design (reaffirmed).
 [RISK] fyers-js: 76 — new host instance of the proven cookie-as-auth family (subscriptions: raw cookie bearer + client-side JWT decode with tokenId console.log), new dev-tier mobileapi roots on data.fyers.in, and novel settlement-adjacent dev roots (vagator/v1, fy/cdsl/dev) all shipping in prod bundles. No new hard credential (Fernet/0KMS0EZVXI reaffirmed demo/public; AF0MATWSX3 = mapped staging client_id), and all new gate shapes unverified pending PASSIVE probes — JS surface exposure moderately high and expanding, exploit status unproven.
+
+===== ANALYST 2026-08-08 11:05:53 UTC =====
+[NEW] sgb.fyers.in/updatesgb -> 200 text/html (first live probe of this route on the share-gift app; absent from prior inventory/KB).
+[NEW] marketsmith.fyers.in/evaluation/Evaluation.html -> 200 text/html (in-scope host first observed live; prior intel only covered the out-of-scope 3P sink marketsmithindia.com).
+[NEW] trade.fyers.in/popout_chart/index.html -> 200 text/html with URL template {symbol}/{resolution}/{theme} (user-param chart popout, first live probe).
+[NEW] trade.fyers.in/api-login/static/js/login.js: api.fyers.in token endpoint invoked with fyers_id/password/PAN/DOB over XHR (login-flow mechanics; no hardcoded secret).
+[CHANGED] sgb.fyers.in home bundles (home-0f59.. / home-95c0.. / home-ac56.. / home-da82..) now label appIdHash env table explicitly (prod-active b21f86d5.., staging 39abc82e.., dev f35212e4.., commented-staging 4c1652ef../656b1386../e4ec93cf..) — reaffirms the sgb appId MISCONFIG family with granular env mapping.
+[CHANGED] verifiedpnl.fyers.in/static/js/main.cf21f7c5.js: pnl_url frozen to api-a1-prod.fyers.in/myaccount/prod/verified-pnl/get-data in a new bundle (same endpoint as KB ACCEPTED AUTH; new bundle). Remaining findings are reaffirmations of prior-run items (subscriptions main_msi_1.4 cookie-as-auth, broker/12.1 vagator+fy/cdsl/dev roots, data.fyers.in dev-tier mobileapi, posConv messagesLinks, Fernet demo).
+[PRIO] sgb.fyers.in/updatesgb — priority 5.70 — attack=5,business=6,tech=5,gate=6,cloud=4,fresh=9
+[PRIO] marketsmith.fyers.in/evaluation/Evaluation.html — priority 4.60 — attack=4,business=3,tech=4,gate=7,cloud=3,fresh=9
+[PRIO] trade.fyers.in/popout_chart/index.html — priority 4.50 — attack=4,business=2,tech=4,gate=8,cloud=4,fresh=8
+[PRIO] api.fyers.in token endpoint (api-login/login.js flow) — priority 4.50 — attack=4,business=5,tech=5,gate=2,cloud=4,fresh=8
+[HYP] sgb.fyers.in/updatesgb exposed route without an auth gate
+class: MISCONFIG
+asset: sgb.fyers.in/updatesgb
+confidence: 45
+reasoning: Attack-surface probe returned 200 text/html for /updatesgb, a route absent from prior inventory and KB; sgb home bundles gate application flows on localStorage auth_token + appIdHash client-side (KB sgb AUTH/MISCONFIG family) and no gate shape has been tested on this route.
+evidence_needed: the route serving SGB business data/API JSON without auth, or its HTML wiring an unauthenticated in-scope API call.
+verify_steps: PASSIVE — `curl -s -i --max-time 12 'https://sgb.fyers.in/updatesgb'` (status/content-type only), then `curl -s --max-time 12 'https://sgb.fyers.in/updatesgb' | grep -oE "https?://[^\"' ]+|/[a-zA-Z0-9_/-]*(api|fetch)[a-zA-Z0-9_/-]*"` to enumerate wired endpoints; no credentials.
+impact: unauthenticated enumeration of a share-gift app route and any wired API; Low-Medium.
+testability: PASSIVE
+[HYP] marketsmith evaluation page wires the in-scope MarketSmith API with weak/no auth
+class: MISCONFIG
+asset: marketsmith.fyers.in/evaluation/Evaluation.html (+ api.fyers.in/api/beta/get_msiuser_details)
+confidence: 42
+reasoning: Probe returned 200 text/html for the evaluation page; prior bundle intel flagged in-scope api.fyers.in/api/beta/get_msiuser_details as an enumeration lead and the token-in-query sink was out-of-scope marketsmithindia.com; the in-scope host page is newly live.
+evidence_needed: page loading in-scope msi endpoints, or get_msiuser_details answering business data with no auth.
+verify_steps: PASSIVE — `curl -s --max-time 12 'https://marketsmith.fyers.in/evaluation/Evaluation.html' | grep -oE "https?://[^\"' ]*|(get_msiuser_details|/api/[a-zA-Z0-9_/-]*)"`, then `curl -s -i --max-time 12 'https://api.fyers.in/api/beta/get_msiuser_details'` (no auth) — record status/content-type only.
+impact: in-scope MarketSmith user-detail API enumeration if unauthenticated; Low-Medium.
+testability: PASSIVE
+[HYP] popout chart reflects user-controlled symbol/theme without sanitization (DOM/reflected XSS)
+class: XSS
+asset: trade.fyers.in/popout_chart/index.html
+confidence: 42
+reasoning: URL template advertises user-controlled params {symbol}{resolution}{theme}; page is a client-side TradingView chart popout where symbol typically enters JS chart config; the snapshot provides no sanitization evidence either way.
+evidence_needed: payload echoed into an HTML/JS context in the response, or the param reaching a DOM sink.
+verify_steps: PASSIVE — `curl -s --max-time 12 'https://trade.fyers.in/popout_chart/index.html?symbol=zzz%22x%3Csvg&resolution=5&theme=dark'` and grep the response for the payload outside a JSON-encoded string; no headless execution, no exploitation.
+impact: reflected/DOM XSS in chart popout if a sink exists; Medium.
+testability: PASSIVE
+[PARKED] api-login token endpoint (api.fyers.in token via XHR with fyers_id/password/PAN/DOB): standard OAuth credential submission, no gate anomaly evidenced — parked, not dead.
+[PARKED] trade widgets.min.js api_key literals (sha256 7b678b402d72179c53832ba099bcf548e2dc55c058e16546e0b783ffef3faa7d / db159866c168cc79a3027ff9e8d9dfe2cac8cf7596e6e332123218d711f1eee9): reappear with no surrounding code — re-grep pending.
+[PARKED] apiv2-login-ie-support GSKZGJHIBV app_id (commented sample payload): public 10-char app_id, no private-key role.
+[PARKED] sgb appIdHash env table: reaffirms the existing sgb appId MISCONFIG lead — folded as evidence, not a separate hypothesis.
+[PARKED] verifiedpnl pnl_url frozen config: same endpoint as KB ACCEPTED AUTH — bundle bump only.
+[PARKED] Fernet token_id (sha256 568d3b6a1c8c1917f1aae50eb18f9aa63784f87cac78219d741f4e2604276534) in datafeed/Prod/exception bundles: KB-dead HISTORY_TEST demo (reaffirmed).
+[PARKED] trade ordwin/2.0+2.4 demo identifiers (101000000014366, 1100000005899114, 51808097115-CO-1): hardcoded demo data.
+[PARKED] marketsmith token-in-query to marketsmithindia.com: third-party sink, out of scope.
+[PARKED] trade ordwin/6 13.235.24.249:8080 /gtt/orders: out-of-scope host.
+[PARKED] api-i1.fydev.tech / api-i1.fyers.co.in staging/dev roots: out-of-scope hosts (dev intel only).
+[PARKED] myaccount.fyers.in/web/endpoint/ + Flutter SPA .js (app/direct/pledge/alerts/signup/support): 200 text/html SPA fallback — noise (reaffirmed).
+[PARKED] public.fyers.in/messages/messagesLinks.json: probable static links config (reaffirmed).
+[PARKED] datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
+[FINAL] 1) sgb updatesgb MISCONFIG (45, PASSIVE, 5.70) 2) marketsmith evaluation MISCONFIG (42, PASSIVE, 4.60) 3) popout_chart XSS (42, PASSIVE, 4.50) — carried-forward open leads retained: EDIS fydev/v1/edis token-in-URL AUTH (60), fydev margin/v1 AUTH (60), verified-pnl get-data AUTH (58), subscriptions cookie-as-auth AUTH (55), api-i1 invest-tier AUTH (55), fundtransfer AUTH (50), data.fyers.in dev-tier mobileapi MISCONFIG (48), sgb appId MISCONFIG (45).
+[NEXT] PROBE: gate-shape the top new live route — `curl -s -i --max-time 12 'https://sgb.fyers.in/updatesgb'` (status/content-type only), then `curl -s --max-time 12 'https://sgb.fyers.in/updatesgb' | grep -oE "https?://[^\"' ]+|/[a-zA-Z0-9_/-]*(api|fetch)[a-zA-Z0-9_/-]*"` to enumerate any wired endpoints; no credentials; escalate to AUTH_HELPED diff only if a business API answers.
+[LEARN] ACCEPTED MISCONFIG @ sgb.fyers.in: /updatesgb live 200 route first probed — new in-scope route, class alive pending gate check.
+[LEARN] REJECTED OATH @ community.fyers.in/member/gtm.js: GUEST JWT public-by-design (KB reaffirmed).
+[LEARN] REJECTED MISCONFIG @ datapub.fyers.in:8862: no new in-run evidence; deferred not dead.
+[LEARN] REJECTED OTHER @ marketsmith marketsmithindia.com token-in-query: third-party sink, out of scope (reaffirmed).
+[LEARN] REJECTED MISCONFIG @ myaccount.fyers.in/web/endpoint/ + Flutter SPA .js: 200 text/html SPA fallback — noise (reaffirmed).
+[LEARN] REJECTED OTHER @ GA4 G-JXG5NQ1WQJ / GTM-MB6PRVDG / Sentry DSN / Cloudflare jsd / CF challenge tokens / Zoho formperma / Google keys: public-by-design (reaffirmed).
+[LEARN] REJECTED AUTH @ trade api-login login.js token endpoint: standard OAuth credential submission, no gate anomaly evidenced — parked, not dead.
+[RISK] fyers-js: 76 — this run is predominantly reaffirmation of proven families (subscriptions cookie-as-bearer with client-side JWT decode, _FYERS at_hash->token_id chain across trade common/datafeed/EDIS, sgb appIdHash env table in prod, dev-tier roots on data.fyers.in and api.fyers.in vagator/fy-cdsl-dev, Fernet string reaffirmed demo). Genuinely new items are three low-to-moderate live page routes (sgb /updatesgb, marketsmith evaluation, popout_chart) plus standard login-flow mechanics — no new hard credential emerged and all new gate shapes remain unverified pending PASSIVE probes; JS exposure is moderately high and stable, exploit status unproven.
