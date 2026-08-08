@@ -454,3 +454,4 @@
 200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.eot | text/html;charset=utf-8
 200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Regular.woff2 | text/html;charset=utf-8
 200 | https://recruit.fyers.in/zohofonts/zohopuvi/4.0/Zoho_Puvi_Semibold.otf | text/html;charset=utf-8
+200 | https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-navigator.edfb7100b6cd47d6cc794206db136366.js | text/html;charset=UTF-8
