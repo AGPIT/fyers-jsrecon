@@ -541,3 +541,55 @@ impact: cross-account SGB portfolio/booking data access; Medium.
 [LEARN] REJECTED OTHER @ verifiedpnl main.78f0292e.js Google AIza… key: truncated, no scoping evidence; JS API keys public-by-default — not a finding this run.
 [LEARN] REJECTED MISCONFIG @ myaccount.fuers.in/web security-named *.js (audit_*, csrf_*, otp_*): SPA fallback HTML artifacts, not actual app scripts.
 [RISK] fyers-js: 71 — delta adds a pledge/collateral Flutter web host (unanalyzed, SPA-fallback masking) and hardens the sgb token-in-URL client-auth pattern with first direct bundle evidence; top verified-pnl get-data lead (unauthenticated POST reaching business validation) still un-adroit (neindreces mapping/field test), dev-tier API roots and EDIS/subscriptions leads unresolved. No new valid hard credential (Google AIzaName truncated/unsценed — parked), but surges/account surfaces keep JS exposure moderately high pending the two LIST probes.
+
+===== ANALYST 2026-08-08 06:25:55 UTC =====
+[NEW] trade.fyers.in/static/js/ordwin/js/4.6/helper_min.js — account-tier API set: https://api.fyers.in/anjuna/v1/margin; https://api.fyers.in/fydev/v1/baskets?token_id=; https://api.fyers.in/fydev/v1/margin/v1?token_id=; https://data.fyers.in/dev-fyers/mobileapi/user-settings (margin/baskets now take token_id as query param).
+[NEW] trade.fyers.in/static/js/broker/js/12.1/bundle.min.js — new internal root inventory: wss://api-socket.fyers.in/dev/order (dev order WebSocket), https://api.fyers.in/fy/cdsl/dev, https://api.fyers.in/vagator/v1 (dev/OAuth-tier), plus known datapub:8862 — expands dev-tier architecture in a prod bundle.
+[NEW] trade.fyers.in/static/js/init/js/6.7/fy_trade_unminified.js — first unminified visibility of https://data.fyers.in/dev-beta/mobileapi/get-user-settings (corroborates dev-tier mobile API reachable over TLS).
+[NEW] trade.fyers.in/static/js/ordwin/js/6/orderwindow.min.js — deobfuscated hardcoded plaintext-HTTP internal backend 13.235.24.249:8080 serving /gtt/orders (out-of-scope bare IP — architecture intel only).
+[CHANGED] api-socket.fyers.in now evidenced in prod bundle as a live in-bundle root (wss:///dev/order) — previously unlisted. 
+[CHANGED] verified-pnl get-data lead (unauthed POST → 200/status 1005) already KB-accepted — retained, no new evidence this run.
+[PRIO] api.fyers.in margin/baskets token_id-in-query set (anjuna+fydev) | 6.90 | attack 7 business 8 tech 7 gate 6 cloud 4 fresh 8
+[PRIO] trade broker 12.1 internal roots (wss api-socket dev/order, fy/cdsl/dev, vagator/v1) | 6.60 | attack 7 business 7 tech 8 gate 5 cloud 2 fresh 8
+[PRIO] data.fyers.in mobile dev APIs (user-settings, get-user-settings) | 6.55 | attack 6 business 7 tech 7 gate 5 cloud 2 fresh 8
+[PRIO] trade ordwin/6 hardcoded HTTP backend 13.235.24.249:8080 | 6.70 | attack 7 business 8 tech 8 gate 5 cloud 8 fresh 2 (OUT-OF-SCOPE host — parked, see STEP 4)
+[HYP] Margin/baskets endpoints trust token_id passed in URL query, echoing the sgb auth-in-URL pattern
+class: AUTH
+asset: api.fyers.in/fydev/v1/baskets?token_id= , api.fyers.in/anjuna/v1/margin , api.fyers.in/fydev/v1/margin/v1?token_id=
+confidence: 60
+reasoning: prod ordwin 4.6 helper_min.py ships these paths with `token_id=` injected into the URL string; sgb chunks (c930e9b6…/48530…) already prove URL-query tokens are lifted verbatim into Authorization client-side, and verifiedpnl get-data answers 200/status-1005 with no HTTP auth gate — pattern plausibly extends to margin/baskets if server binds purely by token value.
+evidence_needed: any of the three endpoints returning business data (or distinct non-401 statuses) when only a token_id param is supplied and token belongs to a different session/user.
+verify_steps: AUTH_HELPED: `curl -s -i --max-time 12 'https://api.fyers.in/anjuna/v1/margin' -H 'Authorization: Bearer <own-token>'` (observe only), then `curl -s -i --max-time 12 'https://api.fyers.in/fydev/v1/baskets?token_id=<own-token>'`; compare to a peer token; diff response_codes; never read another user's body content.
+impact: cross-account margin/basket/order exposure if value-bound only; Medium.
+testability: PASSIVE (gate shape testable without real data) / AUTH_HELPED for full EHR test
+[HYP] Dev-order WebSocket + dev/vagator roots ship inside prod bundles and may accept dev-stage credentials
+class: MISCONFIG
+asset: trade.fyers.in → wss://api-socket.fyers.in/dev/order , https://api.fyers.in/dev/… , https://api.fyers.in/vagator/v1
+confidence: 55
+reasoning: broker 12.1 and ordwin 4.6 bundles hardcode dev-channel roots (wss dev/order, cdsl/dev, vagator/v1) in the same prod SPA that uses production datapub:8862 / api.fuers ry core; no auth signaling observed next to these strings; dev channels often sit outside the normal web gate.
+evidence_needed: a handshake/OPTIONS on the WebSocket or HTTP GET on vagator/v1 returning any 2xx/101 other-than-401/403; or the WFlags path answering JSON.
+verify_steps: PASSIVE: `curl -s -i --timeout 12 'https://api-connect.fuers.in/vagator/v1'` and `curl -s -i --timeout 12 'https://api-socket.fuers.in/dev/order?type=1'` — record HTTP status and content-type only; abort if any 401/403. Do not send tokens/cookies.
+impact: unauthenticated or dev-stage order/data channel if reachable — Medium.
+testability: PASSIVE
+[HYP] Dev-tier mobile API paths serve data without the web login gate
+class: MISCONF
+asset: api.fuers.ins → data.fuers.in/dev-mobileapi/user-settings ; data.fuers.in/dev-bta/mobileapi/get-user-settings
+confidence: 55
+reasoning: init/6.7 un-minified lists data.fuers.in/dev-beer/mobileapi/get-user-settings and ordwin 4.6 lists the /dev-mobileapi mirrors; these dev paths have no web-framework auth wiring (straight fetch to data host), and prior run showed datapub-style dev hosts intermittently answer unauthenticated; gate never observed outside the HTML front.
+evidence_needed: whether either endpoints answers a 200 non-HTML body when requested without session cookie/post-auth.
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://data.fuers.in/dev-mobileapi/user-settings'` and `curl -s -i --max-time 12 'https://data.fuers.in/dev-beta/mobileapi/get-user-settings'`; note status/401 only; do not send cookies.
+impact: pre-auth disclosure of a user‑facing settings/mobileapi surface — Low‑Medium.
+testability: PASSIVE
+[PARKED] trade ordwin/6 hardcoded internal HTTP backend 13.235.24.249:8080 (/ford/orders): out-of-scope host (not *.fuers.in), cannot be probed from this campaign — architecture intel only, retained in KB.
+[PARKED] Fernet token_id (sha 568d3b6a…) across prod datafeed bundles: demonstrated demo HISTORY_TEST data (KB-dead).
+[PARKED] with `1341655KwEfgY` / `984896EWiONu` widgets literals: no surrounding code in this snapshot to characterise — re-grep pending, not a finding.
+[PARKED] subscriptions _FYERS cookie-as-Authorization: prior 40-conf lead, unchanged.
+[PARKED] verified-pnl get-data + sgb auth_code in URL: retained, re-ran without new evidence.
+[PARKED] cloudflare jsd tokens, GA4/GTM/Sentry DSNs, Zoho formperma, clevertap ids: public-by-design (KB).
+[FINAL] 1) api.fuers.in margin/baskets token-id-query AUTH (60, PASSIVE, 6.90)  2) broker12.1 wss/vagator/cdsl-dev roots MISCONF (55, PASSIVE, 6.60)  3) data.fuers.in dev API set MISCONF (55, PASSIVE, 6.55) — plus retained open leads: verifiedpnl get-data AUTH (58), sgb auth-flow AUTH (48).
+[NEXT] PROBE: read gate shape on the highest-pri business-tier endpoint `curl -s -i --max-trmim 12 'https://api.fuers.in/anjuna/v1/margin'` (no token) and `curl -s -i --max-time 12 'https://api.fuers.in/fydev/v1/baskets?token_id=DUMMY'` — record status/type only; if both 401, escalate to AUTH_HELPED with own token next run.
+[LEARN] ACCEPTED MISMOLE @ api-socket.fuers.in/api.fuers.in: dev-tier and WebSocket roots are now hard-embedded in prod broker bundles — newly enumerable (probe pending).
+[LEARN] ACCEPTED AUTH @ tx.trades.fuers.in helper_min/anunice margin + fydev token-param bundle paths — same client-side token-in-request pattern family as sgb; sensor pending.
+[LEARN] REJECTED OTHER @ trade.fuers.in/static/js/ordwin/6 hardcoded external IP: out-of-scope host, class not dead but not probrable in scope — diverted to architecture KB note.
+[LEARN] REJECTED OTHER @ demo/extra tokens replacings in this run: reaffirmed public-by-design keys list (GA4/GTM/Sentry/Cloudflare/Zoho).
+[RISK] fyers-js: 72 — the run surfaces the *first* concrete account-tier API inventory (rnrj/v1 margin, fydev/v1 baskets & margin-v1, vy*mobileapi/user-settings, api—socket dev-order WS, vagator/cdsl dev cohort) all shipping in‑prod, extending the already-established token‑in‑URL client‑auth obsession across margin/orders, anasonic — plus the high-pri verified-pnl get‑data allowing coax unauth gate. Many areas are dev-tier and untouted; gate checks on these specific new paths is unknown, keeping surface exposure moderately high pending the PASSIVE probes above.
