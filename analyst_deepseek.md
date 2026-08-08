@@ -593,3 +593,32 @@ testability: PASSIVE
 [LEARN] REJECTED OTHER @ trade.fuers.in/static/js/ordwin/6 hardcoded external IP: out-of-scope host, class not dead but not probrable in scope — diverted to architecture KB note.
 [LEARN] REJECTED OTHER @ demo/extra tokens replacings in this run: reaffirmed public-by-design keys list (GA4/GTM/Sentry/Cloudflare/Zoho).
 [RISK] fyers-js: 72 — the run surfaces the *first* concrete account-tier API inventory (rnrj/v1 margin, fydev/v1 baskets & margin-v1, vy*mobileapi/user-settings, api—socket dev-order WS, vagator/cdsl dev cohort) all shipping in‑prod, extending the already-established token‑in‑URL client‑auth obsession across margin/orders, anasonic — plus the high-pri verified-pnl get‑data allowing coax unauth gate. Many areas are dev-tier and untouted; gate checks on these specific new paths is unknown, keeping surface exposure moderately high pending the PASSIVE probes above.
+
+===== ANALYST 2026-08-08 07:34:02 UTC =====
+[HYP] subscriptions API binds session purely by token value (cookie-as-bearer)
+class: AUTH
+asset: subscriptions.fyers.in (API behind assets/js/main_msi_1.4.js)
+confidence: 50
+reasoning: main_msi_1.4.js sets Authorization to the raw `_FYERS` cookie value on every subscriptions API request and decodes the JWT client-side (`at_hash` → global `tokenId`, console.log'd); no non-schematic/server-side binding observed; same cookie-as-bearer family as verifiedpnl/sgb patterns already in KB.
+evidence_needed: subscriptions API returns business status (not 401) when Authorization carries a token minted for a different session/device, or answers without any header.
+verify_steps: AUTH_HELPED: PASSIVE first — `curl -s --max-time 20 'https://subscriptions.fyers.in/assets/js/main_msi_1.4.js'` and grep the `/api/…` base path + Authorization construction; then no-auth `curl -s -i --max-time 12 'https://subscriptions.fyers.in/<api-base>'` to record gate shape (401 vs business code); then repeat with own token and diff statuses.
+impact: cross-session/cross-account subscription/plan data if value-bound only; plus JWT/`at_hash` material observable in shared browser console via console.log — Low/Medium.
+testability: AUTH_HELPED
+[HYP] Dev/staging OAuth appIds co-shipped in prod may resolve dev-tier auth endpoints
+class: MISCONFIG
+asset: sgb.fyers.in OAuth flow
+confidence: 45
+reasoning: prod bundle ships prod+dev+staging+local client_ids (`-101`) with an appIdHash/env-select table; KB confirms auth_code→Authorization lift in sgb chunks; if any non-prod appId targets a dev/unaudited auth host, gate quality differs.
+evidence_needed: bundle code mapping each appId to a distinct auth/base URL; one env target answering without the web login gate.
+verify_steps: PASSIVE: re-grep sgb chunks for per-env API base/auth hosts adjacent to each client_id and appIdHash — no requests required; record only host/status.
+impact: dev-tier endpoint enumeration on an account-adjacent OAuth flow; Medium only if a dev host answers unauthenticated.
+testability: PASSIVE
+[HYP] marketsmith evaluation host ships client-side-only gating
+class: MISCONFIG
+asset: marketsmith.fyers.in/evaluation/Evaluation.html
+confidence: 40
+reasoning: brand-new host, first 200 probe, served without auth; same family as other account-adjacent fyers.in apps that build Authorization client-side; zero bundle analysis so far.
+evidence_needed: real JS from the page listing endpoints and auth construction (storage/cookie vs server).
+verify_steps: PASSIVE: `curl -s -i --max-time 12 'https://marketsmith.fyers.in/evaluation/Evaluation.html'` to capture script srcs, then fetch JS and grep for `api.fyers.in`, `Authorization`, `_FYERS`, `token`.
+impact: endpoint enumeration; Medium only if any PATH answers unauthenticated — currently enumeration-level.
+testability: PASSIVE
