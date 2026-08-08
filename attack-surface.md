@@ -445,3 +445,4 @@
 200 | https://sgb.fyers.in/updatesgb | text/html
 200 | https://fundtransfer.fyers.in/v2/ | text/html
 200 | https://recruit.fyers.in/images/error-page.png | image/png;charset=UTF-8
+200 | https://recruit.fyers.in/jobs/dist/addons/@zia/ziaSkillsSdk/addons/@zoho/lyte-ui-component/dist/components/lyte-dateselect.*.js | text/html;charset=UTF-8
