@@ -10,9 +10,8 @@ permissions:
 
 env:
   TARGET: fyers.in
-
-env:
   PROBE_ALLOW: "fyers"
+
 
 jobs:
   analyst:

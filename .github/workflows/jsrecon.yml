@@ -21,9 +21,8 @@ permissions:
 
 env:
   JS_MODEL: opencode/deepseek-v4-flash-free
-
-env:
   PROBE_ALLOW: "fyers"
+
 
 jobs:
   jsrecon:
