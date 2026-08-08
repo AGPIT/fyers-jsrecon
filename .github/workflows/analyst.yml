@@ -28,10 +28,21 @@ jobs:
 
       - name: Install OpenCode
         run: |
-          curl -fsSL https://opencode.ai/install | bash
-          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
+          if command -v opencode >/dev/null 2>&1; then
+            opencode --version
+            exit 0
+          fi
+          npm install -g opencode-ai 2>/dev/null || npm install -g --prefix "$HOME/.npm-global" opencode-ai 2>/dev/null || true
+          if ! command -v opencode >/dev/null 2>&1; then
+            for i in 1 2 3; do
+              curl -fsSL https://opencode.ai/install | bash && break
+              echo "opencode.ai installer attempt $i failed, retrying in 15s..."
+              sleep 15
+            done
+          fi
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
           opencode --version
-
       - name: Build RAG context from JS scan outputs (bounded)
         run: |
           mkdir -p knowledge reports
@@ -81,7 +92,7 @@ jobs:
           RULES: facts vs hypotheses strictly separated; never print secrets in full (hash with sha256sum); all claims must trace to the context below or read-only probes of ${TARGET}; never report best-practice/absence-of-header/info-disclosure noise.
           PROMPT_START
           cat ctx.txt >> analyst-prompt.txt
-          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
           timeout 18m opencode run --model "$MODEL_ID" < analyst-prompt.txt > analyst-out.txt 2>&1 || true
           grep -E '^\[(NEW|CHANGED|PRIO|HYP|PARKED|FINAL|NEXT|LEARN|RISK)\]|^class:|^confidence:|^asset:|^impact:|^testability:|^verify_steps:|^reasoning:|^evidence_needed:' analyst-out.txt > lead.txt || true
           {

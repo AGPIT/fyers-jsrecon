@@ -47,19 +47,30 @@ jobs:
 
       - name: Install OpenCode
         run: |
-          curl -fsSL https://opencode.ai/install | bash
-          export PATH="$HOME/.opencode/bin:$PATH"
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
+          if command -v opencode >/dev/null 2>&1; then
+            opencode --version | head -1
+            exit 0
+          fi
+          npm install -g opencode-ai 2>/dev/null || npm install -g --prefix "$HOME/.npm-global" opencode-ai 2>/dev/null || true
+          if ! command -v opencode >/dev/null 2>&1; then
+            for i in 1 2 3; do
+              curl -fsSL https://opencode.ai/install | bash && break
+              echo "opencode.ai installer attempt $i failed, retrying in 15s..."
+              sleep 15
+            done
+          fi
+          export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
           opencode --version | head -1
-
       - name: Collect JS inventory
         run: |
-          export PATH="$HOME/.opencode/bin:$PATH"
+          export PATH="$HOME/.opencode/bin:$HOME/.npm-global/bin:$PATH"
           if [ ! -f js-inventory.json ]; then echo "[]" > js-inventory.json; fi
           python3 jsrecon/collect.py
 
       - name: Analyze batch
         run: |
-          export PATH="$HOME/.opencode/bin:$PATH"
+          export PATH="$HOME/.opencode/bin:$HOME/.npm-global/bin:$PATH"
           JS_PER_RUN="${{ github.event.inputs.per_run || '15' }}" python3 jsrecon/analyze.py
 
       - name: Commit
